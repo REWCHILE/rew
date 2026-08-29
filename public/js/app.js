@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initInstagramFeed();
     initInteractiveTerminal();
     initSpotlightCards();
+    initAuditModal();
 });
 
 /* ==========================================================================
@@ -1000,4 +1001,124 @@ function initSpotlightCards() {
             card.style.setProperty('--mouse-y', `${y}px`);
         });
     });
+}
+
+/* ==========================================================================
+   Google PageSpeed Live Audit Modal Handler
+   ========================================================================== */
+function initAuditModal() {
+    const modal = document.getElementById('auditModalOverlay');
+    const closeBtn = document.getElementById('closeAuditModalBtn');
+    const openBtns = document.querySelectorAll('.open-audit-modal-btn');
+    const form = document.getElementById('auditAnalysisForm');
+    const loadingState = document.getElementById('auditLoadingState');
+    const loadingMsg = document.getElementById('auditLoadingMsg');
+    const resultsState = document.getElementById('auditResultsState');
+
+    if (!modal) return;
+
+    function openModal() {
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    openBtns.forEach(btn => btn.addEventListener('click', openModal));
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('auditSubmitBtn');
+            if (submitBtn) submitBtn.disabled = true;
+
+            form.style.display = 'none';
+            if (loadingState) loadingState.style.display = 'block';
+
+            const msgs = [
+                'Conectando con los servidores de tu sitio web...',
+                'Midiendo First Contentful Paint (FCP) y Largest Contentful Paint (LCP)...',
+                'Analizando tiempo de respuesta (TTFB) y compresión...',
+                'Generando reporte de Core Web Vitals...'
+            ];
+            let msgIdx = 0;
+            const msgTimer = setInterval(() => {
+                msgIdx = (msgIdx + 1) % msgs.length;
+                if (loadingMsg) loadingMsg.textContent = msgs[msgIdx];
+            }, 1200);
+
+            const formData = new FormData(this);
+
+            fetch('/auditoria/analizar', {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN': getCsrfToken()
+                },
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                clearInterval(msgTimer);
+                if (loadingState) loadingState.style.display = 'none';
+
+                if (data.success) {
+                    if (resultsState) resultsState.style.display = 'block';
+
+                    const targetUrlEl = document.getElementById('auditTargetUrl');
+                    if (targetUrlEl) targetUrlEl.textContent = data.website_url;
+
+                    const mobNum = document.getElementById('mobileScoreNum');
+                    const mobCircle = document.getElementById('mobileScoreCircle');
+                    if (mobNum) mobNum.textContent = data.mobile_score;
+                    if (mobCircle) {
+                        mobCircle.className = 'score-circle-wrap ' + (data.mobile_score >= 90 ? 'score-green' : (data.mobile_score >= 50 ? 'score-orange' : 'score-red'));
+                    }
+
+                    const deskNum = document.getElementById('desktopScoreNum');
+                    const deskCircle = document.getElementById('desktopScoreCircle');
+                    if (deskNum) deskNum.textContent = data.desktop_score;
+                    if (deskCircle) {
+                        deskCircle.className = 'score-circle-wrap ' + (data.desktop_score >= 90 ? 'score-green' : (data.desktop_score >= 50 ? 'score-orange' : 'score-red'));
+                    }
+
+                    const lcpEl = document.getElementById('metricLcpVal');
+                    const ttfbEl = document.getElementById('metricTtfbVal');
+                    const clsEl = document.getElementById('metricClsVal');
+                    if (lcpEl) lcpEl.textContent = data.lcp + 's';
+                    if (ttfbEl) ttfbEl.textContent = data.ttfb + 'ms';
+                    if (clsEl) clsEl.textContent = data.cls;
+
+                    const listEl = document.getElementById('auditRecommendationsList');
+                    if (listEl && data.recommendations) {
+                        listEl.innerHTML = data.recommendations.map(r => `<li>${r}</li>`).join('');
+                    }
+
+                    const waBtn = document.getElementById('auditWhatsappCtaBtn');
+                    if (waBtn && data.whatsapp_url) {
+                        waBtn.href = data.whatsapp_url;
+                    }
+                } else {
+                    alert(data.message || 'Error al analizar el sitio.');
+                    form.style.display = 'block';
+                    if (submitBtn) submitBtn.disabled = false;
+                }
+            })
+            .catch(() => {
+                clearInterval(msgTimer);
+                if (loadingState) loadingState.style.display = 'none';
+                form.style.display = 'block';
+                if (submitBtn) submitBtn.disabled = false;
+            });
+        });
+    }
 }

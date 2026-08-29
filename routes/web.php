@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminLeadController;
+use App\Http\Controllers\AuditController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\GeoSeoController;
@@ -46,6 +48,7 @@ Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 // 6. Contacto & Cotizador Interactivo (Blindado con Rate Limiting)
 Route::get('/contacto', [QuoteController::class, 'index'])->name('contacto');
 Route::post('/cotizar', [QuoteController::class, 'store'])->middleware('throttle:15,1')->name('cotizar.store');
+Route::post('/auditoria/analizar', [AuditController::class, 'analyze'])->middleware('throttle:10,1')->name('auditoria.analyze');
 
 // 7. Carrito de Compras & Checkout
 Route::get('/carrito', [CartController::class, 'index'])->name('cart.index');
@@ -66,3 +69,12 @@ Route::get('/llms.txt', [GeoSeoController::class, 'llmsTxt']);
 Route::get('/llms-full.txt', [GeoSeoController::class, 'llmsFullTxt']);
 Route::get('/sitemap.xml', [GeoSeoController::class, 'sitemapXml']);
 Route::get('/robots.txt', [GeoSeoController::class, 'robotsTxt']);
+
+// 11. Panel de Administración CRM Leads & Cotizaciones REW
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', fn () => redirect()->route('admin.leads.index'));
+    Route::get('/leads', [AdminLeadController::class, 'index'])->name('leads.index');
+    Route::patch('/leads/{lead}/status', [AdminLeadController::class, 'updateStatus'])->name('leads.updateStatus');
+    Route::get('/leads/{lead}', [AdminLeadController::class, 'show'])->name('leads.show');
+    Route::delete('/leads/{lead}', [AdminLeadController::class, 'destroy'])->name('leads.destroy');
+});

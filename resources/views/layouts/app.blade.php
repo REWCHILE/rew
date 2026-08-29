@@ -126,6 +126,9 @@
     <!-- Shopping Cart Drawer -->
     @include('components.cart-drawer')
 
+    <!-- Google PageSpeed Live Audit Modal -->
+    @include('components.audit-modal')
+
     <!-- Floating Interactive Widgets (WhatsApp, Currency Switcher, Rich-E Chatbot) -->
     @include('components.floating-widgets')
 

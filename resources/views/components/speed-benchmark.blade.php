@@ -52,7 +52,7 @@
                 <div class="fast-ribbon">⭐ RENDIMIENTO MÁXIMO</div>
                 <div class="benchmark-header">
                     <span class="badge badge-primary" style="font-weight: 800;">🚀 ARQUITECTURA REW</span>
-                    <h3 style="font-size: 1.3rem; margin: 8px 0 0 0; color: #1e293b;">Laravel + Vanilla JS + Caché RAG</h3>
+                    <h3 style="font-size: 1.3rem; margin: 8px 0 0 0; color: #1e293b;">Laravel + Servidores VPS Optimizados + IA</h3>
                 </div>
 
                 <div class="benchmark-metric">
@@ -81,9 +81,9 @@
                 </div>
 
                 <div style="margin-top: 1.5rem; text-align: center;">
-                    <a href="{{ route('contacto') }}" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                    <button type="button" class="btn btn-primary open-audit-modal-btn" style="width: 100%; justify-content: center;">
                         <span>🔍 Solicitar Auditoría Técnica Gratuita →</span>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
