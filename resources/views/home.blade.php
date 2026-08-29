@@ -13,6 +13,9 @@
      ========================================================================== -->
 <section class="hero-section">
     <div class="container">
+        <!-- Live Status Pill -->
+        @include('components.live-status-badge')
+
         <div class="hero-grid">
             <!-- Left: Hero Content -->
             <div class="hero-content">
@@ -37,7 +40,7 @@
                     <a href="{{ route('tienda.index') }}" class="btn btn-outline btn-lg">
                         <span>🛒 Ver Plugins WordPress</span>
                     </a>
-                    <a href="https://api.whatsapp.com/send?phone=56987261127&text={{ urlencode('Hola Álvaro, quiero consultar por desarrollo de software para mi empresa.') }}" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">
+                    <a href="https://api.whatsapp.com/send?phone=56987261127&text={{ rawurlencode('Hola Álvaro, quiero consultar por desarrollo de software para mi empresa.') }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-lg">
                         <span>💬 WhatsApp Directo</span>
                     </a>
                 </div>
@@ -71,7 +74,7 @@
                 </div>
 
                 <!-- Main Glass Card -->
-                <div class="hero-card-main">
+                <div class="hero-main-card spotlight-card">
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-light);">
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <div style="width: 12px; height: 12px; border-radius: 50%; background: #ef4444;"></div>
@@ -114,6 +117,9 @@
     </div>
 </section>
 
+<!-- Dual Tech Marquee -->
+@include('components.tech-marquee')
+
 <!-- ==========================================================================
      PLUGINS DESTACADOS / TIENDA SHOWCASE
      ========================================================================== -->
@@ -136,7 +142,7 @@
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 2rem;">
             @foreach($featuredProducts as $prod)
-                <div class="card product-card">
+                <div class="card product-card spotlight-card">
                     <div class="product-img-wrap">
                         @if($prod->badge)
                             <div class="product-badge-top">
@@ -146,7 +152,7 @@
                             </div>
                         @endif
                         <a href="{{ route('tienda.show', $prod->slug) }}">
-                            <img src="{{ $prod->featured_image }}" alt="{{ $prod->name }}" class="product-img" loading="lazy">
+                            <img src="{{ Str::startsWith($prod->featured_image, 'http') ? $prod->featured_image : asset(ltrim($prod->featured_image, '/')) }}" alt="{{ $prod->name }}" class="product-img" loading="lazy">
                         </a>
                     </div>
                     <div class="product-content">
@@ -203,7 +209,7 @@
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
             @foreach($services as $srv)
-                <div class="card service-card">
+                <div class="card service-card spotlight-card">
                     <div class="service-icon-box">
                         @if($srv->slug === 'desarrollo-web') 🌐
                         @elseif($srv->slug === 'desarrollo-de-software-chile') 💻
@@ -227,6 +233,9 @@
     </div>
 </section>
 
+<!-- Interactive macOS Terminal Showcase -->
+@include('components.interactive-terminal')
+
 <!-- ==========================================================================
      PORTAFOLIO WEB PREVIEW
      ========================================================================== -->
@@ -247,9 +256,9 @@
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
             @foreach($featuredProjects as $project)
-                <div class="card portfolio-card">
+                <div class="card portfolio-card spotlight-card">
                     <div class="portfolio-img-wrap">
-                        <img src="{{ $project->featured_image }}" alt="{{ $project->title }}" class="portfolio-img" loading="lazy">
+                        <img src="{{ Str::startsWith($project->featured_image, 'http') ? $project->featured_image : asset(ltrim($project->featured_image, '/')) }}" alt="{{ $project->title }}" class="portfolio-img" loading="lazy">
                         <div class="portfolio-overlay">
                             <div class="portfolio-meta-pill">{{ $project->category }}</div>
                             <h3 style="color: #ffffff; font-size: 1.3rem;">{{ $project->title }}</h3>
@@ -271,6 +280,9 @@
         </div>
     </div>
 </section>
+
+<!-- Interactive Speed Benchmark Simulator -->
+@include('components.speed-benchmark')
 
 <!-- ==========================================================================
      COTIZADOR INTELIGENTE EXPRESS TEASER

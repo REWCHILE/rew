@@ -40,9 +40,9 @@
         <!-- Projects Grid -->
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; margin-bottom: 4rem;">
             @foreach($projects as $proj)
-                <div class="card portfolio-card">
+                <div class="card portfolio-card spotlight-card">
                     <div class="portfolio-img-wrap">
-                        <img src="{{ $proj->featured_image }}" alt="{{ $proj->title }}" class="portfolio-img" loading="lazy">
+                        <img src="{{ Str::startsWith($proj->featured_image, 'http') ? $proj->featured_image : asset(ltrim($proj->featured_image, '/')) }}" alt="{{ $proj->title }}" class="portfolio-img" loading="lazy">
                         <div class="portfolio-overlay">
                             <div class="portfolio-meta-pill">{{ $proj->category }}</div>
                             <h3 style="color: #ffffff; font-size: 1.35rem; margin: 0;">{{ $proj->title }}</h3>

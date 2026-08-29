@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initRicheChatbot();
     initPortfolioMockup();
     initInstagramFeed();
+    initInteractiveTerminal();
+    initSpotlightCards();
 });
 
 /* ==========================================================================
@@ -934,4 +936,68 @@ function initInstagramFeed() {
     } else {
         setTimeout(fetchFeed, 1000);
     }
+}
+
+/* ==========================================================================
+   Interactive Terminal Simulator
+   ========================================================================== */
+function initInteractiveTerminal() {
+    const terminal = document.querySelector('.terminal-window');
+    if (!terminal) return;
+
+    const rerunBtn = document.getElementById('rerunTerminalBtn');
+    const steps = [
+        terminal.querySelector('.step-1'),
+        terminal.querySelector('.step-2'),
+        terminal.querySelector('.step-3'),
+        terminal.querySelector('.step-4'),
+        terminal.querySelector('.terminal-summary')
+    ];
+
+    let hasRun = false;
+
+    function runSimulation() {
+        steps.forEach(s => { if (s) s.style.display = 'none'; });
+
+        setTimeout(() => { if (steps[0]) { steps[0].style.display = 'block'; steps[0].style.animation = 'fadeIn 0.3s ease'; } }, 600);
+        setTimeout(() => { if (steps[1]) { steps[1].style.display = 'block'; steps[1].style.animation = 'fadeIn 0.3s ease'; } }, 1300);
+        setTimeout(() => { if (steps[2]) { steps[2].style.display = 'block'; steps[2].style.animation = 'fadeIn 0.3s ease'; } }, 2000);
+        setTimeout(() => { if (steps[3]) { steps[3].style.display = 'block'; steps[3].style.animation = 'fadeIn 0.3s ease'; } }, 2700);
+        setTimeout(() => { if (steps[4]) { steps[4].style.display = 'block'; steps[4].style.animation = 'fadeIn 0.4s ease'; } }, 3400);
+    }
+
+    if (rerunBtn) {
+        rerunBtn.addEventListener('click', runSimulation);
+    }
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasRun) {
+                    hasRun = true;
+                    runSimulation();
+                    observer.unobserve(terminal);
+                }
+            });
+        }, { threshold: 0.3 });
+        observer.observe(terminal);
+    } else {
+        runSimulation();
+    }
+}
+
+/* ==========================================================================
+   Cursor Spotlight Border Tracker (Linear / Vercel effect)
+   ========================================================================== */
+function initSpotlightCards() {
+    const cards = document.querySelectorAll('.spotlight-card, .portfolio-card, .product-card, .feature-card-clean');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
 }

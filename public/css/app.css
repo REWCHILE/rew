@@ -2230,3 +2230,380 @@ img {
   100% { background-position: -200% 0; }
 }
 
+/* ==========================================================================
+   1. Dual High-Impact Tech Marquee
+   ========================================================================== */
+.dual-tech-marquee-wrapper {
+  background: #090e1a;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.25rem 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+}
+
+.marquee-left {
+  animation: marqueeLeft 32s linear infinite;
+}
+
+.marquee-right {
+  animation: marqueeRight 35s linear infinite;
+}
+
+.marquee-left:hover, .marquee-right:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.marquee-item {
+  color: #e2e8f0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.02em;
+}
+
+.marquee-sep {
+  color: #4f46e5;
+  font-size: 1rem;
+}
+
+.tech-badge-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.tech-badge-chip:hover {
+  background: rgba(79, 70, 229, 0.25);
+  border-color: #6366f1;
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   2. Live Engineering Status Widget
+   ========================================================================== */
+.live-status-pill-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.live-status-pill {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  backdrop-filter: blur(8px);
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.live-pulse-dot {
+  width: 9px;
+  height: 9px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: pulseGreen 2s infinite;
+}
+
+@keyframes pulseGreen {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.live-status-title {
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.live-status-highlight {
+  color: #10b981;
+  font-weight: 800;
+}
+
+.live-sep {
+  color: #475569;
+}
+
+.live-response-time {
+  color: #e2e8f0;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   3. Interactive macOS Terminal Showcase
+   ========================================================================== */
+.terminal-window {
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  position: relative;
+}
+
+.terminal-header {
+  background: #1e293b;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.dot-red { background: #ef4444; }
+.dot-yellow { background: #f59e0b; }
+.dot-green { background: #10b981; }
+
+.terminal-title {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.terminal-btn-action {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.terminal-btn-action:hover {
+  background: #4f46e5;
+  color: #ffffff;
+}
+
+.terminal-body {
+  padding: 1.5rem;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.t-prompt {
+  color: #10b981;
+  font-weight: 800;
+  margin-right: 6px;
+}
+
+.t-command {
+  color: #f8fafc;
+  font-weight: 700;
+}
+
+.t-cyan { color: #38bdf8; font-weight: 700; }
+.t-success { color: #4ade80; font-weight: 700; }
+.t-icon { margin-right: 4px; }
+
+.terminal-footer {
+  background: #1e293b;
+  padding: 14px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: inherit;
+}
+
+/* ==========================================================================
+   4. Speed Benchmark Simulator
+   ========================================================================== */
+.benchmark-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .benchmark-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.benchmark-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.benchmark-slow {
+  border-top: 4px solid #ef4444;
+  background: #fdfaf9;
+}
+
+.benchmark-fast {
+  border-top: 4px solid #10b981;
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.fast-ribbon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #10b981;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.benchmark-header {
+  margin-bottom: 1.5rem;
+}
+
+.benchmark-metric {
+  margin-bottom: 1.25rem;
+}
+
+.metric-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.metric-val {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.text-danger { color: #dc2626; }
+.text-success { color: #059669; }
+
+.metric-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.metric-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s ease-in-out;
+}
+
+.fill-danger { background: #ef4444; }
+.fill-success { background: linear-gradient(90deg, #10b981, #059669); }
+
+.benchmark-result-box {
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin-top: 1.5rem;
+}
+
+.slow-box {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.fast-box {
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+/* ==========================================================================
+   5. Spotlight Cursor Border Effect (Vercel / Linear Aesthetic)
+   ========================================================================== */
+.spotlight-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  top: var(--mouse-y, -100px);
+  left: var(--mouse-x, -100px);
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, rgba(255, 200, 0, 0.08) 40%, transparent 70%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+
