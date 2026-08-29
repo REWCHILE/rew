@@ -42,7 +42,6 @@
                     <li><a href="{{ route('tienda.show', 'rew-multi-currency-translator-pro') }}">REW Multi-Currency Pro</a></li>
                     <li><a href="{{ route('portafolio.index') }}">Portafolio Web</a></li>
                     <li><a href="{{ route('blog.index') }}">Blog & Artículos</a></li>
-                    <li><a href="{{ url('/llms.txt') }}" target="_blank">LLMs.txt (GEO / IA)</a></li>
                 </ul>
             </div>
 

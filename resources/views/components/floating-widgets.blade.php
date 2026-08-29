@@ -73,8 +73,6 @@
     </div>
 </div>
 
-<!-- Hidden Google Translate Element for smooth translation -->
-<div id="google_translate_element" style="display:none;"></div>
 
 <!-- 3. Rich-E AI Chatbot Agent (Exact User Match) -->
 <div class="floating-riche-bot">

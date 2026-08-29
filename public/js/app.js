@@ -1,6 +1,6 @@
 /**
  * REW.cl - Interactive Core Application Script
- * Featuring Rich-E AI Agent, Multi-Language & Multi-Currency Switcher, and Portfolio Interactive Mockups
+ * Featuring Rich-E AI Agent, 100% Native Multi-Language & Multi-Currency Switcher, and Portfolio Interactive Mockups
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -44,8 +44,171 @@ function initMobileNav() {
 }
 
 /* ==========================================================================
-   Multi-Language & Multi-Currency Switcher (Exact User Design)
+   Multi-Language & Multi-Currency Switcher (100% Native - No Google Banners)
    ========================================================================== */
+const UI_TRANSLATIONS = {
+    es: {
+        inicio: 'Inicio',
+        nosotros: 'Nosotros',
+        tienda: 'Tienda',
+        servicios: 'Servicios',
+        portafolio: 'Portafolio',
+        blog: 'Blog',
+        contacto: 'Contacto',
+        cotizar: 'Cotizar Proyecto',
+        anadir_carrito: 'Añadir al Carrito',
+        agregando: 'Agregando...',
+        anadido: '✓ ¡Añadido!',
+        detalles: 'Detalles',
+        comprar_ahora: 'Comprar por WhatsApp ➔',
+        carrito_titulo: 'Tu Carrito de Plugins',
+        carrito_vacio: 'Tu carrito está vacío',
+        total_estimado: 'Total Estimado:',
+        proceder_pago: 'Proceder al Pago ➔',
+        seguir_comprando: 'Seguir Comprando'
+    },
+    en: {
+        inicio: 'Home',
+        nosotros: 'About Us',
+        tienda: 'Store',
+        servicios: 'Services',
+        portafolio: 'Portfolio',
+        blog: 'Blog',
+        contacto: 'Contact',
+        cotizar: 'Get a Quote',
+        anadir_carrito: 'Add to Cart',
+        agregando: 'Adding...',
+        anadido: '✓ Added!',
+        detalles: 'Details',
+        comprar_ahora: 'Buy via WhatsApp ➔',
+        carrito_titulo: 'Your Plugin Cart',
+        carrito_vacio: 'Your cart is currently empty',
+        total_estimado: 'Estimated Total:',
+        proceder_pago: 'Proceed to Checkout ➔',
+        seguir_comprando: 'Continue Shopping'
+    },
+    pt: {
+        inicio: 'Início',
+        nosotros: 'Sobre Nós',
+        tienda: 'Loja',
+        servicios: 'Serviços',
+        portafolio: 'Portfólio',
+        blog: 'Blog',
+        contacto: 'Contato',
+        cotizar: 'Solicitar Orçamento',
+        anadir_carrito: 'Adicionar ao Carrinho',
+        agregando: 'Adicionando...',
+        anadido: '✓ Adicionado!',
+        detalles: 'Detalhes',
+        comprar_ahora: 'Comprar pelo WhatsApp ➔',
+        carrito_titulo: 'Seu Carrinho de Plugins',
+        carrito_vacio: 'Seu carrinho está vazio',
+        total_estimado: 'Total Estimado:',
+        proceder_pago: 'Finalizar Compra ➔',
+        seguir_comprando: 'Continuar Comprando'
+    },
+    fr: {
+        inicio: 'Accueil',
+        nosotros: 'À Propos',
+        tienda: 'Boutique',
+        servicios: 'Services',
+        portafolio: 'Portfolio',
+        blog: 'Blog',
+        contacto: 'Contact',
+        cotizar: 'Demander un Devis',
+        anadir_carrito: 'Ajouter au Panier',
+        agregando: 'Ajout en cours...',
+        anadido: '✓ Ajouté !',
+        detalles: 'Détails',
+        comprar_ahora: 'Acheter via WhatsApp ➔',
+        carrito_titulo: 'Votre Panier',
+        carrito_vacio: 'Votre panier est vide',
+        total_estimado: 'Total Estimé :',
+        proceder_pago: 'Passer la Commande ➔',
+        seguir_comprando: 'Continuer vos Achats'
+    },
+    de: {
+        inicio: 'Startseite',
+        nosotros: 'Über Uns',
+        tienda: 'Shop',
+        servicios: 'Dienstleistungen',
+        portafolio: 'Portfolio',
+        blog: 'Blog',
+        contacto: 'Kontakt',
+        cotizar: 'Angebot Anfordern',
+        anadir_carrito: 'In den Warenkorb',
+        agregando: 'Wird hinzugefügt...',
+        anadido: '✓ Hinzugefügt!',
+        detalles: 'Details',
+        comprar_ahora: 'Über WhatsApp kaufen ➔',
+        carrito_titulo: 'Ihr Warenkorb',
+        carrito_vacio: 'Ihr Warenkorb ist leer',
+        total_estimado: 'Geschätzte Gesamtsumme:',
+        proceder_pago: 'Zur Kasse ➔',
+        seguir_comprando: 'Weiter einkaufen'
+    },
+    it: {
+        inicio: 'Home',
+        nosotros: 'Chi Siamo',
+        tienda: 'Negozio',
+        servicios: 'Servizi',
+        portafolio: 'Portfolio',
+        blog: 'Blog',
+        contacto: 'Contatto',
+        cotizar: 'Richiedi Preventivo',
+        anadir_carrito: 'Aggiungi al Carrello',
+        agregando: 'Aggiunta in corso...',
+        anadido: '✓ Aggiunto!',
+        detalles: 'Dettagli',
+        comprar_ahora: 'Acquista su WhatsApp ➔',
+        carrito_titulo: 'Il tuo Carrello',
+        carrito_vacio: 'Il tuo carrello è vuoto',
+        total_estimado: 'Totale Stimato:',
+        proceder_pago: 'Procedi all’Acquisto ➔',
+        seguir_comprando: 'Continua lo Shopping'
+    },
+    'zh-CN': {
+        inicio: '首页',
+        nosotros: '关于我们',
+        tienda: '商城',
+        servicios: '核心服务',
+        portafolio: '成功案例',
+        blog: '技术博客',
+        contacto: '联系我们',
+        cotizar: '项目报价',
+        anadir_carrito: '加入购物车',
+        agregando: '正在添加...',
+        anadido: '✓ 已添加！',
+        detalles: '产品详情',
+        comprar_ahora: '通过 WhatsApp 购买 ➔',
+        carrito_titulo: '您的插件购物车',
+        carrito_vacio: '购物车为空',
+        total_estimado: '预估总计：',
+        proceder_pago: '前往结账 ➔',
+        seguir_comprando: '继续浏览'
+    },
+    ja: {
+        inicio: 'ホーム',
+        nosotros: '私たちについて',
+        tienda: 'ストア',
+        servicios: 'サービス',
+        portafolio: '制作実績',
+        blog: 'ブログ',
+        contacto: 'お問い合わせ',
+        cotizar: 'お見積もり',
+        anadir_carrito: 'カートに追加',
+        agregando: '追加中...',
+        anadido: '✓ 追加完了！',
+        detalles: '詳細を見る',
+        comprar_ahora: 'WhatsAppで購入 ➔',
+        carrito_titulo: 'ショッピングカート',
+        carrito_vacio: 'カートは空です',
+        total_estimado: '合計見積もり:',
+        proceder_pago: 'レジに進む ➔',
+        seguir_comprando: '買い物を続ける'
+    }
+};
+
 function initLangCurrencySwitcher() {
     const widget = document.querySelector('.floating-lang-currency-widget');
     const toggleBtn = document.querySelector('.lang-currency-toggle-btn');
@@ -58,9 +221,6 @@ function initLangCurrencySwitcher() {
     let currentLang = localStorage.getItem('rew_lang') || 'es';
     let currentCurrency = localStorage.getItem('rew_currency') || 'CLP';
     let currentFlag = localStorage.getItem('rew_flag') || '🇨🇱';
-
-    // Init Google Translate
-    loadGoogleTranslate();
 
     // Toggle Dropdown
     if (toggleBtn && widget) {
@@ -81,7 +241,6 @@ function initLangCurrencySwitcher() {
         btn.addEventListener('click', function() {
             const lang = this.getAttribute('data-lang');
             const flag = this.getAttribute('data-flag');
-            const name = this.getAttribute('data-name');
 
             langBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
@@ -92,7 +251,7 @@ function initLangCurrencySwitcher() {
             localStorage.setItem('rew_flag', flag);
 
             updateTriggerLabel();
-            translatePage(lang);
+            applyNativeTranslations(lang);
         });
     });
 
@@ -110,7 +269,6 @@ function initLangCurrencySwitcher() {
             updateTriggerLabel();
             applyCurrencyPrices(currency);
 
-            // Sync with Laravel session
             fetch('/currency', {
                 method: 'POST',
                 headers: {
@@ -144,29 +302,45 @@ function initLangCurrencySwitcher() {
         window.dispatchEvent(new CustomEvent('currencyChanged', { detail: { currency } }));
     }
 
-    function translatePage(lang) {
-        if (lang === 'es') {
-            // Restore original
-            const select = document.querySelector('.goog-te-combo');
-            if (select) {
-                select.value = '';
-                select.dispatchEvent(new Event('change'));
-            }
-            return;
+    function applyNativeTranslations(lang) {
+        const dict = UI_TRANSLATIONS[lang] || UI_TRANSLATIONS.es;
+
+        // Translate Nav links
+        const navLinks = document.querySelectorAll('.nav-menu > li > a');
+        if (navLinks.length >= 6) {
+            if (navLinks[0]) navLinks[0].childNodes[0].nodeValue = dict.inicio + ' ';
+            if (navLinks[1]) navLinks[1].childNodes[0].nodeValue = dict.nosotros + ' ';
+            if (navLinks[2]) navLinks[2].childNodes[0].nodeValue = dict.tienda + ' ';
+            if (navLinks[4]) navLinks[4].childNodes[0].nodeValue = dict.portafolio + ' ';
+            if (navLinks[5]) navLinks[5].childNodes[0].nodeValue = dict.blog + ' ';
+            if (navLinks[6]) navLinks[6].childNodes[0].nodeValue = dict.contacto + ' ';
         }
 
-        const select = document.querySelector('.goog-te-combo');
-        if (select) {
-            select.value = lang;
-            select.dispatchEvent(new Event('change'));
-        }
+        // Translate Add to Cart buttons
+        document.querySelectorAll('.ajax-add-to-cart-form button[type="submit"]').forEach(btn => {
+            if (!btn.disabled) {
+                btn.innerHTML = `<span>${dict.anadir_carrito}</span>`;
+            }
+        });
+
+        // Translate Drawer Title & Buttons
+        const drawerTitle = document.querySelector('.cart-drawer-header h3');
+        if (drawerTitle) drawerTitle.textContent = dict.carrito_titulo;
+
+        const checkoutBtn = document.querySelector('.cart-drawer-footer .btn-primary');
+        if (checkoutBtn) checkoutBtn.textContent = dict.proceder_pago;
+
+        const continueBtn = document.querySelector('.cart-drawer-footer .btn-outline');
+        if (continueBtn) continueBtn.textContent = dict.seguir_comprando;
     }
 
     // Apply initial states
     updateTriggerLabel();
     applyCurrencyPrices(currentCurrency);
+    if (currentLang !== 'es') {
+        applyNativeTranslations(currentLang);
+    }
 
-    // Set active buttons
     langBtns.forEach(b => {
         if (b.getAttribute('data-lang') === currentLang) b.classList.add('active');
         else b.classList.remove('active');
@@ -175,21 +349,6 @@ function initLangCurrencySwitcher() {
         if (b.getAttribute('data-currency') === currentCurrency) b.classList.add('active');
         else b.classList.remove('active');
     });
-}
-
-function loadGoogleTranslate() {
-    window.googleTranslateElementInit = function() {
-        new google.translate.TranslateElement({
-            pageLanguage: 'es',
-            includedLanguages: 'es,en,pt,fr,de,it,zh-CN,ja',
-            autoDisplay: false
-        }, 'google_translate_element');
-    };
-
-    const script = document.createElement('script');
-    script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-    script.async = true;
-    document.body.appendChild(script);
 }
 
 /* ==========================================================================
@@ -515,8 +674,8 @@ function initRicheChatbot() {
             const gain = ctx.createGain();
             osc.connect(gain);
             gain.connect(ctx.destination);
-            osc.frequency.setValueAtTime(587.33, ctx.currentTime); // D5
-            osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15); // A5
+            osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15);
             gain.gain.setValueAtTime(0.08, ctx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
             osc.start();
@@ -551,7 +710,6 @@ function initRicheChatbot() {
         appendMessage(msg, true);
         if (input) input.value = '';
 
-        // Typing indicator bubble
         const typingBubble = document.createElement('div');
         typingBubble.className = 'chat-bubble chat-bubble-bot';
         typingBubble.id = 'typingIndicator';
@@ -615,7 +773,6 @@ function initPortfolioMockup() {
     const closeZoomBtn = document.getElementById('closeZoomBtn');
 
     if (viewport && img) {
-        // Smooth hover scroll effect
         viewport.addEventListener('mouseenter', () => {
             const scrollDistance = img.offsetHeight - viewport.offsetHeight;
             if (scrollDistance > 0) {
