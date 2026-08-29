@@ -4,6 +4,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\GeoSeoController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InstagramController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\RicheChatController;
@@ -57,7 +58,10 @@ Route::post('/checkout', [CartController::class, 'processCheckout'])->name('chec
 // 8. Rich-E AI Agent Endpoint (Groq / Native RAG)
 Route::post('/api/riche/chat', [RicheChatController::class, 'chat'])->name('riche.chat');
 
-// 9. GEO & SEO (Machine Readable / AI Agents)
+// 9. Instagram Feed Endpoint (Async Cached Feed)
+Route::get('/api/instagram/feed', [InstagramController::class, 'feed'])->name('instagram.feed');
+
+// 10. GEO & SEO (Machine Readable / AI Agents)
 Route::get('/llms.txt', [GeoSeoController::class, 'llmsTxt']);
 Route::get('/llms-full.txt', [GeoSeoController::class, 'llmsFullTxt']);
 Route::get('/sitemap.xml', [GeoSeoController::class, 'sitemapXml']);

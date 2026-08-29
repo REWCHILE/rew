@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initInteractiveQuoteCalculator();
     initRicheChatbot();
     initPortfolioMockup();
+    initInstagramFeed();
 });
 
 /* ==========================================================================
@@ -531,7 +532,9 @@ function initInteractiveQuoteCalculator() {
 
         if (baseCostEl) {
             const cur = localStorage.getItem('rew_currency') || 'CLP';
-            if (cur === 'CLP') {
+            if (totalUSD === 0 && totalCLP === 0) {
+                baseCostEl.textContent = 'A evaluar / A medida';
+            } else if (cur === 'CLP') {
                 baseCostEl.textContent = '$' + totalCLP.toLocaleString('es-CL') + ' CLP';
             } else {
                 baseCostEl.textContent = '$' + totalUSD.toLocaleString('en-US') + ' USD';
@@ -804,4 +807,58 @@ function initPortfolioMockup() {
 function getCsrfToken() {
     const meta = document.querySelector('meta[name="csrf-token"]');
     return meta ? meta.getAttribute('content') : '';
+}
+
+/* ==========================================================================
+   Instagram Dynamic Feed (Non-Blocking Lazy Fetcher)
+   ========================================================================== */
+function initInstagramFeed() {
+    const grid = document.getElementById('instagramPostsGrid');
+    if (!grid) return;
+
+    const endpoint = grid.getAttribute('data-endpoint') || '/api/instagram/feed';
+    let loaded = false;
+
+    function fetchFeed() {
+        if (loaded) return;
+        loaded = true;
+
+        fetch(endpoint)
+            .then(res => res.json())
+            .then(data => {
+                if (data.success && data.posts && data.posts.length > 0) {
+                    let html = '';
+                    data.posts.forEach(post => {
+                        html += `
+                            <a href="${post.permalink}" target="_blank" rel="noopener noreferrer" class="ig-card" title="${post.caption}">
+                                <img src="${post.image}" alt="Instagram Post @rew_chile" class="ig-card-img" loading="lazy">
+                                <div class="ig-card-overlay">
+                                    <div class="ig-card-caption">${post.caption}</div>
+                                    <div class="ig-card-stats">
+                                        <span>❤️ ${post.likes}</span>
+                                        <span>💬 ${post.comments}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        `;
+                    });
+                    grid.innerHTML = html;
+                }
+            })
+            .catch(() => {});
+    }
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    fetchFeed();
+                    observer.unobserve(grid);
+                }
+            });
+        }, { rootMargin: '200px' });
+        observer.observe(grid);
+    } else {
+        setTimeout(fetchFeed, 1000);
+    }
 }

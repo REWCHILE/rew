@@ -129,6 +129,9 @@
     <!-- Floating Interactive Widgets (WhatsApp, Currency Switcher, Rich-E Chatbot) -->
     @include('components.floating-widgets')
 
+    <!-- Instagram Dynamic Feed Component -->
+    @include('components.instagram-feed')
+
     <!-- Footer Component -->
     @include('components.footer')
 

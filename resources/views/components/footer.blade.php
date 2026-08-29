@@ -66,9 +66,9 @@
                 &copy; {{ date('Y') }} <strong>REW Chile</strong>. Todos los derechos reservados. Liderado por <strong>Álvaro Valenzuela Valdés</strong>.
             </div>
             <div style="display: flex; gap: 1rem; font-size: 0.8rem;">
-                <a href="{{ url('/sitemap.xml') }}" style="color: #94a3b8;">Sitemap XML</a>
+                <a href="https://www.instagram.com/rew_chile/" target="_blank" rel="noopener" style="color: #e1306c; font-weight: 700;">📸 Instagram @rew_chile</a>
                 <span>•</span>
-                <a href="{{ url('/llms.txt') }}" style="color: #94a3b8;">Protocolo LLMs.txt</a>
+                <a href="{{ url('/sitemap.xml') }}" style="color: #94a3b8;">Sitemap XML</a>
                 <span>•</span>
                 <a href="{{ route('contacto') }}" style="color: #94a3b8;">Cotizaciones</a>
             </div>

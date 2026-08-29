@@ -1,31 +1,37 @@
 @extends('layouts.app')
 
-@section('title', 'Contacto & Cotizador Interactivo | REW Chile')
-@section('meta_description', 'Cotiza tu proyecto de desarrollo web, software a medida o chatbot de IA en tiempo real. Envío directo a WhatsApp (+56987261127) y correo oficial.')
+@section('title', 'Cotizador de Software y Contacto | REW Chile')
+@section('meta_description', 'Calcula el presupuesto estimado de tu software, sitio web o plugin en tiempo real. Trato directo con Álvaro Valenzuela Valdés.')
 
-@section('og_title', 'Cotizador Interactivo & Contacto Directo | REW Chile')
-@section('og_description', 'Calcula el presupuesto estimado para tu plataforma web o software a medida y conversa directamente con Álvaro Valenzuela Valdés.')
-@section('og_image', asset('images/logo.webp'))
+@section('og_title', 'Cotizador en Línea & Contacto - REW Chile')
+@section('og_description', 'Calcula tu presupuesto estimado y habla directamente con Álvaro Valenzuela por WhatsApp.')
 
 @section('content')
-<section class="section" style="background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%);">
-    <div class="container">
-        <!-- Header -->
-        <div style="text-align: center; max-width: 800px; margin: 0 auto 3.5rem;">
-            <span class="badge badge-gold" style="margin-bottom: 0.75rem;">Cotizador Inteligente & Asesoría</span>
-            <h1 style="font-size: 3rem; margin-bottom: 1rem;">Calcula tu Presupuesto & Conversemos</h1>
-            <p style="font-size: 1.15rem; color: var(--text-body);">
-                Selecciona las características de tu proyecto para obtener una estimación en tiempo real y enviarla directamente al WhatsApp oficial o correo de <strong>Álvaro Valenzuela Valdés</strong>.
-            </p>
+<!-- Page Header -->
+<section style="background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%); padding: 4rem 0 2rem;">
+    <div class="container text-center">
+        <span class="badge badge-primary" style="margin-bottom: 0.75rem;">Cotización & Asesoría Técnica</span>
+        <h1 style="font-size: 3rem; margin-bottom: 1rem;">Calcula tu Proyecto en Minutos</h1>
+        <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 750px; margin: 0 auto 1.5rem;">
+            Selecciona el tipo de proyecto y los módulos que necesitas. Te entregamos una estimación referencial inmediata y coordinamos una sesión técnica directa con <strong>Álvaro Valenzuela Valdés</strong>.
+        </p>
+        
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 8px 16px; border-radius: 9999px; font-size: 0.85rem; font-weight: 700;">
+            <span>⚠️ Todos los precios son referenciales y están siempre a la espera de evaluación técnica.</span>
         </div>
+    </div>
+</section>
 
-        <div style="display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 3.5rem; align-items: flex-start; margin-bottom: 4rem;">
-            <!-- Left: Interactive Form -->
-            <div class="card quote-calculator-card">
+<!-- Interactive Step-by-Step Quote Form -->
+<section class="section" style="padding-top: 1.5rem;">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3.5rem; align-items: flex-start;">
+            <!-- Left: Steps Container -->
+            <div class="card" style="padding: 2.5rem;">
                 <form id="quoteCalculatorForm" action="{{ route('cotizar.store') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="estimated_budget_usd" value="850">
-                    <input type="hidden" name="estimated_budget_clp" value="790000">
+                    <input type="hidden" name="estimated_budget_usd" id="hidden_budget_usd" value="850">
+                    <input type="hidden" name="estimated_budget_clp" id="hidden_budget_clp" value="790000">
 
                     <!-- Step 1: Service Type -->
                     <div style="margin-bottom: 2.5rem;">
@@ -70,20 +76,29 @@
                                 <span class="option-title">🛡️ Mantenimiento Web</span>
                                 <span class="option-price-tag price-tag-dynamic" data-usd="250" data-clp="220000">Desde $250 USD</span>
                             </label>
+
+                            <!-- NEW CUSTOMIZADO OPTION -->
+                            <label class="option-card" style="border-color: var(--accent-gold); background: rgba(255, 200, 0, 0.05);">
+                                <input type="radio" name="service_type" value="Software 100% Customizado en Laravel" data-base-usd="0" data-base-clp="0">
+                                <span class="option-title" style="color: #b45309; font-weight: 800;">⚙️ Proyecto 100% Customizado</span>
+                                <span class="badge badge-gold" style="font-size: 0.75rem;">A evaluar</span>
+                            </label>
                         </div>
                     </div>
 
-                    <!-- Step 2: Features Add-ons -->
+                    <!-- Step 2: Features Add-ons & Custom Modules -->
                     <div style="margin-bottom: 2.5rem;">
                         <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
-                            <span style="color: var(--primary);">2.</span> Módulos y Funcionalidades Adicionales
+                            <span style="color: var(--primary);">2.</span> Módulos y Funcionalidades
                         </h3>
-                        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;">Selecciona los complementos necesarios.</p>
+                        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                            Selecciona los módulos adicionales y especifica las funciones personalizadas que requiere tu software.
+                        </p>
 
-                        <div class="option-select-grid">
+                        <div class="option-select-grid" style="margin-bottom: 1.5rem;">
                             <label class="option-card">
                                 <input type="checkbox" name="features[]" value="Pasarela Webpay Plus / MercadoPago" data-price-usd="200" data-price-clp="180000">
-                                <span class="option-title">💳 Pasarelas de Pago</span>
+                                <span class="option-title">💳 Pasarelas de Pago (Webpay/Stripe)</span>
                                 <span class="option-price-tag price-tag-dynamic" data-usd="200" data-clp="180000">+$200 USD</span>
                             </label>
 
@@ -100,10 +115,35 @@
                             </label>
 
                             <label class="option-card">
+                                <input type="checkbox" name="features[]" value="Panel de Control & Roles en Laravel" data-price-usd="350" data-price-clp="320000">
+                                <span class="option-title">🛡️ Panel de Control & Roles</span>
+                                <span class="option-price-tag price-tag-dynamic" data-usd="350" data-clp="320000">+$350 USD</span>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="checkbox" name="features[]" value="Facturación Electrónica SII / APIs" data-price-usd="400" data-price-clp="380000">
+                                <span class="option-title">⚡ Facturación SII / APIs</span>
+                                <span class="option-price-tag price-tag-dynamic" data-usd="400" data-clp="380000">+$400 USD</span>
+                            </label>
+
+                            <label class="option-card">
                                 <input type="checkbox" name="features[]" value="Soporte Prioritario & Capacitación 1 a 1" data-price-usd="180" data-price-clp="160000">
                                 <span class="option-title">👨‍🏫 Capacitación 1 a 1</span>
                                 <span class="option-price-tag price-tag-dynamic" data-usd="180" data-clp="160000">+$180 USD</span>
                             </label>
+                        </div>
+
+                        <!-- Dedicated Custom Features Input -->
+                        <div style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 12px; padding: 1.25rem;">
+                            <label style="display: block; font-size: 0.92rem; font-weight: 800; color: var(--text-dark); margin-bottom: 6px;">
+                                💡 ¿Quieres funcionalidades personalizadas en Laravel o WordPress?
+                            </label>
+                            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px;">
+                                Describe con tus propias palabras qué necesitas que haga el software para evaluar la viabilidad técnica exacta.
+                            </p>
+                            <textarea name="custom_features_description" rows="3" 
+                                      placeholder="Ejemplo: Quiero un software en Laravel con panel multi-usuario, integración con el SII para boletas automáticas, sincronización en tiempo real con WooCommerce y envío de notificaciones automáticas por WhatsApp..." 
+                                      style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-light); border-radius: 8px; font-size: 0.9rem; outline: none; font-family: inherit; background: #ffffff;"></textarea>
                         </div>
                     </div>
 
@@ -140,8 +180,8 @@
                         </div>
 
                         <div style="margin-bottom: 1.5rem;">
-                            <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px;">Describe brevemente tu idea u objetivos</label>
-                            <textarea name="project_description" rows="3" placeholder="Cuéntanos sobre los plazos deseados, referencias o funcionalidades especiales..." 
+                            <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px;">Detalles u observaciones adicionales</label>
+                            <textarea name="project_description" rows="2" placeholder="Plazos deseados, estado actual o comentarios..." 
                                       style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-light); border-radius: var(--radius-sm); font-size: 0.95rem; outline: none; font-family: inherit;"></textarea>
                         </div>
 
@@ -155,21 +195,24 @@
             <!-- Right: Real-time Budget Estimation Card -->
             <div style="position: sticky; top: 110px;">
                 <div class="quote-estimate-summary">
+                    <span class="badge badge-gold" style="margin-bottom: 0.75rem;">Estimación Técnica</span>
                     <h3>Resumen del Presupuesto</h3>
                     
-                    <div style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 1rem;">
-                        Esta es una estimación referencial basada en tus selecciones técnicas.
+                    <div style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 1.25rem;">
+                        Los valores calculados son <strong>referenciales</strong> y se ajustan al alcance técnico definitivo tras la evaluación.
                     </div>
 
                     <div class="estimate-total-box">
-                        <div style="font-size: 0.8rem; text-transform: uppercase; color: #cbd5e1; font-weight: 700;">Inversión Estimada:</div>
+                        <div style="font-size: 0.78rem; text-transform: uppercase; color: #cbd5e1; font-weight: 700;">Presupuesto Referencial:</div>
                         <div class="estimate-total-amount" id="calcEstimatedCost">$850 USD</div>
+                        <div style="font-size: 0.72rem; color: #fef08a; margin-top: 4px; font-weight: 600;">* Sujeto a evaluación técnica</div>
                     </div>
 
                     <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.25rem; font-size: 0.85rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 8px;">
+                        <div>✓ Trato directo con Álvaro Valenzuela Valdés</div>
                         <div>✓ Envío instantáneo a WhatsApp y Correo</div>
-                        <div>✓ Facturación electrónica disponible</div>
-                        <div>✓ Reunión técnica sin compromiso</div>
+                        <div>✓ Facturación electrónica para empresas</div>
+                        <div>✓ Sesión de evaluación técnica sin costo</div>
                     </div>
                 </div>
 
@@ -177,14 +220,14 @@
                 <div class="card" style="margin-top: 1.5rem; padding: 1.5rem;">
                     <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">Canales Directos</h4>
                     <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
-                        <a href="https://api.whatsapp.com/send?phone=56987261127" target="_blank" rel="noopener" style="color: #25d366; font-weight: 700;">
-                            💬 WhatsApp: +56 9 8726 1127
+                        <a href="https://api.whatsapp.com/send?phone=56987261127" target="_blank" rel="noopener" style="color: #25d366; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                            <span>📱 WhatsApp: +56 9 8726 1127</span>
                         </a>
-                        <a href="mailto:alvaro@rew.cl" style="color: var(--text-dark); font-weight: 600;">
-                            ✉️ Email: alvaro@rew.cl
+                        <a href="mailto:alvaro@rew.cl" style="color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                            <span>✉️ Correo: alvaro@rew.cl</span>
                         </a>
-                        <div style="color: var(--text-muted);">
-                            📍 Santiago de Chile
+                        <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">
+                            📍 Santiago, Región Metropolitana, Chile
                         </div>
                     </div>
                 </div>
