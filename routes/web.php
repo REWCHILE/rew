@@ -43,9 +43,9 @@ Route::get('/diseno-ux-ui', [ServiceController::class, 'disenoUxUi'])->name('ser
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
-// 6. Contacto & Cotizador Interactivo
+// 6. Contacto & Cotizador Interactivo (Blindado con Rate Limiting)
 Route::get('/contacto', [QuoteController::class, 'index'])->name('contacto');
-Route::post('/cotizar', [QuoteController::class, 'store'])->name('cotizar.store');
+Route::post('/cotizar', [QuoteController::class, 'store'])->middleware('throttle:15,1')->name('cotizar.store');
 
 // 7. Carrito de Compras & Checkout
 Route::get('/carrito', [CartController::class, 'index'])->name('cart.index');
@@ -55,8 +55,8 @@ Route::post('/currency', [CartController::class, 'setCurrency'])->name('currency
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout.index');
 Route::post('/checkout', [CartController::class, 'processCheckout'])->name('checkout.process');
 
-// 8. Rich-E AI Agent Endpoint (Groq / Native RAG)
-Route::post('/api/riche/chat', [RicheChatController::class, 'chat'])->name('riche.chat');
+// 8. Rich-E AI Agent Endpoint (Blindado con Rate Limiting)
+Route::post('/api/riche/chat', [RicheChatController::class, 'chat'])->middleware('throttle:30,1')->name('riche.chat');
 
 // 9. Instagram Feed Endpoint (Async Cached Feed)
 Route::get('/api/instagram/feed', [InstagramController::class, 'feed'])->name('instagram.feed');

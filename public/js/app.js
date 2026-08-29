@@ -563,12 +563,82 @@ function initInteractiveQuoteCalculator() {
     window.addEventListener('currencyChanged', recalculate);
     recalculate();
 
+    // Dynamic Custom Features Repeater (Max 10)
+    const featuresList = document.querySelector('#customFeaturesList');
+    const addFeatureBtn = document.querySelector('#addCustomFeatureBtn');
+    const counterBadge = document.querySelector('#customFeatureCounterBadge');
+
+    function updateFeatureRows() {
+        if (!featuresList) return;
+        const rows = featuresList.querySelectorAll('.custom-feature-row');
+        const count = rows.length;
+
+        if (counterBadge) {
+            counterBadge.textContent = `${count} / 10 agregadas`;
+        }
+
+        rows.forEach((row, idx) => {
+            const badge = row.querySelector('.feature-idx-badge');
+            if (badge) badge.textContent = `#${idx + 1}`;
+
+            const removeBtn = row.querySelector('.remove-feature-row-btn');
+            if (removeBtn) {
+                removeBtn.style.display = count > 1 ? 'inline-block' : 'none';
+            }
+        });
+
+        if (addFeatureBtn) {
+            if (count >= 10) {
+                addFeatureBtn.disabled = true;
+                addFeatureBtn.innerHTML = '<span>✕ Límite alcanzado (10/10)</span>';
+            } else {
+                addFeatureBtn.disabled = false;
+                addFeatureBtn.innerHTML = '<span>➕ Añadir otra funcionalidad (+1)</span>';
+            }
+        }
+    }
+
+    if (addFeatureBtn && featuresList) {
+        addFeatureBtn.addEventListener('click', () => {
+            const currentRows = featuresList.querySelectorAll('.custom-feature-row');
+            if (currentRows.length >= 10) return;
+
+            const newRow = document.createElement('div');
+            newRow.className = 'custom-feature-row';
+            newRow.style.cssText = 'display: flex; align-items: center; gap: 10px; animation: fadeIn 0.2s ease;';
+            newRow.innerHTML = `
+                <span class="feature-idx-badge" style="background: var(--primary); color: #ffffff; font-weight: 800; font-size: 0.75rem; padding: 6px 10px; border-radius: 8px;">#${currentRows.length + 1}</span>
+                <input type="text" name="custom_feature_items[]" maxlength="250" placeholder="Ej: Función #${currentRows.length + 1} (ej: Integración con pasarela local, reportería en PDF...)" 
+                       style="flex-grow: 1; padding: 0.65rem 0.85rem; border: 1px solid var(--border-light); border-radius: 8px; font-size: 0.9rem; outline: none; background: #ffffff;">
+                <button type="button" class="btn btn-outline btn-sm remove-feature-row-btn" style="padding: 0.5rem 0.75rem; color: #ef4444; border-color: #fecaca;" title="Eliminar función">✕</button>
+            `;
+
+            featuresList.appendChild(newRow);
+            updateFeatureRows();
+
+            const newInput = newRow.querySelector('input');
+            if (newInput) newInput.focus();
+        });
+
+        featuresList.addEventListener('click', (e) => {
+            if (e.target.closest('.remove-feature-row-btn')) {
+                const row = e.target.closest('.custom-feature-row');
+                if (row) {
+                    row.remove();
+                    updateFeatureRows();
+                }
+            }
+        });
+
+        updateFeatureRows();
+    }
+
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         const submitBtn = this.querySelector('button[type="submit"]');
         if (submitBtn) {
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span>Generando cotización...</span>';
+            submitBtn.innerHTML = '<span>Generando cotización segura...</span>';
         }
 
         const formData = new FormData(this);
@@ -585,6 +655,9 @@ function initInteractiveQuoteCalculator() {
         .then(data => {
             if (data.success && data.whatsapp_url) {
                 window.location.href = data.whatsapp_url;
+            } else if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>🚀 Enviar Cotización y Abrir WhatsApp (+56987261127)</span>';
             }
         })
         .catch(() => {

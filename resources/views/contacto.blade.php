@@ -86,13 +86,16 @@
                         </div>
                     </div>
 
-                    <!-- Step 2: Features Add-ons & Custom Modules -->
+                    <!-- Anti-Bot Honeypot Field (Invisible for humans, traps bots) -->
+                    <input type="text" name="b_field_check_hp" style="display:none !important; position:absolute; left:-9999px;" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                    <!-- Step 2: Features Add-ons & Dynamic Custom Modules -->
                     <div style="margin-bottom: 2.5rem;">
                         <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
                             <span style="color: var(--primary);">2.</span> Módulos y Funcionalidades
                         </h3>
                         <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;">
-                            Selecciona los módulos adicionales y especifica las funciones personalizadas que requiere tu software.
+                            Selecciona los módulos predefinidos y añade tus propias funcionalidades personalizadas (hasta 10).
                         </p>
 
                         <div class="option-select-grid" style="margin-bottom: 1.5rem;">
@@ -133,17 +136,51 @@
                             </label>
                         </div>
 
-                        <!-- Dedicated Custom Features Input -->
-                        <div style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 12px; padding: 1.25rem;">
-                            <label style="display: block; font-size: 0.92rem; font-weight: 800; color: var(--text-dark); margin-bottom: 6px;">
-                                💡 ¿Quieres funcionalidades personalizadas en Laravel o WordPress?
+                        <!-- Dynamic Interactive Custom Features Repeater (Max 10) -->
+                        <div style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-sm);">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 8px;">
+                                <div>
+                                    <h4 style="font-size: 1rem; margin: 0; font-weight: 800; color: var(--text-dark); display: flex; align-items: center; gap: 8px;">
+                                        <span>⚙️ Funcionalidades Personalizadas a Medida</span>
+                                    </h4>
+                                    <p style="font-size: 0.8rem; color: var(--text-muted); margin: 2px 0 0 0;">
+                                        Escribe cada función o módulo que deseas que desarrollemos en tu software (hasta 10 funciones).
+                                    </p>
+                                </div>
+                                <span id="customFeatureCounterBadge" class="badge badge-primary" style="font-size: 0.78rem;">
+                                    1 / 10 agregadas
+                                </span>
+                            </div>
+
+                            <!-- List of Dynamic Inputs -->
+                            <div id="customFeaturesList" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 1rem;">
+                                <div class="custom-feature-row" style="display: flex; align-items: center; gap: 10px;">
+                                    <span class="feature-idx-badge" style="background: var(--primary); color: #ffffff; font-weight: 800; font-size: 0.75rem; padding: 6px 10px; border-radius: 8px;">#1</span>
+                                    <input type="text" name="custom_feature_items[]" maxlength="250" placeholder="Ej: Panel para vendedores con cálculo automático de comisiones..." 
+                                           style="flex-grow: 1; padding: 0.65rem 0.85rem; border: 1px solid var(--border-light); border-radius: 8px; font-size: 0.9rem; outline: none; background: #ffffff;">
+                                    <button type="button" class="btn btn-outline btn-sm remove-feature-row-btn" style="padding: 0.5rem 0.75rem; color: #ef4444; border-color: #fecaca; display: none;" title="Eliminar función">✕</button>
+                                </div>
+                            </div>
+
+                            <!-- Add More Button -->
+                            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                                <button type="button" id="addCustomFeatureBtn" class="btn btn-outline btn-sm" style="border-style: dashed; border-color: var(--primary); color: var(--primary); font-weight: 700; background: rgba(79, 70, 229, 0.04);">
+                                    <span>➕ Añadir otra funcionalidad (+1)</span>
+                                </button>
+                                <span style="font-size: 0.75rem; color: var(--text-muted);">
+                                    🛡️ Sanitización y blindaje de seguridad activo
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- General Project Requirements / Context Box -->
+                        <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 12px; padding: 1.25rem;">
+                            <label style="display: block; font-size: 0.9rem; font-weight: 700; color: var(--text-dark); margin-bottom: 4px;">
+                                📝 Contexto general o requerimientos adicionales (Opcional)
                             </label>
-                            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px;">
-                                Describe con tus propias palabras qué necesitas que haga el software para evaluar la viabilidad técnica exacta.
-                            </p>
-                            <textarea name="custom_features_description" rows="3" 
-                                      placeholder="Ejemplo: Quiero un software en Laravel con panel multi-usuario, integración con el SII para boletas automáticas, sincronización en tiempo real con WooCommerce y envío de notificaciones automáticas por WhatsApp..." 
-                                      style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-light); border-radius: 8px; font-size: 0.9rem; outline: none; font-family: inherit; background: #ffffff;"></textarea>
+                            <textarea name="custom_features_description" rows="2" 
+                                      placeholder="Cuéntanos más sobre tu industria, integraciones deseadas o modelo de negocio..." 
+                                      style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-light); border-radius: 8px; font-size: 0.9rem; outline: none; font-family: inherit;"></textarea>
                         </div>
                     </div>
 
