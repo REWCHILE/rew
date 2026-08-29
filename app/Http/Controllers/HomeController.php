@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Models\PortfolioProject;
-use App\Models\Service;
 use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Service;
 
 class HomeController extends Controller
 {

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Quote;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class QuoteController extends Controller
 {
@@ -57,24 +57,24 @@ class QuoteController extends Controller
         }
         $msg .= "🛠️ *Servicio / Plugin:* {$quote->service_type}\n";
         if ($quote->estimated_budget_clp) {
-            $msg .= "💰 *Presupuesto Estimado:* $" . number_format($quote->estimated_budget_clp, 0, ',', '.') . " CLP ($" . number_format($quote->estimated_budget_usd, 0) . " USD)\n";
+            $msg .= '💰 *Presupuesto Estimado:* $'.number_format($quote->estimated_budget_clp, 0, ',', '.').' CLP ($'.number_format($quote->estimated_budget_usd, 0)." USD)\n";
         }
         if ($quote->project_description) {
             $msg .= "\n📝 *Detalle del Proyecto:*\n{$quote->project_description}\n";
         }
         $msg .= "\n---\nEnviado desde https://rew.cl";
 
-        $whatsappUrl = "https://api.whatsapp.com/send?phone={$whatsappNumber}&text=" . urlencode($msg);
+        $whatsappUrl = "https://api.whatsapp.com/send?phone={$whatsappNumber}&text=".urlencode($msg);
 
         // Envío de correo a alvaro@rew.cl
         try {
             Mail::raw($msg, function ($message) use ($quote) {
                 $message->to('alvaro@rew.cl')
-                        ->subject("Nueva Cotización REW: {$quote->name} - {$quote->service_type}")
-                        ->replyTo($quote->email, $quote->name);
+                    ->subject("Nueva Cotización REW: {$quote->name} - {$quote->service_type}")
+                    ->replyTo($quote->email, $quote->name);
             });
         } catch (\Exception $e) {
-            Log::error('Error enviando correo de cotización: ' . $e->getMessage());
+            Log::error('Error enviando correo de cotización: '.$e->getMessage());
         }
 
         if ($request->ajax() || $request->wantsJson()) {

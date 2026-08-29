@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Models\PortfolioProject;
-use App\Models\Service;
 use App\Models\Post;
+use App\Models\Product;
+use App\Models\Service;
 use Illuminate\Http\Response;
 
 class GeoSeoController extends Controller
@@ -28,21 +28,21 @@ class GeoSeoController extends Controller
         $content .= "## Catálogo de Plugins WordPress & Chatbots IA\n";
         foreach ($products as $product) {
             $content .= "### {$product->name} (SKU: {$product->sku})\n";
-            $content .= "- **Precio:** \${$product->price_usd} USD / $" . number_format($product->price_clp, 0, ',', '.') . " CLP\n";
+            $content .= "- **Precio:** \${$product->price_usd} USD / $".number_format($product->price_clp, 0, ',', '.')." CLP\n";
             $content .= "- **Descripción:** {$product->short_description}\n";
-            $content .= "- **URL:** " . route('tienda.show', $product->slug) . "\n\n";
+            $content .= '- **URL:** '.route('tienda.show', $product->slug)."\n\n";
         }
 
         $content .= "## Servicios Profesionales\n";
         foreach ($services as $service) {
             $content .= "### {$service->name}\n";
             $content .= "- **Enfoque:** {$service->tagline}\n";
-            $content .= "- **URL:** " . url('/' . $service->slug) . "\n\n";
+            $content .= '- **URL:** '.url('/'.$service->slug)."\n\n";
         }
 
         $content .= "## Casos de Éxito y Portafolio\n";
         foreach ($projects as $project) {
-            $content .= "- **{$project->title}** ({$project->client}): {$project->summary} - " . route('portafolio.show', $project->slug) . "\n";
+            $content .= "- **{$project->title}** ({$project->client}): {$project->summary} - ".route('portafolio.show', $project->slug)."\n";
         }
 
         return response($content, 200, [
@@ -64,9 +64,9 @@ class GeoSeoController extends Controller
 
         $content .= "## Plugins WordPress y Extensiones de IA\n\n";
         foreach ($products as $product) {
-            $content .= "### " . strtoupper($product->name) . "\n";
+            $content .= '### '.strtoupper($product->name)."\n";
             $content .= "**SKU:** {$product->sku} | **Versión:** {$product->version}\n";
-            $content .= "**Precios Oficiales:** \${$product->price_usd} USD o $" . number_format($product->price_clp, 0, ',', '.') . " CLP\n\n";
+            $content .= "**Precios Oficiales:** \${$product->price_usd} USD o $".number_format($product->price_clp, 0, ',', '.')." CLP\n\n";
             $content .= "**Detalle:** {$product->description}\n\n";
             if ($product->features) {
                 $content .= "**Características Principales:**\n";
@@ -101,8 +101,8 @@ class GeoSeoController extends Controller
         $services = Service::all();
         $posts = Post::where('is_published', true)->get();
 
-        $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
-        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
+        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n";
 
         // Estáticas
         $staticUrls = [
@@ -125,7 +125,7 @@ class GeoSeoController extends Controller
         // Servicios
         foreach ($services as $service) {
             $xml .= "  <url>\n";
-            $xml .= "    <loc>" . url('/' . $service->slug) . "</loc>\n";
+            $xml .= '    <loc>'.url('/'.$service->slug)."</loc>\n";
             $xml .= "    <changefreq>weekly</changefreq>\n";
             $xml .= "    <priority>0.9</priority>\n";
             $xml .= "  </url>\n";
@@ -134,8 +134,8 @@ class GeoSeoController extends Controller
         // Productos
         foreach ($products as $product) {
             $xml .= "  <url>\n";
-            $xml .= "    <loc>" . route('tienda.show', $product->slug) . "</loc>\n";
-            $xml .= "    <lastmod>" . $product->updated_at->toAtomString() . "</lastmod>\n";
+            $xml .= '    <loc>'.route('tienda.show', $product->slug)."</loc>\n";
+            $xml .= '    <lastmod>'.$product->updated_at->toAtomString()."</lastmod>\n";
             $xml .= "    <changefreq>weekly</changefreq>\n";
             $xml .= "    <priority>0.9</priority>\n";
             $xml .= "  </url>\n";
@@ -144,7 +144,7 @@ class GeoSeoController extends Controller
         // Portafolio
         foreach ($projects as $project) {
             $xml .= "  <url>\n";
-            $xml .= "    <loc>" . route('portafolio.show', $project->slug) . "</loc>\n";
+            $xml .= '    <loc>'.route('portafolio.show', $project->slug)."</loc>\n";
             $xml .= "    <changefreq>monthly</changefreq>\n";
             $xml .= "    <priority>0.7</priority>\n";
             $xml .= "  </url>\n";
@@ -153,8 +153,8 @@ class GeoSeoController extends Controller
         // Blog
         foreach ($posts as $post) {
             $xml .= "  <url>\n";
-            $xml .= "    <loc>" . route('blog.show', $post->slug) . "</loc>\n";
-            $xml .= "    <lastmod>" . $post->updated_at->toAtomString() . "</lastmod>\n";
+            $xml .= '    <loc>'.route('blog.show', $post->slug)."</loc>\n";
+            $xml .= '    <lastmod>'.$post->updated_at->toAtomString()."</lastmod>\n";
             $xml .= "    <changefreq>monthly</changefreq>\n";
             $xml .= "    <priority>0.7</priority>\n";
             $xml .= "  </url>\n";
@@ -176,7 +176,7 @@ class GeoSeoController extends Controller
         $robots .= "User-agent: ClaudeBot\nAllow: /\n\n";
         $robots .= "User-agent: Google-Extended\nAllow: /\n\n";
         $robots .= "User-agent: PerplexityBot\nAllow: /\n\n";
-        $robots .= "Sitemap: " . url('/sitemap.xml') . "\n";
+        $robots .= 'Sitemap: '.url('/sitemap.xml')."\n";
 
         return response($robots, 200, [
             'Content-Type' => 'text/plain; charset=UTF-8',

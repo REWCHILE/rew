@@ -26,7 +26,7 @@ class RicheChatController extends Controller
         if ($groqApiKey) {
             try {
                 $response = Http::withHeaders([
-                    'Authorization' => 'Bearer ' . $groqApiKey,
+                    'Authorization' => 'Bearer '.$groqApiKey,
                     'Content-Type' => 'application/json',
                 ])->timeout(10)->post('https://api.groq.com/openai/v1/chat/completions', [
                     'model' => 'llama-3.3-70b-versatile',
@@ -35,12 +35,12 @@ class RicheChatController extends Controller
                             'role' => 'system',
                             'content' => "Eres Rich-E, el asistente virtual inteligente de REW (rew.cl), agencia de software y marketing digital en Chile fundada y liderada por Álvaro Valenzuela Valdés (Ingeniero Informático, WhatsApp +56987261127, email alvaro@rew.cl).
 Ofreces desarrollo web profesional, software a medida en Laravel, posicionamiento SEO/GEO, y vendes plugins de WordPress con IA como 'Rich-E Chatbot Assistant' ($54 USD / $49.990 CLP), 'WooCommerce Premium Sync' ($32 USD) y 'REW Multi-Currency & Translator Pro' ($22 USD).
-Responde de forma amable, profesional, concisa en español y motiva al usuario a cotizar su proyecto o escribir directamente al WhatsApp de Álvaro (+56 9 8726 1127)."
+Responde de forma amable, profesional, concisa en español y motiva al usuario a cotizar su proyecto o escribir directamente al WhatsApp de Álvaro (+56 9 8726 1127).",
                         ],
                         [
                             'role' => 'user',
-                            'content' => $message
-                        ]
+                            'content' => $message,
+                        ],
                     ],
                     'temperature' => 0.6,
                     'max_tokens' => 300,
@@ -53,12 +53,12 @@ Responde de forma amable, profesional, concisa en español y motiva al usuario a
                         return response()->json([
                             'success' => true,
                             'reply' => $reply,
-                            'time' => now()->format('H:i')
+                            'time' => now()->format('H:i'),
                         ]);
                     }
                 }
             } catch (\Exception $e) {
-                Log::warning('Groq API fallback triggered: ' . $e->getMessage());
+                Log::warning('Groq API fallback triggered: '.$e->getMessage());
             }
         }
 
@@ -68,7 +68,7 @@ Responde de forma amable, profesional, concisa en español y motiva al usuario a
         return response()->json([
             'success' => true,
             'reply' => $reply,
-            'time' => now()->format('H:i')
+            'time' => now()->format('H:i'),
         ]);
     }
 
@@ -85,11 +85,11 @@ Responde de forma amable, profesional, concisa en español y motiva al usuario a
         }
 
         if (str_contains($lower, 'seo') || str_contains($lower, 'posicionamiento') || str_contains($lower, 'google') || str_contains($lower, 'geo')) {
-            return "Nuestra estrategia SEO combina **SEO Técnico** (velocidad de carga, Core Web Vitals), **Contenido Semántico** y **GEO (Generative Engine Optimization)** mediante protocolos como `llms.txt` para que tu empresa sea recomendada por ChatGPT, Claude y Perplexity.";
+            return 'Nuestra estrategia SEO combina **SEO Técnico** (velocidad de carga, Core Web Vitals), **Contenido Semántico** y **GEO (Generative Engine Optimization)** mediante protocolos como `llms.txt` para que tu empresa sea recomendada por ChatGPT, Claude y Perplexity.';
         }
 
         if (str_contains($lower, 'precio') || str_contains($lower, 'cuanto cuesta') || str_contains($lower, 'cotizar') || str_contains($lower, 'valor')) {
-            return "Los plugins parten desde **$19.990 CLP ($22 USD)** y los sitios web corporativos desde **$790.000 CLP ($850 USD)**. Puedes calcular el costo exacto en segundos con nuestro [Cotizador Interactivo](/contacto).";
+            return 'Los plugins parten desde **$19.990 CLP ($22 USD)** y los sitios web corporativos desde **$790.000 CLP ($850 USD)**. Puedes calcular el costo exacto en segundos con nuestro [Cotizador Interactivo](/contacto).';
         }
 
         if (str_contains($lower, 'contacto') || str_contains($lower, 'whatsapp') || str_contains($lower, 'telefono') || str_contains($lower, 'alvaro') || str_contains($lower, 'correo')) {
@@ -97,9 +97,9 @@ Responde de forma amable, profesional, concisa en español y motiva al usuario a
         }
 
         if (str_contains($lower, 'hola') || str_contains($lower, 'buenas') || str_contains($lower, 'saludos')) {
-            return "¡Hola! 👋 Soy **Rich-E**, tu asistente de Inteligencia Artificial en **REW**. ¿En qué puedo ayudarte hoy? Puedes preguntarme sobre desarrollo de software, plugins para WooCommerce, precios o cotizar un proyecto.";
+            return '¡Hola! 👋 Soy **Rich-E**, tu asistente de Inteligencia Artificial en **REW**. ¿En qué puedo ayudarte hoy? Puedes preguntarme sobre desarrollo de software, plugins para WooCommerce, precios o cotizar un proyecto.';
         }
 
-        return "Excelente consulta. En **REW** desarrollamos soluciones a medida con Laravel, tiendas WooCommerce y asistentes de IA. Puedes consultar el detalle en nuestra web o hablar directamente con Álvaro Valenzuela al WhatsApp **+56 9 8726 1127**.";
+        return 'Excelente consulta. En **REW** desarrollamos soluciones a medida con Laravel, tiendas WooCommerce y asistentes de IA. Puedes consultar el detalle en nuestra web o hablar directamente con Álvaro Valenzuela al WhatsApp **+56 9 8726 1127**.';
     }
 }

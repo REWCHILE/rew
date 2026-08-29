@@ -1,14 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ShopController;
-use App\Http\Controllers\PortfolioController;
-use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\QuoteController;
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\GeoSeoController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\RicheChatController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ShopController;
+use Illuminate\Support\Facades\Route;
 
 // 1. Institucional & Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -54,7 +55,7 @@ Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout.ind
 Route::post('/checkout', [CartController::class, 'processCheckout'])->name('checkout.process');
 
 // 8. Rich-E AI Agent Endpoint (Groq / Native RAG)
-Route::post('/api/riche/chat', [\App\Http\Controllers\RicheChatController::class, 'chat'])->name('riche.chat');
+Route::post('/api/riche/chat', [RicheChatController::class, 'chat'])->name('riche.chat');
 
 // 9. GEO & SEO (Machine Readable / AI Agents)
 Route::get('/llms.txt', [GeoSeoController::class, 'llmsTxt']);

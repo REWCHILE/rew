@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class CartController extends Controller
 {
     public function index()
     {
         $cart = session()->get('cart', []);
+
         return view('carrito', compact('cart'));
     }
 
@@ -23,6 +24,7 @@ class CartController extends Controller
         }
 
         $currency = session()->get('currency', 'USD');
+
         return view('checkout', compact('cart', 'currency'));
     }
 
@@ -121,17 +123,17 @@ class CartController extends Controller
         $totalUsd = $this->calculateTotal($cart, 'USD');
         $totalClp = $this->calculateTotal($cart, 'CLP');
 
-        $itemsList = "";
+        $itemsList = '';
         foreach ($cart as $item) {
-            $priceText = $currency === 'CLP' 
-                ? '$' . number_format($item['price_clp'], 0, ',', '.') . ' CLP'
-                : '$' . number_format($item['price_usd'], 0) . ' USD';
+            $priceText = $currency === 'CLP'
+                ? '$'.number_format($item['price_clp'], 0, ',', '.').' CLP'
+                : '$'.number_format($item['price_usd'], 0).' USD';
             $itemsList .= "• {$item['name']} (x{$item['quantity']}) - {$priceText}\n";
         }
 
         $totalFormatted = $currency === 'CLP'
-            ? '$' . number_format($totalClp, 0, ',', '.') . ' CLP'
-            : '$' . number_format($totalUsd, 0) . ' USD';
+            ? '$'.number_format($totalClp, 0, ',', '.').' CLP'
+            : '$'.number_format($totalUsd, 0).' USD';
 
         // Mensaje WhatsApp
         $whatsappNumber = '56987261127';
@@ -139,28 +141,28 @@ class CartController extends Controller
         $msg .= "👤 *Cliente:* {$validated['name']}\n";
         $msg .= "📧 *Email:* {$validated['email']}\n";
         $msg .= "📱 *Teléfono:* {$validated['phone']}\n";
-        if (!empty($validated['company'])) {
+        if (! empty($validated['company'])) {
             $msg .= "🏢 *Empresa:* {$validated['company']}\n";
         }
         $msg .= "💳 *Método de Pago:* {$validated['payment_method']}\n\n";
         $msg .= "*Productos Seleccionados:*\n{$itemsList}\n";
         $msg .= "💰 *TOTAL:* {$totalFormatted}\n";
-        if (!empty($validated['notes'])) {
+        if (! empty($validated['notes'])) {
             $msg .= "\n📝 *Notas:* {$validated['notes']}\n";
         }
         $msg .= "\n---\nGenerado desde https://rew.cl/checkout";
 
-        $whatsappUrl = "https://api.whatsapp.com/send?phone={$whatsappNumber}&text=" . urlencode($msg);
+        $whatsappUrl = "https://api.whatsapp.com/send?phone={$whatsappNumber}&text=".urlencode($msg);
 
         // Envío de correo a alvaro@rew.cl
         try {
             Mail::raw($msg, function ($message) use ($validated) {
                 $message->to('alvaro@rew.cl')
-                        ->subject("Nuevo Pedido Tienda REW: {$validated['name']}")
-                        ->replyTo($validated['email'], $validated['name']);
+                    ->subject("Nuevo Pedido Tienda REW: {$validated['name']}")
+                    ->replyTo($validated['email'], $validated['name']);
             });
         } catch (\Exception $e) {
-            Log::error('Error enviando correo de checkout: ' . $e->getMessage());
+            Log::error('Error enviando correo de checkout: '.$e->getMessage());
         }
 
         // Limpiar carrito
@@ -176,6 +178,7 @@ class CartController extends Controller
             $price = $currency === 'CLP' ? $item['price_clp'] : $item['price_usd'];
             $total += $price * $item['quantity'];
         }
+
         return $total;
     }
 }

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Service;
 use App\Models\PortfolioProject;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Models\Service;
 
 class ServiceController extends Controller
 {

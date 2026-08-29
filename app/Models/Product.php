@@ -26,22 +26,22 @@ class Product extends Model
 
     public function getFormattedPriceUsdAttribute(): string
     {
-        return '$' . number_format($this->price_usd, 0) . ' USD';
+        return '$'.number_format($this->price_usd, 0).' USD';
     }
 
     public function getFormattedPriceClpAttribute(): string
     {
-        return '$' . number_format($this->price_clp, 0, ',', '.') . ' CLP';
+        return '$'.number_format($this->price_clp, 0, ',', '.').' CLP';
     }
 
     public function getFormattedOriginalPriceUsdAttribute(): ?string
     {
-        return $this->original_price_usd ? '$' . number_format($this->original_price_usd, 0) . ' USD' : null;
+        return $this->original_price_usd ? '$'.number_format($this->original_price_usd, 0).' USD' : null;
     }
 
     public function getFormattedOriginalPriceClpAttribute(): ?string
     {
-        return $this->original_price_clp ? '$' . number_format($this->original_price_clp, 0, ',', '.') . ' CLP' : null;
+        return $this->original_price_clp ? '$'.number_format($this->original_price_clp, 0, ',', '.').' CLP' : null;
     }
 
     public function getDiscountPercentageAttribute(): ?int
@@ -49,6 +49,7 @@ class Product extends Model
         if ($this->original_price_usd && $this->original_price_usd > $this->price_usd) {
             return (int) round((($this->original_price_usd - $this->price_usd) / $this->original_price_usd) * 100);
         }
+
         return null;
     }
 }

@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use App\Models\Product;
 use App\Models\PortfolioProject;
-use App\Models\Service;
 use App\Models\Post;
+use App\Models\Product;
+use App\Models\Service;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -51,24 +51,24 @@ class DatabaseSeeder extends Seeder
                     'Soporte Multi-Modelo (ChatGPT-4o, Claude 3.5, Gemini 1.5, DeepSeek, Groq)',
                     'Recomendador Inteligente de Productos en el Chat con Carrito Directo',
                     'Cero Alucinaciones con Directrices Estrictas de Negocio',
-                    'Actualizaciones de Seguridad y Soporte Especializado REW'
+                    'Actualizaciones de Seguridad y Soporte Especializado REW',
                 ],
                 'requirements' => [
                     'WordPress 6.0 o superior',
                     'WooCommerce 8.0 o superior',
                     'PHP 8.1 / 8.2 / 8.3',
-                    'API Key de tu proveedor de IA preferido (OpenAI, Anthropic, Google o Groq)'
+                    'API Key de tu proveedor de IA preferido (OpenAI, Anthropic, Google o Groq)',
                 ],
                 'faqs' => [
                     ['q' => '¿Qué modelos de Inteligencia Artificial soporta?', 'a' => 'Es compatible con OpenAI (GPT-4o, GPT-4o-mini), Anthropic (Claude 3.5 Sonnet), Google Gemini (1.5 Flash/Pro), Groq y DeepSeek. Tú usas tu propia API Key y pagas centavos por consumo real.'],
                     ['q' => '¿Cómo evita las alucinaciones en los precios y stock?', 'a' => 'Utiliza consultas vectoriales RAG en tiempo real directo a la base de datos de WooCommerce, asegurando que sólo informe precios, variaciones y stock 100% verídicos.'],
-                    ['q' => '¿Incluye soporte en la instalación?', 'a' => 'Sí, el pack pro cuenta con soporte técnico prioritario guiado por el equipo de ingeniería de REW.']
+                    ['q' => '¿Incluye soporte en la instalación?', 'a' => 'Sí, el pack pro cuenta con soporte técnico prioritario guiado por el equipo de ingeniería de REW.'],
                 ],
                 'is_featured' => true,
                 'version' => '2.4.0',
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2026/06/riche_product_mockup_1780448218998.jpg',
                 'meta_title' => 'Pack Chatbot E-Commerce Pro – Licencia Anual | REW',
-                'meta_description' => 'Asistente virtual de Inteligencia Artificial para WordPress y WooCommerce. Sincroniza catálogo, responde consultas 24/7 y aumenta ventas.'
+                'meta_description' => 'Asistente virtual de Inteligencia Artificial para WordPress y WooCommerce. Sincroniza catálogo, responde consultas 24/7 y aumenta ventas.',
             ],
             [
                 'name' => 'Rich-E Chatbot Assistant (Licencia Anual)',
@@ -89,22 +89,22 @@ class DatabaseSeeder extends Seeder
                     'Formulario de captura de Leads integrado',
                     'Historial de conversaciones y métricas de interacción',
                     'Compatible con Elementor, Divi, Gutenberg y cualquier tema WordPress',
-                    'Marca blanca y modo privado'
+                    'Marca blanca y modo privado',
                 ],
                 'requirements' => [
                     'WordPress 5.8+',
                     'PHP 7.4 a 8.3',
-                    'Cualquier hosting estándar con cURL activado'
+                    'Cualquier hosting estándar con cURL activado',
                 ],
                 'faqs' => [
                     ['q' => '¿Puedo cambiar la apariencia del chatbot?', 'a' => 'Totalmente. Puedes personalizar avatar, colores corporativos, tipografía, textos de bienvenida, sugerencias de preguntas rápidas y sonido.'],
-                    ['q' => '¿Funciona en sitios en español e inglés?', 'a' => 'Detecta automáticamente el idioma del usuario y responde con fluidez nativa en más de 95 idiomas.']
+                    ['q' => '¿Funciona en sitios en español e inglés?', 'a' => 'Detecta automáticamente el idioma del usuario y responde con fluidez nativa en más de 95 idiomas.'],
                 ],
                 'is_featured' => true,
                 'version' => '2.4.0',
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2026/05/rich-e-main-logo.png',
                 'meta_title' => 'Rich-E Chatbot Assistant para WordPress | REW',
-                'meta_description' => 'El mejor chatbot de inteligencia artificial RAG para WordPress. Cero alucinaciones, respuestas instantáneas y captura de leads 24/7.'
+                'meta_description' => 'El mejor chatbot de inteligencia artificial RAG para WordPress. Cero alucinaciones, respuestas instantáneas y captura de leads 24/7.',
             ],
             [
                 'name' => 'Addon: WooCommerce Premium Sync (Licencia Anual)',
@@ -124,20 +124,20 @@ class DatabaseSeeder extends Seeder
                     'Botón interactivo de Compra / Añadir al carrito en el chat',
                     'Detección inteligente de stock y rangos de precio',
                     'Recomendaciones cruzadas (Cross-selling y Up-selling)',
-                    'Compatible con pasarelas de pago Webpay Plus, MercadoPago, PayPal y Stripe'
+                    'Compatible con pasarelas de pago Webpay Plus, MercadoPago, PayPal y Stripe',
                 ],
                 'requirements' => [
                     'Rich-E Chatbot Assistant activo',
-                    'WooCommerce 7.0+'
+                    'WooCommerce 7.0+',
                 ],
                 'faqs' => [
-                    ['q' => '¿Qué ocurre si cambio el precio o stock de un producto?', 'a' => 'La IA consulta la base de datos de WooCommerce en vivo, por lo que el cambio se refleja inmediatamente en las respuestas del bot.']
+                    ['q' => '¿Qué ocurre si cambio el precio o stock de un producto?', 'a' => 'La IA consulta la base de datos de WooCommerce en vivo, por lo que el cambio se refleja inmediatamente en las respuestas del bot.'],
                 ],
                 'is_featured' => true,
                 'version' => '1.3.0',
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2026/05/Gemini_Generated_Image_r9d696r9d696r9d6.png',
                 'meta_title' => 'Addon WooCommerce Premium Sync para Chatbot IA | REW',
-                'meta_description' => 'Sincroniza tu catálogo WooCommerce con Inteligencia Artificial. Cierra ventas automáticas en el chat.'
+                'meta_description' => 'Sincroniza tu catálogo WooCommerce con Inteligencia Artificial. Cierra ventas automáticas en el chat.',
             ],
             [
                 'name' => 'REW Multi-Currency & Translator Pro',
@@ -157,20 +157,20 @@ class DatabaseSeeder extends Seeder
                     'Integración de traducción multi-idioma (ES, EN, PT, FR, DE, IT, ZH, JA)',
                     'Widget flotante elegante y personalizable en esquinas',
                     'Compatibilidad total con WooCommerce, Webpay Plus y Stripe',
-                    'Cero costos mensuales recurrentes de traducción externa'
+                    'Cero costos mensuales recurrentes de traducción externa',
                 ],
                 'requirements' => [
                     'WordPress 5.6+',
-                    'WooCommerce 6.0+'
+                    'WooCommerce 6.0+',
                 ],
                 'faqs' => [
-                    ['q' => '¿Puedo cobrar en dólares en PayPal y en pesos chilenos en Webpay?', 'a' => 'Sí, el plugin detecta la pasarela y convierte la orden a la moneda correspondiente de forma transparente para el cliente.']
+                    ['q' => '¿Puedo cobrar en dólares en PayPal y en pesos chilenos en Webpay?', 'a' => 'Sí, el plugin detecta la pasarela y convierte la orden a la moneda correspondiente de forma transparente para el cliente.'],
                 ],
                 'is_featured' => true,
                 'version' => '1.1.0',
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2026/06/product_banner_rew.png',
                 'meta_title' => 'REW Multi-Currency & Translator Pro para WooCommerce',
-                'meta_description' => 'Cambio de divisas CLP/USD en tiempo real y traducción multi-idioma para tiendas WooCommerce.'
+                'meta_description' => 'Cambio de divisas CLP/USD en tiempo real y traducción multi-idioma para tiendas WooCommerce.',
             ],
             [
                 'name' => 'Addon: Indexación Semántica de Blog (Licencia Anual)',
@@ -188,17 +188,17 @@ class DatabaseSeeder extends Seeder
                     'Indexación automática al publicar o actualizar entradas',
                     'Búsqueda semántica por similitud vectorial',
                     'Enlaces de referencia automáticos hacia los artículos en las respuestas',
-                    'Control granular de categorías de blog a indexar'
+                    'Control granular de categorías de blog a indexar',
                 ],
                 'requirements' => ['Rich-E Chatbot Assistant activo'],
                 'faqs' => [
-                    ['q' => '¿Indexa posts antiguos?', 'a' => 'Sí, cuenta con un botón de sincronización masiva con un clic.']
+                    ['q' => '¿Indexa posts antiguos?', 'a' => 'Sí, cuenta con un botón de sincronización masiva con un clic.'],
                 ],
                 'is_featured' => false,
                 'version' => '1.2.0',
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2026/05/blog-addon.png',
                 'meta_title' => 'Addon Indexación Semántica de Blog | REW',
-                'meta_description' => 'Convierte los artículos de tu blog en conocimiento de IA para tu chatbot de WordPress.'
+                'meta_description' => 'Convierte los artículos de tu blog en conocimiento de IA para tu chatbot de WordPress.',
             ],
             [
                 'name' => 'Addon: Integración de Custom Post Types (CPT) (Licencia Anual)',
@@ -216,17 +216,17 @@ class DatabaseSeeder extends Seeder
                     'Soporte completo para campos personalizados ACF y JetEngine',
                     'Indexación de propiedades, vehículos, eventos y cursos',
                     'Filtros personalizados por taxonomía',
-                    'Actualización reactiva ante cambios'
+                    'Actualización reactiva ante cambios',
                 ],
                 'requirements' => ['Rich-E Chatbot Assistant activo'],
                 'faqs' => [
-                    ['q' => '¿Funciona con ACF Pro?', 'a' => 'Sí, extrae texto, selectores, repetidores y campos estructurados.']
+                    ['q' => '¿Funciona con ACF Pro?', 'a' => 'Sí, extrae texto, selectores, repetidores y campos estructurados.'],
                 ],
                 'is_featured' => false,
                 'version' => '1.2.0',
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2026/05/license-pack.png',
                 'meta_title' => 'Addon Integración de Custom Post Types (CPT) | REW',
-                'meta_description' => 'Integra campos personalizados ACF y Custom Post Types en el conocimiento del chatbot.'
+                'meta_description' => 'Integra campos personalizados ACF y Custom Post Types en el conocimiento del chatbot.',
             ],
             [
                 'name' => 'Addon: Soporte Premium e Integración (Anual)',
@@ -245,17 +245,17 @@ class DatabaseSeeder extends Seeder
                     'Ingeniería de System Prompts y Directrices personalizadas',
                     'Depuración y limpieza de base de datos de conocimiento',
                     'Canal directo de WhatsApp con ingenieros de REW',
-                    'Garantía de rendimiento y cero alucinaciones'
+                    'Garantía de rendimiento y cero alucinaciones',
                 ],
                 'requirements' => ['Licencia activa de cualquier plugin REW'],
                 'faqs' => [
-                    ['q' => '¿Cuánto tarda la implementación?', 'a' => 'El setup inicial se completa en 24 a 48 horas hábiles.']
+                    ['q' => '¿Cuánto tarda la implementación?', 'a' => 'El setup inicial se completa en 24 a 48 horas hábiles.'],
                 ],
                 'is_featured' => false,
                 'version' => '1.0.0',
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2026/05/support-addon.png',
                 'meta_title' => 'Soporte Premium e Integración de IA | REW',
-                'meta_description' => 'Acompañamiento e integración experta para soluciones de inteligencia artificial en WordPress.'
+                'meta_description' => 'Acompañamiento e integración experta para soluciones de inteligencia artificial en WordPress.',
             ],
         ];
 
@@ -280,17 +280,17 @@ class DatabaseSeeder extends Seeder
                 'featured_image' => '/images/portfolio/artifices-tv-full.png',
                 'gallery' => [
                     '/images/portfolio/artifices-tv-full.png',
-                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-020-ARTIFICES-TV-–-EXPERTOS-EN-STREAMING-Y-CONECTIVIDAD-artifices.tv_.png'
+                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-020-ARTIFICES-TV-–-EXPERTOS-EN-STREAMING-Y-CONECTIVIDAD-artifices.tv_.png',
                 ],
                 'results' => [
                     'Incremento del 180% en visualizaciones de stream',
                     'Diseño 100% responsivo y optimización de carga ultrarrápida',
-                    'Arquitectura modular para nuevos lanzamientos'
+                    'Arquitectura modular para nuevos lanzamientos',
                 ],
                 'is_featured' => true,
                 'order' => 1,
                 'meta_title' => 'Artífices TV - Caso de Éxito en Desarrollo Web | REW',
-                'meta_description' => 'Diseño y desarrollo web para Artífices TV: plataforma moderna de streaming y conectividad creada por REW.'
+                'meta_description' => 'Diseño y desarrollo web para Artífices TV: plataforma moderna de streaming y conectividad creada por REW.',
             ],
             [
                 'title' => 'CODIGO25',
@@ -306,16 +306,16 @@ class DatabaseSeeder extends Seeder
                 'role' => 'Desarrollo Web Full Stack, Optimización de Conversión, SEO On-Page',
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-019-CODIGO-25-–-UNA-NUEVA-MARCA-PARA-PROFESIONALES-codigo25.cl_.png',
                 'gallery' => [
-                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-019-CODIGO-25-–-UNA-NUEVA-MARCA-PARA-PROFESIONALES-codigo25.cl_.png'
+                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-019-CODIGO-25-–-UNA-NUEVA-MARCA-PARA-PROFESIONALES-codigo25.cl_.png',
                 ],
                 'results' => [
                     'Tasa de conversión superior al 3.8%',
-                    'Integración de pagos automatizada con Webpay y Transferencia'
+                    'Integración de pagos automatizada con Webpay y Transferencia',
                 ],
                 'is_featured' => true,
                 'order' => 2,
                 'meta_title' => 'CODIGO25 - Tienda Online y Branding | REW',
-                'meta_description' => 'Desarrollo de e-commerce de alto rendimiento para CODIGO25.'
+                'meta_description' => 'Desarrollo de e-commerce de alto rendimiento para CODIGO25.',
             ],
             [
                 'title' => 'Cuarteto de Nos (Merch Oficial)',
@@ -331,16 +331,16 @@ class DatabaseSeeder extends Seeder
                 'role' => 'Arquitectura Web, Optimización de Alto Tráfico, UX/UI',
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-014-CUARTETO-DE-NOS-Cuarteto-de-Nos-Merch-Web-Oficial-sotemono.com_.png',
                 'gallery' => [
-                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-014-CUARTETO-DE-NOS-Cuarteto-de-Nos-Merch-Web-Oficial-sotemono.com_.png'
+                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-014-CUARTETO-DE-NOS-Cuarteto-de-Nos-Merch-Web-Oficial-sotemono.com_.png',
                 ],
                 'results' => [
                     'Capacidad para picos de más de 50.000 visitas simultáneas',
-                    'Cero caídas durante lanzamientos de merchandising'
+                    'Cero caídas durante lanzamientos de merchandising',
                 ],
                 'is_featured' => true,
                 'order' => 3,
                 'meta_title' => 'Cuarteto de Nos - Tienda Oficial de Merchandising | REW',
-                'meta_description' => 'Desarrollo de tienda online para la banda internacional Cuarteto de Nos.'
+                'meta_description' => 'Desarrollo de tienda online para la banda internacional Cuarteto de Nos.',
             ],
             [
                 'title' => 'Los Auténticos Decadentes (Merch Oficial)',
@@ -356,16 +356,16 @@ class DatabaseSeeder extends Seeder
                 'role' => 'Desarrollo E-Commerce, UX/UI, Integración Logística',
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-012-Los-Autenticos-Decadentes-–-Merch-Web-Oficial-sotemono.com_.png',
                 'gallery' => [
-                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-012-Los-Autenticos-Decadentes-–-Merch-Web-Oficial-sotemono.com_.png'
+                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-012-Los-Autenticos-Decadentes-–-Merch-Web-Oficial-sotemono.com_.png',
                 ],
                 'results' => [
                     'Venta masiva de colecciones especiales en giras',
-                    'Logística automatizada con generación de etiquetas de envío'
+                    'Logística automatizada con generación de etiquetas de envío',
                 ],
                 'is_featured' => true,
                 'order' => 4,
                 'meta_title' => 'Los Auténticos Decadentes - Merch Oficial | REW',
-                'meta_description' => 'Plataforma oficial de merchandising para Los Auténticos Decadentes desarrollada por REW.'
+                'meta_description' => 'Plataforma oficial de merchandising para Los Auténticos Decadentes desarrollada por REW.',
             ],
             [
                 'title' => 'Sotemono',
@@ -381,16 +381,16 @@ class DatabaseSeeder extends Seeder
                 'role' => 'Líder de Desarrollo, Arquitectura de Sistemas, Inbound Marketing',
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-010-HOME-Sotemono-Merch-Web-Oficial-sotemono.com_.png',
                 'gallery' => [
-                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-010-HOME-Sotemono-Merch-Web-Oficial-sotemono.com_.png'
+                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-010-HOME-Sotemono-Merch-Web-Oficial-sotemono.com_.png',
                 ],
                 'results' => [
                     'Centralización de más de 10 bandas y artistas',
-                    'Aumento del 220% en ventas consolidadas'
+                    'Aumento del 220% en ventas consolidadas',
                 ],
                 'is_featured' => true,
                 'order' => 5,
                 'meta_title' => 'Sotemono - Plataforma de Merchandising de Artistas | REW',
-                'meta_description' => 'Desarrollo de plataforma centralizada de merchandising para artistas musicales.'
+                'meta_description' => 'Desarrollo de plataforma centralizada de merchandising para artistas musicales.',
             ],
             [
                 'title' => 'Matías Chinaski (Merch Oficial)',
@@ -406,13 +406,13 @@ class DatabaseSeeder extends Seeder
                 'role' => 'Desarrollo Web, Diseño Gráfico, Estrategia Digital',
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-016-Matias-Chinaski-–-Merch-Web-Oficial-sotemono.com_.png',
                 'gallery' => [
-                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-016-Matias-Chinaski-–-Merch-Web-Oficial-sotemono.com_.png'
+                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-016-Matias-Chinaski-–-Merch-Web-Oficial-sotemono.com_.png',
                 ],
                 'results' => ['Sold-out de ediciones limitadas en menos de 48 horas'],
                 'is_featured' => false,
                 'order' => 6,
                 'meta_title' => 'Matías Chinaski - Web y Tienda Oficial | REW',
-                'meta_description' => 'Desarrollo web y tienda online para el artista Matías Chinaski.'
+                'meta_description' => 'Desarrollo web y tienda online para el artista Matías Chinaski.',
             ],
             [
                 'title' => 'Barrio Bravo',
@@ -428,13 +428,13 @@ class DatabaseSeeder extends Seeder
                 'role' => 'Desarrollo Web, Campañas Inbound Marketing',
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-013-Barrio-Bravo-Merch-Oficial-2022-sotemono.com_.png',
                 'gallery' => [
-                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-013-Barrio-Bravo-Merch-Oficial-2022-sotemono.com_.png'
+                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-013-Barrio-Bravo-Merch-Oficial-2022-sotemono.com_.png',
                 ],
                 'results' => ['Más de 10.000 ejemplares distribuidos a través de la web'],
                 'is_featured' => false,
                 'order' => 7,
                 'meta_title' => 'Barrio Bravo - Tienda Oficial | REW',
-                'meta_description' => 'Desarrollo de tienda online para el proyecto literario Barrio Bravo.'
+                'meta_description' => 'Desarrollo de tienda online para el proyecto literario Barrio Bravo.',
             ],
             [
                 'title' => 'Academiaflix',
@@ -450,13 +450,13 @@ class DatabaseSeeder extends Seeder
                 'role' => 'Arquitectura LMS, Desarrollo Web, Integración de Pasarelas',
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-003-Academiaflix-academiaflix.rew_.cl_.png',
                 'gallery' => [
-                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-003-Academiaflix-academiaflix.rew_.cl_.png'
+                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-003-Academiaflix-academiaflix.rew_.cl_.png',
                 ],
                 'results' => ['Más de 1.500 alumnos activos capacitándose en línea'],
                 'is_featured' => true,
                 'order' => 8,
                 'meta_title' => 'Academiaflix - Plataforma de Cursos Online | REW',
-                'meta_description' => 'Desarrollo de plataforma educativa LMS para Academiaflix.'
+                'meta_description' => 'Desarrollo de plataforma educativa LMS para Academiaflix.',
             ],
             [
                 'title' => 'JJ Estética',
@@ -472,13 +472,13 @@ class DatabaseSeeder extends Seeder
                 'role' => 'Diseño UX/UI, Desarrollo Web, SEO Local',
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-017-Home-JJ-ESTETICA-jjestetica.cl_.png',
                 'gallery' => [
-                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-017-Home-JJ-ESTETICA-jjestetica.cl_.png'
+                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-017-Home-JJ-ESTETICA-jjestetica.cl_.png',
                 ],
                 'results' => ['Aumento del 140% en reservas de citas desde Google'],
                 'is_featured' => false,
                 'order' => 9,
                 'meta_title' => 'JJ Estética - Clínica Estética Web | REW',
-                'meta_description' => 'Desarrollo de sitio web corporativo y reservas para clínica JJ Estética.'
+                'meta_description' => 'Desarrollo de sitio web corporativo y reservas para clínica JJ Estética.',
             ],
             [
                 'title' => 'Otro Día en la Oficina',
@@ -494,13 +494,13 @@ class DatabaseSeeder extends Seeder
                 'role' => 'Desarrollo Web, Inbound Marketing, Integración Podcast',
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-018-Otro-dia-en-la-oficina-Modelo-Sapiens-otrodiaenlaoficina.cl_.png',
                 'gallery' => [
-                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-018-Otro-dia-en-la-oficina-Modelo-Sapiens-otrodiaenlaoficina.cl_.png'
+                    'https://rew.cl/wp-content/uploads/2025/03/FireShot-Capture-018-Otro-dia-en-la-oficina-Modelo-Sapiens-otrodiaenlaoficina.cl_.png',
                 ],
                 'results' => ['Crecimiento de la comunidad a más de 5.000 suscriptores'],
                 'is_featured' => false,
                 'order' => 10,
                 'meta_title' => 'Otro Día en la Oficina - Plataforma de Contenidos | REW',
-                'meta_description' => 'Diseño y desarrollo web para la comunidad y podcast Otro Día en la Oficina.'
+                'meta_description' => 'Diseño y desarrollo web para la comunidad y podcast Otro Día en la Oficina.',
             ],
         ];
 
@@ -521,16 +521,16 @@ class DatabaseSeeder extends Seeder
                     'Velocidad de carga extrema (Core Web Vitals en verde)',
                     'Panel de administración intuitivo y fácil de gestionar',
                     'Integración con WhatsApp, formularios inteligentes y CRM',
-                    'Seguridad reforzada y certificados SSL automáticos'
+                    'Seguridad reforzada y certificados SSL automáticos',
                 ],
                 'process_steps' => [
                     ['step' => '1', 'title' => 'Diagnóstico & Estrategia', 'desc' => 'Estudiamos tu mercado, competencia y objetivos comerciales.'],
                     ['step' => '2', 'title' => 'Diseño UX/UI & Prototipo', 'desc' => 'Diseñamos la estructura visual y experiencia de usuario.'],
                     ['step' => '3', 'title' => 'Desarrollo & Optimización', 'desc' => 'Programamos con estándares limpios, SEO y máxima velocidad.'],
-                    ['step' => '4', 'title' => 'Lanzamiento & Capacitación', 'desc' => 'Despliegue en producción, pruebas y entrega de manuales.']
+                    ['step' => '4', 'title' => 'Lanzamiento & Capacitación', 'desc' => 'Despliegue en producción, pruebas y entrega de manuales.'],
                 ],
                 'meta_title' => 'Agencia de Diseño y Desarrollo Web en Chile | REW',
-                'meta_description' => 'Desarrollo de sitios web profesionales, tiendas WooCommerce y landing pages de alta conversión en Chile.'
+                'meta_description' => 'Desarrollo de sitios web profesionales, tiendas WooCommerce y landing pages de alta conversión en Chile.',
             ],
             [
                 'name' => 'Desarrollo de Software en Chile',
@@ -543,16 +543,16 @@ class DatabaseSeeder extends Seeder
                     'Desarrollo de plataformas SaaS con suscripciones',
                     'Integración de APIs bancarias, logísticas y pasarelas de pago',
                     'Arquitectura en Laravel, bases de datos relacionales y microservicios',
-                    'Fábrica de software ágil con entregas por sprints'
+                    'Fábrica de software ágil con entregas por sprints',
                 ],
                 'process_steps' => [
                     ['step' => '1', 'title' => 'Levantamiento de Requerimientos', 'desc' => 'Mapeamos los flujos de negocio y arquitectura técnica.'],
                     ['step' => '2', 'title' => 'Diseño de Base de Datos y APIs', 'desc' => 'Estructura modular lista para escalar.'],
                     ['step' => '3', 'title' => 'Desarrollo Iterativo (Sprints)', 'desc' => 'Entregables funcionales con feedback constante.'],
-                    ['step' => '4', 'title' => 'Hardening y Go-Live', 'desc' => 'Pruebas de carga, seguridad y despliegue continuo.']
+                    ['step' => '4', 'title' => 'Hardening y Go-Live', 'desc' => 'Pruebas de carga, seguridad y despliegue continuo.'],
                 ],
                 'meta_title' => 'Empresa de Desarrollo de Software a Medida en Chile | REW',
-                'meta_description' => 'Desarrollo de software en Chile con Laravel, SaaS, sistemas a medida y automatización de procesos empresariales.'
+                'meta_description' => 'Desarrollo de software en Chile con Laravel, SaaS, sistemas a medida y automatización de procesos empresariales.',
             ],
             [
                 'name' => 'SEO: Posicionamiento en Google & GEO',
@@ -565,10 +565,10 @@ class DatabaseSeeder extends Seeder
                     'Investigación de palabras clave con intención transaccional',
                     'Optimización On-Page y contenido semántico estructurado',
                     'Estrategia de Link Building ético y autoridad de dominio',
-                    'Optimización para IA (llms.txt, Schema JSON-LD y GEO)'
+                    'Optimización para IA (llms.txt, Schema JSON-LD y GEO)',
                 ],
                 'meta_title' => 'Agencia SEO en Chile | Posicionamiento Web Profesional | REW',
-                'meta_description' => 'Especialistas en SEO técnico, contenido estratégico y posicionamiento web en Google para empresas y ecommerce en Chile.'
+                'meta_description' => 'Especialistas en SEO técnico, contenido estratégico y posicionamiento web en Google para empresas y ecommerce en Chile.',
             ],
             [
                 'name' => 'Publicidad Digital & Inbound Marketing',
@@ -581,10 +581,10 @@ class DatabaseSeeder extends Seeder
                     'Anuncios en Meta Ads (Instagram y Facebook con segmentación láser)',
                     'Embudos de venta automatizados y retargeting inteligente',
                     'Medición precisa de conversiones y analítica con Google Analytics 4',
-                    'Informes transparentes con métricas de costo por adquisición (CPA)'
+                    'Informes transparentes con métricas de costo por adquisición (CPA)',
                 ],
                 'meta_title' => 'Publicidad Digital y Google Ads en Chile | REW',
-                'meta_description' => 'Gestión profesional de campañas en Google Ads, Meta Ads y estrategias de Inbound Marketing.'
+                'meta_description' => 'Gestión profesional de campañas en Google Ads, Meta Ads y estrategias de Inbound Marketing.',
             ],
             [
                 'name' => 'Mantenimiento & Rendimiento Web',
@@ -597,10 +597,10 @@ class DatabaseSeeder extends Seeder
                     'Copias de seguridad diarias automatizadas en la nube',
                     'Actualización segura de plugins, temas y núcleo',
                     'Optimización continua de velocidad y base de datos',
-                    'Soporte técnico prioritario y resolución de emergencias'
+                    'Soporte técnico prioritario y resolución de emergencias',
                 ],
                 'meta_title' => 'Planes de Mantenimiento Web y Soporte en Chile | REW',
-                'meta_description' => 'Mantenimiento web profesional, respaldos diarios, seguridad y optimización de velocidad continua.'
+                'meta_description' => 'Mantenimiento web profesional, respaldos diarios, seguridad y optimización de velocidad continua.',
             ],
             [
                 'name' => 'Soporte Especializado WordPress',
@@ -613,10 +613,10 @@ class DatabaseSeeder extends Seeder
                     'Desinfección de malware y blindaje de seguridad',
                     'Migraciones sin tiempo de inactividad entre servidores',
                     'Optimización de WooCommerce para catálogos masivos',
-                    'Desarrollo de plugins y hooks a medida'
+                    'Desarrollo de plugins y hooks a medida',
                 ],
                 'meta_title' => 'Soporte Técnico Especializado en WordPress y WooCommerce | REW',
-                'meta_description' => 'Servicio técnico especializado en WordPress en Chile. Solución de errores, migraciones y optimización.'
+                'meta_description' => 'Servicio técnico especializado en WordPress en Chile. Solución de errores, migraciones y optimización.',
             ],
             [
                 'name' => 'Diseño UX / UI y Prototipado',
@@ -629,10 +629,10 @@ class DatabaseSeeder extends Seeder
                     'Wireframes interactivos y prototipos navegables en Figma',
                     'Sistemas de diseño consistentes (Design Systems)',
                     'Diseño responsive y pruebas de usabilidad',
-                    'Hand-off impecable listo para desarrollo'
+                    'Hand-off impecable listo para desarrollo',
                 ],
                 'meta_title' => 'Diseño UX/UI y Experiencia de Usuario en Chile | REW',
-                'meta_description' => 'Servicios de diseño UX/UI, prototipado en Figma y sistemas de diseño centrados en conversión.'
+                'meta_description' => 'Servicios de diseño UX/UI, prototipado en Figma y sistemas de diseño centrados en conversión.',
             ],
         ];
 
@@ -653,7 +653,7 @@ class DatabaseSeeder extends Seeder
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2026/06/riche_product_mockup_1780448218998.jpg',
                 'is_published' => true,
                 'meta_title' => 'Chatbot de IA con RAG en WordPress | Guía Técnica REW',
-                'meta_description' => 'Aprende a conectar IA con WooCommerce mediante arquitectura RAG para responder consultas y vender 24/7.'
+                'meta_description' => 'Aprende a conectar IA con WooCommerce mediante arquitectura RAG para responder consultas y vender 24/7.',
             ],
             [
                 'title' => 'GEO (Generative Engine Optimization): La evolución del SEO para la era de los LLMs',
@@ -666,7 +666,7 @@ class DatabaseSeeder extends Seeder
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2025/11/agencia-seo-chile-rew.jpg',
                 'is_published' => true,
                 'meta_title' => '¿Qué es GEO y cómo preparar tu web para ChatGPT y Perplexity? | REW',
-                'meta_description' => 'Guía completa sobre Generative Engine Optimization (GEO) y cómo utilizar llms.txt para posicionar en IAs.'
+                'meta_description' => 'Guía completa sobre Generative Engine Optimization (GEO) y cómo utilizar llms.txt para posicionar en IAs.',
             ],
             [
                 'title' => 'Laravel vs WordPress: Cuándo elegir un Framework a Medida o un CMS para tu Proyecto',
@@ -679,7 +679,7 @@ class DatabaseSeeder extends Seeder
                 'featured_image' => 'https://rew.cl/wp-content/uploads/2025/11/empresa-desarrollo-software-chile-scaled.jpg',
                 'is_published' => true,
                 'meta_title' => 'Laravel vs WordPress: Guía de Arquitectura de Software | REW',
-                'meta_description' => 'Comparativa técnica entre Laravel y WordPress para proyectos web empresariales.'
+                'meta_description' => 'Comparativa técnica entre Laravel y WordPress para proyectos web empresariales.',
             ],
         ];
 
