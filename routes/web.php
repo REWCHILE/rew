@@ -23,14 +23,17 @@ Route::get('/nosotros', [HomeController::class, 'nosotros'])->name('nosotros');
 
 // 2. Tienda de Plugins WordPress & Chatbots IA
 Route::get('/tienda', [ShopController::class, 'index'])->name('tienda.index');
-Route::get('/producto/{slug}', [ShopController::class, 'show'])->name('tienda.show');
 
-// Rutas Directas / Legacy para Compatibilidad SEO 1:1 con Google
+// Rutas Directas / Legacy para Compatibilidad SEO 1:1 con Google & Landing Page Comercial
 Route::get('/chatbot-ia-wordpress', [ShopController::class, 'chatbotIaWordpress'])->name('legacy.chatbot-ia');
 Route::get('/asistente-virtual-woocommerce', [ShopController::class, 'asistenteVirtualWoocommerce'])->name('legacy.asistente-woo');
 Route::get('/rich-e-chatbot-ia-wordpress', [ShopController::class, 'richEChatbotIaWordpress'])->name('legacy.rich-e-pack');
+Route::get('/producto/chatbot-ia-wordpress', [ShopController::class, 'chatbotIaWordpress']);
+Route::get('/producto/rich-e-chatbot-ia-wordpress', [ShopController::class, 'chatbotIaWordpress']);
 Route::get('/integracion-api-wordpress', fn () => redirect()->route('servicios.software-chile', [], 301));
 Route::get('/desarrollo-odoo-chile', fn () => redirect()->route('servicios.odoo-chile', [], 301));
+
+Route::get('/producto/{slug}', [ShopController::class, 'show'])->name('tienda.show');
 
 // 3. Portafolio Web & Casos de Éxito
 Route::get('/portafolio', [PortfolioController::class, 'index'])->name('portafolio.index');

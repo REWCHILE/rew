@@ -64,10 +64,10 @@ class ShopController extends Controller
         return view('tienda.show', compact('product', 'relatedProducts'));
     }
 
-    // Rutas directas para compatibilidad SEO 1:1 con Google
+    // Rutas directas para compatibilidad SEO 1:1 con Google & Landing Page Comercial
     public function chatbotIaWordpress()
     {
-        return $this->show('rich-e-chatbot-assistant');
+        return view('landing.rich-e-chatbot');
     }
 
     public function asistenteVirtualWoocommerce()
@@ -77,6 +77,6 @@ class ShopController extends Controller
 
     public function richEChatbotIaWordpress()
     {
-        return $this->show('pack-chatbot-ecommerce-pro');
+        return view('landing.rich-e-chatbot');
     }
 }

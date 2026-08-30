@@ -112,6 +112,7 @@ class GeoSeoController extends Controller
             ['url' => url('/portafolio'), 'priority' => '0.8', 'changefreq' => 'weekly'],
             ['url' => url('/blog'), 'priority' => '0.8', 'changefreq' => 'daily'],
             ['url' => url('/contacto'), 'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['url' => url('/chatbot-ia-wordpress'), 'priority' => '1.0', 'changefreq' => 'weekly'],
             ['url' => url('/servicios/integracion-bsale-woocommerce'), 'priority' => '0.9', 'changefreq' => 'weekly'],
             ['url' => url('/servicios/implementacion-odoo-chile'), 'priority' => '0.9', 'changefreq' => 'weekly'],
             ['url' => url('/servicios/software-factory-chile'), 'priority' => '0.9', 'changefreq' => 'weekly'],

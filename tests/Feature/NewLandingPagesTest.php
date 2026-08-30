@@ -89,4 +89,19 @@ class NewLandingPagesTest extends TestCase
         $res11 = $this->get('/2025/05/02/redes-sociales-en-chile-uso-tendencias-y-plataformas-favoritas-2025');
         $res11->assertStatus(301);
     }
+
+    public function test_riche_landing_page_returns_ok(): void
+    {
+        $this->seed();
+
+        $landing = $this->get('/chatbot-ia-wordpress');
+        $landing->assertStatus(200);
+        $landing->assertSee('Rich-E AI');
+        $landing->assertSee('Simulador en Vivo');
+        $landing->assertSee('RAG');
+
+        $alias = $this->get('/producto/chatbot-ia-wordpress');
+        $alias->assertStatus(200);
+        $alias->assertSee('Rich-E');
+    }
 }
