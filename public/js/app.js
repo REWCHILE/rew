@@ -148,14 +148,14 @@ function initMobileNav() {
     if (!drawer) return;
 
     function openDrawer() {
-        drawer.classList.add('open');
-        if (backdrop) backdrop.classList.add('active');
+        drawer.classList.add('is-open', 'open');
+        if (backdrop) backdrop.classList.add('is-open', 'active');
         document.body.style.overflow = 'hidden';
     }
 
     function closeDrawer() {
-        drawer.classList.remove('open');
-        if (backdrop) backdrop.classList.remove('active');
+        drawer.classList.remove('is-open', 'open');
+        if (backdrop) backdrop.classList.remove('is-open', 'active');
         document.body.style.overflow = '';
     }
 
@@ -176,6 +176,14 @@ function initMobileNav() {
     if (backdrop) {
         backdrop.addEventListener('click', () => {
             closeDrawer();
+        });
+    }
+
+    if (servicesToggle && servicesMenu) {
+        servicesToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            servicesMenu.classList.toggle('is-open');
+            servicesToggle.classList.toggle('active');
         });
     }
 
