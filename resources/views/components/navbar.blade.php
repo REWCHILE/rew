@@ -1,5 +1,7 @@
 <style>
-/* Instant foolproof layout rules for Mega Menu & Mobile Drawer */
+/* ==========================================================================
+   COMPLETE EMBEDDED MEGA MENU & MOBILE DRAWER STYLES
+   ========================================================================== */
 @media (min-width: 992px) {
     .mobile-nav-drawer,
     .mobile-nav-backdrop,
@@ -14,16 +16,15 @@
     }
     .mega-menu-container {
         position: absolute;
-        top: calc(100% + 10px);
+        top: calc(100% + 12px);
         left: 50%;
-        transform: translateX(-50%) translateY(10px);
-        width: 1140px;
+        transform: translateX(-50%) translateY(12px);
+        width: 1160px;
         max-width: 96vw;
         background: #ffffff;
         border-radius: 20px;
-        box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
-        border: 1px solid rgba(226, 232, 240, 0.8);
-        padding: 1.75rem 2rem;
+        box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25), 0 0 0 1px rgba(226, 232, 240, 0.9);
+        padding: 1.75rem 2rem 1.25rem;
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
@@ -45,6 +46,7 @@
         align-items: stretch !important;
     }
 }
+
 @media (max-width: 991px) {
     .mega-menu-container {
         display: none !important;
@@ -53,9 +55,223 @@
         display: flex !important;
     }
 }
+
+/* Mega Menu Internal Structure & Typography */
+.mega-category-title {
+    font-size: 0.76rem;
+    font-weight: 800;
+    color: #64748b;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mega-col-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.mega-service-card-v2 {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 0.75rem 0.9rem !important;
+    border-radius: 12px !important;
+    background: #ffffff !important;
+    border: 1px solid transparent !important;
+    text-decoration: none !important;
+    color: inherit !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    cursor: pointer;
+}
+
+.mega-service-card-v2:hover,
+.mega-service-card-v2.active {
+    background: #f8fafc !important;
+    border-color: #e2e8f0 !important;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04) !important;
+    transform: translateX(4px);
+}
+
+.mega-icon-box {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+    background: #f1f5f9;
+    transition: transform 0.2s ease;
+}
+
+.mega-service-card-v2:hover .mega-icon-box {
+    transform: scale(1.1);
+}
+
+.mega-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.mega-title {
+    font-size: 0.92rem !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    line-height: 1.3 !important;
+    text-decoration: none !important;
+}
+
+.mega-desc {
+    font-size: 0.78rem !important;
+    color: #64748b !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+}
+
+/* Badges Inside Menu */
+.badge-mini {
+    font-size: 0.65rem;
+    padding: 2px 7px;
+    border-radius: 9999px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    display: inline-block;
+}
+
+.badge-purple { background: rgba(124, 58, 237, 0.12); color: #7c3aed; }
+.badge-blue { background: rgba(37, 99, 235, 0.12); color: #2563eb; }
+.badge-pink { background: rgba(236, 72, 153, 0.12); color: #ec4899; }
+.badge-green { background: rgba(16, 185, 129, 0.12); color: #059669; }
+.badge-gold { background: rgba(245, 158, 11, 0.15); color: #d97706; }
+.badge-teal { background: rgba(13, 148, 136, 0.12); color: #0d9488; }
+.badge-amber { background: rgba(217, 119, 6, 0.12); color: #d97706; }
+
+.badge-active-dot {
+    color: #10b981;
+    font-size: 0.72rem;
+    font-weight: 800;
+    margin-left: auto;
+}
+
+/* Spotlight Card in Mega Menu */
+.mega-col-spotlight {
+    background: linear-gradient(135deg, #090d16 0%, #1e1b4b 100%);
+    border-radius: 16px;
+    padding: 1.25rem;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.mega-spotlight-img-wrap {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.mega-spotlight-img {
+    width: 100%;
+    height: 125px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.mega-spotlight-badge {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(4px);
+    color: #fbbf24;
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.mega-spotlight-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 0.4rem;
+    line-height: 1.25;
+}
+
+.mega-spotlight-desc {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+}
+
+.mega-spotlight-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    color: #cbd5e1;
+    margin-bottom: 1rem;
+}
+
+.mega-spotlight-bullets div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Mega Menu Bottom Strip */
+.mega-bottom-strip {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.84rem;
+}
+
+.mega-bottom-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mega-wa-link {
+    color: #059669 !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.2s ease;
+}
+
+.mega-wa-link:hover {
+    transform: translateX(4px);
+    text-decoration: underline !important;
+}
 </style>
 
 <header class="header-main" id="siteHeader">
+
     <div class="container">
         <div class="header-inner">
             <!-- Logo -->

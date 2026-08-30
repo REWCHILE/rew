@@ -39,7 +39,7 @@
     <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}" sizes="180x180">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ time() }}">
 
     <!-- Schema.org JSON-LD Structured Data for Organization, Person & WebSite -->
     <script type="application/ld+json">
@@ -143,7 +143,7 @@
     @include('components.footer')
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}?v={{ time() }}" defer></script>
     @stack('scripts')
 </body>
 </html>
