@@ -108,4 +108,13 @@ class NewLandingPagesTest extends TestCase
         $alias->assertStatus(200);
         $alias->assertSee('Rich-E');
     }
+
+    public function test_custom_ocean_404_page(): void
+    {
+        $response = $this->get('/ruta-inexistente-que-genera-404');
+        $response->assertStatus(404);
+        $response->assertSee('Naufragio Digital');
+        $response->assertSee('Wilson 2.0');
+        $response->assertSee('Puerto Seguro');
+    }
 }

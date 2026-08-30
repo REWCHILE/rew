@@ -146,6 +146,7 @@
     @include('components.footer')
 
     <!-- Scripts -->
+    <script src="{{ asset('js/ocean-waves-particles.js') }}?v={{ time() }}" defer></script>
     <script src="{{ asset('js/app.js') }}?v={{ time() }}" defer></script>
     @stack('scripts')
 </body>
