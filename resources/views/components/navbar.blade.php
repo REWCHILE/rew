@@ -165,16 +165,17 @@
     margin-left: auto;
 }
 
-/* Spotlight Card in Mega Menu */
+/* Spotlight Card in Mega Menu (Refined Modern Aesthetic) */
 .mega-col-spotlight {
-    background: linear-gradient(135deg, #090d16 0%, #1e1b4b 100%);
-    border-radius: 16px;
-    padding: 1.25rem;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%) !important;
+    border: 1px solid #e0e7ff !important;
+    border-radius: 16px !important;
+    padding: 1.25rem !important;
+    color: #0f172a !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.06) !important;
 }
 
 .mega-spotlight-img-wrap {
@@ -182,12 +183,13 @@
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 0.85rem;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid #cbd5e1;
+    background: #0f172a;
 }
 
 .mega-spotlight-img {
     width: 100%;
-    height: 125px;
+    height: 135px;
     object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
@@ -195,40 +197,44 @@
 
 .mega-spotlight-badge {
     position: absolute;
-    bottom: 8px;
+    top: 8px;
     left: 8px;
     background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     color: #fbbf24;
     font-size: 0.68rem;
     font-weight: 800;
     padding: 3px 8px;
     border-radius: 6px;
     border: 1px solid rgba(251, 191, 36, 0.3);
+    letter-spacing: 0.03em;
 }
 
 .mega-spotlight-title {
-    font-size: 1.05rem;
-    font-weight: 800;
-    color: #ffffff;
-    margin-bottom: 0.4rem;
-    line-height: 1.25;
+    font-size: 1.1rem !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+    margin-bottom: 0.4rem !important;
+    line-height: 1.3 !important;
+    font-family: inherit !important;
 }
 
 .mega-spotlight-desc {
-    font-size: 0.78rem;
-    color: #94a3b8;
-    line-height: 1.4;
-    margin-bottom: 0.75rem;
+    font-size: 0.82rem !important;
+    color: #475569 !important;
+    line-height: 1.45 !important;
+    margin-bottom: 0.75rem !important;
 }
 
 .mega-spotlight-bullets {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    font-size: 0.75rem;
-    color: #cbd5e1;
-    margin-bottom: 1rem;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.35rem !important;
+    font-size: 0.8rem !important;
+    color: #334155 !important;
+    margin-bottom: 1rem !important;
+    font-weight: 600 !important;
 }
 
 .mega-spotlight-bullets div {
