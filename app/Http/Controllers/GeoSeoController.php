@@ -104,7 +104,7 @@ class GeoSeoController extends Controller
         $xml = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
         $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n";
 
-        // Estáticas
+        // Estáticas & Landing Pages Clave
         $staticUrls = [
             ['url' => url('/'), 'priority' => '1.0', 'changefreq' => 'daily'],
             ['url' => url('/nosotros'), 'priority' => '0.8', 'changefreq' => 'monthly'],
@@ -112,6 +112,12 @@ class GeoSeoController extends Controller
             ['url' => url('/portafolio'), 'priority' => '0.8', 'changefreq' => 'weekly'],
             ['url' => url('/blog'), 'priority' => '0.8', 'changefreq' => 'daily'],
             ['url' => url('/contacto'), 'priority' => '0.9', 'changefreq' => 'monthly'],
+            ['url' => url('/servicios/integracion-bsale-woocommerce'), 'priority' => '0.9', 'changefreq' => 'weekly'],
+            ['url' => url('/servicios/implementacion-odoo-chile'), 'priority' => '0.9', 'changefreq' => 'weekly'],
+            ['url' => url('/servicios/software-factory-chile'), 'priority' => '0.9', 'changefreq' => 'weekly'],
+            ['url' => url('/auditoria-seo-gratis'), 'priority' => '0.9', 'changefreq' => 'weekly'],
+            ['url' => url('/politica-de-privacidad'), 'priority' => '0.5', 'changefreq' => 'yearly'],
+            ['url' => url('/terminos-y-condiciones'), 'priority' => '0.5', 'changefreq' => 'yearly'],
         ];
 
         foreach ($staticUrls as $item) {

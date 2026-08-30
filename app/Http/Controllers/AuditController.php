@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Mail;
 class AuditController extends Controller
 {
     /**
+     * Muestra la Landing Page dedicada de Auditoría SEO Gratuita.
+     */
+    public function landing()
+    {
+        return view('auditoria-seo-gratis');
+    }
+
+    /**
      * Procesa la solicitud de auditoría técnica y ejecuta el análisis de velocidad.
      */
     public function analyze(Request $request): JsonResponse

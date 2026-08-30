@@ -25,4 +25,14 @@ class HomeController extends Controller
 
         return view('nosotros', compact('recentProjects'));
     }
+
+    public function privacidad()
+    {
+        return view('legal.privacidad');
+    }
+
+    public function terminos()
+    {
+        return view('legal.terminos');
+    }
 }

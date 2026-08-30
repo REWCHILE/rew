@@ -24,11 +24,13 @@
                 <ul class="footer-links">
                     <li><a href="{{ route('servicios.desarrollo-web') }}">Desarrollo Web</a></li>
                     <li><a href="{{ route('servicios.software-chile') }}">Desarrollo de Software</a></li>
+                    <li><a href="{{ route('servicios.software-factory') }}">Software Factory Chile</a></li>
+                    <li><a href="{{ route('servicios.bsale-woocommerce') }}">Integración Bsale WooCommerce</a></li>
+                    <li><a href="{{ route('servicios.odoo-chile') }}">Implementación Odoo ERP</a></li>
                     <li><a href="{{ route('servicios.seo') }}">Optimización SEO & GEO</a></li>
-                    <li><a href="{{ route('servicios.publicidad') }}">Publicidad Digital</a></li>
+                    <li><a href="{{ route('auditoria.landing') }}">Auditoría SEO Gratuita</a></li>
                     <li><a href="{{ route('servicios.mantenimiento') }}">Mantenimiento Web</a></li>
                     <li><a href="{{ route('servicios.soporte-wordpress') }}">Soporte WordPress</a></li>
-                    <li><a href="{{ route('servicios.diseno-ux-ui') }}">Diseño UX/UI</a></li>
                 </ul>
             </div>
 
@@ -39,9 +41,10 @@
                     <li><a href="{{ route('tienda.index') }}">Tienda de Plugins WordPress</a></li>
                     <li><a href="{{ route('tienda.show', 'rich-e-chatbot-assistant') }}">Rich-E Chatbot Assistant</a></li>
                     <li><a href="{{ route('tienda.show', 'addon-woocommerce-premium-sync') }}">WooCommerce Premium Sync</a></li>
-                    <li><a href="{{ route('tienda.show', 'rew-multi-currency-translator-pro') }}">REW Multi-Currency Pro</a></li>
                     <li><a href="{{ route('portafolio.index') }}">Portafolio Web</a></li>
                     <li><a href="{{ route('blog.index') }}">Blog & Artículos</a></li>
+                    <li><a href="{{ route('legal.privacidad') }}">Política de Privacidad</a></li>
+                    <li><a href="{{ route('legal.terminos') }}">Términos y Condiciones</a></li>
                 </ul>
             </div>
 
@@ -66,13 +69,15 @@
                 &copy; {{ date('Y') }} <strong>REW Chile</strong>. Todos los derechos reservados. Liderado por <strong>Álvaro Valenzuela Valdés</strong>.
             </div>
             <div style="display: flex; gap: 1rem; font-size: 0.8rem; flex-wrap: wrap; align-items: center;">
+                <a href="{{ route('legal.privacidad') }}" style="color: #94a3b8;">Privacidad</a>
+                <span>•</span>
+                <a href="{{ route('legal.terminos') }}" style="color: #94a3b8;">Términos</a>
+                <span>•</span>
                 <a href="https://www.linkedin.com/in/%C3%A1lvaro-valenzuela-vald%C3%A9s-584065281/" target="_blank" rel="noopener noreferrer" style="color: #0a66c2; font-weight: 700;">💼 LinkedIn Álvaro</a>
                 <span>•</span>
                 <a href="https://www.instagram.com/rew_chile/" target="_blank" rel="noopener noreferrer" style="color: #e1306c; font-weight: 700;">📸 Instagram @rew_chile</a>
                 <span>•</span>
                 <a href="{{ url('/sitemap.xml') }}" style="color: #94a3b8;">Sitemap XML</a>
-                <span>•</span>
-                <a href="{{ route('contacto') }}" style="color: #94a3b8;">Cotizaciones</a>
             </div>
         </div>
     </div>

@@ -45,6 +45,23 @@ Route::get('/mantenimiento-web', [ServiceController::class, 'mantenimientoWeb'])
 Route::get('/soporte-wordpress', [ServiceController::class, 'soporteWordpress'])->name('servicios.soporte-wordpress');
 Route::get('/diseno-ux-ui', [ServiceController::class, 'disenoUxUi'])->name('servicios.diseno-ux-ui');
 
+// Nuevas Landing Pages Comerciales de Alta Conversión (GSC Boost)
+Route::get('/servicios/integracion-bsale-woocommerce', [ServiceController::class, 'integracionBsale'])->name('servicios.bsale-woocommerce');
+Route::get('/integracion-bsale-woocommerce', [ServiceController::class, 'integracionBsale']);
+Route::get('/servicios/implementacion-odoo-chile', [ServiceController::class, 'implementacionOdoo'])->name('servicios.odoo-chile');
+Route::get('/implementacion-odoo-chile', [ServiceController::class, 'implementacionOdoo']);
+Route::get('/servicios/software-factory-chile', [ServiceController::class, 'softwareFactory'])->name('servicios.software-factory');
+Route::get('/software-factory-chile', [ServiceController::class, 'softwareFactory']);
+
+// Herramienta de Auditoría SEO Gratuita (Diagnóstico en Vivo)
+Route::get('/auditoria-seo-gratis', [AuditController::class, 'landing'])->name('auditoria.landing');
+
+// Páginas Legales & Confianza Institucional (Privacidad y Términos)
+Route::get('/politica-de-privacidad', [HomeController::class, 'privacidad'])->name('legal.privacidad');
+Route::get('/privacidad', [HomeController::class, 'privacidad']);
+Route::get('/terminos-y-condiciones', [HomeController::class, 'terminos'])->name('legal.terminos');
+Route::get('/terminos', [HomeController::class, 'terminos']);
+
 // 5. Blog & Knowledge Hub
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
