@@ -10,6 +10,145 @@
 @section('article_published_time', $project->project_date ? \Carbon\Carbon::parse($project->project_date)->toIso8601String() : now()->toIso8601String())
 
 @section('content')
+<style>
+/* Interactive High-End Browser Mockup */
+.browser-mockup-frame {
+    background: #0f172a !important;
+    border-radius: 16px !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+}
+
+.browser-frame-header {
+    background: #1e293b !important;
+    padding: 12px 18px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    border-bottom: 1px solid #334155 !important;
+}
+
+.browser-dots {
+    display: flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+}
+
+.browser-dots .dot {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50% !important;
+    display: inline-block !important;
+}
+
+.dot-red { background: #ef4444 !important; }
+.dot-yellow { background: #f59e0b !important; }
+.dot-green { background: #10b981 !important; }
+
+.browser-address-bar {
+    flex-grow: 1 !important;
+    max-width: 550px !important;
+    background: #0f172a !important;
+    border: 1px solid #334155 !important;
+    border-radius: 9999px !important;
+    padding: 6px 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-size: 0.82rem !important;
+    color: #94a3b8 !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+}
+
+.browser-address-bar .url-text {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    color: #cbd5e1 !important;
+    font-family: monospace !important;
+}
+
+.browser-actions {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.btn-browser-action {
+    background: #334155 !important;
+    border: none !important;
+    color: #ffffff !important;
+    padding: 5px 10px !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    font-size: 0.85rem !important;
+    transition: background 0.2s ease !important;
+}
+
+.btn-browser-action:hover {
+    background: #475569 !important;
+}
+
+/* Scrollable Viewport (Full Width, Natural Aspect Ratio) */
+.browser-viewport-container {
+    width: 100% !important;
+    height: 560px !important;
+    max-height: 70vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    background: #ffffff !important;
+    position: relative !important;
+    scroll-behavior: smooth !important;
+}
+
+/* Custom Scrollbar for Viewport */
+.browser-viewport-container::-webkit-scrollbar {
+    width: 8px;
+}
+.browser-viewport-container::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+.browser-viewport-container::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 4px;
+}
+.browser-viewport-container::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+.browser-long-image {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    object-fit: cover !important;
+    object-position: top !important;
+}
+
+.browser-frame-footer {
+    background: #1e293b !important;
+    padding: 10px 18px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    font-size: 0.82rem !important;
+    color: #94a3b8 !important;
+    border-top: 1px solid #334155 !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+}
+
+@media (max-width: 768px) {
+    .browser-viewport-container {
+        height: 380px !important;
+    }
+}
+</style>
 <section class="section" style="background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%);">
     <div class="container">
         <!-- Breadcrumb -->
