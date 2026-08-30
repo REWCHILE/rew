@@ -65,6 +65,10 @@ class NewLandingPagesTest extends TestCase
         $res3->assertStatus(200);
         $res3->assertSee('Patagonia Shelter');
 
+        $resCuarteto = $this->get('/portafolio/cuarteto-de-nos');
+        $resCuarteto->assertStatus(200);
+        $resCuarteto->assertSee('Cuarteto de Nos');
+
         $res4 = $this->get('/2025/12/17/agregar-boton-whatsapp-wordpress');
         $res4->assertStatus(301);
 

@@ -449,8 +449,8 @@
                     <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">Para agencias y desarrolladores que quieren pagar una sola vez.</p>
                     
                     <div style="margin-bottom: 1.5rem;">
-                        <span class="price-tag-dynamic" data-usd="160" data-clp="149900" style="font-size: 2.2rem; font-weight: 900; color: #d97706;">
-                            $160 USD
+                        <span class="price-tag-dynamic" data-usd="850" data-clp="799990" style="font-size: 2.2rem; font-weight: 900; color: #d97706;">
+                            $850 USD
                         </span>
                         <span style="font-size: 0.85rem; color: var(--text-muted);">/ único</span>
                     </div>
@@ -472,7 +472,7 @@
                             <span>Añadir Lifetime al Carrito</span>
                         </button>
                     </form>
-                    <a href="https://api.whatsapp.com/send?phone=56987261127&text={{ urlencode('Hola Álvaro, quiero comprar la Licencia Vitalicia de Rich-E ($149.900 CLP).') }}" 
+                    <a href="https://api.whatsapp.com/send?phone=56987261127&text={{ urlencode('Hola Álvaro, quiero comprar la Licencia Vitalicia de Rich-E ($799.990 CLP).') }}" 
                        target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm" style="width: 100%; text-align: center;">
                         Comprar Lifetime por WhatsApp
                     </a>
