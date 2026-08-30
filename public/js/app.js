@@ -1521,5 +1521,17 @@ function initHomeScrollAnimations() {
 
         counterElements.forEach(el => counterObs.observe(el));
     }
-}
+    // Touch Support for Mobile Portfolio Cards Auto-Scroll
+    const portfolioCards = document.querySelectorAll('.portfolio-card, .portfolio-card-premium');
+    portfolioCards.forEach(card => {
+        card.addEventListener('touchstart', () => {
+            card.classList.add('is-hovered');
+        }, { passive: true });
 
+        card.addEventListener('touchend', () => {
+            setTimeout(() => {
+                card.classList.remove('is-hovered');
+            }, 2500);
+        }, { passive: true });
+    });
+}

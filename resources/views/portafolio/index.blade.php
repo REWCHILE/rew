@@ -281,12 +281,17 @@
         @else
             <div class="portfolio-grid">
                 @foreach($projects as $proj)
-                    <article class="portfolio-card-premium">
+                    <article class="portfolio-card-premium" style="position: relative; cursor: pointer;">
+                        <a href="{{ route('portafolio.show', $proj->slug) }}" class="portfolio-card-stretched-link" aria-label="Explorar caso de estudio de {{ $proj->title }}"></a>
+
                         <div class="portfolio-card-img-box">
                             <img src="{{ Str::startsWith($proj->featured_image, 'http') ? $proj->featured_image : asset(ltrim($proj->featured_image, '/')) }}" 
                                  alt="{{ $proj->title }}" 
                                  loading="lazy">
                             <div class="portfolio-card-tag">{{ $proj->category }}</div>
+                            <div class="portfolio-scroll-hint">
+                                <span>↕️ Auto-Scroll</span>
+                            </div>
                         </div>
                         
                         <div class="portfolio-card-content">
@@ -303,9 +308,9 @@
                                     @endforeach
                                 </div>
 
-                                <a href="{{ route('portafolio.show', $proj->slug) }}" class="btn btn-outline" style="width: 100%; text-align: center;">
+                                <div class="btn btn-outline" style="width: 100%; text-align: center; pointer-events: none;">
                                     <span>Explorar Caso de Estudio →</span>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </article>

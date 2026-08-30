@@ -182,12 +182,17 @@
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
             @foreach($featuredProjects as $project)
-                <div class="card portfolio-card spotlight-card">
+                <article class="card portfolio-card spotlight-card" style="position: relative; overflow: hidden; cursor: pointer;">
+                    <a href="{{ route('portafolio.show', $project->slug) }}" class="portfolio-card-stretched-link" aria-label="Ver caso de estudio de {{ $project->title }}"></a>
+                    
                     <div class="portfolio-img-wrap">
                         <img src="{{ Str::startsWith($project->featured_image, 'http') ? $project->featured_image : asset(ltrim($project->featured_image, '/')) }}" alt="{{ $project->title }}" class="portfolio-img" loading="lazy">
                         <div class="portfolio-overlay">
                             <div class="portfolio-meta-pill">{{ $project->category }}</div>
                             <h3 style="color: #ffffff; font-size: 1.3rem;">{{ $project->title }}</h3>
+                        </div>
+                        <div class="portfolio-scroll-hint">
+                            <span>↕️ Auto-Scroll</span>
                         </div>
                     </div>
                     <div class="portfolio-body">
@@ -197,11 +202,11 @@
                                 <span class="tech-tag">{{ trim($tech) }}</span>
                             @endforeach
                         </div>
-                        <a href="{{ route('portafolio.show', $project->slug) }}" class="btn btn-outline btn-sm" style="width: 100%; text-align: center;">
+                        <div class="btn btn-outline btn-sm" style="width: 100%; text-align: center; pointer-events: none;">
                             <span>Ver Caso de Estudio →</span>
-                        </a>
+                        </div>
                     </div>
-                </div>
+                </article>
             @endforeach
         </div>
     </div>
