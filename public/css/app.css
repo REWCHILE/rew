@@ -3122,10 +3122,11 @@ img {
   background: #ffffff;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  padding: 2rem;
+  padding: 2.25rem;
   box-shadow: var(--shadow-md);
   position: relative;
   overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .benchmark-slow {
@@ -3139,20 +3140,99 @@ img {
   border-color: rgba(16, 185, 129, 0.3);
 }
 
+.benchmark-card.winner-glow {
+  animation: winnerPulse 1.5s infinite alternate ease-in-out;
+  border-color: #10b981;
+}
+
+@keyframes winnerPulse {
+  0% { box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15), 0 0 0 1px rgba(16, 185, 129, 0.3); }
+  100% { box-shadow: 0 20px 45px rgba(16, 185, 129, 0.35), 0 0 20px rgba(16, 185, 129, 0.5); }
+}
+
 .fast-ribbon {
   position: absolute;
   top: 15px;
   right: 15px;
-  background: #10b981;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: #ffffff;
   font-size: 0.72rem;
   font-weight: 800;
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: var(--radius-full);
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
 }
 
-.benchmark-header {
+.benchmark-card-top-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.race-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  display: inline-block;
+  animation: pulseDotAnim 1.2s infinite ease-in-out;
+}
+
+@keyframes pulseDotAnim {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.4; }
+}
+
+.race-live-timer {
+  font-family: var(--font-mono, monospace);
+  font-size: 1.1rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.timer-slow {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.timer-fast {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.race-track-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem;
   margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.race-track-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 6px;
 }
 
 .benchmark-metric {
@@ -3186,28 +3266,77 @@ img {
 .metric-bar-fill {
   height: 100%;
   border-radius: 4px;
-  transition: width 1s ease-in-out;
+  transition: width 0.3s ease;
 }
 
 .fill-danger { background: #ef4444; }
 .fill-success { background: linear-gradient(90deg, #10b981, #059669); }
 
 .benchmark-result-box {
-  padding: 1rem;
+  padding: 1.1rem;
   border-radius: var(--radius-md);
   font-size: 0.88rem;
-  line-height: 1.5;
+  line-height: 1.6;
   margin-top: 1.5rem;
+  transition: all 0.3s ease;
 }
 
 .slow-box {
   background: #fee2e2;
   color: #991b1b;
+  border-left: 4px solid #ef4444;
 }
 
 .fast-box {
   background: #ecfdf5;
   color: #065f46;
+  border-left: 4px solid #10b981;
+}
+
+/* ==========================================================================
+   Home & Global Scroll Reveal Micro-Animations
+   ========================================================================== */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.reveal-fade-left {
+  transform: translateX(-30px);
+}
+
+.reveal-on-scroll.reveal-fade-right {
+  transform: translateX(30px);
+}
+
+.reveal-on-scroll.reveal-scale {
+  transform: scale(0.92);
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1 !important;
+  transform: translate(0, 0) scale(1) !important;
+}
+
+/* Floating Badges Levitation Animation */
+@keyframes heroBadgeFloat1 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-1deg); }
+}
+
+@keyframes heroBadgeFloat2 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(8px) rotate(1deg); }
+}
+
+.hero-floating-badge {
+  animation: heroBadgeFloat1 4s ease-in-out infinite !important;
+}
+
+.hero-floating-badge-2 {
+  animation: heroBadgeFloat2 4.5s ease-in-out infinite 0.5s !important;
 }
 
 /* ==========================================================================

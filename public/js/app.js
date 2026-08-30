@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initAuditModal();
     initDesktopMegaMenu();
     initFaqAccordion();
+    initSpeedBenchmarkRace();
+    initHomeScrollAnimations();
 });
 
 /* ==========================================================================
@@ -1308,3 +1310,216 @@ function initFaqAccordion() {
         }
     });
 }
+
+/* ==========================================================================
+   Live Speed Benchmark Race Simulator (REW vs Standard Site)
+   ========================================================================== */
+function initSpeedBenchmarkRace() {
+    const section = document.getElementById('speedRaceBenchmarkSection');
+    if (!section) return;
+
+    const replayBtn = document.getElementById('replaySpeedRaceBtn');
+    const statusPillText = document.getElementById('speedRaceStatusText');
+    
+    // Slow elements
+    const cardSlow = document.getElementById('benchmarkCardSlow');
+    const timerSlow = document.getElementById('timerSlowVal');
+    const barSlow = document.getElementById('raceBarSlow');
+    const percentSlow = document.getElementById('slowLoadPercent');
+    const msgSlow = document.getElementById('slowStepMsg');
+
+    // Fast elements
+    const cardFast = document.getElementById('benchmarkCardFast');
+    const timerFast = document.getElementById('timerFastVal');
+    const barFast = document.getElementById('raceBarFast');
+    const percentFast = document.getElementById('fastLoadPercent');
+    const msgFast = document.getElementById('fastStepMsg');
+
+    let isRunning = false;
+    let hasAutoRun = false;
+    let fastAnimId = null;
+    let slowAnimId = null;
+
+    function runRace() {
+        if (isRunning) return;
+        isRunning = true;
+
+        if (fastAnimId) cancelAnimationFrame(fastAnimId);
+        if (slowAnimId) cancelAnimationFrame(slowAnimId);
+
+        // Reset states
+        if (cardFast) cardFast.classList.remove('winner-glow');
+        if (timerFast) timerFast.textContent = '0.00s';
+        if (timerSlow) timerSlow.textContent = '0.00s';
+        if (barFast) barFast.style.width = '0%';
+        if (barSlow) barSlow.style.width = '0%';
+        if (percentFast) percentFast.textContent = '0%';
+        if (percentSlow) percentSlow.textContent = '0%';
+        if (msgFast) msgFast.textContent = '⚡ Solicitando contenido optimizado...';
+        if (msgSlow) msgSlow.textContent = '⏳ Conectando a hosting compartido saturado...';
+        if (statusPillText) statusPillText.textContent = '🏎️ ¡Carrera iniciada! Cargando ambas webs...';
+
+        const raceStartTime = performance.now();
+        const FAST_TARGET_TIME = 380; // 0.38s in ms
+        const SLOW_TARGET_TIME = 4350; // 4.35s in ms
+
+        // Fast Runner (REW)
+        function stepFast(now) {
+            const elapsed = now - raceStartTime;
+            const progress = Math.min(elapsed / FAST_TARGET_TIME, 1);
+            
+            if (timerFast) {
+                const currentSec = (Math.min(elapsed, FAST_TARGET_TIME) / 1000).toFixed(2);
+                timerFast.textContent = currentSec + 's';
+            }
+
+            if (barFast) barFast.style.width = Math.round(progress * 100) + '%';
+            if (percentFast) percentFast.textContent = Math.round(progress * 100) + '%';
+
+            if (progress < 1) {
+                if (progress > 0.4 && msgFast) msgFast.textContent = '⚡ Caché L1 + PHP 8.3 OPcache entregado...';
+                fastAnimId = requestAnimationFrame(stepFast);
+            } else {
+                if (timerFast) timerFast.textContent = '0.38s ⚡';
+                if (barFast) barFast.style.width = '100%';
+                if (percentFast) percentFast.textContent = '100%';
+                if (msgFast) msgFast.textContent = '🏆 ¡Carga Completa en 0.38s! Score 100/100';
+                if (cardFast) cardFast.classList.add('winner-glow');
+            }
+        }
+
+        // Slow Runner (Generic Site)
+        function stepSlow(now) {
+            const elapsed = now - raceStartTime;
+            const progress = Math.min(elapsed / SLOW_TARGET_TIME, 1);
+
+            if (timerSlow) {
+                const currentSec = (Math.min(elapsed, SLOW_TARGET_TIME) / 1000).toFixed(2);
+                timerSlow.textContent = currentSec + 's';
+            }
+
+            // Nonlinear sluggish progress with simulated lag stalls
+            let visualPercent = 0;
+            if (elapsed < 800) {
+                visualPercent = (elapsed / 800) * 15;
+                if (msgSlow) msgSlow.textContent = '⏳ Esperando respuesta del servidor (TTFB lento: 800ms)...';
+            } else if (elapsed < 2200) {
+                visualPercent = 15 + ((elapsed - 800) / 1400) * 30;
+                if (msgSlow) msgSlow.textContent = '📦 Descargando 85 scripts JS y plugins pesados...';
+            } else if (elapsed < 3600) {
+                visualPercent = 45 + ((elapsed - 2200) / 1400) * 30;
+                if (msgSlow) msgSlow.textContent = '⚠️ Bloqueo de renderizado por CSS sin minificar...';
+            } else {
+                visualPercent = 75 + ((elapsed - 3600) / 750) * 25;
+                if (msgSlow) msgSlow.textContent = '❌ Finalizado en 4.35s (El 65% de clientes ya cerró la pestaña)';
+            }
+
+            if (barSlow) barSlow.style.width = Math.min(Math.round(visualPercent), 100) + '%';
+            if (percentSlow) percentSlow.textContent = Math.min(Math.round(visualPercent), 100) + '%';
+
+            if (progress < 1) {
+                slowAnimId = requestAnimationFrame(stepSlow);
+            } else {
+                if (timerSlow) timerSlow.textContent = '4.35s 🐌';
+                if (barSlow) barSlow.style.width = '100%';
+                if (percentSlow) percentSlow.textContent = '100%';
+                if (statusPillText) {
+                    statusPillText.innerHTML = '🏆 <strong>Resultado:</strong> ¡REW ganó por <strong>3.97 segundos de ventaja</strong> (11.4x más veloz)!';
+                }
+                isRunning = false;
+            }
+        }
+
+        fastAnimId = requestAnimationFrame(stepFast);
+        slowAnimId = requestAnimationFrame(stepSlow);
+    }
+
+    // Scroll trigger with IntersectionObserver
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasAutoRun) {
+                    hasAutoRun = true;
+                    setTimeout(runRace, 300);
+                }
+            });
+        }, { threshold: 0.25 });
+
+        observer.observe(section);
+    } else {
+        runRace();
+    }
+
+    if (replayBtn) {
+        replayBtn.addEventListener('click', () => {
+            runRace();
+        });
+    }
+}
+
+/* ==========================================================================
+   Home & Global Staggered Scroll Reveal Animations & Number Counters
+   ========================================================================== */
+function initHomeScrollAnimations() {
+    const revealTargets = document.querySelectorAll('.service-card, .product-card, .portfolio-card, .process-step-card, .google-review-card, .reveal-on-scroll');
+    
+    revealTargets.forEach(el => {
+        if (!el.classList.contains('reveal-on-scroll')) {
+            el.classList.add('reveal-on-scroll');
+        }
+    });
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-revealed');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        revealTargets.forEach(el => observer.observe(el));
+    } else {
+        revealTargets.forEach(el => el.classList.add('is-revealed'));
+    }
+
+    // Number Counter Animation for Stats
+    const counterElements = document.querySelectorAll('[data-counter]');
+    if ('IntersectionObserver' in window && counterElements.length) {
+        const counterObs = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.getAttribute('data-counter'), 10) || 0;
+                    const prefix = el.getAttribute('data-counter-prefix') || '';
+                    const suffix = el.getAttribute('data-counter-suffix') || '';
+                    const duration = 1600;
+                    const startTime = performance.now();
+
+                    function animateCount(now) {
+                        const elapsed = now - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        // Ease out cubic
+                        const easeVal = 1 - Math.pow(1 - progress, 3);
+                        const current = Math.floor(easeVal * target);
+
+                        el.textContent = `${prefix}${current}${suffix}`;
+
+                        if (progress < 1) {
+                            requestAnimationFrame(animateCount);
+                        } else {
+                            el.textContent = `${prefix}${target}${suffix}`;
+                        }
+                    }
+
+                    requestAnimationFrame(animateCount);
+                    obs.unobserve(el);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        counterElements.forEach(el => counterObs.observe(el));
+    }
+}
+

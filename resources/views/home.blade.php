@@ -45,18 +45,18 @@
                     </a>
                 </div>
 
-                <!-- Stats Row -->
+                <!-- Stats Row with Dynamic Counting Animation -->
                 <div class="hero-stats-row">
                     <div class="stat-item">
-                        <h4>+6 Años</h4>
-                        <p>Liderando proyectos digitales</p>
+                        <h4 data-counter="6" data-counter-prefix="+">+6</h4>
+                        <p>Años liderando ingeniería</p>
                     </div>
                     <div class="stat-item">
-                        <h4>+150K</h4>
+                        <h4 data-counter="150" data-counter-prefix="+" data-counter-suffix="K">+150K</h4>
                         <p>Usuarios mensuales impactados</p>
                     </div>
                     <div class="stat-item">
-                        <h4>100%</h4>
+                        <h4 data-counter="100" data-counter-suffix="%">100%</h4>
                         <p>Código limpio & rendimiento SEO</p>
                     </div>
                 </div>
