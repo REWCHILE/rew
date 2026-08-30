@@ -191,9 +191,6 @@
                             <div class="portfolio-meta-pill">{{ $project->category }}</div>
                             <h3 style="color: #ffffff; font-size: 1.3rem;">{{ $project->title }}</h3>
                         </div>
-                        <div class="portfolio-scroll-hint">
-                            <span>↕️ Auto-Scroll</span>
-                        </div>
                     </div>
                     <div class="portfolio-body">
                         <p class="portfolio-summary">{{ $project->summary }}</p>

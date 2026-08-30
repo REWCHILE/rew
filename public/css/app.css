@@ -4656,17 +4656,17 @@ html, body {
   left: 0 !important;
   display: block !important;
   transform: translateY(0) !important;
-  transition: transform 6s cubic-bezier(0.2, 0.6, 0.35, 1) !important;
+  transition: transform 2.5s ease-out !important;
   will-change: transform !important;
 }
 
-/* On hover or touch, the full website screenshot scrolls smoothly down to the footer */
+/* Slower, luxurious smooth scroll on hover or touch (12 seconds) */
 .portfolio-card:hover .portfolio-img-wrap img,
 .portfolio-card-premium:hover .portfolio-card-img-box img,
 .portfolio-card.is-hovered .portfolio-img-wrap img,
 .portfolio-card-premium.is-hovered .portfolio-card-img-box img {
   transform: translateY(calc(-100% + 240px)) !important;
-  transition: transform 6s cubic-bezier(0.2, 0.6, 0.35, 1) !important;
+  transition: transform 12s cubic-bezier(0.2, 0.4, 0.25, 1) !important;
 }
 
 /* Stretched Link to make the entire card clickable */
@@ -4685,32 +4685,6 @@ html, body {
 .portfolio-body {
   position: relative !important;
   z-index: 6 !important;
-}
-
-.portfolio-scroll-hint {
-  position: absolute !important;
-  bottom: 10px !important;
-  right: 10px !important;
-  background: rgba(15, 23, 42, 0.85) !important;
-  backdrop-filter: blur(6px) !important;
-  color: #ffffff !important;
-  font-size: 0.72rem !important;
-  font-weight: 700 !important;
-  padding: 4px 10px !important;
-  border-radius: 9999px !important;
-  pointer-events: none !important;
-  opacity: 0.9 !important;
-  transition: opacity 0.3s ease !important;
-  z-index: 3 !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 5px !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-}
-
-.portfolio-card:hover .portfolio-scroll-hint,
-.portfolio-card-premium:hover .portfolio-scroll-hint {
-  opacity: 0 !important;
 }
 
 

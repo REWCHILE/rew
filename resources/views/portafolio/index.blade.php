@@ -289,9 +289,6 @@
                                  alt="{{ $proj->title }}" 
                                  loading="lazy">
                             <div class="portfolio-card-tag">{{ $proj->category }}</div>
-                            <div class="portfolio-scroll-hint">
-                                <span>↕️ Auto-Scroll</span>
-                            </div>
                         </div>
                         
                         <div class="portfolio-card-content">
