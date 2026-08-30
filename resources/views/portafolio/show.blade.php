@@ -94,6 +94,20 @@
     background: #475569 !important;
 }
 
+.grid-2col-sidebar {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr) !important;
+    gap: 2.5rem !important;
+    align-items: start !important;
+}
+
+@media (max-width: 992px) {
+    .grid-2col-sidebar {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+}
+
 /* Scrollable Viewport (Full Width, Natural Aspect Ratio) */
 .browser-viewport-container {
     width: 100% !important;
@@ -101,7 +115,7 @@
     max-height: 70vh !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    background: #ffffff !important;
+    background: #0f172a !important;
     position: relative !important;
     scroll-behavior: smooth !important;
 }
@@ -111,10 +125,10 @@
     width: 8px;
 }
 .browser-viewport-container::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: #1e293b;
 }
 .browser-viewport-container::-webkit-scrollbar-thumb {
-    background: #94a3b8;
+    background: #475569;
     border-radius: 4px;
 }
 .browser-viewport-container::-webkit-scrollbar-thumb:hover {
@@ -123,11 +137,10 @@
 
 .browser-long-image {
     width: 100% !important;
+    min-width: 100% !important;
     max-width: 100% !important;
     height: auto !important;
     display: block !important;
-    object-fit: cover !important;
-    object-position: top !important;
 }
 
 .browser-frame-footer {
