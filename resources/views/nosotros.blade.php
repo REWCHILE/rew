@@ -121,10 +121,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
 
         <!-- AMD AI Hackathon Showcase: AndesOps-AI -->
-        <div class="card" style="background: linear-gradient(135deg, #090d16 0%, #111827 50%, #1e1b4b 100%); color: #ffffff; padding: 3rem; margin-bottom: 4rem; border: 1px solid rgba(99, 102, 241, 0.35); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);">
+        <div class="card" style="background: linear-gradient(135deg, #090d16 0%, #111827 50%, #1e1b4b 100%); color: #ffffff; padding: 3rem; margin-top: 4.5rem; margin-bottom: 4.5rem; border: 1px solid rgba(99, 102, 241, 0.35); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5); border-radius: 24px;">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 1.5rem; margin-bottom: 2rem;">
                 <div style="max-width: 700px;">
                     <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 0.75rem;">
@@ -216,20 +217,8 @@
             </div>
         </div>
 
-        <!-- CTA Box -->
-        <div class="card" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff; text-align: center; padding: 3.5rem 2rem; margin-bottom: 4.5rem;">
-            <h2 style="color: #ffffff; font-size: 2.2rem; margin-bottom: 1rem;">¿Listo para iniciar tu próximo gran proyecto?</h2>
-            <p style="color: #cbd5e1; font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem;">
-                Agenda una consulta directa con Álvaro Valenzuela o solicita tu cotización en línea.
-            </p>
-            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                <a href="{{ route('contacto') }}" class="btn btn-gold btn-lg">Cotizar Proyecto</a>
-                <a href="https://api.whatsapp.com/send?phone=56987261127" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">Conversar por WhatsApp</a>
-            </div>
-        </div>
-
-        <!-- Carousel: Últimos Sitios Web Desarrollados por Álvaro Valenzuela (Inmediatamente antes del Feed de Instagram) -->
-        <div style="margin-bottom: 1rem;">
+        <!-- Carousel: Últimos Sitios Web Desarrollados por Álvaro Valenzuela (Portafolio Reciente) -->
+        <div style="margin-top: 1rem; margin-bottom: 3.5rem;">
             <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
                 <div>
                     <span class="badge badge-primary" style="margin-bottom: 0.5rem;">Portafolio Reciente</span>
@@ -258,13 +247,16 @@
                 $carouselProjects = ($recentProjects ?? \App\Models\PortfolioProject::orderBy('order', 'asc')->get());
             @endphp
 
-            <div class="nosotros-carousel-wrapper" style="position: relative; overflow: hidden; border-radius: 16px;">
+            <div class="nosotros-carousel-wrapper" style="position: relative; overflow: hidden; border-radius: 20px;">
                 <div class="nosotros-carousel-track" id="nosotrosCarouselTrack" style="display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 10px 4px 20px; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
                     @foreach($carouselProjects as $proj)
-                        <div class="card spotlight-card nosotros-carousel-card" style="flex: 0 0 340px; scroll-snap-align: start; display: flex; flex-direction: column; overflow: hidden; padding: 0; border-color: rgba(79, 70, 229, 0.15); box-shadow: var(--shadow-md);">
+                        <article class="card portfolio-card spotlight-card nosotros-carousel-card" style="flex: 0 0 340px; scroll-snap-align: start; display: flex; flex-direction: column; overflow: hidden; padding: 0; position: relative; cursor: pointer; border-color: rgba(79, 70, 229, 0.2); box-shadow: var(--shadow-md);">
                             
+                            <!-- Stretched Link to make entire card clickable -->
+                            <a href="{{ route('portafolio.show', $proj->slug) }}" class="portfolio-card-stretched-link" aria-label="Ver caso de estudio de {{ $proj->title }}"></a>
+
                             <!-- Browser Window Header Mockup -->
-                            <div style="background: #0f172a; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <div style="background: #0f172a; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); position: relative; z-index: 6;">
                                 <div style="display: flex; gap: 6px;">
                                     <span style="width: 8px; height: 8px; border-radius: 50%; background: #ef4444; display: inline-block;"></span>
                                     <span style="width: 8px; height: 8px; border-radius: 50%; background: #eab308; display: inline-block;"></span>
@@ -276,11 +268,10 @@
                                 <span style="font-size: 0.7rem; color: #4ade80;">🔒</span>
                             </div>
 
-                            <!-- Image Container with Hover Scroll/Zoom -->
+                            <!-- Image Container with Luxurious Hover Auto-Scroll -->
                             <div class="portfolio-img-wrap" style="height: 220px; background: #0b0f19; overflow: hidden; position: relative;">
                                 <img src="{{ Str::startsWith($proj->featured_image, 'http') ? $proj->featured_image : asset(ltrim($proj->featured_image, '/')) }}" 
                                      alt="{{ $proj->title }}" 
-                                     style="width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.4s ease;"
                                      loading="lazy">
                                 <div class="portfolio-overlay" style="background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.2) 60%, transparent 100%);">
                                     <div class="portfolio-meta-pill" style="font-size: 0.75rem;">{{ $proj->category }}</div>
@@ -289,7 +280,7 @@
                             </div>
 
                             <!-- Card Body Info -->
-                            <div style="padding: 1.25rem; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between;">
+                            <div style="padding: 1.25rem; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; position: relative; z-index: 6;">
                                 <div>
                                     <div style="font-size: 0.8rem; color: var(--accent-gold); font-weight: 700; margin-bottom: 0.35rem;">
                                         Cliente: {{ $proj->client }}
@@ -307,19 +298,44 @@
                                 </div>
 
                                 <div style="display: flex; gap: 8px;">
-                                    <a href="{{ route('portafolio.show', $proj->slug) }}" class="btn btn-outline btn-sm" style="flex: 1; text-align: center; font-size: 0.82rem;">
+                                    <div class="btn btn-outline btn-sm" style="flex: 1; text-align: center; font-size: 0.82rem; pointer-events: none;">
                                         <span>Ficha Técnica ➔</span>
-                                    </a>
+                                    </div>
                                     @if($proj->project_url)
-                                        <a href="{{ $proj->project_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="padding: 0.4rem 0.65rem; border-color: rgba(79, 70, 229, 0.3);" title="Visitar Web en Vivo">
+                                        <a href="{{ $proj->project_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="padding: 0.4rem 0.65rem; border-color: rgba(79, 70, 229, 0.3); position: relative; z-index: 7;" title="Visitar Web en Vivo">
                                             <span>↗</span>
                                         </a>
                                     @endif
                                 </div>
                             </div>
-                        </div>
+                        </article>
                     @endforeach
                 </div>
+            </div>
+        </div>
+
+        <!-- CTA Box con fondo de Cyber-Océano Digital de REW (Ubicada al final) -->
+        <div class="card spotlight-card" style="background: radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.35) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.2) 0%, transparent 40%), linear-gradient(135deg, #090d16 0%, #0f172a 50%, #1e1b4b 100%); color: #ffffff; text-align: center; padding: 4rem 2rem; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.5); position: relative; overflow: hidden; margin-top: 2rem; margin-bottom: 2rem;">
+            <!-- Glow background orb -->
+            <div style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 400px; height: 120px; background: radial-gradient(circle, rgba(79,70,229,0.4) 0%, transparent 70%); pointer-events: none;"></div>
+            
+            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); padding: 5px 16px; border-radius: 9999px; font-size: 0.82rem; font-weight: 700; color: #38bdf8; margin-bottom: 1.25rem;">
+                <span>🌊</span> ECOSISTEMA DIGITAL REW
+            </div>
+
+            <h2 style="color: #ffffff; font-size: 2.3rem; margin-bottom: 1rem; font-weight: 900; letter-spacing: -0.02em;">
+                ¿Listo para iniciar tu próximo gran proyecto?
+            </h2>
+            <p style="color: #cbd5e1; font-size: 1.15rem; max-width: 650px; margin: 0 auto 2.25rem; line-height: 1.7;">
+                Agenda una consulta técnica directa con el Ingeniero Álvaro Valenzuela o solicita tu cotización formal en línea.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap;">
+                <a href="{{ route('contacto') }}" class="btn btn-gold btn-lg" style="font-weight: 800; font-size: 1.05rem; padding: 1rem 2rem; box-shadow: 0 4px 20px rgba(245, 158, 11, 0.35);">
+                    🚀 Cotizar Proyecto Online
+                </a>
+                <a href="https://api.whatsapp.com/send?phone=56987261127&text={{ rawurlencode('Hola Álvaro, quiero consultar por un proyecto para mi empresa.') }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-lg" style="font-weight: 800; font-size: 1.05rem; padding: 1rem 2rem;">
+                    💬 Conversar por WhatsApp (+56 9 8726 1127)
+                </a>
             </div>
         </div>
     </div>
