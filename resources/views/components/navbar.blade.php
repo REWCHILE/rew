@@ -166,17 +166,29 @@
 }
 
 /* Spotlight Card in Mega Menu (Refined Modern Aesthetic) */
-.mega-col-spotlight {
+.mega-col-spotlight,
+.mega-featured-card-v2,
+#megaSpotlightCard {
     background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%) !important;
     border: 1px solid #e0e7ff !important;
     border-radius: 16px !important;
-    padding: 1.25rem !important;
+    padding: 0 !important;
     color: #0f172a !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
     box-shadow: 0 4px 15px rgba(79, 70, 229, 0.06) !important;
+    overflow: hidden !important;
 }
+
+.mega-spotlight-body {
+    padding: 1.25rem !important;
+    background: transparent !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex-grow: 1 !important;
+}
+
 
 .mega-spotlight-img-wrap {
     position: relative;
@@ -700,11 +712,39 @@
                             <div class="sub-desc">SaaS y sistemas Laravel a medida</div>
                         </div>
                     </a>
+                    <a href="{{ route('servicios.software-factory') }}" class="mobile-sub-link {{ request()->routeIs('servicios.software-factory') ? 'active' : '' }}">
+                        <span class="sub-icon">🏭</span>
+                        <div>
+                            <div class="sub-title">Software Factory Chile</div>
+                            <div class="sub-desc">Células ágiles de ingeniería</div>
+                        </div>
+                    </a>
+                    <a href="{{ route('servicios.bsale-woocommerce') }}" class="mobile-sub-link {{ request()->routeIs('servicios.bsale-woocommerce') ? 'active' : '' }}">
+                        <span class="sub-icon">🛒</span>
+                        <div>
+                            <div class="sub-title">Integración Bsale WooCommerce</div>
+                            <div class="sub-desc">Sincronización de stock y boletas DTE</div>
+                        </div>
+                    </a>
+                    <a href="{{ route('servicios.odoo-chile') }}" class="mobile-sub-link {{ request()->routeIs('servicios.odoo-chile') ? 'active' : '' }}">
+                        <span class="sub-icon">⚙️</span>
+                        <div>
+                            <div class="sub-title">Implementación Odoo ERP</div>
+                            <div class="sub-desc">Facturación SII, CRM y bodegas</div>
+                        </div>
+                    </a>
                     <a href="{{ route('servicios.seo') }}" class="mobile-sub-link {{ request()->routeIs('servicios.seo') ? 'active' : '' }}">
                         <span class="sub-icon">📈</span>
                         <div>
                             <div class="sub-title">SEO & GEO en Google</div>
                             <div class="sub-desc">Posicionamiento en buscadores e IA</div>
+                        </div>
+                    </a>
+                    <a href="{{ route('auditoria.landing') }}" class="mobile-sub-link {{ request()->routeIs('auditoria.landing') ? 'active' : '' }}">
+                        <span class="sub-icon">🔍</span>
+                        <div>
+                            <div class="sub-title">Auditoría SEO Gratuita</div>
+                            <div class="sub-desc">Diagnóstico de velocidad y Core Web Vitals</div>
                         </div>
                     </a>
                     <a href="{{ route('servicios.publicidad') }}" class="mobile-sub-link {{ request()->routeIs('servicios.publicidad') ? 'active' : '' }}">
