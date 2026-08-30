@@ -21,33 +21,33 @@
 
         <!-- Filter & Search Toolbar -->
         <div class="card" style="padding: 1.5rem; margin-bottom: 3rem; box-shadow: var(--shadow-sm);">
-            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem;">
+            <div class="shop-toolbar" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem;">
                 <!-- Category Pills -->
                 <div style="display: flex; flex-wrap: wrap; gap: 8px;">
                     <a href="{{ route('tienda.index') }}" 
                        class="badge {{ empty($selectedCategory) || $selectedCategory === 'todos' ? 'badge-primary' : 'badge-pill-glow' }}" 
-                       style="text-decoration: none; padding: 6px 14px; font-size: 0.82rem;">
+                       style="text-decoration: none; padding: 8px 16px; font-size: 0.85rem;">
                         Todos ({{ \App\Models\Product::count() }})
                     </a>
                     @foreach($categories as $cat)
                         @php $catCount = \App\Models\Product::where('category_slug', $cat->slug)->count(); @endphp
                         <a href="{{ route('tienda.index', ['categoria' => $cat->slug]) }}" 
                            class="badge {{ $selectedCategory === $cat->slug ? 'badge-primary' : 'badge-pill-glow' }}" 
-                           style="text-decoration: none; padding: 6px 14px; font-size: 0.82rem;">
+                           style="text-decoration: none; padding: 8px 16px; font-size: 0.85rem;">
                             {{ $cat->name }} ({{ $catCount }})
                         </a>
                     @endforeach
                 </div>
 
                 <!-- Search & Sort Controls -->
-                <form action="{{ route('tienda.index') }}" method="GET" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <form action="{{ route('tienda.index') }}" method="GET" class="shop-search-form" style="display: flex; gap: 10px; flex-wrap: wrap;">
                     @if($selectedCategory)
                         <input type="hidden" name="categoria" value="{{ $selectedCategory }}">
                     @endif
-                    <input type="text" name="buscar" value="{{ $search }}" placeholder="Buscar plugin..." 
-                           style="padding: 0.5rem 1rem; border: 1px solid var(--border-light); border-radius: var(--radius-sm); font-size: 0.9rem; outline: none; width: 200px;">
-                    <select name="orden" onchange="this.form.submit()" 
-                            style="padding: 0.5rem 1rem; border: 1px solid var(--border-light); border-radius: var(--radius-sm); font-size: 0.9rem; background: #ffffff; outline: none;">
+                    <input type="text" name="buscar" value="{{ $search }}" placeholder="Buscar plugin..." class="shop-search-input"
+                           style="padding: 0.65rem 1rem; border: 1px solid var(--border-light); border-radius: var(--radius-sm); font-size: 0.95rem; outline: none;">
+                    <select name="orden" onchange="this.form.submit()" class="shop-sort-select"
+                            style="padding: 0.65rem 1rem; border: 1px solid var(--border-light); border-radius: var(--radius-sm); font-size: 0.95rem; background: #ffffff; outline: none; cursor: pointer;">
                         <option value="destacados" {{ $sort === 'destacados' ? 'selected' : '' }}>Destacados</option>
                         <option value="precio-menor" {{ $sort === 'precio-menor' ? 'selected' : '' }}>Precio: Menor a Mayor</option>
                         <option value="precio-mayor" {{ $sort === 'precio-mayor' ? 'selected' : '' }}>Precio: Mayor a Menor</option>
@@ -66,7 +66,7 @@
                 <a href="{{ route('tienda.index') }}" class="btn btn-primary btn-sm">Ver Todos los Plugins</a>
             </div>
         @else
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 2rem; margin-bottom: 3.5rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3.5rem;">
                 @foreach($products as $prod)
                     <div class="card product-card">
                         <div class="product-img-wrap">
@@ -78,7 +78,7 @@
                                 </div>
                             @endif
                             <a href="{{ route('tienda.show', $prod->slug) }}">
-                                <img src="{{ $prod->featured_image }}" alt="{{ $prod->name }}" class="product-img" loading="lazy">
+                                <img src="{{ Str::startsWith($prod->featured_image, 'http') ? $prod->featured_image : asset(ltrim($prod->featured_image, '/')) }}" alt="{{ $prod->name }}" class="product-img" loading="lazy">
                             </a>
                         </div>
                         <div class="product-content">

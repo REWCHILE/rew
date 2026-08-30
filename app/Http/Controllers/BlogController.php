@@ -61,4 +61,24 @@ class BlogController extends Controller
 
         return view('blog.show', compact('post', 'relatedPosts'));
     }
+
+    /**
+     * Redirección permanente 301 para URLs históricas de WordPress con estructura /YYYY/MM/DD/slug/
+     */
+    public function legacyDateRedirect(string $year, string $month, string $day, string $slug)
+    {
+        $post = Post::where('slug', $slug)->first();
+        if ($post) {
+            return redirect()->route('blog.show', $post->slug, 301);
+        }
+
+        // Búsqueda por similitud de slug
+        $cleanSlug = trim(preg_replace('/[^a-z0-9\-]/i', '', $slug));
+        $fuzzyPost = Post::where('slug', 'like', "%{$cleanSlug}%")->first();
+        if ($fuzzyPost) {
+            return redirect()->route('blog.show', $fuzzyPost->slug, 301);
+        }
+
+        return redirect()->route('blog.index', [], 301);
+    }
 }

@@ -4317,5 +4317,173 @@ html, body {
   transition: opacity 0.15s ease !important;
 }
 
+/* ==========================================================================
+   MOBILE-FIRST RESPONSIVE DESIGN & SHOP STYLES
+   ========================================================================== */
+
+/* Grid 2 Column Product Details */
+.grid-2col-product {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+@media (max-width: 991px) {
+  .grid-2col-product {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+}
+
+/* Shop Products Grid & Cards */
+.product-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.product-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+.product-img-wrap {
+  position: relative !important;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%) !important;
+  padding: 1.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 200px !important;
+  max-height: 240px !important;
+  overflow: hidden !important;
+}
+
+.product-img {
+  max-width: 100% !important;
+  max-height: 180px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  transition: transform 0.4s ease !important;
+  display: block !important;
+}
+
+.product-card:hover .product-img {
+  transform: scale(1.06) !important;
+}
+
+.product-badge-top {
+  position: absolute !important;
+  top: 12px !important;
+  left: 12px !important;
+  z-index: 2 !important;
+}
+
+.product-content {
+  padding: 1.5rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
+  justify-content: space-between !important;
+  background: #ffffff !important;
+}
+
+.product-category {
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  color: #6366f1 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  margin-bottom: 0.4rem !important;
+}
+
+.product-title {
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  margin-bottom: 0.5rem !important;
+  line-height: 1.35 !important;
+}
+
+.product-desc {
+  font-size: 0.88rem !important;
+  color: #64748b !important;
+  line-height: 1.55 !important;
+  margin-bottom: 1.25rem !important;
+  flex-grow: 1 !important;
+}
+
+.product-pricing {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 10px !important;
+  margin-bottom: 1.25rem !important;
+  flex-wrap: wrap !important;
+}
+
+.product-pricing .price-current {
+  font-size: 1.4rem !important;
+  font-weight: 900 !important;
+  color: #4f46e5 !important;
+}
+
+.product-pricing .price-original {
+  font-size: 0.95rem !important;
+  color: #94a3b8 !important;
+  text-decoration: line-through !important;
+}
+
+.product-actions {
+  display: grid !important;
+  grid-template-columns: 1fr auto !important;
+  gap: 10px !important;
+  align-items: center !important;
+}
+
+@media (max-width: 576px) {
+  .product-actions {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Mobile Toolbar & Form Ergonomics */
+@media (max-width: 768px) {
+  .shop-toolbar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  
+  .shop-search-form {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  .shop-search-input,
+  .shop-sort-select {
+    width: 100% !important;
+    min-height: 44px !important;
+  }
+
+  .grid-form-2col {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .cart-item-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+}
+
+
 
 

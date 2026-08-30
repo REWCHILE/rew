@@ -6,7 +6,7 @@
 @section('og_type', 'product')
 @section('og_title', $product->name . ' (Licencia Oficial) | REW')
 @section('og_description', $product->short_description)
-@section('og_image', $product->featured_image)
+@section('og_image', Str::startsWith($product->featured_image, 'http') ? $product->featured_image : asset(ltrim($product->featured_image, '/')))
 
 @section('schema_json')
 <script type="application/ld+json">
@@ -14,7 +14,7 @@
     "@@context": "https://schema.org/",
     "@@type": "Product",
     "name": "{{ $product->name }}",
-    "image": "{{ $product->featured_image }}",
+    "image": "{{ Str::startsWith($product->featured_image, 'http') ? $product->featured_image : asset(ltrim($product->featured_image, '/')) }}",
     "description": "{{ $product->short_description }}",
     "sku": "{{ $product->sku }}",
     "brand": {
@@ -57,7 +57,7 @@
                             </span>
                         </div>
                     @endif
-                    <img src="{{ $product->featured_image }}" alt="{{ $product->name }}" style="max-height: 380px; width: 100%; margin: 0 auto; object-fit: contain;">
+                    <img src="{{ Str::startsWith($product->featured_image, 'http') ? $product->featured_image : asset(ltrim($product->featured_image, '/')) }}" alt="{{ $product->name }}" style="max-height: 380px; width: 100%; margin: 0 auto; object-fit: contain;">
                 </div>
             </div>
 

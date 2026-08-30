@@ -50,4 +50,43 @@ class NewLandingPagesTest extends TestCase
         $terms->assertStatus(200);
         $terms->assertSee('Términos y Condiciones');
     }
+
+    public function test_legacy_wordpress_and_date_urls(): void
+    {
+        $this->seed();
+
+        $res1 = $this->get('/integracion-api-wordpress');
+        $res1->assertStatus(301);
+
+        $res2 = $this->get('/desarrollo-odoo-chile');
+        $res2->assertStatus(301);
+
+        $res3 = $this->get('/portafolio/patagonia-shelter');
+        $res3->assertStatus(200);
+        $res3->assertSee('Patagonia Shelter');
+
+        $res4 = $this->get('/2025/12/17/agregar-boton-whatsapp-wordpress');
+        $res4->assertStatus(301);
+
+        $res5 = $this->get('/2025/05/01/la-computacion-cuantica');
+        $res5->assertStatus(301);
+
+        $res6 = $this->get('/2026/05/31/entrenando-bot-wordpress-pdfs-urls-rag');
+        $res6->assertStatus(301);
+
+        $res7 = $this->get('/2025/05/01/guia-completa-de-marketing-digital-2025');
+        $res7->assertStatus(301);
+
+        $res8 = $this->get('/2026/05/31/configurar-chat-bot-ia-wordpress-rapido');
+        $res8->assertStatus(301);
+
+        $res9 = $this->get('/2026/05/31/chatbot-para-wordpress-ia-groq-vs-openai');
+        $res9->assertStatus(301);
+
+        $res10 = $this->get('/2025/05/02/mejores-horarios-para-publicar-en-redes-sociales-en-2025');
+        $res10->assertStatus(301);
+
+        $res11 = $this->get('/2025/05/02/redes-sociales-en-chile-uso-tendencias-y-plataformas-favoritas-2025');
+        $res11->assertStatus(301);
+    }
 }

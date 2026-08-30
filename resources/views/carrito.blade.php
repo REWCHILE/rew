@@ -28,9 +28,9 @@
                 <div class="card" style="padding: 1.5rem;">
                     <div style="display: flex; flex-direction: column; gap: 1.25rem;">
                         @foreach($cart as $item)
-                            <div style="display: flex; gap: 1.25rem; align-items: center; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-light);">
-                                <img src="{{ $item['image'] ?? asset('images/logo.webp') }}" alt="{{ $item['name'] }}" style="width: 70px; height: 70px; object-fit: contain; background: var(--bg-alt); padding: 8px; border-radius: 10px;">
-                                <div style="flex-grow: 1;">
+                            <div class="cart-item-row" style="display: flex; gap: 1.25rem; align-items: center; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-light); flex-wrap: wrap;">
+                                <img src="{{ !empty($item['image']) ? (Str::startsWith($item['image'], 'http') ? $item['image'] : asset(ltrim($item['image'], '/'))) : asset('images/logo.webp') }}" alt="{{ $item['name'] }}" style="width: 70px; height: 70px; object-fit: contain; background: #0f172a; padding: 6px; border-radius: 10px;">
+                                <div style="flex-grow: 1; min-width: 180px;">
                                     <h4 style="font-size: 1.05rem; margin-bottom: 4px;">{{ $item['name'] }}</h4>
                                     <div class="price-tag-dynamic" style="font-size: 0.95rem; font-weight: 700; color: var(--primary);" 
                                          data-usd="{{ $item['price_usd'] * $item['quantity'] }}" data-clp="{{ $item['price_clp'] * $item['quantity'] }}">
@@ -38,7 +38,7 @@
                                     </div>
                                     <div style="font-size: 0.8rem; color: var(--text-muted);">Cantidad: {{ $item['quantity'] }}</div>
                                 </div>
-                                <form action="{{ route('cart.remove') }}" method="POST">
+                                <form action="{{ route('cart.remove') }}" method="POST" style="margin-left: auto;">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $item['id'] }}">
                                     <button type="submit" class="btn btn-sm btn-outline" title="Eliminar del carrito">✕ Eliminar</button>

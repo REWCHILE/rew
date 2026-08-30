@@ -29,6 +29,8 @@ Route::get('/producto/{slug}', [ShopController::class, 'show'])->name('tienda.sh
 Route::get('/chatbot-ia-wordpress', [ShopController::class, 'chatbotIaWordpress'])->name('legacy.chatbot-ia');
 Route::get('/asistente-virtual-woocommerce', [ShopController::class, 'asistenteVirtualWoocommerce'])->name('legacy.asistente-woo');
 Route::get('/rich-e-chatbot-ia-wordpress', [ShopController::class, 'richEChatbotIaWordpress'])->name('legacy.rich-e-pack');
+Route::get('/integracion-api-wordpress', fn () => redirect()->route('servicios.software-chile', [], 301));
+Route::get('/desarrollo-odoo-chile', fn () => redirect()->route('servicios.odoo-chile', [], 301));
 
 // 3. Portafolio Web & Casos de Éxito
 Route::get('/portafolio', [PortfolioController::class, 'index'])->name('portafolio.index');
@@ -65,6 +67,10 @@ Route::get('/terminos', [HomeController::class, 'terminos']);
 // 5. Blog & Knowledge Hub
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+
+// Redirección de Rutas Históricas de Blog con fechas WordPress /YYYY/MM/DD/slug/
+Route::get('/{year}/{month}/{day}/{slug}', [BlogController::class, 'legacyDateRedirect'])
+    ->where(['year' => '[0-9]{4}', 'month' => '[0-9]{2}', 'day' => '[0-9]{2}']);
 
 // 6. Contacto & Cotizador Interactivo (Blindado con Rate Limiting)
 Route::get('/contacto', [QuoteController::class, 'index'])->name('contacto');
