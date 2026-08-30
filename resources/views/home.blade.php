@@ -121,80 +121,6 @@
 @include('components.tech-marquee')
 
 <!-- ==========================================================================
-     PLUGINS DESTACADOS / TIENDA SHOWCASE
-     ========================================================================== -->
-<section class="section">
-    <div class="container">
-        <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; margin-bottom: 3.5rem; gap: 1.5rem;">
-            <div>
-                <div style="margin-bottom: 0.5rem;">
-                    <span class="badge badge-gold">Ecosistema WordPress & IA</span>
-                </div>
-                <h2 style="font-size: 2.3rem;">Plugins Oficiales de Alta Gama</h2>
-                <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 600px;">
-                    Desarrollados bajo estrictos estándares de ingeniería para aumentar conversiones y automatizar soporte.
-                </p>
-            </div>
-            <a href="{{ route('tienda.index') }}" class="btn btn-outline">
-                <span>Ver Catálogo Completo ({{ \App\Models\Product::count() }}) →</span>
-            </a>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 2rem;">
-            @foreach($featuredProducts as $prod)
-                <div class="card product-card spotlight-card">
-                    <div class="product-img-wrap">
-                        @if($prod->badge)
-                            <div class="product-badge-top">
-                                <span class="badge {{ str_contains($prod->badge, 'OFERTA') ? 'badge-gold' : 'badge-primary' }}">
-                                    {{ $prod->badge }}
-                                </span>
-                            </div>
-                        @endif
-                        <a href="{{ route('tienda.show', $prod->slug) }}">
-                            <img src="{{ Str::startsWith($prod->featured_image, 'http') ? $prod->featured_image : asset(ltrim($prod->featured_image, '/')) }}" alt="{{ $prod->name }}" class="product-img" loading="lazy">
-                        </a>
-                    </div>
-                    <div class="product-content">
-                        <div class="product-category">{{ $prod->category_slug }}</div>
-                        <h3 class="product-title">
-                            <a href="{{ route('tienda.show', $prod->slug) }}" style="color: inherit;">
-                                {{ $prod->name }}
-                            </a>
-                        </h3>
-                        <p class="product-desc">{{ $prod->short_description }}</p>
-
-                        <div class="product-pricing">
-                            <span class="price-current price-tag-dynamic" data-usd="{{ $prod->price_usd }}" data-clp="{{ $prod->price_clp }}">
-                                ${{ number_format($prod->price_usd, 0) }} USD
-                            </span>
-                            @if($prod->original_price_usd)
-                                <span class="price-original price-tag-dynamic" data-usd="{{ $prod->original_price_usd }}" data-clp="{{ $prod->original_price_clp }}">
-                                    ${{ number_format($prod->original_price_usd, 0) }} USD
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="product-actions">
-                            <form action="{{ route('cart.add') }}" method="POST" class="ajax-add-to-cart-form" style="display: block;">
-                                @csrf
-                                <input type="hidden" name="product_id" value="{{ $prod->id }}">
-                                <button type="submit" class="btn btn-primary" style="width: 100%;">
-                                    <span>Añadir al Carrito</span>
-                                </button>
-                            </form>
-                            <a href="{{ route('tienda.show', $prod->slug) }}" class="btn btn-outline" title="Ver Detalles">
-                                <span>Detalles</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-<!-- ==========================================================================
      SERVICIOS PROFESIONALES REW
      ========================================================================== -->
 <section class="section" style="background: var(--bg-alt); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
@@ -283,6 +209,80 @@
 
 <!-- Interactive Speed Benchmark Simulator -->
 @include('components.speed-benchmark')
+
+<!-- ==========================================================================
+     PLUGINS DESTACADOS / TIENDA SHOWCASE (Ubicada estratégicamente tras la comparativa)
+     ========================================================================== -->
+<section class="section" style="background: linear-gradient(180deg, var(--bg-main) 0%, #ffffff 100%);">
+    <div class="container">
+        <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; margin-bottom: 3.5rem; gap: 1.5rem;">
+            <div>
+                <div style="margin-bottom: 0.5rem;">
+                    <span class="badge badge-gold">Ecosistema WordPress & IA</span>
+                </div>
+                <h2 style="font-size: 2.3rem;">Plugins Oficiales de Alta Gama</h2>
+                <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 600px;">
+                    Desarrollados bajo estrictos estándares de ingeniería para aumentar conversiones y automatizar soporte.
+                </p>
+            </div>
+            <a href="{{ route('tienda.index') }}" class="btn btn-outline">
+                <span>Ver Catálogo Completo ({{ \App\Models\Product::count() }}) →</span>
+            </a>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 2rem;">
+            @foreach($featuredProducts as $prod)
+                <div class="card product-card spotlight-card">
+                    <div class="product-img-wrap">
+                        @if($prod->badge)
+                            <div class="product-badge-top">
+                                <span class="badge {{ str_contains($prod->badge, 'OFERTA') ? 'badge-gold' : 'badge-primary' }}">
+                                    {{ $prod->badge }}
+                                </span>
+                            </div>
+                        @endif
+                        <a href="{{ route('tienda.show', $prod->slug) }}">
+                            <img src="{{ Str::startsWith($prod->featured_image, 'http') ? $prod->featured_image : asset(ltrim($prod->featured_image, '/')) }}" alt="{{ $prod->name }}" class="product-img" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">{{ $prod->category_slug }}</div>
+                        <h3 class="product-title">
+                            <a href="{{ route('tienda.show', $prod->slug) }}" style="color: inherit;">
+                                {{ $prod->name }}
+                            </a>
+                        </h3>
+                        <p class="product-desc">{{ $prod->short_description }}</p>
+
+                        <div class="product-pricing">
+                            <span class="price-current price-tag-dynamic" data-usd="{{ $prod->price_usd }}" data-clp="{{ $prod->price_clp }}">
+                                ${{ number_format($prod->price_usd, 0) }} USD
+                            </span>
+                            @if($prod->original_price_usd)
+                                <span class="price-original price-tag-dynamic" data-usd="{{ $prod->original_price_usd }}" data-clp="{{ $prod->original_price_clp }}">
+                                    ${{ number_format($prod->original_price_usd, 0) }} USD
+                                </span>
+                            @endif
+                        </div>
+
+                        <div class="product-actions">
+                            <form action="{{ route('cart.add') }}" method="POST" class="ajax-add-to-cart-form" style="display: block;">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $prod->id }}">
+                                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                    <span>Añadir al Carrito</span>
+                                </button>
+                            </form>
+                            <a href="{{ route('tienda.show', $prod->slug) }}" class="btn btn-outline" title="Ver Detalles">
+                                <span>Detalles</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
 
 <!-- ==========================================================================
      PROCESO DE DESARROLLO EN 4 ETAPAS
