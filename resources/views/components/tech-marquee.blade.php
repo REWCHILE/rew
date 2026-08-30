@@ -45,12 +45,12 @@
             <span class="tech-badge-chip">🌐 WordPress Pro</span>
             <span class="tech-badge-chip">🛒 WooCommerce</span>
             <span class="tech-badge-chip">🐬 MySQL & Redis</span>
-            <span class="tech-badge-chip">🧠 Modelos de IA</span>
+            <span class="tech-badge-chip">🧠 Modelos de IA (Claude, OpenAI, Gemini, Groq)</span>
             <span class="tech-badge-chip">🎨 TailwindCSS</span>
             <span class="tech-badge-chip">☁️ Servidores VPS Optimizados</span>
             <span class="tech-badge-chip">⚡ Vite Ultra-Fast</span>
             <span class="tech-badge-chip">📱 WhatsApp Cloud API</span>
-            <span class="tech-badge-chip">📊 Google Analytics & Clarity</span>
+            <span class="tech-badge-chip">📊 Google Analytics 4 & Search Console</span>
         </div>
         <!-- Duplicated for seamless infinite loop -->
         <div class="marquee-content" aria-hidden="true">
@@ -59,20 +59,12 @@
             <span class="tech-badge-chip">🌐 WordPress Pro</span>
             <span class="tech-badge-chip">🛒 WooCommerce</span>
             <span class="tech-badge-chip">🐬 MySQL & Redis</span>
-            <span class="tech-badge-chip">🧠 Modelos de IA</span>
+            <span class="tech-badge-chip">🧠 Modelos de IA (Claude, OpenAI, Gemini, Groq)</span>
             <span class="tech-badge-chip">🎨 TailwindCSS</span>
             <span class="tech-badge-chip">☁️ Servidores VPS Optimizados</span>
             <span class="tech-badge-chip">⚡ Vite Ultra-Fast</span>
             <span class="tech-badge-chip">📱 WhatsApp Cloud API</span>
-            <span class="tech-badge-chip">📊 Google Analytics & Clarity</span>
-        </div>
-            <span class="tech-badge-chip">🐬 MySQL & Redis</span>
-            <span class="tech-badge-chip">🧠 Groq AI & OpenAI</span>
-            <span class="tech-badge-chip">🎨 TailwindCSS</span>
-            <span class="tech-badge-chip">🐳 Docker Containers</span>
-            <span class="tech-badge-chip">⚡ Vite & Vanilla JS</span>
-            <span class="tech-badge-chip">📱 WhatsApp Cloud API</span>
-            <span class="tech-badge-chip">📊 Google Analytics & Clarity</span>
+            <span class="tech-badge-chip">📊 Google Analytics 4 & Search Console</span>
         </div>
     </div>
 </div>

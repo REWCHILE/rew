@@ -25,9 +25,9 @@
 <!-- Interactive Step-by-Step Quote Form -->
 <section class="section" style="padding-top: 1.5rem;">
     <div class="container">
-        <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3.5rem; align-items: flex-start;">
+        <div class="grid-2col-sidebar">
             <!-- Left: Steps Container -->
-            <div class="card" style="padding: 2.5rem;">
+            <div class="card" style="padding: clamp(1.25rem, 3vw, 2.5rem);">
                 <form id="quoteCalculatorForm" action="{{ route('cotizar.store') }}" method="POST">
                     @csrf
                     <input type="hidden" name="estimated_budget_usd" id="hidden_budget_usd" value="850">
@@ -137,7 +137,7 @@
                         </div>
 
                         <!-- Dynamic Interactive Custom Features Repeater (Max 10) -->
-                        <div style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-sm);">
+                        <div style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 16px; padding: clamp(1rem, 2.5vw, 1.5rem); margin-bottom: 1.5rem; box-shadow: var(--shadow-sm);">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 8px;">
                                 <div>
                                     <h4 style="font-size: 1rem; margin: 0; font-weight: 800; color: var(--text-dark); display: flex; align-items: center; gap: 8px;">
@@ -154,10 +154,10 @@
 
                             <!-- List of Dynamic Inputs -->
                             <div id="customFeaturesList" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 1rem;">
-                                <div class="custom-feature-row" style="display: flex; align-items: center; gap: 10px;">
+                                <div class="custom-feature-row" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                                     <span class="feature-idx-badge" style="background: var(--primary); color: #ffffff; font-weight: 800; font-size: 0.75rem; padding: 6px 10px; border-radius: 8px;">#1</span>
                                     <input type="text" name="custom_feature_items[]" maxlength="250" placeholder="Ej: Panel para vendedores con cálculo automático de comisiones..." 
-                                           style="flex-grow: 1; padding: 0.65rem 0.85rem; border: 1px solid var(--border-light); border-radius: 8px; font-size: 0.9rem; outline: none; background: #ffffff;">
+                                           style="flex: 1; min-width: 200px; padding: 0.65rem 0.85rem; border: 1px solid var(--border-light); border-radius: 8px; font-size: 0.9rem; outline: none; background: #ffffff;">
                                     <button type="button" class="btn btn-outline btn-sm remove-feature-row-btn" style="padding: 0.5rem 0.75rem; color: #ef4444; border-color: #fecaca; display: none;" title="Eliminar función">✕</button>
                                 </div>
                             </div>
@@ -190,7 +190,7 @@
                             <span style="color: var(--primary);">3.</span> Tus Datos de Contacto
                         </h3>
 
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div class="grid-form-2col" style="margin-bottom: 1rem;">
                             <div>
                                 <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px;">Nombre y Apellido *</label>
                                 <input type="text" name="name" required placeholder="Ej: Álvaro Valenzuela" 
@@ -203,7 +203,7 @@
                             </div>
                         </div>
 
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div class="grid-form-2col" style="margin-bottom: 1rem;">
                             <div>
                                 <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px;">Teléfono / WhatsApp *</label>
                                 <input type="tel" name="phone" required placeholder="+56 9 8726 1127" 
@@ -257,11 +257,14 @@
                 <div class="card" style="margin-top: 1.5rem; padding: 1.5rem;">
                     <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">Canales Directos</h4>
                     <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
-                        <a href="https://api.whatsapp.com/send?phone=56987261127" target="_blank" rel="noopener" style="color: #25d366; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                        <a href="https://api.whatsapp.com/send?phone=56987261127" target="_blank" rel="noopener noreferrer" style="color: #25d366; font-weight: 700; display: flex; align-items: center; gap: 8px;">
                             <span>📱 WhatsApp: +56 9 8726 1127</span>
                         </a>
                         <a href="mailto:alvaro@rew.cl" style="color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 8px;">
                             <span>✉️ Correo: alvaro@rew.cl</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/%C3%A1lvaro-valenzuela-vald%C3%A9s-584065281/" target="_blank" rel="noopener noreferrer" style="color: #0a66c2; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                            <span>💼 LinkedIn: Álvaro Valenzuela</span>
                         </a>
                         <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">
                             📍 Santiago, Región Metropolitana, Chile

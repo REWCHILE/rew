@@ -31,7 +31,7 @@
                            style="width: 100%; padding: 0.75rem 1rem; border: 2px solid var(--primary); border-radius: 10px; font-size: 1rem; outline: none; font-weight: 600; background: #ffffff;">
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                <div class="grid-form-2col" style="margin-bottom: 1rem;">
                     <div>
                         <label style="display: block; font-size: 0.82rem; font-weight: 700; color: #475569; margin-bottom: 4px;">Tu Nombre *</label>
                         <input type="text" name="name" required placeholder="Ej: Juan Pérez" 
@@ -44,7 +44,7 @@
                     </div>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                <div class="grid-form-2col" style="margin-bottom: 1.5rem;">
                     <div>
                         <label style="display: block; font-size: 0.82rem; font-weight: 700; color: #475569; margin-bottom: 4px;">Correo Electrónico *</label>
                         <input type="email" name="email" required placeholder="tu@correo.cl" 

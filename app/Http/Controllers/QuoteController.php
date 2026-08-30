@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quote;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -98,8 +99,12 @@ class QuoteController extends Controller
             'ip_address' => $request->ip(),
         ]);
 
-        // 3. Formatear mensaje para WhatsApp (+56987261127)
-        $whatsappNumber = '56987261127';
+        // 3. Formatear mensaje para WhatsApp
+        $rawWa = Setting::get('notification_whatsapp', '56987261127');
+        $whatsappNumber = preg_replace('/[^0-9]/', '', $rawWa);
+        if (empty($whatsappNumber)) {
+            $whatsappNumber = '56987261127';
+        }
         $msg = "🚀 *Nueva Cotización REW.cl* 🚀\n\n";
         $msg .= "👤 *Nombre:* {$quote->name}\n";
         $msg .= "📧 *Email:* {$quote->email}\n";
@@ -137,10 +142,11 @@ class QuoteController extends Controller
 
         $whatsappUrl = "https://api.whatsapp.com/send?phone={$whatsappNumber}&text=".rawurlencode($msg);
 
-        // Envío de correo HTML completo a alvaro@rew.cl
+        // Envío de correo HTML completo al correo configurado
+        $targetEmail = Setting::get('notification_email', 'alvaro@rew.cl');
         try {
-            Mail::send('emails.new-quote', ['quote' => $quote], function ($message) use ($quote) {
-                $message->to('alvaro@rew.cl', 'Álvaro Valenzuela')
+            Mail::send('emails.new-quote', ['quote' => $quote], function ($message) use ($quote, $targetEmail) {
+                $message->to($targetEmail, 'Álvaro Valenzuela')
                     ->subject("🚀 Nueva Cotización REW: {$quote->name} - {$quote->service_type}")
                     ->replyTo($quote->email, $quote->name);
             });

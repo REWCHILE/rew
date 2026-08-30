@@ -6,7 +6,7 @@
 @section('og_type', 'article')
 @section('og_title', $project->title . ' - Caso de Éxito | REW Chile')
 @section('og_description', $project->summary)
-@section('og_image', asset($project->featured_image))
+@section('og_image', Str::startsWith($project->featured_image, 'http') ? $project->featured_image : asset(ltrim($project->featured_image, '/')))
 @section('article_published_time', $project->project_date ? \Carbon\Carbon::parse($project->project_date)->toIso8601String() : now()->toIso8601String())
 
 @section('content')
@@ -46,7 +46,7 @@
         </div>
 
         <!-- Main Project Layout -->
-        <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3.5rem; align-items: flex-start; margin-bottom: 4.5rem;">
+        <div class="grid-2col-sidebar" style="margin-bottom: 4rem;">
             <!-- Left: Interactive Browser Mockup Window with Hover Scroll & Controls -->
             <div>
                 <div class="browser-mockup-frame">
@@ -68,7 +68,7 @@
 
                     <!-- Scrollable Viewport -->
                     <div class="browser-viewport-container" id="browserViewport">
-                        <img src="{{ asset($project->featured_image) }}" alt="{{ $project->title }} - Captura Completa" class="browser-long-image" id="browserLongImg">
+                        <img src="{{ Str::startsWith($project->featured_image, 'http') ? $project->featured_image : asset(ltrim($project->featured_image, '/')) }}" alt="{{ $project->title }} - Captura Completa" class="browser-long-image" id="browserLongImg">
                     </div>
 
                     <!-- Floating Helper Hint -->
@@ -232,9 +232,67 @@
                 <button type="button" class="close-zoom-btn" id="closeZoomBtn">✕</button>
             </div>
             <div class="zoom-modal-body">
-                <img src="{{ asset($project->featured_image) }}" alt="{{ $project->title }}" class="zoom-modal-img">
+                <img src="{{ Str::startsWith($project->featured_image, 'http') ? $project->featured_image : asset(ltrim($project->featured_image, '/')) }}" alt="{{ $project->title }}" class="zoom-modal-img">
             </div>
         </div>
     </div>
 </section>
+
+<!-- Schema.org JSON-LD Structured Data for Portfolio Case Study -->
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@graph": [
+    {
+      "@@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "{{ route('home') }}"
+        },
+        {
+          "@@type": "ListItem",
+          "position": 2,
+          "name": "Portafolio Web",
+          "item": "{{ route('portafolio.index') }}"
+        },
+        {
+          "@@type": "ListItem",
+          "position": 3,
+          "name": "{{ addslashes($project->title) }}",
+          "item": "{{ route('portafolio.show', $project->slug) }}"
+        }
+      ]
+    },
+    {
+      "@@type": "CreativeWork",
+      "@@id": "{{ route('portafolio.show', $project->slug) }}#project",
+      "name": "{{ addslashes($project->title) }}",
+      "headline": "{{ addslashes($project->meta_title ?? $project->title) }}",
+      "description": "{{ addslashes($project->summary) }}",
+      "image": "{{ Str::startsWith($project->featured_image, 'http') ? $project->featured_image : asset(ltrim($project->featured_image, '/')) }}",
+      "creator": {
+        "@@type": "Organization",
+        "name": "REW",
+        "url": "https://rew.cl"
+      },
+      "author": {
+        "@@type": "Person",
+        "name": "Álvaro Valenzuela Valdés",
+        "jobTitle": "Ingeniero Informático"
+      },
+      "provider": {
+        "@@type": "Organization",
+        "name": "REW",
+        "url": "https://rew.cl"
+      },
+      "genre": "{{ addslashes($project->category) }}",
+      "keywords": "{{ addslashes($project->technologies) }}",
+      "url": "{{ route('portafolio.show', $project->slug) }}"
+    }
+  ]
+}
+</script>
 @endsection

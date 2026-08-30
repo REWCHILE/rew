@@ -18,14 +18,14 @@
 
         <form action="{{ route('checkout.process') }}" method="POST">
             @csrf
-            <div style="display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 3rem; align-items: flex-start;">
+            <div class="grid-2col-sidebar">
                 <!-- Billing Details Form -->
-                <div class="card" style="padding: 2.5rem;">
+                <div class="card" style="padding: clamp(1.25rem, 3vw, 2.5rem);">
                     <h3 style="font-size: 1.3rem; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-light);">
                         1. Datos del Comprador y Licencia
                     </h3>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <div class="grid-form-2col" style="margin-bottom: 1rem;">
                         <div>
                             <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px;">Nombre Completo *</label>
                             <input type="text" name="name" required placeholder="Tu nombre" 
@@ -38,7 +38,7 @@
                         </div>
                     </div>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div class="grid-form-2col" style="margin-bottom: 1.5rem;">
                         <div>
                             <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px;">Teléfono / WhatsApp *</label>
                             <input type="tel" name="phone" required placeholder="+56 9 8726 1127" 

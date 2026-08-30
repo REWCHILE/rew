@@ -33,7 +33,7 @@
         </div>
 
         <!-- Detailed Description & Deliverables -->
-        <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3.5rem; align-items: flex-start; margin-bottom: 5rem;">
+        <div class="grid-2col-sidebar" style="margin-bottom: 4rem;">
             <div>
                 <div class="card" style="padding: 2.5rem; margin-bottom: 3rem;">
                     <h2 style="font-size: 1.8rem; margin-bottom: 1.25rem;">Propuesta de Valor & Metodología</h2>

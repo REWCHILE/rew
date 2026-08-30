@@ -65,8 +65,10 @@
             <div>
                 &copy; {{ date('Y') }} <strong>REW Chile</strong>. Todos los derechos reservados. Liderado por <strong>Álvaro Valenzuela Valdés</strong>.
             </div>
-            <div style="display: flex; gap: 1rem; font-size: 0.8rem;">
-                <a href="https://www.instagram.com/rew_chile/" target="_blank" rel="noopener" style="color: #e1306c; font-weight: 700;">📸 Instagram @rew_chile</a>
+            <div style="display: flex; gap: 1rem; font-size: 0.8rem; flex-wrap: wrap; align-items: center;">
+                <a href="https://www.linkedin.com/in/%C3%A1lvaro-valenzuela-vald%C3%A9s-584065281/" target="_blank" rel="noopener noreferrer" style="color: #0a66c2; font-weight: 700;">💼 LinkedIn Álvaro</a>
+                <span>•</span>
+                <a href="https://www.instagram.com/rew_chile/" target="_blank" rel="noopener noreferrer" style="color: #e1306c; font-weight: 700;">📸 Instagram @rew_chile</a>
                 <span>•</span>
                 <a href="{{ url('/sitemap.xml') }}" style="color: #94a3b8;">Sitemap XML</a>
                 <span>•</span>

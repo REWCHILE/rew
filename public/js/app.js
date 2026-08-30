@@ -15,36 +15,185 @@ document.addEventListener('DOMContentLoaded', () => {
     initInteractiveTerminal();
     initSpotlightCards();
     initAuditModal();
+    initDesktopMegaMenu();
+    initFaqAccordion();
 });
 
 /* ==========================================================================
-   Header Scroll Behavior
+   Desktop Mega Menu Hover Manager & Dynamic Spotlight Switcher
    ========================================================================== */
+function initDesktopMegaMenu() {
+    const dropdowns = document.querySelectorAll('.nav-item-dropdown');
+    dropdowns.forEach(dropdown => {
+        let timer = null;
+
+        dropdown.addEventListener('mouseenter', () => {
+            if (window.innerWidth < 992) return;
+            if (timer) clearTimeout(timer);
+            dropdown.classList.add('is-open');
+        });
+
+        dropdown.addEventListener('mouseleave', () => {
+            if (window.innerWidth < 992) return;
+            timer = setTimeout(() => {
+                dropdown.classList.remove('is-open');
+            }, 180);
+        });
+    });
+
+    // Dynamic Spotlight on Service Card Hover
+    const serviceCards = document.querySelectorAll('.mega-service-card-v2');
+    const spotlightCard = document.getElementById('megaSpotlightCard');
+    const spotlightImg = document.getElementById('megaSpotlightImg');
+    const spotlightBadge = document.getElementById('megaSpotlightBadge');
+    const spotlightTitle = document.getElementById('megaSpotlightTitle');
+    const spotlightDesc = document.getElementById('megaSpotlightDesc');
+    const spotlightBullets = document.getElementById('megaSpotlightBullets');
+    const spotlightCta = document.getElementById('megaSpotlightCta');
+
+    if (!spotlightCard || !serviceCards.length) return;
+
+    function updateSpotlightFromCard(card) {
+        if (!card) return;
+        const badge = card.getAttribute('data-badge');
+        const title = card.getAttribute('data-title');
+        const desc = card.getAttribute('data-desc');
+        const bulletsStr = card.getAttribute('data-bullets') || '';
+        const img = card.getAttribute('data-img');
+        const ctaUrl = card.getAttribute('data-cta-url');
+        const ctaText = card.getAttribute('data-cta-text');
+
+        spotlightCard.classList.add('spotlight-fading');
+
+        setTimeout(() => {
+            if (badge && spotlightBadge) spotlightBadge.textContent = badge;
+            if (title && spotlightTitle) spotlightTitle.textContent = title;
+            if (desc && spotlightDesc) spotlightDesc.textContent = desc;
+            if (img && spotlightImg) spotlightImg.src = img;
+            if (ctaUrl && spotlightCta) spotlightCta.href = ctaUrl;
+            if (ctaText && spotlightCta) {
+                spotlightCta.innerHTML = `<span>${ctaText}</span>`;
+            }
+
+            if (spotlightBullets && bulletsStr) {
+                const bullets = bulletsStr.split('|');
+                spotlightBullets.innerHTML = bullets.map(b => `<div>${b}</div>`).join('');
+            }
+
+            spotlightCard.classList.remove('spotlight-fading');
+        }, 120);
+    }
+
+    serviceCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            if (window.innerWidth < 992) return;
+            serviceCards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            updateSpotlightFromCard(card);
+        });
+    });
+
+    const megaContainer = document.querySelector('.mega-menu-container');
+    if (megaContainer) {
+        megaContainer.addEventListener('mouseleave', () => {
+            const currentPageCard = document.querySelector('.mega-service-card-v2.current-page');
+            if (currentPageCard) {
+                serviceCards.forEach(c => c.classList.remove('active'));
+                currentPageCard.classList.add('active');
+                updateSpotlightFromCard(currentPageCard);
+            }
+        });
+    }
+}
 function initHeaderScroll() {
     const header = document.querySelector('.site-header');
+    const progressBar = document.getElementById('headerScrollProgress');
     if (!header) return;
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
+    function handleScroll() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        
+        // Sticky Glass State
+        if (scrollTop > 15) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
-    });
+
+        // Reading Scroll Progress Indicator
+        if (progressBar) {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (docHeight > 0) {
+                const progressPercent = Math.min(Math.max((scrollTop / docHeight) * 100, 0), 100);
+                progressBar.style.width = progressPercent + '%';
+            }
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
 }
 
 /* ==========================================================================
-   Mobile Navigation Toggle
+   Mobile Navigation Toggle & Bottom Sheet Drawer
    ========================================================================== */
 function initMobileNav() {
-    const toggleBtn = document.querySelector('.mobile-nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    if (!toggleBtn || !navMenu) return;
+    const openBtn = document.getElementById('mobileNavOpenBtn') || document.querySelector('.mobile-nav-toggle');
+    const closeBtn = document.getElementById('mobileNavCloseBtn');
+    const drawer = document.getElementById('mobileNavDrawer');
+    const backdrop = document.getElementById('mobileNavBackdrop');
+    const servicesToggle = document.getElementById('mobileServicesToggle');
+    const servicesMenu = document.getElementById('mobileServicesMenu');
 
-    toggleBtn.addEventListener('click', () => {
-        navMenu.classList.toggle('open');
-        toggleBtn.innerHTML = navMenu.classList.contains('open') ? '✕' : '☰';
+    if (!drawer) return;
+
+    function openDrawer() {
+        drawer.classList.add('open');
+        if (backdrop) backdrop.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+        drawer.classList.remove('open');
+        if (backdrop) backdrop.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (openBtn) {
+        openBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openDrawer();
+        });
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeDrawer();
+        });
+    }
+
+    if (backdrop) {
+        backdrop.addEventListener('click', () => {
+            closeDrawer();
+        });
+    }
+
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && drawer.classList.contains('open')) {
+            closeDrawer();
+        }
     });
+
+    // Toggle Mobile Services Submenu Accordion
+    if (servicesToggle && servicesMenu) {
+        servicesToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            servicesToggle.classList.toggle('open');
+            servicesMenu.classList.toggle('open');
+        });
+    }
 }
 
 /* ==========================================================================
@@ -1121,4 +1270,33 @@ function initAuditModal() {
             });
         });
     }
+}
+
+/* ==========================================================================
+   Interactive FAQ Accordion
+   ========================================================================== */
+function initFaqAccordion() {
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.faq-header-btn');
+        if (!btn) return;
+
+        const item = btn.closest('.faq-card-item');
+        if (!item) return;
+
+        const isOpen = item.classList.contains('is-open');
+
+        // Close siblings within the same accordion group
+        const parentList = item.closest('.faq-accordion-list') || item.parentElement;
+        if (parentList) {
+            parentList.querySelectorAll('.faq-card-item').forEach(other => {
+                if (other !== item) other.classList.remove('is-open');
+            });
+        }
+
+        if (isOpen) {
+            item.classList.remove('is-open');
+        } else {
+            item.classList.add('is-open');
+        }
+    });
 }

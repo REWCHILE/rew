@@ -6,8 +6,12 @@ use App\Models\Category;
 use App\Models\PortfolioProject;
 use App\Models\Post;
 use App\Models\Product;
+use App\Models\RicheKnowledgeBase;
 use App\Models\Service;
+use App\Models\Setting;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -502,6 +506,182 @@ class DatabaseSeeder extends Seeder
                 'meta_title' => 'Otro Día en la Oficina - Plataforma de Contenidos | REW',
                 'meta_description' => 'Diseño y desarrollo web para la comunidad y podcast Otro Día en la Oficina.',
             ],
+            [
+                'title' => 'Domingo Isaín',
+                'slug' => 'domingo-isain',
+                'client' => 'Domingo Isaín',
+                'category' => 'Desarrollo Web & Corporativo',
+                'project_date' => '2024-05-10',
+                'summary' => 'Sitio web profesional y corporativo desarrollado con PHP 8 moderno, arquitectura de carga ultra-rápida y diseño adaptativo.',
+                'full_description' => 'Desarrollo a medida con optimización técnica para motores de búsqueda, maquetación responsiva para dispositivos móviles y estructura optimizada para conversión de contactos y cotizaciones.',
+                'status' => 'Finalizado',
+                'project_url' => 'https://domingoisain.cl/',
+                'technologies' => 'PHP 8, JavaScript, CSS3, SEO Técnico, Responsive Design',
+                'role' => 'Desarrollo Full Stack PHP 8, UX/UI, Optimización SEO',
+                'featured_image' => '/images/portfolio/domingo_isain.webp',
+                'gallery' => [
+                    '/images/portfolio/domingo_isain.webp',
+                ],
+                'results' => [
+                    'Carga en menos de 0.8s en pruebas de PageSpeed',
+                    'Incremento del 120% en consultas comerciales directas',
+                ],
+                'is_featured' => true,
+                'order' => 11,
+                'meta_title' => 'Domingo Isaín - Desarrollo Web PHP 8 | REW',
+                'meta_description' => 'Desarrollo web corporativo en PHP 8 para Domingo Isaín por la agencia REW.',
+            ],
+            [
+                'title' => 'Gasfiter Certificado SEC Chile',
+                'slug' => 'gasfiter-certificado',
+                'client' => 'Gasfiter Certificado SEC',
+                'category' => 'Plataformas Web & Servicios',
+                'project_date' => '2024-06-15',
+                'summary' => 'Plataforma digital para servicios de gasfitería certificada SEC en Santiago de Chile con captación y derivación inmediata de leads.',
+                'full_description' => 'Arquitectura desarrollada en Laravel optimizada para posicionamiento SEO local en Google, tiempos de respuesta instantáneos y llamados a la acción dinámicos conectados a WhatsApp y llamadas de emergencia.',
+                'status' => 'Finalizado',
+                'project_url' => 'https://gasfiter-certificado.cl/',
+                'technologies' => 'Laravel, Blade, PHP 8.3, TailwindCSS, SEO Local',
+                'role' => 'Desarrollo en Laravel, SEO Local Santiago, UX/UI',
+                'featured_image' => '/images/portfolio/gasfiter_certificado.webp',
+                'gallery' => [
+                    '/images/portfolio/gasfiter_certificado.webp',
+                ],
+                'results' => [
+                    'Top 3 en Google para términos de gasfiter certificado',
+                    'Aumento del 250% en contactos diarios vía WhatsApp',
+                ],
+                'is_featured' => true,
+                'order' => 12,
+                'meta_title' => 'Gasfiter Certificado SEC - Plataforma Laravel | REW',
+                'meta_description' => 'Desarrollo en Laravel y posicionamiento SEO local para Gasfiter Certificado SEC Chile.',
+            ],
+            [
+                'title' => 'Gasfiter Autorizado Chile',
+                'slug' => 'gasfiter-autorizado',
+                'client' => 'Gasfiter Autorizado',
+                'category' => 'Plataformas Web & Servicios',
+                'project_date' => '2024-07-20',
+                'summary' => 'Landing page y plataforma de alta conversión en Laravel diseñada para campañas de Google Ads y tráfico orgánico de alta urgencia.',
+                'full_description' => 'Diseño centrado en conversión rápida con botones flotantes de WhatsApp, formularios inteligentes con validación en tiempo real y velocidad Core Web Vitals en verde.',
+                'status' => 'Finalizado',
+                'project_url' => 'https://gasfiter-autorizado.cl/',
+                'technologies' => 'Laravel, PHP 8.3, Google Ads Landing, Conversions API',
+                'role' => 'Desarrollo en Laravel, CRO (Conversion Rate Optimization), Integración CAPI',
+                'featured_image' => '/images/portfolio/gasfiter_autorizado.webp',
+                'gallery' => [
+                    '/images/portfolio/gasfiter_autorizado.webp',
+                ],
+                'results' => [
+                    'Tasa de conversión superior al 18% en campañas de Ads',
+                    'Tiempo de carga móvil inferior a 1 segundo',
+                ],
+                'is_featured' => false,
+                'order' => 13,
+                'meta_title' => 'Gasfiter Autorizado - Landing de Conversión Laravel | REW',
+                'meta_description' => 'Desarrollo de plataforma web en Laravel y landing page de alta conversión para Gasfiter Autorizado.',
+            ],
+            [
+                'title' => 'Bastián Selah - Web & IA',
+                'slug' => 'bastian-selah',
+                'client' => 'Bastián Selah',
+                'category' => 'Desarrollo Web & IA',
+                'project_date' => '2024-08-12',
+                'summary' => 'Sitio web y plataforma digital con integración de Inteligencia Artificial para generación y procesamiento dinámico de contenidos.',
+                'full_description' => 'Plataforma tecnológica avanzada desarrollada en Laravel con módulos de Inteligencia Artificial, diseño visual futurista y experiencia de usuario fluida.',
+                'status' => 'Finalizado',
+                'project_url' => 'http://bastianselah.com/',
+                'technologies' => 'Laravel, OpenAI API / IA, Vue / Blade, TailwindCSS',
+                'role' => 'Arquitectura de Software, Integración de Modelos de IA, Frontend Interactivo',
+                'featured_image' => '/images/portfolio/bastian_selah.webp',
+                'gallery' => [
+                    '/images/portfolio/bastian_selah.webp',
+                ],
+                'results' => [
+                    'Automatización del 80% de procesos de contenido',
+                    'Experiencia interactiva de vanguardia para usuarios',
+                ],
+                'is_featured' => true,
+                'order' => 14,
+                'meta_title' => 'Bastián Selah - Plataforma Laravel + IA | REW',
+                'meta_description' => 'Desarrollo de plataforma web interactiva con Inteligencia Artificial desarrollada en Laravel por REW.',
+            ],
+            [
+                'title' => 'Venta de Paltas Chile - E-Commerce & IA',
+                'slug' => 'venta-de-paltas',
+                'client' => 'Venta de Paltas Chile',
+                'category' => 'E-Commerce & IA',
+                'project_date' => '2024-09-05',
+                'summary' => 'Plataforma e-commerce agroindustrial para venta mayorista y minorista de paltas premium con cotizador dinámico y asistente IA.',
+                'full_description' => 'E-commerce desarrollado en Laravel con cotizador en tiempo real, asistente virtual con Inteligencia Artificial para atención y cierre de pedidos, y pasarela de pago Transbank.',
+                'status' => 'Finalizado',
+                'project_url' => 'https://ventadepaltas.cl/',
+                'technologies' => 'Laravel, E-Commerce Engine, IA Conversacional, Webpay Plus',
+                'role' => 'Desarrollo E-Commerce Laravel, Chatbot IA, Pasarela Transbank Webpay',
+                'featured_image' => '/images/portfolio/venta_de_paltas.webp',
+                'gallery' => [
+                    '/images/portfolio/venta_de_paltas.webp',
+                ],
+                'results' => [
+                    'Cotizaciones y cierres automáticos mediante IA',
+                    'Integración directa con pasarela Webpay Plus Transbank',
+                ],
+                'is_featured' => true,
+                'order' => 15,
+                'meta_title' => 'Venta de Paltas Chile - E-Commerce Laravel + IA | REW',
+                'meta_description' => 'Plataforma de comercio electrónico en Laravel con Inteligencia Artificial para Venta de Paltas Chile.',
+            ],
+            [
+                'title' => 'Monarch Trading AI - FinTech & Machine Learning',
+                'slug' => 'monarch-trading-ai',
+                'client' => 'Monarch Trading',
+                'category' => 'FinTech & Machine Learning',
+                'project_date' => '2024-10-01',
+                'summary' => 'Plataforma FinTech para análisis predictivo y señales de trading automatizadas impulsada por algoritmos de Machine Learning y Laravel.',
+                'full_description' => 'Ecosistema web en Laravel conectado a modelos de Machine Learning en tiempo real, dashboards interactivos con gráficos financieros y procesamiento de datos bursátiles en alta frecuencia.',
+                'status' => 'Finalizado',
+                'project_url' => 'https://monarchtradingai.com/',
+                'technologies' => 'Laravel, Python ML Models, Algorithmic Trading API, Chart.js, TailwindCSS',
+                'role' => 'Arquitectura de Plataforma, Integración Machine Learning, Dashboards Financieros',
+                'featured_image' => '/images/portfolio/monarch_trading_ai.webp',
+                'gallery' => [
+                    '/images/portfolio/monarch_trading_ai.webp',
+                ],
+                'results' => [
+                    'Procesamiento en milisegundos de señales financieras',
+                    'Arquitectura de alta disponibilidad con Laravel',
+                ],
+                'is_featured' => true,
+                'order' => 16,
+                'meta_title' => 'Monarch Trading AI - FinTech Laravel & Machine Learning | REW',
+                'meta_description' => 'Desarrollo de plataforma FinTech en Laravel con algoritmos de Machine Learning por REW.',
+            ],
+            [
+                'title' => 'AndesOps-AI - AMD AI Hackathon (LabLab.ai)',
+                'slug' => 'andesops-ai-amd-hackathon',
+                'client' => 'Hackathon Global AMD & LabLab.ai',
+                'category' => 'Inteligencia Artificial & Agentes LLM',
+                'project_date' => '2025-01-20',
+                'summary' => 'Plataforma de Inteligencia Artificial para análisis predictivo de licitaciones públicas en Chile (Mercado Público) desarrollada para la hackatón de AMD.',
+                'full_description' => 'AndesOps-AI es una plataforma desarrollada por Álvaro Valenzuela (REW Chile) que utiliza agentes autónomos de Inteligencia Artificial para filtrar, auditar y resumir licitaciones gubernamentales de Mercado Público, calcular tendencias de adjudicación y redactar propuestas técnicas automáticas con modelos acelerados por hardware AMD ROCm.',
+                'status' => 'Finalizado & Live en Hugging Face',
+                'project_url' => 'https://huggingface.co/spaces/REWCHILE/AndesOps-AI',
+                'technologies' => 'AMD ROCm AI, Python, PyTorch, Agentes Autónomos LLM, Hugging Face Spaces, FastAPI, Gradio',
+                'role' => 'Arquitectura de Inteligencia Artificial, Ingeniería de Prompts, Integración API Mercado Público',
+                'featured_image' => 'https://cdn-thumbnails.huggingface.co/social-thumbnails/spaces/REWCHILE/AndesOps-AI.png',
+                'gallery' => [
+                    'https://cdn-thumbnails.huggingface.co/social-thumbnails/spaces/REWCHILE/AndesOps-AI.png',
+                ],
+                'results' => [
+                    'Seleccionado en la Hackatón Global de AMD y LabLab.ai',
+                    'Despliegue interactivo en producción sobre Hugging Face Spaces',
+                    'Automatización del 90% en la preselección de licitaciones públicas',
+                ],
+                'is_featured' => true,
+                'order' => 17,
+                'meta_title' => 'AndesOps-AI - Proyecto Hackatón AMD & LabLab.ai | REW',
+                'meta_description' => 'Plataforma de IA con agentes autónomos para análisis de licitaciones públicas en Chile desarrollada por Álvaro Valenzuela para AMD.',
+            ],
         ];
 
         foreach ($projects as $proj) {
@@ -640,51 +820,76 @@ class DatabaseSeeder extends Seeder
             Service::updateOrCreate(['slug' => $srv['slug']], $srv);
         }
 
-        // 5. Artículos de Blog
-        $posts = [
+        // 5. Artículos de Blog / Knowledge Hub
+        $postsExportFile = __DIR__.'/posts_export.json';
+        if (file_exists($postsExportFile)) {
+            $posts = json_decode(file_get_contents($postsExportFile), true);
+            foreach ($posts as $post) {
+                unset($post['id'], $post['created_at'], $post['updated_at']);
+                Post::updateOrCreate(['slug' => $post['slug']], $post);
+            }
+        }
+
+        // 7. Administrador Oficial (Álvaro Valenzuela)
+        User::updateOrCreate(
+            ['email' => 'alvaro@rew.cl'],
             [
-                'title' => 'Cómo integrar un Chatbot de IA con RAG en WordPress y WooCommerce sin Alucinaciones',
-                'slug' => 'como-integrar-chatbot-ia-rag-wordpress-woocommerce',
-                'excerpt' => 'Descubre cómo la arquitectura RAG (Retrieval-Augmented Generation) permite a los chatbots de WordPress consultar catálogos y documentos en tiempo real con 100% de precisión.',
-                'content' => '<p>La inteligencia artificial ha evolucionado de simples respuestas predefinidas a asistentes contextuales capaces de cerrar ventas. En este artículo técnico, Álvaro Valenzuela Valdés explica cómo implementar <strong>Rich-E Chatbot</strong> para conectar tu catálogo WooCommerce con embeddings vectoriales, garantizando precios exactos y cero alucinaciones.</p>',
-                'author_name' => 'Álvaro Valenzuela Valdés',
-                'category' => 'Inteligencia Artificial',
-                'read_time_minutes' => 6,
-                'featured_image' => 'https://rew.cl/wp-content/uploads/2026/06/riche_product_mockup_1780448218998.jpg',
-                'is_published' => true,
-                'meta_title' => 'Chatbot de IA con RAG en WordPress | Guía Técnica REW',
-                'meta_description' => 'Aprende a conectar IA con WooCommerce mediante arquitectura RAG para responder consultas y vender 24/7.',
+                'name' => 'Álvaro Valenzuela Valdés',
+                'password' => Hash::make('AdminRew2026!'),
+                'email_verified_at' => now(),
+            ]
+        );
+
+        // 8. Parámetros de Notificaciones y SMTP por defecto
+        Setting::set('notification_email', 'alvaro@rew.cl', 'notifications');
+        Setting::set('notification_whatsapp', '+56987261127', 'notifications');
+        Setting::set('smtp_host', env('MAIL_HOST', 'smtp.mailtrap.io'), 'smtp');
+        Setting::set('smtp_port', env('MAIL_PORT', '2525'), 'smtp');
+        Setting::set('smtp_username', env('MAIL_USERNAME', ''), 'smtp');
+        Setting::set('smtp_password', env('MAIL_PASSWORD', ''), 'smtp');
+        Setting::set('smtp_encryption', env('MAIL_ENCRYPTION', 'tls'), 'smtp');
+        Setting::set('mail_from_address', 'alvaro@rew.cl', 'smtp');
+        Setting::set('mail_from_name', 'REW Chile', 'smtp');
+
+        // 9. Base de Conocimiento de Rich-E AI (Entrenamiento RAG editable)
+        $knowledgeItems = [
+            [
+                'question_or_topic' => '¿Quién lidera REW y cómo es la atención?',
+                'answer_or_content' => 'REW es una agencia chilena de software e ingeniería web liderada por Álvaro Valenzuela Valdés, Ingeniero Informático y Desarrollador con más de 6 años de experiencia. El trato es 100% directo con el Ingeniero Desarrollador, sin ejecutivos intermediarios ni demoras.',
+                'category' => 'Empresa',
+                'order' => 1,
             ],
             [
-                'title' => 'GEO (Generative Engine Optimization): La evolución del SEO para la era de los LLMs',
-                'slug' => 'geo-generative-engine-optimization-seo-para-llms',
-                'excerpt' => 'El tráfico orgánico ya no proviene únicamente de las SERPs de Google: ChatGPT, Claude, Gemini y Perplexity están citando fuentes directamente. Aprende a optimizar con llms.txt.',
-                'content' => '<p>El posicionamiento en buscadores está experimentando su mayor transformación en 20 años. En REW implementamos el protocolo <code>llms.txt</code> y datos estructurados JSON-LD enriquecidos para que los modelos de lenguaje reconozcan a tu empresa como la fuente de mayor autoridad en tu nicho.</p>',
-                'author_name' => 'Álvaro Valenzuela Valdés',
-                'category' => 'SEO & GEO',
-                'read_time_minutes' => 7,
-                'featured_image' => 'https://rew.cl/wp-content/uploads/2025/11/agencia-seo-chile-rew.jpg',
-                'is_published' => true,
-                'meta_title' => '¿Qué es GEO y cómo preparar tu web para ChatGPT y Perplexity? | REW',
-                'meta_description' => 'Guía completa sobre Generative Engine Optimization (GEO) y cómo utilizar llms.txt para posicionar en IAs.',
+                'question_or_topic' => '¿Qué servicios ofrece REW?',
+                'answer_or_content' => 'Ofrecemos 5 servicios principales: 1) Desarrollo de Software a Medida en Laravel y Vue/Blade; 2) Diseño Web & WooCommerce de alta conversión; 3) Optimización SEO y GEO (posicionamiento para Google y motores de IA como ChatGPT y Perplexity); 4) Publicidad Digital Inbound y Performance; 5) Mantenimiento y Soporte Especializado en WordPress.',
+                'category' => 'Servicios',
+                'order' => 2,
             ],
             [
-                'title' => 'Laravel vs WordPress: Cuándo elegir un Framework a Medida o un CMS para tu Proyecto',
-                'slug' => 'laravel-vs-wordpress-cuando-elegir-cada-uno',
-                'excerpt' => 'Analizamos el rendimiento, escalabilidad, costos de mantenimiento y flexibilidad de Laravel frente a WordPress para ayudarte a tomar la mejor decisión tecnológica.',
-                'content' => '<p>Como desarrolladores de software e ingenieros informáticos en REW, trabajamos tanto con Laravel para plataformas complejas como con WordPress para sitios de contenidos ágiles. Comparamos los factores determinantes para seleccionar la arquitectura adecuada para tu negocio.</p>',
-                'author_name' => 'Álvaro Valenzuela Valdés',
-                'category' => 'Desarrollo de Software',
-                'read_time_minutes' => 8,
-                'featured_image' => 'https://rew.cl/wp-content/uploads/2025/11/empresa-desarrollo-software-chile-scaled.jpg',
-                'is_published' => true,
-                'meta_title' => 'Laravel vs WordPress: Guía de Arquitectura de Software | REW',
-                'meta_description' => 'Comparativa técnica entre Laravel y WordPress para proyectos web empresariales.',
+                'question_or_topic' => '¿Qué es el plugin Rich-E Chatbot?',
+                'answer_or_content' => 'Rich-E es nuestro asistente virtual inteligente con arquitectura RAG para WordPress y WooCommerce. Se entrena con los productos y FAQs de la tienda para responder consultas en lenguaje natural 24/7, recomendar productos y aumentar las ventas.',
+                'category' => 'Plugins',
+                'order' => 3,
+            ],
+            [
+                'question_or_topic' => '¿Cuáles son los precios de los proyectos?',
+                'answer_or_content' => 'Todos los precios mostrados en el cotizador son referenciales y se adaptan al alcance técnico del cliente. Sitios corporativos desde $350.000 CLP ($380 USD), tiendas e-commerce desde $550.000 CLP ($590 USD) y software a medida en Laravel a evaluar según requerimientos.',
+                'category' => 'Precios',
+                'order' => 4,
+            ],
+            [
+                'question_or_topic' => '¿Cómo contactar para una cotización inmediata?',
+                'answer_or_content' => 'Puedes escribirnos directamente a WhatsApp al +56 9 8726 1127 o al correo alvaro@rew.cl para agendar una reunión técnica o recibir una propuesta formal.',
+                'category' => 'Contacto',
+                'order' => 5,
             ],
         ];
 
-        foreach ($posts as $post) {
-            Post::updateOrCreate(['slug' => $post['slug']], $post);
+        foreach ($knowledgeItems as $ki) {
+            RicheKnowledgeBase::updateOrCreate(
+                ['question_or_topic' => $ki['question_or_topic']],
+                $ki
+            );
         }
     }
 }

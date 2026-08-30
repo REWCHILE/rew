@@ -46,10 +46,10 @@
             <span style="color: var(--text-dark); font-weight: 600;">{{ $product->name }}</span>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1.15fr; gap: 3.5rem; align-items: flex-start; margin-bottom: 4rem;">
+        <div class="grid-2col-product" style="margin-bottom: 4rem;">
             <!-- Left: Product Image Showcase -->
             <div>
-                <div class="card" style="padding: 2rem; background: #ffffff; text-align: center; border-radius: var(--radius-xl);">
+                <div class="card" style="padding: clamp(1rem, 3vw, 2rem); background: #ffffff; text-align: center; border-radius: var(--radius-xl);">
                     @if($product->badge)
                         <div style="text-align: left; margin-bottom: 1rem;">
                             <span class="badge {{ str_contains($product->badge, 'OFERTA') ? 'badge-gold' : 'badge-primary' }}">
@@ -57,17 +57,17 @@
                             </span>
                         </div>
                     @endif
-                    <img src="{{ $product->featured_image }}" alt="{{ $product->name }}" style="max-height: 380px; margin: 0 auto; object-fit: contain;">
+                    <img src="{{ $product->featured_image }}" alt="{{ $product->name }}" style="max-height: 380px; width: 100%; margin: 0 auto; object-fit: contain;">
                 </div>
             </div>
 
             <!-- Right: Product Info & Purchase Form -->
             <div>
                 <span class="badge badge-primary" style="margin-bottom: 0.75rem;">{{ $product->category_slug }}</span>
-                <h1 style="font-size: 2.4rem; margin-bottom: 1rem; line-height: 1.25;">{{ $product->name }}</h1>
+                <h1 style="font-size: clamp(1.6rem, 4vw, 2.4rem); margin-bottom: 1rem; line-height: 1.25;">{{ $product->name }}</h1>
 
-                <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem;">
-                    <span class="price-current price-tag-dynamic" style="font-size: 2.4rem; color: var(--primary);" 
+                <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                    <span class="price-current price-tag-dynamic" style="font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--primary); font-weight: 800;" 
                           data-usd="{{ $product->price_usd }}" data-clp="{{ $product->price_clp }}">
                         ${{ number_format($product->price_usd, 0) }} USD
                     </span>
@@ -111,7 +111,7 @@
                 </div>
 
                 <!-- Guarantee Box -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+                <div class="grid-form-2col" style="font-size: 0.85rem; color: var(--text-muted);">
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <span>🔒</span> <span>Licencia Oficial REW 100% Segura</span>
                     </div>

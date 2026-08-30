@@ -23,7 +23,7 @@
                 <a href="{{ route('tienda.index') }}" class="btn btn-primary">Ir a la Tienda de Plugins</a>
             </div>
         @else
-            <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: flex-start;">
+            <div class="grid-2col-sidebar">
                 <!-- Cart Items Table -->
                 <div class="card" style="padding: 1.5rem;">
                     <div style="display: flex; flex-direction: column; gap: 1.25rem;">

@@ -3,21 +3,62 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class BlogController extends Controller
 {
-    public function index()
+    /**
+     * Listado del Blog con soporte para categorías y paginación
+     */
+    public function index(Request $request): View
     {
-        $posts = Post::where('is_published', true)->latest()->paginate(6);
+        $category = $request->query('category');
+        $query = Post::where('is_published', true)->latest();
 
-        return view('blog.index', compact('posts'));
+        if (! empty($category) && $category !== 'all') {
+            $query->where('category', $category);
+        }
+
+        $posts = $query->paginate(9)->withQueryString();
+
+        // Categorías activas con conteo
+        $categories = Post::where('is_published', true)
+            ->select('category')
+            ->groupBy('category')
+            ->pluck('category');
+
+        $totalCount = Post::where('is_published', true)->count();
+
+        return view('blog.index', compact('posts', 'categories', 'category', 'totalCount'));
     }
 
-    public function show($slug)
+    /**
+     * Vista de un artículo individual con Topic Cluster e Interlinking
+     */
+    public function show(string $slug): View
     {
         $post = Post::where('slug', $slug)->where('is_published', true)->firstOrFail();
-        $recentPosts = Post::where('id', '!=', $post->id)->where('is_published', true)->latest()->take(3)->get();
 
-        return view('blog.show', compact('post', 'recentPosts'));
+        // 1. Obtener artículos relacionados del MISMO cluster / categoría
+        $relatedPosts = Post::where('id', '!=', $post->id)
+            ->where('category', $post->category)
+            ->where('is_published', true)
+            ->latest()
+            ->take(4)
+            ->get();
+
+        // Si hay menos de 4 en la misma categoría, rellenar con los más recientes de otros clusters
+        if ($relatedPosts->count() < 4) {
+            $existingIds = $relatedPosts->pluck('id')->push($post->id);
+            $fallbackPosts = Post::whereNotIn('id', $existingIds)
+                ->where('is_published', true)
+                ->latest()
+                ->take(4 - $relatedPosts->count())
+                ->get();
+            $relatedPosts = $relatedPosts->merge($fallbackPosts);
+        }
+
+        return view('blog.show', compact('post', 'relatedPosts'));
     }
 }

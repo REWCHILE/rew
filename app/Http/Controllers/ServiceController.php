@@ -14,6 +14,10 @@ class ServiceController extends Controller
         $relatedProjects = PortfolioProject::take(3)->get();
         $relatedProducts = Product::where('is_active', true)->take(2)->get();
 
+        if (view()->exists('servicios.'.$slug)) {
+            return view('servicios.'.$slug, compact('service', 'relatedProjects', 'relatedProducts'));
+        }
+
         return view('servicios.show', compact('service', 'relatedProjects', 'relatedProducts'));
     }
 

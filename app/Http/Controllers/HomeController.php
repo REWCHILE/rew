@@ -21,6 +21,8 @@ class HomeController extends Controller
 
     public function nosotros()
     {
-        return view('nosotros');
+        $recentProjects = PortfolioProject::orderBy('order', 'asc')->get();
+
+        return view('nosotros', compact('recentProjects'));
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RicheKnowledgeBase;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -23,6 +25,15 @@ class RicheChatController extends Controller
 
         $groqApiKey = env('GROQ_API_KEY');
 
+        // Obtener conocimiento dinámico configurado por Álvaro desde el panel /admin/riche
+        $customKnowledge = RicheKnowledgeBase::where('is_active', true)->get()->map(function ($item) {
+            return "- [{$item->category}] {$item->question_or_topic}: {$item->answer_or_content}";
+        })->implode("\n");
+
+        $basePrompt = Setting::get('riche_system_prompt', 'Eres Rich-E, el Asistente Virtual Oficial de REW (rew.cl), agencia de software y marketing digital en Chile liderada por el Ingeniero Informático Álvaro Valenzuela Valdés (+56987261127, alvaro@rew.cl). Responde de forma amable, tecnológica, concisa en español y motiva al usuario a cotizar su proyecto o escribir por WhatsApp.');
+
+        $systemPrompt = $basePrompt."\n\nBase de Conocimiento Actualizada de REW:\n".$customKnowledge;
+
         if ($groqApiKey) {
             try {
                 $response = Http::withHeaders([
@@ -33,9 +44,7 @@ class RicheChatController extends Controller
                     'messages' => [
                         [
                             'role' => 'system',
-                            'content' => "Eres Rich-E, el asistente virtual inteligente de REW (rew.cl), agencia de software y marketing digital en Chile fundada y liderada por Álvaro Valenzuela Valdés (Ingeniero Informático, WhatsApp +56987261127, email alvaro@rew.cl).
-Ofreces desarrollo web profesional, software a medida en Laravel, posicionamiento SEO/GEO, y vendes plugins de WordPress con IA como 'Rich-E Chatbot Assistant' ($54 USD / $49.990 CLP), 'WooCommerce Premium Sync' ($32 USD) y 'REW Multi-Currency & Translator Pro' ($22 USD).
-Responde de forma amable, profesional, concisa en español y motiva al usuario a cotizar su proyecto o escribir directamente al WhatsApp de Álvaro (+56 9 8726 1127).",
+                            'content' => $systemPrompt,
                         ],
                         [
                             'role' => 'user',

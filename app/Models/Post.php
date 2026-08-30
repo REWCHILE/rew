@@ -14,5 +14,6 @@ class Post extends Model
     protected $casts = [
         'is_published' => 'boolean',
         'read_time_minutes' => 'integer',
+        'faq_schema' => 'array',
     ];
 }

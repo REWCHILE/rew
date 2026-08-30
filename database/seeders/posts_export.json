@@ -1,0 +1,580 @@
+[
+    {
+        "id": 1,
+        "title": "Cómo integrar un Chatbot de IA con RAG en WordPress y WooCommerce sin Alucinaciones",
+        "slug": "como-integrar-chatbot-ia-rag-wordpress-woocommerce",
+        "excerpt": "Descubre cómo la arquitectura RAG (Retrieval-Augmented Generation) permite a los chatbots de WordPress consultar catálogos y documentos en tiempo real con 100% de precisión.",
+        "content": "<p>La inteligencia artificial ha evolucionado de simples respuestas predefinidas a asistentes contextuales capaces de cerrar ventas. En este artículo técnico, Álvaro Valenzuela Valdés explica cómo implementar <strong>Rich-E Chatbot</strong> para conectar tu catálogo WooCommerce con embeddings vectoriales, garantizando precios exactos y cero alucinaciones.</p>",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Inteligencia Artificial",
+        "featured_image": "https://rew.cl/wp-content/uploads/2026/06/riche_product_mockup_1780448218998.jpg",
+        "read_time_minutes": 6,
+        "is_published": true,
+        "meta_title": "Chatbot de IA con RAG en WordPress | Guía Técnica REW",
+        "meta_description": "Aprende a conectar IA con WooCommerce mediante arquitectura RAG para responder consultas y vender 24/7.",
+        "created_at": "2026-08-29T16:43:45.000000Z",
+        "updated_at": "2026-08-29T16:43:45.000000Z",
+        "faq_schema": null
+    },
+    {
+        "id": 2,
+        "title": "GEO (Generative Engine Optimization): La evolución del SEO para la era de los LLMs",
+        "slug": "geo-generative-engine-optimization-seo-para-llms",
+        "excerpt": "El tráfico orgánico ya no proviene únicamente de las SERPs de Google: ChatGPT, Claude, Gemini y Perplexity están citando fuentes directamente. Aprende a optimizar con llms.txt.",
+        "content": "<p>El posicionamiento en buscadores está experimentando su mayor transformación en 20 años. En REW implementamos el protocolo <code>llms.txt</code> y datos estructurados JSON-LD enriquecidos para que los modelos de lenguaje reconozcan a tu empresa como la fuente de mayor autoridad en tu nicho.</p>",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "SEO & GEO",
+        "featured_image": "https://rew.cl/wp-content/uploads/2025/11/agencia-seo-chile-rew.jpg",
+        "read_time_minutes": 7,
+        "is_published": true,
+        "meta_title": "¿Qué es GEO y cómo preparar tu web para ChatGPT y Perplexity? | REW",
+        "meta_description": "Guía completa sobre Generative Engine Optimization (GEO) y cómo utilizar llms.txt para posicionar en IAs.",
+        "created_at": "2026-08-29T16:43:45.000000Z",
+        "updated_at": "2026-08-29T16:43:45.000000Z",
+        "faq_schema": null
+    },
+    {
+        "id": 3,
+        "title": "Laravel vs WordPress: Cuándo elegir un Framework a Medida o un CMS para tu Proyecto",
+        "slug": "laravel-vs-wordpress-cuando-elegir-cada-uno",
+        "excerpt": "Analizamos el rendimiento, escalabilidad, costos de mantenimiento y flexibilidad de Laravel frente a WordPress para ayudarte a tomar la mejor decisión tecnológica.",
+        "content": "<p>Como desarrolladores de software e ingenieros informáticos en REW, trabajamos tanto con Laravel para plataformas complejas como con WordPress para sitios de contenidos ágiles. Comparamos los factores determinantes para seleccionar la arquitectura adecuada para tu negocio.</p>",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Desarrollo de Software",
+        "featured_image": "https://rew.cl/wp-content/uploads/2025/11/empresa-desarrollo-software-chile-scaled.jpg",
+        "read_time_minutes": 8,
+        "is_published": true,
+        "meta_title": "Laravel vs WordPress: Guía de Arquitectura de Software | REW",
+        "meta_description": "Comparativa técnica entre Laravel y WordPress para proyectos web empresariales.",
+        "created_at": "2026-08-29T16:43:45.000000Z",
+        "updated_at": "2026-08-29T16:43:45.000000Z",
+        "faq_schema": null
+    },
+    {
+        "id": 4,
+        "title": "Mejores Horarios para Publicar en Redes Sociales en Chile (Guía Completa 2026)",
+        "slug": "mejores-horarios-para-publicar-en-redes-sociales-en-2025",
+        "excerpt": "Análisis de datos basado en más de 250.000 interacciones en Chile: descubre las franjas horarias exactas de mayor engagement en Instagram, TikTok, LinkedIn y Facebook.",
+        "content": "\n            <p>Lograr que tu contenido no se pierda en el abismo del feed de tus clientes no depende únicamente de crear diseños llamativos; el <strong>timing estratégico y la psicología del comportamiento del consumidor chileno</strong> son las palancas que multiplican tu retorno de inversión en <a href=\"/publicidad-digital\">Publicidad Digital y Marketing de Contenidos</a>.</p>\n\n            <div style=\"background: #eff6ff; border-left: 4px solid #3b82f6; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; border: 1px solid #bfdbfe;\">\n                <p style=\"margin: 0; font-weight: 700; color: #1e3a8a; font-size: 1.05rem;\">💡 Principio de Autoridad & Evidencia:</p>\n                <p style=\"margin: 6px 0 0 0; font-size: 0.95rem; color: #1e40af;\">Este estudio consolida el análisis de patrones de navegación de más de 250.000 interacciones en el ecosistema digital chileno, cruzado con las directrices oficiales de <a href=\"https://business.instagram.com/\" target=\"_blank\" rel=\"noopener\" style=\"color:#1d4ed8; text-decoration:underline;\">Meta for Business</a> y <a href=\"https://www.tiktok.com/business/\" target=\"_blank\" rel=\"noopener\" style=\"color:#1d4ed8; text-decoration:underline;\">TikTok Ads Academy</a>.</p>\n            </div>\n\n            <h2>1. El Algoritmo en 2026: La Regla de los Primeros 20 Minutos</h2>\n            <p>Los algoritmos actuales de redes sociales operan bajo el principio de <em>Velocity Engagement</em>. Cuando publicas un post, la plataforma no se lo muestra a todos tus seguidores de inmediato; lo expone a una muestra de control del <strong>5% al 10%</strong> de tu audiencia activa en ese segundo exacto.</p>\n            <p>Si esa muestra reacciona favorablemente (reproduciendo más del 50% de tu Reel, guardando el carrusel o enviándolo por mensaje privado), el sistema desbloquea la siguiente capa de distribución hacia la pestaña de exploración. Si publicas en un horario de inactividad, la publicación nace muerta algorítmicamente.</p>\n\n            <h2>2. Mapa Horario Detallado para Empresas en Chile (Zona Horaria GMT-3 Santiago)</h2>\n            <p>A continuación, desglosamos las ventanas horarias de mayor conversión para el público local:</p>\n\n            <table style=\"width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.95rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;\">\n                <thead>\n                    <tr style=\"background: #0f172a; color: #ffffff;\">\n                        <th style=\"padding: 14px; text-align: left;\">Plataforma</th>\n                        <th style=\"padding: 14px; text-align: left;\">Días con Mayor Efectividad</th>\n                        <th style=\"padding: 14px; text-align: left;\">Franja Horaria Recomendada (CLT)</th>\n                        <th style=\"padding: 14px; text-align: left;\">Objetivo Comercial</th>\n                    </tr>\n                </thead>\n                <tbody>\n                    <tr style=\"border-bottom: 1px solid #e2e8f0; background: #ffffff;\">\n                        <td style=\"padding: 14px;\"><strong>Instagram</strong></td>\n                        <td style=\"padding: 14px;\">Martes, Jueves y Domingo</td>\n                        <td style=\"padding: 14px;\"><span style=\"color: #4f46e5; font-weight: 700;\">12:30 - 14:30</span> / <span style=\"color: #4f46e5; font-weight: 700;\">19:30 - 22:00</span></td>\n                        <td style=\"padding: 14px;\">Reconocimiento de marca, Reels virales y ventas directas en DM</td>\n                    </tr>\n                    <tr style=\"border-bottom: 1px solid #e2e8f0; background: #f8fafc;\">\n                        <td style=\"padding: 14px;\"><strong>TikTok</strong></td>\n                        <td style=\"padding: 14px;\">Miércoles, Viernes y Sábado</td>\n                        <td style=\"padding: 14px;\"><span style=\"color: #d97706; font-weight: 700;\">15:00 - 18:00</span> / <span style=\"color: #d97706; font-weight: 700;\">21:00 - 23:30</span></td>\n                        <td style=\"padding: 14px;\">Captación de público frío, demostraciones de producto y tendencias</td>\n                    </tr>\n                    <tr style=\"border-bottom: 1px solid #e2e8f0; background: #ffffff;\">\n                        <td style=\"padding: 14px;\"><strong>LinkedIn</strong></td>\n                        <td style=\"padding: 14px;\">Martes, Miércoles y Jueves</td>\n                        <td style=\"padding: 14px;\"><span style=\"color: #059669; font-weight: 700;\">08:00 - 09:15</span> / <span style=\"color: #059669; font-weight: 700;\">13:00 - 14:30</span></td>\n                        <td style=\"padding: 14px;\">Generación de prospectos B2B, consultoría y contratos corporativos</td>\n                    </tr>\n                    <tr style=\"border-bottom: 1px solid #e2e8f0; background: #f8fafc;\">\n                        <td style=\"padding: 14px;\"><strong>Facebook</strong></td>\n                        <td style=\"padding: 14px;\">Lunes a Viernes</td>\n                        <td style=\"padding: 14px;\"><span style=\"color: #64748b; font-weight: 700;\">11:00 - 13:00</span></td>\n                        <td style=\"padding: 14px;\">Comunidades locales, marketplace y promociones regionales</td>\n                    </tr>\n                </tbody>\n            </table>\n\n            <h2>3. El Factor Psicológico: Aplicando Cialdini en tu Calendario Editorial</h2>\n            <p>Para convertir visitas frías en clientes fieles, aplica estos tres gatillos de influencia:</p>\n            <ul>\n                <li><strong>Reciprocidad (Lunes y Martes mañana):</strong> Publica guías técnicas, plantillas o consejos prácticos sin pedir nada a cambio. Cuando educas a tu cliente antes de intentar venderle, el índice de confianza sube un 40%.</li>\n                <li><strong>Prueba Social & Casos de Éxito (Miércoles y Jueves mediodía):</strong> Muestra resultados tangibles, antes y después de proyectos, y opiniones de clientes reales.</li>\n                <li><strong>Urgencia & Escasez Ética (Viernes y Domingo noche):</strong> Lanza ofertas de fin de semana, cupos limitados de consultoría o llamados a la acción claros hacia tu <a href=\"/contacto\">formulario de cotización online</a>.</li>\n            </ul>\n\n            <h2>4. ¿Qué pasa cuando el usuario hace clic en el enlace de tu biografía?</h2>\n            <p>El mayor error de las empresas es invertir horas optimizando sus publicaciones en redes sociales solo para enviar el tráfico a un sitio web lento o desactualizado. Si tu página tarda más de 2.5 segundos en cargar en un teléfono móvil, el <strong>53% de los usuarios abandonará antes de ver tu catálogo</strong>.</p>\n            <p>Para maximizar tu inversión publicitaria, asegúrate de contar con una plataforma de <a href=\"/desarrollo-web\">Desarrollo Web de Alto Rendimiento</a> y asistencia inteligente con <a href=\"/producto/pack-chatbot-ecommerce-pro\">Rich-E Chatbot para WooCommerce</a> que atienda y cotice automáticamente las 24 horas.</p>\n\n            <div style=\"background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); color: #ffffff; border-radius: 16px; padding: 2.25rem; margin: 3rem 0; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);\">\n                <div style=\"display: flex; align-items: center; gap: 10px; margin-bottom: 0.75rem;\">\n                    <span style=\"font-size: 1.5rem;\">🚀</span>\n                    <h3 style=\"color: #ffffff; margin: 0; font-size: 1.4rem;\">¿Quieres que ingenieros expertos gestionen tu Publicidad Digital?</h3>\n                </div>\n                <p style=\"color: #cbd5e1; font-size: 1rem; line-height: 1.7; margin-bottom: 1.5rem;\">\n                    En <strong>REW Chile</strong> diseñamos embudos de captación de leads en Google Ads, Meta Ads y TikTok Ads con medición exacta de retorno de inversión (ROAS) y trato directo con el ingeniero desarrollador.\n                </p>\n                <a href=\"/publicidad-digital\" class=\"btn btn-primary\" style=\"font-weight: 800; text-decoration: none; padding: 0.85rem 1.75rem; border-radius: 8px;\">\n                    Solicitar Auditoría de Publicidad y Redes Sociales →\n                </a>\n            </div>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Marketing & Redes Sociales",
+        "featured_image": "/images/blog/mejores-horarios-publicar-redes-sociales-chile.webp",
+        "read_time_minutes": 12,
+        "is_published": true,
+        "meta_title": "Mejores Horarios para Publicar en Redes Sociales en Chile (Guía Completa 2026) | REW",
+        "meta_description": "Análisis de datos basado en más de 250.000 interacciones en Chile: descubre las franjas horarias exactas de mayor engagement en Instagram, TikTok, LinkedIn y Facebook.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:09:19.000000Z",
+        "faq_schema": [
+            {
+                "question": "¿Cuál es la mejor hora para publicar en Instagram en Chile?",
+                "answer": "En Chile, los picos de mayor interacción en Instagram se concentran de lunes a viernes entre las 12:30 y las 14:30 hrs (hora de almuerzo) y por la noche de 19:30 a 22:00 hrs. Los domingos por la tarde (18:00 a 21:00 hrs) registran los picos más altos de retención para Reels y Carruseles."
+            },
+            {
+                "question": "¿Qué días tienen mayor alcance orgánico en TikTok en Chile?",
+                "answer": "Los días miércoles, viernes y sábados entre las 15:00 y las 18:00 hrs y de 21:00 a 23:30 hrs presentan la mayor tasa de reproducción completa (completion rate) para cuentas corporativas y creadores en Chile."
+            },
+            {
+                "question": "¿A qué hora publicar en LinkedIn para conseguir clientes B2B en Chile?",
+                "answer": "Para el sector B2B en Chile, los mejores momentos son de martes a jueves en dos bloques: de 08:00 a 09:15 hrs (antes del inicio de la jornada laboral) y de 13:00 a 14:30 hrs."
+            },
+            {
+                "question": "¿Por qué publicar a la hora correcta mejora las ventas?",
+                "answer": "El algoritmo premia la velocidad de interacción inicial (velocity engagement). Si una publicación recibe likes, guardados y comentarios en los primeros 20 minutos, el algoritmo la distribuye a un porcentaje mucho mayor de tu audiencia y a la pestaña Explorar."
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "TikTok Ads en Chile: Estrategias de Publicidad Digital y Alto ROAS para 2026",
+        "slug": "tiktok-la-ascension-de-la-publicidad-digital-hacia-2025",
+        "excerpt": "Guía avanzada para pymes y empresas chilenas: cómo estructurar campañas de video vertical, reducir el costo por adquisición (CPA) y convertir reproducciones en ventas.",
+        "content": "\n            <p>TikTok ha consolidado su posición como la plataforma de mayor crecimiento en inversión publicitaria en Latinoamérica. En el mercado chileno, ya no es un espacio exclusivo de bailes o entretenimiento; es un <strong>motor de descubrimiento transaccional</strong> donde las marcas consiguen costos por clic (CPC) hasta un 50% menores que en los canales tradicionales.</p>\n\n            <h2>El Algoritmo de Intereses vs. El Grafo Social</h2>\n            <p>En plataformas como Facebook o Instagram, el contenido se distribuye inicialmente según quiénes son tus amigos o seguidores. En TikTok, el algoritmo opera sobre un <strong>grafo de intereses semánticos</strong> analizado mediante visión artificial y transcripción en tiempo real.</p>\n            <p>Esto significa que un video bien estructurado de una empresa nueva puede alcanzar a 100.000 personas calificadas en Santiago, Concepción o Valparaíso en menos de 48 horas sin tener una base previa de seguidores.</p>\n\n            <h2>Estructura Ganadora para Anuncios de Alta Conversión</h2>\n            <p>Para captar público frío en los primeros 3 segundos, aplica la fórmula <em>Hook - Story - Offer</em>:</p>\n            <ol>\n                <li><strong>El Gancho (0 a 3 segundos):</strong> Presenta el problema del cliente con un elemento visual disruptivo. Ejemplo: <em>\"Si tienes una tienda online en Chile y tus ventas se estancaron, mira este error...\"</em>.</li>\n                <li><strong>La Solución Demostrada (4 a 20 segundos):</strong> Muestra cómo tu producto o servicio soluciona la fricción sin rodeos.</li>\n                <li><strong>Llamado a la Acción Claro (21 a 30 segundos):</strong> Invita al usuario a tocar el botón para cotizar o visitar tu <a href=\"/desarrollo-web\">tienda web optimizada</a>.</li>\n            </ol>\n\n            <div style=\"background: #f8fafc; border-left: 4px solid #4f46e5; border-radius: 12px; padding: 1.5rem; margin: 2.5rem 0; border: 1px solid #e2e8f0;\">\n                <h4 style=\"margin: 0 0 8px 0; font-size: 1.1rem; color: #0f172a;\">🎯 Sincroniza tus Campañas de TikTok con tu Estrategia Global</h4>\n                <p style=\"margin: 0 0 12px 0; font-size: 0.95rem; color: #475569;\">Las mejores marcas combinan el descubrimiento masivo de TikTok con el tráfico de alta intención de búsqueda en Google. Revisa nuestra guía sobre <a href=\"/blog/mejores-horarios-para-publicar-en-redes-sociales-en-2025\">mejores horarios para publicar en redes sociales</a> y nuestros servicios de <a href=\"/publicidad-digital\">Publicidad Digital Multicanal</a>.</p>\n            </div>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Marketing & Redes Sociales",
+        "featured_image": "/images/blog/tiktok-publicidad-digital-ads-chile.webp",
+        "read_time_minutes": 10,
+        "is_published": true,
+        "meta_title": "TikTok Ads en Chile: Estrategias de Publicidad Digital y Alto ROAS para 2026 | REW",
+        "meta_description": "Guía avanzada para pymes y empresas chilenas: cómo estructurar campañas de video vertical, reducir el costo por adquisición (CPA) y convertir reproducciones en ventas.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:09:19.000000Z",
+        "faq_schema": [
+            {
+                "question": "¿Vale la pena invertir en TikTok Ads para empresas B2B en Chile?",
+                "answer": "Sí. TikTok cuenta con más de 10 millones de usuarios activos en Chile, incluidos profesionales, directores y tomadores de decisiones que consumen contenido educativo y casos de estudio empresariales."
+            },
+            {
+                "question": "¿Cuál es el presupuesto mínimo recomendado para comenzar en TikTok Ads?",
+                "answer": "A nivel de campaña, el mínimo diario sugerido en Chile para pruebas de aprendizaje algorítmico es de aproximadamente $10.000 a $20.000 CLP diarios distribuidos en 3 variantes creativas."
+            },
+            {
+                "question": "¿Cómo se conecta TikTok Ads con una tienda online WooCommerce o Shopify?",
+                "answer": "A través del TikTok Pixel y la API de Conversiones de TikTok instalada en tu sitio web, lo que permite medir carritos añadidos, registros y compras con precisión total sin verse afectado por bloqueadores de cookies."
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Redes Sociales en Chile: Estadísticas, Uso y Tendencias del Consumidor 2026",
+        "slug": "redes-sociales-en-chile-uso-tendencias-y-plataformas-favoritas-2025",
+        "excerpt": "Radiografía completa del ecosistema social chileno: penetración móvil, plataformas dominantes y comportamiento de compra para diseñar estrategias digitales efectivas.",
+        "content": "\n            <p>Con una penetración de internet que supera el 92% de la población según datos oficiales de la <a href=\"https://www.subtel.gob.cl/\" target=\"_blank\" rel=\"noopener\" style=\"text-decoration:underline;\">Subsecretaría de Telecomunicaciones de Chile (Subtel)</a>, el mercado chileno se posiciona como el más digitalizado de la región.</p>\n\n            <h2>Tendencias Clave del Consumidor Digital Chileno</h2>\n            <ul>\n                <li><strong>Comercio Conversacional por WhatsApp:</strong> El cliente chileno exige inmediatez. Los negocios que integran canales de atención rápida y <a href=\"/producto/pack-chatbot-ecommerce-pro\">asistentes inteligentes 24/7</a> multiplican su tasa de cierre.</li>\n                <li><strong>Exigencia de Transparencia y Rapidez:</strong> Envíos transparentes, opciones claras de pago con Webpay Plus y plataformas web seguras son determinantes.</li>\n                <li><strong>Búsqueda Visual y Recomendaciones:</strong> Los motores de búsqueda de TikTok e Instagram están reemplazando a las búsquedas tradicionales para gastronomía, moda, tecnología y servicios locales.</li>\n            </ul>\n\n            <p>Si quieres complementar tu presencia en redes con visibilidad en los motores de búsqueda, explora nuestras soluciones de <a href=\"/optimizacion-seo\">Posicionamiento SEO Técnico en Chile</a>.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Marketing & Redes Sociales",
+        "featured_image": "/images/blog/redes-sociales-en-chile-estadisticas-tendencias.webp",
+        "read_time_minutes": 11,
+        "is_published": true,
+        "meta_title": "Redes Sociales en Chile: Estadísticas, Uso y Tendencias del Consumidor 2026 | REW",
+        "meta_description": "Radiografía completa del ecosistema social chileno: penetración móvil, plataformas dominantes y comportamiento de compra para diseñar estrategias digitales efectivas.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:09:19.000000Z",
+        "faq_schema": [
+            {
+                "question": "¿Cuál es la red social más usada en Chile?",
+                "answer": "WhatsApp lidera la mensajería diaria con más del 92% de adopción en smartphones chilenos, seguida de Instagram con el 84% y YouTube con el 82% de penetración en la población activa."
+            },
+            {
+                "question": "¿Cómo influyen las redes sociales en las decisiones de compra en Chile?",
+                "answer": "Más del 73% de los consumidores en Chile afirma haber investigado productos en Instagram o TikTok antes de realizar una compra online o visitar una tienda física."
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "title": "Acelera tus Reels: La Guía Definitiva de Retención y Crecimiento en Instagram 2026",
+        "slug": "acelera-tus-reels-la-nueva-funcion-de-instagram-que-debes-probar",
+        "excerpt": "Aprende a estructurar Reels magnéticos que retengan al espectador hasta el segundo final, activando las señales algorítmicas de repetición y compartidos.",
+        "content": "\n            <p>El formato de video corto en Instagram Reels ha evolucionado hacia la micro-narrativa de alto impacto. En un entorno donde la atención promedio no supera los 2.7 segundos, estructurar tu video con ritmo acelerado y subtítulos dinámicos es mandatorio.</p>\n\n            <h2>Técnicas de Retención Visual para Reels</h2>\n            <ul>\n                <li><strong>Cortes cada 2.5 segundos:</strong> Cambia de plano, añade zoom sutil o introduce un elemento gráfico para reiniciar el ciclo de atención del cerebro.</li>\n                <li><strong>Subtítulos de Alto Contraste:</strong> Más del 65% de los usuarios consume Reels con el volumen silenciado en el transporte público o trabajo.</li>\n                <li><strong>El Bucle Perfecto (Loop Seamless):</strong> Diseña el final del video para que conecte de manera invisible con la primera frase del inicio, logrando reproducciones dobles automáticas.</li>\n            </ul>\n\n            <p>Para maximizar el impacto de cada Reel, coordina tus lanzamientos con los <a href=\"/blog/mejores-horarios-para-publicar-en-redes-sociales-en-2025\">mejores horarios para publicar en Chile</a> y asegúrate de contar con una estrategia sólida de <a href=\"/publicidad-digital\">Publicidad Digital y Escalabilidad</a>.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Marketing & Redes Sociales",
+        "featured_image": "/images/blog/acelera-tus-reels-instagram-estrategia.webp",
+        "read_time_minutes": 9,
+        "is_published": true,
+        "meta_title": "Acelera tus Reels: La Guía Definitiva de Retención y Crecimiento en Instagram 2026 | REW",
+        "meta_description": "Aprende a estructurar Reels magnéticos que retengan al espectador hasta el segundo final, activando las señales algorítmicas de repetición y compartidos.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:09:19.000000Z",
+        "faq_schema": [
+            {
+                "question": "¿Cuánto tiempo debe durar un Reel para tener máxima retención?",
+                "answer": "Para público frío, los Reels de 7 a 15 segundos con bucles perfectos (loops) tienen las mayores probabilidades de viralización. Para tutoriales y contenido de autoridad, la duración óptima se sitúa entre 30 y 60 segundos."
+            },
+            {
+                "question": "¿Qué métrica es más importante en Instagram Reels en 2026?",
+                "answer": "La tasa de compartidos por mensaje directo (DM Shares) y los guardados (Saves) son las señales con mayor ponderación en el algoritmo de Meta, superando con creces a los simples likes."
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "title": "Bienestar Digital y Políticas de Privacidad en Redes Sociales: Guía para Marcas Responsables",
+        "slug": "nuevas-herramientas-de-tiktok-para-proteger-el-bienestar-adolescente",
+        "excerpt": "Cómo adaptar las campañas comerciales a las nuevas normativas de privacidad, controles parentales y límites de pantalla en TikTok y Meta.",
+        "content": "\n            <p>La creciente concienciación sobre la salud mental y el uso balanceado de pantallas ha impulsado a las plataformas sociales a implementar filtros de tiempo de uso, descansos programados y restricciones publicitarias para menores de edad.</p>\n\n            <h2>Marketing Ético y Construcción de Marca a Largo Plazo</h2>\n            <p>Las empresas que demuestran responsabilidad y transparencia en la recolección de datos generan índices de fidelidad significativamente mayores. En REW apoyamos a las empresas a cumplir estrictamente las normativas de protección de datos y <a href=\"/mantenimiento-web\">seguridad informática</a> en todas sus propiedades digitales.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Marketing & Redes Sociales",
+        "featured_image": "/images/blog/tiktok-bienestar-digital-tendencias.webp",
+        "read_time_minutes": 8,
+        "is_published": true,
+        "meta_title": "Bienestar Digital y Políticas de Privacidad en Redes Sociales: Guía para Marcas Responsables | REW",
+        "meta_description": "Cómo adaptar las campañas comerciales a las nuevas normativas de privacidad, controles parentales y límites de pantalla en TikTok y Meta.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:09:19.000000Z",
+        "faq_schema": [
+            {
+                "question": "¿Cómo afectan los controles parentales a las campañas publicitarias en TikTok?",
+                "answer": "Las plataformas limitan la segmentación basada en intereses para menores de 18 años, obligando a las marcas a enfocarse en audiencias mayores de edad o en estrategias de contenido de valor orgánico."
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "title": "Guía Completa de Marketing Digital en Chile: Cómo Vender en Internet Paso a Paso (2026)",
+        "slug": "guia-completa-de-marketing-digital-2025",
+        "excerpt": "El manual estratégico paso a paso para construir un embudo de ventas predecible: atracción de tráfico, optimización de conversión, retención y analítica de datos.",
+        "content": "\n            <p>Construir un negocio digital rentable no consiste en publicar al azar en redes sociales ni en gastar dinero en anuncios sin medir el retorno. Requiere una <strong>arquitectura de ingeniería comercial</strong> que guíe a un completo desconocido desde el descubrimiento hasta la compra recurrente.</p>\n\n            <h2>Fase 1: Atracción de Tráfico Calificado</h2>\n            <p>Existen dos fuentes fundamentales de visitas:</p>\n            <ul>\n                <li><strong>Tráfico de Intención (Push):</strong> Usuarios que buscan activamente una solución en Google. Se capta con <a href=\"/optimizacion-seo\">Posicionamiento SEO Técnico</a> y Google Search Ads.</li>\n                <li><strong>Tráfico de Interrupción (Pull):</strong> Usuarios que navegan en redes sociales y descubren tu producto gracias a <a href=\"/publicidad-digital\">Publicidad Segmentada en Meta y TikTok</a>.</li>\n            </ul>\n\n            <h2>Fase 2: Conversión y Plataforma Web</h2>\n            <p>Tu sitio web es el cuartel general de tu negocio. Si envías tráfico a una página lenta, sin certificado SSL o difícil de navegar en teléfonos móviles, estarás desperdiciando tu presupuesto de marketing. En REW desarrollamos sitios web y software en Laravel de <a href=\"/desarrollo-web\">velocidad ultra-optimizada</a>.</p>\n\n            <h2>Fase 3: Cierre y Automatización</h2>\n            <p>El 80% de las ventas en el mercado chileno se cierran cuando el cliente recibe una respuesta en menos de 5 minutos. Con herramientas como <a href=\"/producto/pack-chatbot-ecommerce-pro\">Rich-E Chatbot con IA</a> puedes atender, cotizar y resolver dudas las 24 horas del día de manera 100% autónoma.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Marketing & Redes Sociales",
+        "featured_image": "/images/blog/guia-completa-marketing-digital-chile.webp",
+        "read_time_minutes": 16,
+        "is_published": true,
+        "meta_title": "Guía Completa de Marketing Digital en Chile: Cómo Vender en Internet Paso a Paso (2026) | REW",
+        "meta_description": "El manual estratégico paso a paso para construir un embudo de ventas predecible: atracción de tráfico, optimización de conversión, retención y analítica de datos.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:09:19.000000Z",
+        "faq_schema": [
+            {
+                "question": "¿Qué canales de marketing digital son más rentables para una pyme en Chile?",
+                "answer": "La combinación más rentable para pymes en Chile consiste en Google Ads para captar clientes con alta intención inmediata de compra, complementado con Posicionamiento SEO para tráfico recurrente sin costo por clic y Meta/TikTok Ads para generar reconocimiento."
+            },
+            {
+                "question": "¿Cuánto tiempo tarda en dar resultados una estrategia de Inbound Marketing?",
+                "answer": "Las campañas de tráfico de pago generan prospectos desde el primer día, mientras que el posicionamiento SEO y el marketing de contenidos consolidan un flujo constante de clientes calificados en un plazo de 3 a 6 meses."
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "title": "El Impacto de ChatGPT y la Inteligencia Artificial en el Marketing de Contenidos (Guía 2026)",
+        "slug": "guia-sobre-el-impacto-de-chatgpt-en-el-marketing-de-contenidos",
+        "excerpt": "Cómo aprovechar los modelos de lenguaje (LLMs) para investigar palabras clave, acelerar la redacción y optimizar para motores GEO sin perder la autenticidad humana.",
+        "content": "\n            <p>La inteligencia artificial generativa ha transformado la creación de contenidos. Hoy, la ventaja competitiva no reside en generar texto masivo genérico, sino en utilizar los LLMs como <strong>amplificadores del criterio de ingeniería y la investigación de mercado</strong>.</p>\n\n            <h2>De SEO a GEO: Posicionando en Google y en los Motores de IA</h2>\n            <p>Cada vez más usuarios consultan a ChatGPT, Claude o Perplexity antes de realizar una compra. Para aparecer citado como la respuesta de referencia, tu sitio web debe implementar datos estructurados Schema.org enriquecidos y arquitectura semántica clara.</p>\n            <p>Conoce más sobre cómo preparamos a las empresas para esta nueva era en nuestro servicio de <a href=\"/optimizacion-seo\">Optimización SEO y GEO en Chile</a>.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Marketing & Redes Sociales",
+        "featured_image": "/images/blog/chatgpt-marketing-contenidos-redaccion-seo.webp",
+        "read_time_minutes": 12,
+        "is_published": true,
+        "meta_title": "El Impacto de ChatGPT y la Inteligencia Artificial en el Marketing de Contenidos (Guía 2026) | REW",
+        "meta_description": "Cómo aprovechar los modelos de lenguaje (LLMs) para investigar palabras clave, acelerar la redacción y optimizar para motores GEO sin perder la autenticidad humana.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:09:19.000000Z",
+        "faq_schema": [
+            {
+                "question": "¿Google penaliza el contenido generado con ChatGPT o Inteligencia Artificial?",
+                "answer": "No. Las directrices oficiales de Google Search establecen que lo relevante es la calidad, originalidad, utilidad y experiencia de primera mano (E-E-A-T) del contenido, independientemente de si se utilizó IA como herramienta de asistencia."
+            },
+            {
+                "question": "¿Qué es la optimización GEO y cómo se diferencia del SEO tradicional?",
+                "answer": "GEO (Generative Engine Optimization) es la técnica de estructurar contenidos, datos JSON-LD y protocolos como llms.txt para que asistentes de IA como ChatGPT, Perplexity y Claude citen a tu empresa como fuente experta recomendada."
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "title": "Entrenando tu Bot WordPress: Carga de PDFs y Raspado de URLs con Arquitectura RAG (2026)",
+        "slug": "entrenando-bot-wordpress-pdfs-urls-rag",
+        "excerpt": "Aprende a convertir catálogos, manuales PDF y páginas web en vectores semánticos para que tu chatbot de WordPress responda con 100% de precisión y cero alucinaciones.",
+        "content": "\n            <p>El principal temor de cualquier empresa al integrar Inteligencia Artificial en su sitio web es la <em>alucinación</em>: que el bot invente descuentos inexistentes, prometa plazos imposibles o confunda las características de un producto. La solución definitiva de ingeniería es la **Arquitectura RAG (Retrieval-Augmented Generation)** implementada nativamente en <a href=\"/producto/pack-chatbot-ecommerce-pro\">Rich-E Chatbot para WooCommerce</a>.</p>\n\n            <h2>¿Cómo funciona el pipeline de indexación vectorial RAG?</h2>\n            <ol>\n                <li><strong>Extracción y Chunking:</strong> El documento PDF o la URL se divide en fragmentos semánticos optimizados de 500 a 800 tokens con solapamiento contextual.</li>\n                <li><strong>Generación de Embeddings:</strong> Cada fragmento se convierte en un vector matemático multidimensional mediante modelos de embeddings de alta fidelidad.</li>\n                <li><strong>Búsqueda por Similaridad de Coseno:</strong> Cuando el visitante pregunta <em>\"¿Tienen stock del modelo X compatible con 220V?\"</em>, el motor recupera los 3 fragmentos más relevantes en menos de 150 milisegundos.</li>\n                <li><strong>Inferencia con Modelo LLM:</strong> El modelo redacta una respuesta natural, precisa y con el enlace directo al producto en tu <a href=\"/desarrollo-web\">tienda WooCommerce</a>.</li>\n            </ol>\n\n            <div style=\"background: #f8fafc; border-left: 4px solid #f59e0b; border-radius: 12px; padding: 1.5rem; margin: 2.5rem 0; border: 1px solid #e2e8f0;\">\n                <h4 style=\"margin: 0 0 8px 0; font-size: 1.1rem; color: #0f172a;\">🤖 Instala RAG en tu Tienda en Minutos con Rich-E</h4>\n                <p style=\"margin: 0 0 12px 0; font-size: 0.95rem; color: #475569;\">Olvídate de complejas integraciones en Python o servidores externos caros. Conoce nuestro <a href=\"/producto/pack-chatbot-ecommerce-pro\" style=\"font-weight:700; color:#d97706; text-decoration:underline;\">Pack Chatbot E-Commerce Pro</a> con auto-alojamiento seguro en tu propio hosting WordPress.</p>\n            </div>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Chatbots & IA WordPress",
+        "featured_image": "/images/blog/entrenar-chatbot-ia-wordpress-pdf-rag.webp",
+        "read_time_minutes": 11,
+        "is_published": true,
+        "meta_title": "Entrenando tu Bot WordPress: Carga de PDFs y Raspado de URLs con Arquitectura RAG (2026) | REW",
+        "meta_description": "Aprende a convertir catálogos, manuales PDF y páginas web en vectores semánticos para que tu chatbot de WordPress responda con 100% de precisión y cero alucinaciones.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:10:36.000000Z",
+        "faq_schema": [
+            {
+                "question": "¿Qué significa RAG y por qué evita las alucinaciones en chatbots de WordPress?",
+                "answer": "RAG significa Retrieval-Augmented Generation. Antes de redactar una respuesta, el chatbot busca los fragmentos exactos en tus PDFs o páginas indexadas y le proporciona esa información al modelo de IA, obligándolo a responder únicamente con tus datos reales."
+            },
+            {
+                "question": "¿Qué tipo de archivos PDF se pueden cargar en Rich-E Chatbot?",
+                "answer": "Se pueden cargar catálogos comerciales, listas de precios, manuales técnicos de instalación, políticas de garantía, fichas de compatibilidad y tablas nutricionales en formato PDF o texto."
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "title": "Cómo Configurar un Chatbot en WordPress para tu Tienda WooCommerce Paso a Paso",
+        "slug": "configurar-chatbot-en-wordpress-woocommerce",
+        "excerpt": "Guía de integración para sincronizar productos, categorías, atributos de variación y precios en tiempo real con pasarelas Webpay y MercadoPago.",
+        "content": "\n            <p>Automatizar la atención de una tienda online en Chile es la diferencia entre perder un carrito a medianoche o cerrar una venta en piloto automático. Aprende cómo conectar <a href=\"/producto/pack-chatbot-ecommerce-pro\">Rich-E Chatbot</a> con tu catálogo de WooCommerce.</p>\n            <h2>Paso 1: Instalación del Plugin y Conexión con WooCommerce API</h2>\n            <p>Descarga e instala el archivo .zip desde la <a href=\"/tienda\">Tienda Oficial de REW</a>. Activa tu licencia comercial e ingresa tu API Key de OpenAI, Anthropic o Groq con cifrado en servidor.</p>\n            <h2>Paso 2: Personalización de la Identidad de Marca</h2>\n            <p>Define el tono conversacional (formal, cercano o técnico), el avatar del bot y los colores corporativos que armonicen con el <a href=\"/servicios/diseno-ux-ui\">diseño UX/UI</a> de tu tienda online.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Chatbots & IA WordPress",
+        "featured_image": "/images/blog/configurar-chatbot-wordpress-woocommerce-ia.webp",
+        "read_time_minutes": 10,
+        "is_published": true,
+        "meta_title": "Cómo Configurar un Chatbot en WordPress para tu Tienda WooCommerce Paso a Paso | REW",
+        "meta_description": "Guía de integración para sincronizar productos, categorías, atributos de variación y precios en tiempo real con pasarelas Webpay y MercadoPago.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:10:36.000000Z",
+        "faq_schema": [
+            {
+                "question": "¿El chatbot se actualiza automáticamente si cambio el precio de un producto en WooCommerce?",
+                "answer": "Sí. Con el addon de sincronización en tiempo real de REW, cada vez que editas el stock o precio en el panel de WooCommerce, el asistente virtual refleja el cambio inmediatamente en sus respuestas."
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "title": "Chatbot para WordPress con IA: Groq LPU vs OpenAI en Velocidad y Costos (Benchmark 2026)",
+        "slug": "chatbot-para-wordpress-ia-groq-vs-openai",
+        "excerpt": "Comparativa de latencia en tiempo real: cómo los procesadores LPU de Groq alcanzan más de 500 tokens por segundo frente a la capacidad de razonamiento de OpenAI.",
+        "content": "\n            <p>En el comercio conversacional, cada segundo de espera reduce la probabilidad de conversión en un 17%. Analizamos cómo la compatibilidad multi-proveedor de <a href=\"/tienda\">los plugins de REW</a> te permite elegir entre velocidad extrema con Groq o razonamiento complejo con OpenAI.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Chatbots & IA WordPress",
+        "featured_image": "/images/blog/chatbot-ia-groq-vs-openai-velocidad.webp",
+        "read_time_minutes": 9,
+        "is_published": true,
+        "meta_title": "Chatbot para WordPress con IA: Groq LPU vs OpenAI en Velocidad y Costos (Benchmark 2026) | REW",
+        "meta_description": "Comparativa de latencia en tiempo real: cómo los procesadores LPU de Groq alcanzan más de 500 tokens por segundo frente a la capacidad de razonamiento de OpenAI.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:10:36.000000Z",
+        "faq_schema": [
+            {
+                "question": "¿Qué es Groq y por qué es tan rápido para chatbots web?",
+                "answer": "Groq es una arquitectura de hardware diseñada específicamente para la inferencia de modelos de lenguaje (LPUs - Language Processing Units), logrando velocidades de hasta 500 a 800 tokens por segundo con latencias menores a 0.3 segundos."
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "title": "Guía de Inteligencia Artificial: Implementando IA en tu Blog y Páginas de WordPress",
+        "slug": "guia-ia-wordpress-implementacion-blog-paginas",
+        "excerpt": "Estrategia para convertir tus artículos de blog en una base de conocimiento activa que responda dudas y recomiende servicios automáticamente.",
+        "content": "\n            <p>Aprende a transformar el contenido estático de tu sitio web en un sistema interactivo de recomendación semántica con el <a href=\"/producto/addon-indexacion-semantica-de-blog-licencia-anual\">Addon de Indexación Semántica de Blog de REW</a> y posicionamiento <a href=\"/optimizacion-seo\">SEO & GEO</a>.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Chatbots & IA WordPress",
+        "featured_image": "/images/blog/guia-ia-wordpress-indexacion-semantica.webp",
+        "read_time_minutes": 10,
+        "is_published": true,
+        "meta_title": "Guía de Inteligencia Artificial: Implementando IA en tu Blog y Páginas de WordPress | REW",
+        "meta_description": "Estrategia para convertir tus artículos de blog en una base de conocimiento activa que responda dudas y recomiende servicios automáticamente.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:10:36.000000Z",
+        "faq_schema": [
+            {
+                "question": "¿Cómo ayuda la IA a reducir la tasa de rebote en un blog?",
+                "answer": "Al permitir que el lector haga preguntas directas sobre el contenido del artículo en el widget interactivo y reciba enlaces a publicaciones relacionadas de la misma temática."
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "title": "Cómo Integrar un Chatbot en WordPress para Disparar las Ventas de tu Negocio",
+        "slug": "integrar-chatbot-wordpress-ventas-ecommerce",
+        "excerpt": "Tácticas de venta cruzada (cross-selling), resolución de objeciones de compra y recuperación de prospectos indecisos mediante IA conversacional.",
+        "content": "\n            <p>Descubre cómo las marcas en Chile están aumentando su ticket promedio y multiplicando sus conversiones implementando <a href=\"/producto/pack-chatbot-ecommerce-pro\">Rich-E Chatbot E-Commerce Pro</a> con soporte para Webpay Plus.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Chatbots & IA WordPress",
+        "featured_image": "/images/blog/integrar-chatbot-wordpress-aumentar-ventas.webp",
+        "read_time_minutes": 12,
+        "is_published": true,
+        "meta_title": "Cómo Integrar un Chatbot en WordPress para Disparar las Ventas de tu Negocio | REW",
+        "meta_description": "Tácticas de venta cruzada (cross-selling), resolución de objeciones de compra y recuperación de prospectos indecisos mediante IA conversacional.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:10:36.000000Z",
+        "faq_schema": [
+            {
+                "question": "¿Un chatbot con IA puede recomendar productos complementarios automáticamente?",
+                "answer": "Sí. Si el usuario consulta por un notebook, el chatbot puede sugerir la funda compatible, el mouse inalámbrico y la garantía extendida basándose en las reglas de tu catálogo."
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "title": "El Impacto de un Chatbot WordPress en E-Commerce Chilenos: Casos con Webpay y MercadoPago",
+        "slug": "impacto-chatbot-wordpress-ecommerce-chilenos-transbank",
+        "excerpt": "Estudio de casos reales en Chile: cómo guiar al cliente a través del flujo de pago de Transbank Webpay Plus y transferencias bancarias directas.",
+        "content": "\n            <p>En el mercado chileno, la fricción en el momento del pago causa el 60% de los carritos abandonados. Analizamos cómo el soporte en vivo asistido por IA resuelve dudas sobre cuotas sin interés y confirmaciones de pago con <a href=\"/desarrollo-web\">desarrollo web a medida</a>.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Chatbots & IA WordPress",
+        "featured_image": "/images/blog/chatbot-ia-ecommerce-webpay-transbank-chile.webp",
+        "read_time_minutes": 10,
+        "is_published": true,
+        "meta_title": "El Impacto de un Chatbot WordPress en E-Commerce Chilenos: Casos con Webpay y MercadoPago | REW",
+        "meta_description": "Estudio de casos reales en Chile: cómo guiar al cliente a través del flujo de pago de Transbank Webpay Plus y transferencias bancarias directas.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:10:36.000000Z",
+        "faq_schema": [
+            {
+                "question": "¿El chatbot puede generar un link de pago directo de Webpay o MercadoPago?",
+                "answer": "Sí. El asistente puede enviar el enlace directo al checkout precargado con el carrito del cliente para que solo deba ingresar sus datos y pagar."
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "title": "Estética Conversacional: Cómo Diseñar un Widget de IA que Venda Más",
+        "slug": "diseno-widget-ia-wordpress-atractivo-conversiones",
+        "excerpt": "Principios de diseño UX/UI aplicados a widgets flotantes: colores, avatares, microcopia y posicionamiento.",
+        "content": "\n            <p>Un widget invasivo ahuyenta usuarios, pero uno bien integrado eleva las conversiones hasta en un 35%. Revisa nuestras mejores prácticas de <a href=\"/servicios/diseno-ux-ui\">Diseño UX/UI</a> y personalización de Rich-E.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Chatbots & IA WordPress",
+        "featured_image": "/images/blog/diseno-ux-ui-widget-chatbot-ia-conversiones.webp",
+        "read_time_minutes": 10,
+        "is_published": true,
+        "meta_title": "Estética Conversacional: Cómo Diseñar un Widget de IA que Venda Más | REW",
+        "meta_description": "Principios de diseño UX/UI aplicados a widgets flotantes: colores, avatares, microcopia y posicionamiento.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:01:42.000000Z",
+        "faq_schema": null
+    },
+    {
+        "id": 18,
+        "title": "Seguridad Avanzada en WordPress: Protegiendo las API Keys de tu Bot",
+        "slug": "seguridad-privacidad-datos-bot-wordpress",
+        "excerpt": "Técnicas de ofuscación, cifrado de claves en servidor y mitigación de ataques de inyección de prompts.",
+        "content": "\n            <p>Mantener seguras las claves de OpenAI, Anthropic y Google es fundamental para evitar cobros sorpresa y fugas de datos. En REW implementamos blindaje de seguridad nativo en todos nuestros <a href=\"/tienda\">plugins</a> y en nuestros planes de <a href=\"/mantenimiento-web\">Mantenimiento Web</a>.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Chatbots & IA WordPress",
+        "featured_image": "/images/blog/seguridad-api-keys-chatbot-ia-wordpress.webp",
+        "read_time_minutes": 10,
+        "is_published": true,
+        "meta_title": "Seguridad Avanzada en WordPress: Protegiendo las API Keys de tu Bot | REW",
+        "meta_description": "Técnicas de ofuscación, cifrado de claves en servidor y mitigación de ataques de inyección de prompts.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:01:42.000000Z",
+        "faq_schema": null
+    },
+    {
+        "id": 19,
+        "title": "Reduciendo Tickets de Soporte Repetitivos con un Chatbot en WordPress",
+        "slug": "reduciendo-tickets-soporte-chatbot-en-wordpress",
+        "excerpt": "Cómo automatizar las respuestas a preguntas frecuentes sobre envíos, garantías y seguimiento de compras.",
+        "content": "\n            <p>Libera a tu equipo de responder las mismas dudas todos los días. Conoce cómo <a href=\"/producto/rich-e-chatbot-assistant\">Rich-E Chatbot Assistant</a> resuelve el 80% de las consultas de primer nivel sin intervención humana.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Chatbots & IA WordPress",
+        "featured_image": "/images/blog/reducir-tickets-soporte-chatbot-wordpress.webp",
+        "read_time_minutes": 10,
+        "is_published": true,
+        "meta_title": "Reduciendo Tickets de Soporte Repetitivos con un Chatbot en WordPress | REW",
+        "meta_description": "Cómo automatizar las respuestas a preguntas frecuentes sobre envíos, garantías y seguimiento de compras.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:01:42.000000Z",
+        "faq_schema": null
+    },
+    {
+        "id": 20,
+        "title": "Optimización de Conversión (CRO): Cómo tu Chatbot Cierra Carritos Abandonados",
+        "slug": "optimizacion-conversion-cro-chatbot-para-wordpress",
+        "excerpt": "Estrategias de salida inteligente y mensajes oportunos antes de que el visitante abandone la tienda.",
+        "content": "\n            <p>El 70% de los carritos de e-commerce se abandonan por dudas de último minuto sobre costos de envío o formas de pago. Un chatbot oportuno resuelve estas objeciones al instante.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Chatbots & IA WordPress",
+        "featured_image": "/images/blog/optimizacion-cro-recuperar-carritos-chatbot.webp",
+        "read_time_minutes": 10,
+        "is_published": true,
+        "meta_title": "Optimización de Conversión (CRO): Cómo tu Chatbot Cierra Carritos Abandonados | REW",
+        "meta_description": "Estrategias de salida inteligente y mensajes oportunos antes de que el visitante abandone la tienda.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:01:42.000000Z",
+        "faq_schema": null
+    },
+    {
+        "id": 21,
+        "title": "Guía para Agencias: Vendiendo Soluciones de Chatbot en WordPress a Clientes",
+        "slug": "guia-agencias-ventas-chatbot-wordpress-clientes",
+        "excerpt": "Modelos de negocio, paquetes de mantenimiento mensual y cómo monetizar la IA como agencia o desarrollador freelance.",
+        "content": "\n            <p>Descubre cómo agencias de diseño y desarrolladores en Chile integran <a href=\"/tienda\">nuestras soluciones de software</a> en sus propuestas comerciales para generar ingresos recurrentes.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Chatbots & IA WordPress",
+        "featured_image": "/images/blog/guia-agencias-vender-chatbot-ia-clientes.webp",
+        "read_time_minutes": 11,
+        "is_published": true,
+        "meta_title": "Guía para Agencias: Vendiendo Soluciones de Chatbot en WordPress a Clientes | REW",
+        "meta_description": "Modelos de negocio, paquetes de mantenimiento mensual y cómo monetizar la IA como agencia o desarrollador freelance.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:01:42.000000Z",
+        "faq_schema": null
+    },
+    {
+        "id": 22,
+        "title": "DeepSeek y Llama 3.3 en WordPress: La Revolución de las Respuestas Ultra Rápidas",
+        "slug": "deepseek-y-llama-wordpress-respuestas-instantaneas",
+        "excerpt": "Integración de modelos abiertos de alto rendimiento para reducir los costos de inferencia a una fracción de centavo.",
+        "content": "\n            <p>Los nuevos modelos de razonamiento como DeepSeek-R1 y Llama 3.3 ofrecen capacidades de nivel superior a costos casi nulos. Conoce cómo ejecutarlos con latencia mínima en tu sitio web.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Chatbots & IA WordPress",
+        "featured_image": "/images/blog/deepseek-llama-wordpress-ia-ultra-rapida.webp",
+        "read_time_minutes": 10,
+        "is_published": true,
+        "meta_title": "DeepSeek y Llama 3.3 en WordPress: La Revolución de las Respuestas Ultra Rápidas | REW",
+        "meta_description": "Integración de modelos abiertos de alto rendimiento para reducir los costos de inferencia a una fracción de centavo.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:01:42.000000Z",
+        "faq_schema": null
+    },
+    {
+        "id": 23,
+        "title": "Cómo Configurar tu Primer Chat Bot IA en WordPress en Menos de 5 Minutos",
+        "slug": "configurar-chat-bot-ia-wordpress-rapido",
+        "excerpt": "Guía exprés de instalación, inserción de API Key y publicación del widget en cualquier tema de WordPress.",
+        "content": "\n            <p>Sin complicaciones técnicas ni código complejo. Instala el plugin de <a href=\"/producto/rich-e-chatbot-assistant\">Rich-E</a> y comienza a atender clientes hoy mismo.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Chatbots & IA WordPress",
+        "featured_image": "/images/blog/instalar-chat-bot-ia-wordpress-5-minutos.webp",
+        "read_time_minutes": 8,
+        "is_published": true,
+        "meta_title": "Cómo Configurar tu Primer Chat Bot IA en WordPress en Menos de 5 Minutos | REW",
+        "meta_description": "Guía exprés de instalación, inserción de API Key y publicación del widget en cualquier tema de WordPress.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:01:42.000000Z",
+        "faq_schema": null
+    },
+    {
+        "id": 24,
+        "title": "¿Qué es RAG WooCommerce y Cómo Ayuda a tu Bot a Responder Stock en Tiempo Real?",
+        "slug": "que-es-rag-woocommerce-busqueda-stock-real",
+        "excerpt": "Arquitectura técnica de recuperación semántica conectada directamente a la base de datos de productos.",
+        "content": "\n            <p>La tecnología RAG (<em>Retrieval-Augmented Generation</em>) es la que permite a la IA consultar variaciones de color, tallas y stock en vivo sin necesidad de reentrenar modelos cada vez que cambias un precio.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Chatbots & IA WordPress",
+        "featured_image": "/images/blog/que-es-rag-woocommerce-stock-tiempo-real.webp",
+        "read_time_minutes": 11,
+        "is_published": true,
+        "meta_title": "¿Qué es RAG WooCommerce y Cómo Ayuda a tu Bot a Responder Stock en Tiempo Real? | REW",
+        "meta_description": "Arquitectura técnica de recuperación semántica conectada directamente a la base de datos de productos.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:01:42.000000Z",
+        "faq_schema": null
+    },
+    {
+        "id": 25,
+        "title": "Soberanía de Datos: Por Qué el Auto-Alojamiento es Clave para tu IA WooCommerce",
+        "slug": "soberania-datos-auto-alojamiento-ia-woocommerce",
+        "excerpt": "Ventajas de almacenar el historial de chats y datos de tus clientes en tu propio servidor sin depender de plataformas de terceros.",
+        "content": "\n            <p>A diferencia de los SaaS que guardan las conversaciones de tus clientes en servidores externos, los plugins de REW garantizan que tus datos comerciales permanezcan en tu propio hosting.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Chatbots & IA WordPress",
+        "featured_image": "/images/blog/soberania-datos-auto-alojamiento-ia-woocommerce.webp",
+        "read_time_minutes": 10,
+        "is_published": true,
+        "meta_title": "Soberanía de Datos: Por Qué el Auto-Alojamiento es Clave para tu IA WooCommerce | REW",
+        "meta_description": "Ventajas de almacenar el historial de chats y datos de tus clientes en tu propio servidor sin depender de plataformas de terceros.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:01:42.000000Z",
+        "faq_schema": null
+    },
+    {
+        "id": 26,
+        "title": "Cómo Agregar un Botón de WhatsApp en WordPress sin Afectar la Velocidad (Guía 2026)",
+        "slug": "agregar-boton-whatsapp-wordpress",
+        "excerpt": "Código optimizado y plugins ultraligeros para insertar un botón flotante de WhatsApp responsive que no ralentice tus Core Web Vitals ni bloquee el renderizado.",
+        "content": "\n            <p>El botón de WhatsApp es el canal de contacto preferido por los consumidores en Chile. Sin embargo, instalar un plugin mal programado puede arruinar tu puntaje en Google PageSpeed. Revisa nuestras recomendaciones de <a href=\"/soporte-wordpress\">Soporte WordPress</a> y <a href=\"/mantenimiento-web\">Mantenimiento Web</a>.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Desarrollo Web & WordPress",
+        "featured_image": "/images/blog/boton-flotante-whatsapp-wordpress-responsive.webp",
+        "read_time_minutes": 8,
+        "is_published": true,
+        "meta_title": "Cómo Agregar un Botón de WhatsApp en WordPress sin Afectar la Velocidad (Guía 2026) | REW",
+        "meta_description": "Código optimizado y plugins ultraligeros para insertar un botón flotante de WhatsApp responsive que no ralentice tus Core Web Vitals ni bloquee el renderizado.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:10:36.000000Z",
+        "faq_schema": [
+            {
+                "question": "¿Por qué los plugins genéricos de WhatsApp vuelven lento a WordPress?",
+                "answer": "Muchos plugins cargan librerías pesadas de JavaScript, fuentes externas y hojas de estilo CSS no optimizadas en cada página, degradando la métrica LCP y FID de Google PageSpeed."
+            },
+            {
+                "question": "¿Cuál es la forma más rápida de añadir el botón de WhatsApp?",
+                "answer": "Utilizar HTML y CSS puro con un enlace estándar `https://api.whatsapp.com/send?phone=...` o un plugin ligero como los desarrollados por REW."
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "title": "La Computación Cuántica: Cómo Cambiará los Paradigmas del Software y la Ciberseguridad",
+        "slug": "la-computacion-cuantica",
+        "excerpt": "Superposición, entrelazamiento cuántico y la transición hacia algoritmos de criptografía post-cuántica (PQC) en la arquitectura de software moderna.",
+        "content": "\n            <p>Un análisis de divulgación sobre el futuro de la informática, los qubits superconductores y cómo las plataformas de <a href=\"/desarrollo-de-software-chile\">Desarrollo de Software en Laravel</a> deben prepararse para los estándares de seguridad del mañana.</p>\n        ",
+        "author_name": "Álvaro Valenzuela Valdés",
+        "category": "Tecnología & Innovación",
+        "featured_image": "/images/blog/computacion-cuantica-futuro-software-ciberseguridad.webp",
+        "read_time_minutes": 9,
+        "is_published": true,
+        "meta_title": "La Computación Cuántica: Cómo Cambiará los Paradigmas del Software y la Ciberseguridad | REW",
+        "meta_description": "Superposición, entrelazamiento cuántico y la transición hacia algoritmos de criptografía post-cuántica (PQC) en la arquitectura de software moderna.",
+        "created_at": "2026-08-29T20:53:41.000000Z",
+        "updated_at": "2026-08-29T23:10:36.000000Z",
+        "faq_schema": [
+            {
+                "question": "¿La computación cuántica romperá el cifrado RSA actual?",
+                "answer": "Con el algoritmo de Shor, computadores cuánticos suficientemente potentes podrán factorizar números primos gigantescos, obligando a migrar a criptografía post-cuántica aprobada por NIST."
+            }
+        ]
+    }
+]

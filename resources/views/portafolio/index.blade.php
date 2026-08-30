@@ -81,4 +81,50 @@
         </div>
     </div>
 </section>
+
+<!-- Schema.org JSON-LD Structured Data for Portfolio Collection -->
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@graph": [
+    {
+      "@@type": "CollectionPage",
+      "@@id": "{{ route('portafolio.index') }}#webpage",
+      "url": "{{ route('portafolio.index') }}",
+      "name": "Portafolio de Proyectos Web & Software | REW Chile",
+      "description": "Explora nuestros proyectos reales de desarrollo web, tiendas online de merchandising para artistas internacionales y plataformas a medida.",
+      "breadcrumb": {
+        "@@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "{{ route('home') }}"
+          },
+          {
+            "@@type": "ListItem",
+            "position": 2,
+            "name": "Portafolio Web",
+            "item": "{{ route('portafolio.index') }}"
+          }
+        ]
+      },
+      "mainEntity": {
+        "@@type": "ItemList",
+        "itemListElement": [
+          @foreach($projects as $index => $proj)
+          {
+            "@@type": "ListItem",
+            "position": {{ $index + 1 }},
+            "name": "{{ addslashes($proj->title) }}",
+            "url": "{{ route('portafolio.show', $proj->slug) }}"
+          }{{ !$loop->last ? ',' : '' }}
+          @endforeach
+        ]
+      }
+    }
+  ]
+}
+</script>
 @endsection

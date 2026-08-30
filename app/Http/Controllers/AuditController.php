@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quote;
+use App\Models\Setting;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -94,10 +95,11 @@ class AuditController extends Controller
             'ip_address' => $request->ip(),
         ]);
 
-        // 3. Enviar correo a alvaro@rew.cl
+        // 3. Enviar correo de notificación
+        $targetEmail = Setting::get('notification_email', 'alvaro@rew.cl');
         try {
-            Mail::send('emails.new-quote', ['quote' => $quote], function ($message) use ($quote) {
-                $message->to('alvaro@rew.cl', 'Álvaro Valenzuela')
+            Mail::send('emails.new-quote', ['quote' => $quote], function ($message) use ($quote, $targetEmail) {
+                $message->to($targetEmail, 'Álvaro Valenzuela')
                     ->subject("🔍 Nueva Solicitud de Auditoría Web: {$quote->name} ({$quote->metadata['website_url']})")
                     ->replyTo($quote->email, $quote->name);
             });
@@ -106,7 +108,11 @@ class AuditController extends Controller
         }
 
         // 4. Mensaje formateado para WhatsApp
-        $whatsappNumber = '56987261127';
+        $rawWa = Setting::get('notification_whatsapp', '56987261127');
+        $whatsappNumber = preg_replace('/[^0-9]/', '', $rawWa);
+        if (empty($whatsappNumber)) {
+            $whatsappNumber = '56987261127';
+        }
         $msg = "🔍 *Nueva Solicitud de Auditoría Técnica REW* 🔍\n\n";
         $msg .= "👤 *Nombre:* {$quote->name}\n";
         $msg .= "📧 *Email:* {$quote->email}\n";

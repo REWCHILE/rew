@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminLeadController;
+use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\AdminRicheController;
 use App\Http\Controllers\AuditController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\GeoSeoController;
@@ -33,6 +36,7 @@ Route::get('/portafolio-web', [PortfolioController::class, 'index']);
 Route::get('/portafolio/{slug}', [PortfolioController::class, 'show'])->name('portafolio.show');
 
 // 4. Servicios Profesionales REW
+Route::get('/servicios', fn () => redirect('/#servicios'))->name('servicios.index');
 Route::get('/desarrollo-web', [ServiceController::class, 'desarrolloWeb'])->name('servicios.desarrollo-web');
 Route::get('/desarrollo-de-software-chile', [ServiceController::class, 'desarrolloSoftwareChile'])->name('servicios.software-chile');
 Route::get('/optimizacion-seo', [ServiceController::class, 'optimizacionSeo'])->name('servicios.seo');
@@ -70,11 +74,35 @@ Route::get('/llms-full.txt', [GeoSeoController::class, 'llmsFullTxt']);
 Route::get('/sitemap.xml', [GeoSeoController::class, 'sitemapXml']);
 Route::get('/robots.txt', [GeoSeoController::class, 'robotsTxt']);
 
-// 11. Panel de Administración CRM Leads & Cotizaciones REW
-Route::prefix('admin')->name('admin.')->group(function () {
+// 11. Autenticación & Control de Acceso
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1')->name('login.post');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// 12. Panel de Administración Seguro de REW (Protegido por Middleware Auth)
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', fn () => redirect()->route('admin.leads.index'));
+
+    // Leads & Cotizaciones CRM
     Route::get('/leads', [AdminLeadController::class, 'index'])->name('leads.index');
     Route::patch('/leads/{lead}/status', [AdminLeadController::class, 'updateStatus'])->name('leads.updateStatus');
     Route::get('/leads/{lead}', [AdminLeadController::class, 'show'])->name('leads.show');
     Route::delete('/leads/{lead}', [AdminLeadController::class, 'destroy'])->name('leads.destroy');
+
+    // Mi Perfil
+    Route::get('/perfil', [AdminProfileController::class, 'showProfile'])->name('profile.index');
+    Route::put('/perfil', [AdminProfileController::class, 'updateProfile'])->name('profile.update');
+
+    // Configuración & SMTP
+    Route::get('/configuracion', [AdminProfileController::class, 'showSettings'])->name('settings.index');
+    Route::post('/configuracion', [AdminProfileController::class, 'updateSettings'])->name('settings.update');
+    Route::post('/configuracion/test-smtp', [AdminProfileController::class, 'testSmtp'])->name('settings.test-smtp');
+    Route::post('/configuracion/test-instagram', [AdminProfileController::class, 'testInstagram'])->name('settings.test-instagram');
+
+    // Mantenedor Rich-E AI
+    Route::get('/riche', [AdminRicheController::class, 'index'])->name('riche.index');
+    Route::post('/riche', [AdminRicheController::class, 'store'])->name('riche.store');
+    Route::put('/riche/{item}', [AdminRicheController::class, 'update'])->name('riche.update');
+    Route::post('/riche/prompt', [AdminRicheController::class, 'updatePrompt'])->name('riche.prompt');
+    Route::delete('/riche/{item}', [AdminRicheController::class, 'destroy'])->name('riche.destroy');
 });

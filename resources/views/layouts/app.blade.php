@@ -32,9 +32,11 @@
     <meta name="twitter:description" content="@yield('og_description', 'Agencia de desarrollo web y software en Chile.')">
     <meta name="twitter:image" content="@yield('og_image', asset('images/logo.webp'))">
 
-    <!-- Favicon & Touch Icons -->
-    <link rel="icon" href="{{ asset('images/logo.webp') }}" type="image/webp">
-    <link rel="apple-touch-icon" href="{{ asset('images/logo.webp') }}">
+    <!-- Favicon & Modern Touch Icons (AI Generated Monogram REW) -->
+    <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png" sizes="512x512">
+    <link rel="icon" href="{{ asset('images/favicon.webp') }}" type="image/webp">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}" sizes="180x180">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -89,6 +91,8 @@
                 "telephone": "+56987261127",
                 "url": "{{ url('/nosotros') }}",
                 "sameAs": [
+                    "https://www.linkedin.com/in/%C3%A1lvaro-valenzuela-vald%C3%A9s-584065281/",
+                    "https://www.instagram.com/rew_chile/",
                     "https://rew.cl"
                 ]
             },
