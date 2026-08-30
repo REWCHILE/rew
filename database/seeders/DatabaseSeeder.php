@@ -287,7 +287,7 @@ class DatabaseSeeder extends Seeder
                 ],
                 'is_featured' => true,
                 'version' => '2.4.0',
-                'featured_image' => '/images/products/riche_shield_badge.webp',
+                'featured_image' => '/images/products/riche_lifetime_license.webp',
                 'meta_title' => 'Licencia Vitalicia Rich-E Chatbot (Lifetime) | REW',
                 'meta_description' => 'Compra la licencia vitalicia de Rich-E Chatbot para WordPress. Pago único, dominios ilimitados y soporte perpetuo.',
             ],
