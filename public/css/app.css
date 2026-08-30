@@ -4169,3 +4169,147 @@ html, body {
   }
 }
 
+/* ==========================================================================
+   DESKTOP MEGA MENU FULL STYLES
+   ========================================================================== */
+.mega-menu-full-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 340px;
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+.mega-category-title {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.mega-col-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.mega-service-card-v2 {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.mega-service-card-v2:hover,
+.mega-service-card-v2.active {
+  background: var(--bg-alt);
+  border-color: var(--border-light);
+}
+
+.mega-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  background: var(--bg-alt);
+}
+
+.mega-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.mega-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.badge-mini {
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.badge-purple { background: rgba(124, 58, 237, 0.12); color: #7c3aed; }
+.badge-blue { background: rgba(37, 99, 235, 0.12); color: #2563eb; }
+.badge-pink { background: rgba(236, 72, 153, 0.12); color: #ec4899; }
+.badge-green { background: rgba(16, 185, 129, 0.12); color: #10b981; }
+.badge-gold { background: rgba(245, 158, 11, 0.12); color: #d97706; }
+.badge-teal { background: rgba(13, 148, 136, 0.12); color: #0d9488; }
+.badge-amber { background: rgba(217, 119, 6, 0.12); color: #d97706; }
+
+.badge-active-dot {
+  color: #10b981;
+  font-size: 0.72rem;
+  font-weight: 800;
+  margin-left: auto;
+}
+
+.mega-col-spotlight {
+  background: linear-gradient(135deg, #090d16 0%, #1e1b4b 100%);
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.spotlight-banner-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.spotlight-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
+}
+
+.spotlight-desc {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  line-height: 1.45;
+  margin-bottom: 1rem;
+}
+
+.spotlight-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  margin-bottom: 1.25rem;
+}
+
+.spotlight-fading {
+  opacity: 0.3;
+  transition: opacity 0.15s ease;
+}
+
+

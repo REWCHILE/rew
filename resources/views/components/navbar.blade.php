@@ -1,4 +1,61 @@
-<header class="site-header">
+<style>
+/* Instant foolproof layout rules for Mega Menu & Mobile Drawer */
+@media (min-width: 992px) {
+    .mobile-nav-drawer,
+    .mobile-nav-backdrop,
+    .mobile-nav-toggle {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    .nav-item-dropdown {
+        position: relative;
+    }
+    .mega-menu-container {
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        width: 1140px;
+        max-width: 96vw;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+        border: 1px solid rgba(226, 232, 240, 0.8);
+        padding: 1.75rem 2rem;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 10000;
+    }
+    .nav-item-dropdown:hover .mega-menu-container,
+    .nav-item-dropdown.is-open .mega-menu-container {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateX(-50%) translateY(0) !important;
+        display: block !important;
+    }
+    .mega-menu-full-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr 340px !important;
+        gap: 1.75rem !important;
+        align-items: stretch !important;
+    }
+}
+@media (max-width: 991px) {
+    .mega-menu-container {
+        display: none !important;
+    }
+    .mobile-nav-toggle {
+        display: flex !important;
+    }
+}
+</style>
+
+<header class="header-main" id="siteHeader">
     <div class="container">
         <div class="header-inner">
             <!-- Logo -->
