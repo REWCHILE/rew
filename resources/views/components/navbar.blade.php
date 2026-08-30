@@ -288,7 +288,7 @@
 }
 </style>
 
-<header class="header-main" id="siteHeader">
+<header class="site-header header-main" id="siteHeader">
 
     <div class="container">
         <div class="header-inner">

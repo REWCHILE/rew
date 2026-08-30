@@ -108,7 +108,7 @@ function initDesktopMegaMenu() {
     }
 }
 function initHeaderScroll() {
-    const header = document.querySelector('.site-header');
+    const header = document.querySelector('.site-header, .header-main, #siteHeader');
     const progressBar = document.getElementById('headerScrollProgress');
     if (!header) return;
 
