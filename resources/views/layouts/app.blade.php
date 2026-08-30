@@ -32,11 +32,14 @@
     <meta name="twitter:description" content="@yield('og_description', 'Agencia de desarrollo web y software en Chile.')">
     <meta name="twitter:image" content="@yield('og_image', asset('images/logo.webp'))">
 
-    <!-- Favicon & Modern Touch Icons (AI Generated Monogram REW) -->
-    <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png" sizes="512x512">
-    <link rel="icon" href="{{ asset('images/favicon.webp') }}" type="image/webp">
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}" sizes="180x180">
+    <!-- Favicon & Modern Touch Icons (Official REW Isologo) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}?v={{ time() }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}?v={{ time() }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('android-chrome-192x192.png') }}?v={{ time() }}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ asset('android-chrome-512x512.png') }}?v={{ time() }}">
+    <link rel="icon" type="image/webp" href="{{ asset('images/favicon.webp') }}?v={{ time() }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}?v={{ time() }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}?v={{ time() }}">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ time() }}">
