@@ -298,6 +298,9 @@ class DatabaseSeeder extends Seeder
         }
 
         // 3. Proyectos del Portafolio
+        // Limpiar registros antiguos o con slugs obsoletos para evitar duplicados
+        PortfolioProject::whereIn('slug', ['autenticos-decadentes', 'codigo25', 'jjestetica', 'venta-de-paltas'])->delete();
+
         $projects = [
             0 => [
                 'title' => 'Artífices TV',
