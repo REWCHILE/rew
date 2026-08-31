@@ -1,5 +1,65 @@
 <style>
 /* ==========================================================================
+   PERMANENT FIXED STICKY HEADER & FLOATING GLASS NAVIGATION
+   ========================================================================== */
+body {
+    padding-top: 80px !important;
+}
+
+#siteHeader,
+.site-header,
+.header-main {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 9990 !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.85) !important;
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08) !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+#siteHeader.scrolled,
+.site-header.scrolled,
+.header-main.scrolled {
+    background: rgba(255, 255, 255, 0.98) !important;
+    box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.12), 0 4px 6px -2px rgba(15, 23, 42, 0.05) !important;
+    border-bottom-color: rgba(203, 213, 225, 0.9) !important;
+}
+
+.header-inner {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    height: 80px !important;
+    transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+#siteHeader.scrolled .header-inner,
+.site-header.scrolled .header-inner,
+.header-main.scrolled .header-inner {
+    height: 66px !important;
+}
+
+@media (max-width: 991px) {
+    body {
+        padding-top: 68px !important;
+    }
+    .header-inner {
+        height: 68px !important;
+    }
+    #siteHeader.scrolled .header-inner,
+    .site-header.scrolled .header-inner,
+    .header-main.scrolled .header-inner {
+        height: 60px !important;
+    }
+}
+
+/* ==========================================================================
    COMPLETE EMBEDDED MEGA MENU & MOBILE DRAWER STYLES
    ========================================================================== */
 @media (min-width: 992px) {
@@ -883,6 +943,19 @@
                 closeMenu();
             }
         });
+
+        // Sticky Header Scroll Listener
+        function onHeaderScroll() {
+            const header = document.getElementById('siteHeader');
+            if (!header) return;
+            if (window.scrollY > 15) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+        window.addEventListener('scroll', onHeaderScroll, { passive: true });
+        onHeaderScroll();
     }
 
     if (document.readyState === 'loading') {
