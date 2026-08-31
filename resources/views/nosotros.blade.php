@@ -331,7 +331,7 @@
                     ¿Listo para iniciar tu próximo gran proyecto?
                 </h2>
                 <p style="color: #cbd5e1; font-size: 1.15rem; max-width: 650px; margin: 0 auto 2.25rem; line-height: 1.7;">
-                    Agenda una consulta técnica directa con el Ingeniero Álvaro Valenzuela o solicita tu cotización formal en línea.
+                    Agenda una consulta técnica directa con el Ingeniero <strong>Álvaro Valenzuela Valdés</strong> o solicita tu cotización formal en línea.
                 </p>
                 <div style="display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap;">
                     <a href="{{ route('contacto') }}" class="btn btn-gold btn-lg" style="font-weight: 800; font-size: 1.05rem; padding: 1rem 2rem; box-shadow: 0 4px 20px rgba(245, 158, 11, 0.35);">

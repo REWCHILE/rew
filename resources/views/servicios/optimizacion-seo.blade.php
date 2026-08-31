@@ -253,7 +253,7 @@
                         <div style="width: 34px; height: 34px; border-radius: 8px; background: rgba(245, 158, 11, 0.1); color: #f59e0b; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0;">🧠</div>
                         <div>
                             <strong style="color: var(--text-dark); display: block; margin-bottom: 2px;">Ingeniería de software + Consultoría SEO avanzada</strong>
-                            <span style="font-size: 0.92rem; color: var(--text-muted);">Trato directo con el Ingeniero Álvaro Valenzuela para resolver problemas de código a nivel raíz sin demoras.</span>
+                            <span style="font-size: 0.92rem; color: var(--text-muted);">Trato directo con el Ingeniero Álvaro Valenzuela Valdés para resolver problemas de código a nivel raíz sin demoras.</span>
                         </div>
                     </div>
                 </div>
@@ -535,7 +535,7 @@
                 <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; font-size: 0.95rem; color: var(--text-muted);">
                     <div>✓ Revisión de indexación y errores en Google Search Console</div>
                     <div>✓ Diagnóstico de velocidad Core Web Vitals en móviles y desktop</div>
-                    <div>✓ Sesión de 20 minutos con el Ingeniero Álvaro Valenzuela</div>
+                    <div>✓ Sesión de 20 minutos con el Ingeniero Álvaro Valenzuela Valdés</div>
                 </div>
                 <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
                     <a href="https://calendly.com/satorisatorchile/rew?hide_event_type_details=1&hide_gdpr_banner=1" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-lg">

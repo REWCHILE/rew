@@ -140,7 +140,7 @@
 
                     <div style="background: var(--bg-alt); padding: 1.15rem 1.35rem; border-radius: 12px; border-left: 4px solid #06b6d4; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
                         <strong style="color: var(--text-dark); display: block; font-size: 1.05rem; margin-bottom: 2px;">5. Soporte Técnico Ante Errores, Caídas o Ajustes</strong>
-                        <span style="font-size: 0.9rem; color: var(--text-muted);">Tiempo de respuesta prioritario ante incidentes, resolución de bugs de código y soporte directo con el Ingeniero Álvaro Valenzuela.</span>
+                        <span style="font-size: 0.9rem; color: var(--text-muted);">Tiempo de respuesta prioritario ante incidentes, resolución de bugs de código y soporte directo con el Ingeniero Álvaro Valenzuela Valdés.</span>
                     </div>
                 </div>
             </div>
@@ -320,7 +320,7 @@
                         <span class="faq-icon-chevron">▾</span>
                     </button>
                     <div class="faq-content-body">
-                        Tienes canal directo vía WhatsApp y correo con el Ingeniero Álvaro Valenzuela y nuestro equipo técnico, garantizando tiempos de respuesta prioritarios para emergencias críticas.
+                        Tienes canal directo vía WhatsApp y correo con el Ingeniero Álvaro Valenzuela Valdés y nuestro equipo técnico, garantizando tiempos de respuesta prioritarios para emergencias críticas.
                     </div>
                 </div>
             </div>
@@ -345,7 +345,7 @@
                 <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; font-size: 0.95rem; color: var(--text-muted);">
                     <div>✓ Auditoría técnica de seguridad y versiones desactualizadas</div>
                     <div>✓ Diagnóstico de velocidad y estado del hosting / servidor</div>
-                    <div>✓ Sesión de 20 minutos con el Ingeniero Álvaro Valenzuela</div>
+                    <div>✓ Sesión de 20 minutos con el Ingeniero Álvaro Valenzuela Valdés</div>
                 </div>
                 <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
                     <a href="https://calendly.com/satorisatorchile/rew?hide_event_type_details=1&hide_gdpr_banner=1" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-lg">

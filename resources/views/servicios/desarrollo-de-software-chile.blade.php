@@ -55,7 +55,7 @@
                     </div>
                     <div class="service-feature-item">
                         <span class="service-feature-check">✓</span>
-                        <span>Trato directo con el Ingeniero Álvaro Valenzuela</span>
+                        <span>Trato directo con el Ingeniero Álvaro Valenzuela Valdés</span>
                     </div>
                 </div>
 
@@ -421,7 +421,7 @@
                             <span class="faq-icon-chevron">▾</span>
                         </button>
                         <div class="faq-content-body">
-                            Nuestra combinación única de estrategia de producto, desarrollo en código limpio (Laravel/PHP 8.3), diseño UX centrado en el usuario y trato directo con el Ingeniero Informático Álvaro Valenzuela. No tercerizamos ni subcontratamos; cuidamos cada línea de código de tu proyecto.
+                            Nuestra combinación única de estrategia de producto, desarrollo en código limpio (Laravel/PHP 8.3), diseño UX centrado en el usuario y trato directo con el Ingeniero Informático Álvaro Valenzuela Valdés. No tercerizamos ni subcontratamos; cuidamos cada línea de código de tu proyecto.
                         </div>
                     </div>
                 </div>

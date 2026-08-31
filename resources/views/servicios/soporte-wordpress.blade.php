@@ -394,7 +394,7 @@
                 <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; font-size: 0.95rem; color: var(--text-muted);">
                     <div>✓ Diagnóstico técnico de errores y conflictos de plugins</div>
                     <div>✓ Revisión de seguridad y escaneo de vulnerabilidades</div>
-                    <div>✓ Sesión de 20 minutos con el Ingeniero Álvaro Valenzuela</div>
+                    <div>✓ Sesión de 20 minutos con el Ingeniero Álvaro Valenzuela Valdés</div>
                 </div>
                 <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
                     <a href="https://calendly.com/satorisatorchile/rew?hide_event_type_details=1&hide_gdpr_banner=1" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-lg">

@@ -502,7 +502,7 @@
                     <span class="faq-icon-chevron">▼</span>
                 </button>
                 <div class="faq-content-body">
-                    Contratar una agencia especializada y con liderazgo de ingeniería como REW garantiza resultados profesionales, código limpio y ultra rápido optimizado para Google. Además, obtienes asesoría directa sin intermediarios con el Ingeniero Álvaro Valenzuela para asegurar que tu plataforma convierta visitas en clientes reales.
+                    Contratar una agencia especializada y con liderazgo de ingeniería como REW garantiza resultados profesionales, código limpio y ultra rápido optimizado para Google. Además, obtienes asesoría directa sin intermediarios con el Ingeniero Álvaro Valenzuela Valdés para asegurar que tu plataforma convierta visitas en clientes reales.
                 </div>
             </div>
 

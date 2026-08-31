@@ -383,7 +383,7 @@
                 <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; font-size: 0.95rem; color: var(--text-muted);">
                     <div>✓ Auditoría rápida de cuentas publicitarias existentes</div>
                     <div>✓ Plan de inversión recomendado por canal (Google / Meta)</div>
-                    <div>✓ Asesoría personalizada con el Ingeniero Álvaro Valenzuela</div>
+                    <div>✓ Asesoría personalizada con el Ingeniero Álvaro Valenzuela Valdés</div>
                 </div>
                 <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
                     <a href="https://calendly.com/satorisatorchile/rew?hide_event_type_details=1&hide_gdpr_banner=1" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-lg">
