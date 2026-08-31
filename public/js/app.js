@@ -218,75 +218,7 @@ function initHeaderScroll() {
     handleScroll();
 }
 
-/* ==========================================================================
-   Mobile Navigation Toggle & Bottom Sheet Drawer
-   ========================================================================== */
-function initMobileNav() {
-    const openBtn = document.getElementById('mobileNavOpenBtn') || document.querySelector('.mobile-nav-toggle');
-    const closeBtn = document.getElementById('mobileNavCloseBtn');
-    const drawer = document.getElementById('mobileNavDrawer');
-    const backdrop = document.getElementById('mobileNavBackdrop');
-    const servicesToggle = document.getElementById('mobileServicesToggle');
-    const servicesMenu = document.getElementById('mobileServicesMenu');
 
-    if (!drawer) return;
-
-    function openDrawer() {
-        drawer.classList.add('is-open', 'open');
-        if (backdrop) backdrop.classList.add('is-open', 'active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeDrawer() {
-        drawer.classList.remove('is-open', 'open');
-        if (backdrop) backdrop.classList.remove('is-open', 'active');
-        document.body.style.overflow = '';
-    }
-
-    if (openBtn) {
-        openBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            openDrawer();
-        });
-    }
-
-    if (closeBtn) {
-        closeBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            closeDrawer();
-        });
-    }
-
-    if (backdrop) {
-        backdrop.addEventListener('click', () => {
-            closeDrawer();
-        });
-    }
-
-    if (servicesToggle && servicesMenu) {
-        servicesToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            servicesMenu.classList.toggle('is-open');
-            servicesToggle.classList.toggle('active');
-        });
-    }
-
-    // Close on ESC key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && drawer.classList.contains('open')) {
-            closeDrawer();
-        }
-    });
-
-    // Toggle Mobile Services Submenu Accordion
-    if (servicesToggle && servicesMenu) {
-        servicesToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            servicesToggle.classList.toggle('open');
-            servicesMenu.classList.toggle('open');
-        });
-    }
-}
 
 /* ==========================================================================
    Shopping Cart Drawer & Global AJAX Add-to-Cart Manager

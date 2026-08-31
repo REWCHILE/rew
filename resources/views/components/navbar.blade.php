@@ -897,14 +897,13 @@ body {
         if (!drawer) return;
 
         function openMenu(e) {
-            if (e) { e.preventDefault(); e.stopPropagation(); }
+            if (e && e.preventDefault) { e.preventDefault(); e.stopPropagation(); }
             drawer.classList.add('is-open', 'open');
             if (backdrop) backdrop.classList.add('is-open', 'active', 'open');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeMenu(e) {
-            if (e) { e.preventDefault(); }
+        function closeMenu() {
             drawer.classList.remove('is-open', 'open');
             if (backdrop) backdrop.classList.remove('is-open', 'active', 'open');
             document.body.style.overflow = '';
@@ -914,15 +913,15 @@ body {
             openBtn.onclick = openMenu;
         }
         if (closeBtn) {
-            closeBtn.onclick = closeMenu;
+            closeBtn.onclick = function(e) { if (e) e.preventDefault(); closeMenu(); };
         }
         if (backdrop) {
-            backdrop.onclick = closeMenu;
+            backdrop.onclick = function(e) { if (e) e.preventDefault(); closeMenu(); };
         }
 
         if (servicesToggle && servicesMenu) {
             servicesToggle.onclick = function(e) {
-                e.preventDefault();
+                if (e) e.preventDefault();
                 const isOpen = servicesMenu.classList.contains('is-open') || servicesMenu.classList.contains('open');
                 if (isOpen) {
                     servicesMenu.classList.remove('is-open', 'open');
@@ -935,7 +934,9 @@ body {
         }
 
         drawer.querySelectorAll('a:not(#mobileServicesToggle)').forEach(function(link) {
-            link.addEventListener('click', closeMenu);
+            link.addEventListener('click', function() {
+                closeMenu();
+            });
         });
 
         document.addEventListener('keydown', function(e) {
