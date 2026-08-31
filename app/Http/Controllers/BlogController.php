@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class BlogController extends Controller
 {
     /**
-     * Listado del Blog con soporte para categorías y paginación
+     * Listado del Blog con soporte para categorías, paginación y scroll infinito
      */
-    public function index(Request $request): View
+    public function index(Request $request): View|JsonResponse
     {
         $category = $request->query('category');
         $query = Post::where('is_published', true)->latest();
@@ -21,6 +22,16 @@ class BlogController extends Controller
         }
 
         $posts = $query->paginate(9)->withQueryString();
+
+        if ($request->ajax() || $request->query('ajax')) {
+            return response()->json([
+                'html' => view('blog._posts_grid', compact('posts'))->render(),
+                'hasMore' => $posts->hasMorePages(),
+                'nextPageUrl' => $posts->nextPageUrl(),
+                'currentPage' => $posts->currentPage(),
+                'total' => $posts->total(),
+            ]);
+        }
 
         // Categorías activas con conteo
         $categories = Post::where('is_published', true)

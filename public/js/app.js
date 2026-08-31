@@ -289,6 +289,109 @@ function initMobileNav() {
 }
 
 /* ==========================================================================
+   Shopping Cart Drawer & Global AJAX Add-to-Cart Manager
+   ========================================================================== */
+function initCartDrawer() {
+    const overlay = document.querySelector('.cart-drawer-overlay');
+    const drawer = document.querySelector('.cart-drawer');
+    const triggers = document.querySelectorAll('.cart-trigger-btn, .open-cart-drawer');
+    const closeBtns = document.querySelectorAll('.close-cart-drawer');
+
+    function openCart() {
+        if (overlay) overlay.classList.add('open');
+        if (drawer) drawer.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeCart() {
+        if (overlay) overlay.classList.remove('open');
+        if (drawer) drawer.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    triggers.forEach(btn => btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openCart();
+    }));
+
+    closeBtns.forEach(btn => btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeCart();
+    }));
+
+    if (overlay) {
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeCart();
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && drawer && drawer.classList.contains('open')) {
+            closeCart();
+        }
+    });
+
+    // Global Delegated Event for AJAX Add-to-Cart (Supports dynamically loaded infinite scroll cards)
+    document.addEventListener('submit', async (e) => {
+        const form = e.target.closest('.ajax-add-to-cart-form');
+        if (!form) return;
+
+        e.preventDefault();
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn ? submitBtn.innerHTML : '';
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>⏳ Agregando...</span>';
+        }
+
+        try {
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                if (submitBtn) {
+                    submitBtn.innerHTML = '<span>✓ ¡Añadido!</span>';
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalText;
+                    }, 1800);
+                }
+
+                // Update cart count badge
+                const countBadges = document.querySelectorAll('.cart-count-badge, .cart-count');
+                if (data.cart_count !== undefined) {
+                    countBadges.forEach(b => {
+                        b.textContent = data.cart_count;
+                        b.style.display = data.cart_count > 0 ? 'inline-flex' : 'none';
+                    });
+                }
+
+                // Update drawer items if HTML provided
+                if (data.drawer_html) {
+                    const itemsContainer = document.querySelector('.cart-drawer-items');
+                    if (itemsContainer) itemsContainer.innerHTML = data.drawer_html;
+                }
+
+                // Open cart drawer
+                openCart();
+            } else {
+                form.submit();
+            }
+        } catch (err) {
+            form.submit();
+        }
+    });
+}
+
+/* ==========================================================================
    Multi-Language & Multi-Currency Switcher (100% Native - No Google Banners)
    ========================================================================== */
 const UI_TRANSLATIONS = {

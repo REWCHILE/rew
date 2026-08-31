@@ -44,6 +44,17 @@ class ShopController extends Controller
         }
 
         $products = $query->paginate(9)->withQueryString();
+
+        if ($request->ajax() || $request->query('ajax')) {
+            return response()->json([
+                'html' => view('tienda._products_grid', compact('products'))->render(),
+                'hasMore' => $products->hasMorePages(),
+                'nextPageUrl' => $products->nextPageUrl(),
+                'currentPage' => $products->currentPage(),
+                'total' => $products->total(),
+            ]);
+        }
+
         $categories = Category::all();
 
         return view('tienda.index', compact('products', 'categories', 'selectedCategory', 'search', 'sort'));

@@ -35,53 +35,120 @@
             @endforeach
         </div>
 
-        <!-- Posts Grid -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.25rem; margin-bottom: 4rem;">
-            @foreach($posts as $post)
-                <article class="card spotlight-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column; border-radius: var(--radius-lg); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-                    @if($post->featured_image)
-                        <a href="{{ route('blog.show', $post->slug) }}" style="display: block; height: 210px; overflow: hidden; background: #090d16; position: relative;">
-                            <img src="{{ $post->featured_image }}" 
-                                 alt="{{ $post->title }}" 
-                                 style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;"
-                                 onmouseover="this.style.transform='scale(1.06)'"
-                                 onmouseout="this.style.transform='scale(1)'"
-                                 loading="lazy">
-                        </a>
-                    @endif
-                    <div style="padding: 1.75rem; flex-grow: 1; display: flex; flex-direction: column;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; font-size: 0.8rem;">
-                            <span class="badge badge-primary" style="font-size: 0.72rem;">{{ $post->category }}</span>
-                            <span style="color: var(--text-muted); font-weight: 600;">⏱️ {{ $post->read_time_minutes }} min lectura</span>
-                        </div>
-                        
-                        <h2 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.75rem; line-height: 1.35;">
-                            <a href="{{ route('blog.show', $post->slug) }}" style="color: var(--text-dark); text-decoration: none;">
-                                {{ $post->title }}
-                            </a>
-                        </h2>
-                        
-                        <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1;">
-                            {{ $post->excerpt }}
-                        </p>
-                        
-                        <div style="padding-top: 1rem; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
-                            <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-dark);">
-                                📅 {{ $post->created_at->format('d/m/Y') }}
-                            </span>
-                            <a href="{{ route('blog.show', $post->slug) }}" style="font-size: 0.88rem; font-weight: 800; color: var(--primary); text-decoration: none;">
-                                Leer Artículo →
-                            </a>
-                        </div>
-                    </div>
-                </article>
-            @endforeach
+        <!-- Posts Grid Container -->
+        <div id="blogPostsGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.25rem; margin-bottom: 2.5rem;">
+            @include('blog._posts_grid', ['posts' => $posts])
         </div>
 
-        <!-- Pagination -->
-        <div style="display: flex; justify-content: center;">
-            {{ $posts->links() }}
+        <!-- Infinite Scroll Loading Sentinel & UI State -->
+        <div id="blogInfiniteSentinel" 
+             data-next-url="{{ $posts->nextPageUrl() }}" 
+             data-has-more="{{ $posts->hasMorePages() ? '1' : '0' }}"
+             style="text-align: center; padding: 2rem 0; min-height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            
+            <div id="blogLoadingSpinner" style="display: none; align-items: center; gap: 12px; background: #ffffff; padding: 12px 24px; border-radius: 9999px; border: 1px solid var(--border-light); box-shadow: var(--shadow-md);">
+                <div class="spinner-ring" style="width: 22px; height: 22px; border: 3px solid rgba(79, 70, 229, 0.2); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.75s linear infinite;"></div>
+                <span style="font-weight: 700; font-size: 0.95rem; color: var(--text-dark);">Cargando más artículos...</span>
+            </div>
+
+            <div id="blogEndMessage" style="{{ $posts->hasMorePages() ? 'display: none;' : 'display: block;' }} color: var(--text-muted); font-size: 0.92rem; font-weight: 600; background: #f8fafc; padding: 10px 20px; border-radius: 9999px; border: 1px solid var(--border-light);">
+                ✨ Has explorado todos los artículos disponibles ({{ $totalCount }})
+            </div>
         </div>
     </div>
 </section>
+
+<style>
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+.post-card-item.fade-in-entry {
+    animation: fadeInCard 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes fadeInCard {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('blogPostsGrid');
+    const sentinel = document.getElementById('blogInfiniteSentinel');
+    const spinner = document.getElementById('blogLoadingSpinner');
+    const endMsg = document.getElementById('blogEndMessage');
+
+    if (!sentinel || !grid) return;
+
+    let isLoading = false;
+    let nextUrl = sentinel.getAttribute('data-next-url');
+    let hasMore = sentinel.getAttribute('data-has-more') === '1';
+
+    if (!hasMore) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !isLoading && hasMore && nextUrl) {
+                loadMorePosts();
+            }
+        });
+    }, {
+        rootMargin: '300px 0px',
+        threshold: 0.01
+    });
+
+    observer.observe(sentinel);
+
+    async function loadMorePosts() {
+        if (isLoading || !nextUrl) return;
+        isLoading = true;
+        spinner.style.display = 'inline-flex';
+
+        try {
+            const separator = nextUrl.includes('?') ? '&' : '?';
+            const fetchUrl = `${nextUrl}${separator}ajax=1`;
+            
+            const response = await fetch(fetchUrl, {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (!response.ok) throw new Error('Network error');
+
+            const data = await response.json();
+
+            if (data.html) {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = data.html;
+                
+                const newCards = tempDiv.querySelectorAll('.post-card-item');
+                newCards.forEach((card, i) => {
+                    card.classList.add('fade-in-entry');
+                    card.style.animationDelay = `${i * 0.06}s`;
+                    grid.appendChild(card);
+                });
+            }
+
+            hasMore = data.hasMore;
+            nextUrl = data.nextPageUrl;
+            sentinel.setAttribute('data-has-more', hasMore ? '1' : '0');
+            sentinel.setAttribute('data-next-url', nextUrl || '');
+
+            if (!hasMore) {
+                observer.unobserve(sentinel);
+                endMsg.style.display = 'block';
+            }
+        } catch (error) {
+            console.error('Error cargando más artículos:', error);
+        } finally {
+            isLoading = false;
+            spinner.style.display = 'none';
+        }
+    }
+});
+</script>
+@endpush
 @endsection
