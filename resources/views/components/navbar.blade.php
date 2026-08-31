@@ -651,14 +651,9 @@
     <div class="header-scroll-progress" id="headerScrollProgress"></div>
 </header>
 
-<!-- Mobile Navigation Drawer (Bottom-to-Top Sheet) -->
+<!-- Mobile Navigation Drawer (Off-Canvas Left-to-Right Sheet) -->
 <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
 <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Menú Móvil">
-    <!-- Drag indicator handle -->
-    <div class="mobile-drawer-handle-bar">
-        <div class="mobile-drawer-handle"></div>
-    </div>
-
     <!-- Drawer Header -->
     <div class="mobile-drawer-header">
         <a href="{{ route('home') }}" class="logo-link" style="text-decoration: none;">
@@ -690,14 +685,14 @@
                 <span class="badge badge-gold" style="font-size: 0.65rem; padding: 2px 6px; margin-left: auto;">IA & WP</span>
             </a>
 
-            <!-- Dropdown Servicios Mobile -->
+            <!-- Dropdown Servicios Mobile con Acordeón y Visual Spotlight -->
             <div class="mobile-accordion-item">
                 <button type="button" class="mobile-accordion-header {{ request()->routeIs('servicios.*') ? 'active' : '' }}" id="mobileServicesToggle">
                     <span class="mobile-item-icon">🌐</span>
                     <span class="mobile-item-text">Servicios de Ingeniería</span>
                     <span class="mobile-accordion-chevron">▾</span>
                 </button>
-                <div class="mobile-accordion-content {{ request()->routeIs('servicios.*') ? 'is-open' : '' }}" id="mobileServicesMenu">
+                <div class="mobile-accordion-content {{ request()->routeIs('servicios.*') ? 'is-open open' : '' }}" id="mobileServicesMenu">
                     <a href="{{ route('servicios.desarrollo-web') }}" class="mobile-sub-link {{ request()->routeIs('servicios.desarrollo-web') ? 'active' : '' }}">
                         <span class="sub-icon">🌐</span>
                         <div>
@@ -775,6 +770,22 @@
                             <div class="sub-desc">Prototipado en Figma para conversión</div>
                         </div>
                     </a>
+
+                    <!-- Tarjeta Visual Mobile Spotlight (No perder la riqueza visual del Mega Menú) -->
+                    <div class="mobile-services-spotlight" style="margin-top: 0.75rem; background: linear-gradient(135deg, #090d16 0%, #1e1b4b 100%); border-radius: 12px; overflow: hidden; border: 1px solid rgba(79, 70, 229, 0.35); box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+                        <div style="position: relative; height: 110px; overflow: hidden;">
+                            <img src="{{ asset('images/megamenu_software_ai.webp') }}" alt="Software Factory & IA" style="width: 100%; height: 100%; object-fit: cover;">
+                            <div style="position: absolute; inset: 0; background: linear-gradient(to top, #090d16 0%, rgba(9, 13, 22, 0.2) 60%, transparent 100%);"></div>
+                            <span style="position: absolute; top: 8px; left: 8px; background: rgba(15, 23, 42, 0.85); color: #fbbf24; font-size: 0.65rem; font-weight: 800; padding: 2px 7px; border-radius: 4px; border: 1px solid rgba(251, 191, 36, 0.4);">⭐ INNOVACIÓN REW</span>
+                        </div>
+                        <div style="padding: 0.85rem 1rem;">
+                            <h4 style="color: #ffffff; font-size: 0.95rem; margin: 0 0 4px 0; font-weight: 800;">Software Factory & Asistentes IA</h4>
+                            <p style="color: #cbd5e1; font-size: 0.78rem; line-height: 1.4; margin: 0 0 8px 0;">Desarrollo a medida en Laravel y bots RAG entrenados con tus datos.</p>
+                            <a href="{{ route('servicios.software-factory') }}" class="btn btn-primary btn-sm" style="width: 100%; justify-content: center; font-size: 0.8rem; padding: 6px 12px; font-weight: 800;">
+                                <span>Explorar Software Factory ➔</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -795,19 +806,19 @@
         </nav>
 
         <!-- CTAs Section inside Mobile Drawer -->
-        <div class="mobile-drawer-footer">
+        <div class="mobile-drawer-footer" style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-light); display: flex; flex-direction: column; gap: 8px;">
             @auth
-                <a href="{{ route('admin.leads.index') }}" class="btn btn-mobile-portal">
+                <a href="{{ route('admin.leads.index') }}" class="btn btn-mobile-portal" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); color: #ffc800; border: 1px solid rgba(255, 200, 0, 0.4); font-weight: 800; padding: 0.75rem; text-align: center; border-radius: 10px; text-decoration: none;">
                     <span>⚡</span> Acceder a Mi Portal CRM
                 </a>
             @endauth
 
-            <a href="{{ route('contacto') }}" class="btn btn-primary btn-mobile-quote">
+            <a href="{{ route('contacto') }}" class="btn btn-primary btn-mobile-quote" style="font-weight: 800; padding: 0.85rem; text-align: center; border-radius: 10px; text-decoration: none;">
                 <span>🚀</span> Cotizar Proyecto
             </a>
 
-            <a href="https://api.whatsapp.com/send?phone=56987261127" target="_blank" rel="noopener" class="mobile-wa-support">
-                <span>💬</span> WhatsApp Directo con Ingeniero (+56 9 8726 1127)
+            <a href="https://api.whatsapp.com/send?phone=56987261127&text={{ rawurlencode('Hola Álvaro, quiero consultar sobre los servicios de REW Chile.') }}" target="_blank" rel="noopener noreferrer" class="mobile-wa-support" style="background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; font-weight: 700; font-size: 0.82rem; padding: 0.7rem; border-radius: 10px; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                <span>💬</span> WhatsApp Directo (+56 9 8726 1127)
             </a>
         </div>
     </div>

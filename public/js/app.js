@@ -107,6 +107,88 @@ function initDesktopMegaMenu() {
         });
     }
 }
+
+/* ==========================================================================
+   Mobile Navigation Off-Canvas Drawer (Left to Right)
+   ========================================================================== */
+function initMobileNav() {
+    const openBtn = document.getElementById('mobileNavOpenBtn');
+    const closeBtn = document.getElementById('mobileNavCloseBtn');
+    const drawer = document.getElementById('mobileNavDrawer');
+    const backdrop = document.getElementById('mobileNavBackdrop');
+    const servicesToggle = document.getElementById('mobileServicesToggle');
+    const servicesMenu = document.getElementById('mobileServicesMenu');
+
+    if (!drawer) return;
+
+    function openDrawer() {
+        drawer.classList.add('is-open', 'open');
+        if (backdrop) {
+            backdrop.classList.add('is-open', 'active', 'open');
+        }
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+        drawer.classList.remove('is-open', 'open');
+        if (backdrop) {
+            backdrop.classList.remove('is-open', 'active', 'open');
+        }
+        document.body.style.overflow = '';
+    }
+
+    if (openBtn) {
+        openBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openDrawer();
+        });
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeDrawer();
+        });
+    }
+
+    if (backdrop) {
+        backdrop.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeDrawer();
+        });
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && (drawer.classList.contains('is-open') || drawer.classList.contains('open'))) {
+            closeDrawer();
+        }
+    });
+
+    // Mobile Services Accordion Toggle
+    if (servicesToggle && servicesMenu) {
+        servicesToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isOpen = servicesMenu.classList.contains('is-open') || servicesMenu.classList.contains('open');
+            if (isOpen) {
+                servicesMenu.classList.remove('is-open', 'open');
+                servicesToggle.classList.remove('open', 'is-open');
+            } else {
+                servicesMenu.classList.add('is-open', 'open');
+                servicesToggle.classList.add('open', 'is-open');
+            }
+        });
+    }
+
+    // Auto-close drawer on clicking normal links
+    drawer.querySelectorAll('a:not(#mobileServicesToggle)').forEach(link => {
+        link.addEventListener('click', () => {
+            closeDrawer();
+        });
+    });
+}
+
 function initHeaderScroll() {
     const header = document.querySelector('.site-header, .header-main, #siteHeader');
     const progressBar = document.getElementById('headerScrollProgress');
