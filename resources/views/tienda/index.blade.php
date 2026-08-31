@@ -1,21 +1,21 @@
 @extends('layouts.app')
 
-@section('title', '🛒 Plugins WordPress & Chatbots IA con Tecnología RAG en Chile | REW Tienda')
-@section('meta_description', '🤖 Automatiza tus ventas, añade pagos multi-moneda y potencia tu WooCommerce con plugins desarrollados por ingenieros chilenos. Soporte directo y licencias oficiales.')
+@section('title', '🛒 Mercado de Software Nativo & Plugins WordPress en Chile | REW Store')
+@section('meta_description', '🚀 Mercado oficial de software y plugins nativos para WordPress y WooCommerce. Chatbots con IA (Rich-E), multi-moneda, sincronización y licencias oficiales.')
 
-@section('og_title', '🛒 Plugins WordPress & Chatbots de IA para E-Commerce | REW Tienda')
-@section('og_description', '🔥 Dispara las conversiones de tu tienda online con Rich-E Chatbot, Multi-Currency Pro y plugins diseñados para vender 24/7 sin fricciones.')
-@section('og_image', asset('images/products/pack_chatbot_ecommerce.webp'))
+@section('og_title', '🛒 Mercado de Software Nativo & Plugins WordPress | REW Store')
+@section('og_description', '🔥 Adquiere software y plugins de alto rendimiento para WordPress y WooCommerce creados por ingenieros chilenos. Código limpio, licencias oficiales y soporte directo.')
+@section('og_image', asset('images/products/rew_tienda_marketplace_og.png'))
 
 @section('content')
 <section class="section" style="background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%);">
     <div class="container">
         <!-- Header -->
-        <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
-            <span class="badge badge-gold" style="margin-bottom: 0.75rem;">Ecosistema Oficial REW</span>
-            <h1 style="font-size: 3rem; margin-bottom: 1rem;">Tienda de Plugins WordPress & Soluciones IA</h1>
+        <div style="text-align: center; max-width: 840px; margin: 0 auto 3rem;">
+            <span class="badge badge-gold" style="margin-bottom: 0.75rem;">Mercado Oficial de Software Nativo REW</span>
+            <h1 style="font-size: 3rem; margin-bottom: 1rem;">Mercado de Software & Plugins WordPress</h1>
             <p style="font-size: 1.15rem; color: var(--text-body);">
-                Herramientas probadas para potenciar tu comercio electrónico, automatizar la atención a clientes y escalar tus conversiones.
+                Software nativo de alta ingeniería y plugins desarrollados en PHP 8.3 para potenciar tu comercio electrónico, integrar Inteligencia Artificial y escalar tus conversiones sin comisiones mensuales abusivas.
             </p>
         </div>
 
