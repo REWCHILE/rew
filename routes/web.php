@@ -99,6 +99,26 @@ Route::get('/llms.txt', [GeoSeoController::class, 'llmsTxt']);
 Route::get('/llms-full.txt', [GeoSeoController::class, 'llmsFullTxt']);
 Route::get('/sitemap.xml', [GeoSeoController::class, 'sitemapXml']);
 Route::get('/robots.txt', [GeoSeoController::class, 'robotsTxt']);
+Route::get('/favicon.svg', function () {
+    $path = public_path('favicon.svg');
+    if (file_exists($path)) {
+        return response()->file($path, [
+            'Content-Type' => 'image/svg+xml',
+            'Cache-Control' => 'public, max-age=86400',
+        ]);
+    }
+    abort(404);
+});
+Route::get('/favicon.ico', function () {
+    $path = public_path('favicon.ico');
+    if (file_exists($path)) {
+        return response()->file($path, [
+            'Content-Type' => 'image/x-icon',
+            'Cache-Control' => 'public, max-age=86400',
+        ]);
+    }
+    abort(404);
+});
 
 // 11. Autenticación & Control de Acceso
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
