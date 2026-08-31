@@ -4,9 +4,9 @@
 @section('meta_description', $product->meta_description ?? $product->short_description)
 
 @section('og_type', 'product')
-@section('og_title', $product->name . ' (Licencia Oficial) | REW')
-@section('og_description', $product->short_description)
-@section('og_image', Str::startsWith($product->featured_image, 'http') ? $product->featured_image : asset(ltrim($product->featured_image, '/')))
+@section('og_title', '🔥 ' . ($product->meta_title ?? $product->name . ' (Licencia Oficial) | REW'))
+@section('og_description', $product->meta_description ?? $product->short_description)
+@section('og_image', !empty($product->featured_image) ? (Str::startsWith($product->featured_image, 'http') ? $product->featured_image : asset(ltrim($product->featured_image, '/'))) : asset('images/rew_og_card.png'))
 
 @section('schema_json')
 <script type="application/ld+json">

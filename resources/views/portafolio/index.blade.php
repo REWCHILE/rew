@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Portafolio de Proyectos Web, E-Commerce & Software | REW Chile')
-@section('meta_description', 'Explora nuestros proyectos reales de desarrollo web, tiendas online de merchandising para artistas internacionales, plataformas educativas y software a medida.')
+@section('title', '🏆 Casos de Éxito & Proyectos de Alto Rendimiento | Portafolio Oficial REW Chile')
+@section('meta_description', '🔥 Conoce los e-commerce y plataformas que desarrollamos para Cuarteto de Nos, Auténticos Decadentes, Artífices TV, UDD y más marcas líderes.')
 
-@section('og_title', 'Portafolio Web & Casos de Éxito | REW Chile')
-@section('og_description', 'Descubre los casos de éxito de REW: Artífices TV, Código 25, Cuarteto de Nos, Auténticos Decadentes, Sotemono, Academiaflix y más.')
-@section('og_image', asset('images/logo.webp'))
+@section('og_title', '🏆 Casos de Éxito & Proyectos de Alto Rendimiento | REW Chile')
+@section('og_description', '🔥 E-commerce con más de 25.000 concurrentes, plataformas educativas y software en Laravel. Mira cómo ayudamos a marcas líderes a escalar.')
+@section('og_image', asset('images/rew_og_card.png'))
 
 @section('content')
 <style>

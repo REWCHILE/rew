@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', ($project->meta_title ?? $project->title . ' - Portafolio Web') . ' | REW')
+@section('title', Str::contains($project->meta_title ?? $project->title, 'REW') ? ($project->meta_title ?? $project->title) : ($project->meta_title ?? $project->title) . ' | REW')
 @section('meta_description', $project->meta_description ?? $project->summary)
 
 @section('og_type', 'article')
-@section('og_title', $project->title . ' - Caso de Éxito | REW Chile')
-@section('og_description', $project->summary)
-@section('og_image', Str::startsWith($project->featured_image, 'http') ? $project->featured_image : asset(ltrim($project->featured_image, '/')))
+@section('og_title', '🔥 ' . ($project->meta_title ?? $project->title . ' - Caso de Éxito | REW Chile'))
+@section('og_description', $project->meta_description ?? $project->summary)
+@section('og_image', !empty($project->featured_image) ? (Str::startsWith($project->featured_image, 'http') ? $project->featured_image : asset(ltrim($project->featured_image, '/'))) : asset('images/rew_og_card.png'))
 @section('article_published_time', $project->project_date ? \Carbon\Carbon::parse($project->project_date)->toIso8601String() : now()->toIso8601String())
 
 @section('content')

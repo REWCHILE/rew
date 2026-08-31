@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Carrito de Compras | REW Tienda')
-@section('meta_description', 'Revisa tus licencias de plugins WordPress y asistentes de IA en tu carrito de compras de REW.')
+@section('title', '🛒 Carrito de Compras | REW Tienda de Plugins')
+@section('meta_description', 'Revisa tus licencias oficiales de plugins WordPress y asistentes de IA listos para potenciar tu e-commerce.')
+
+@section('og_title', '🛒 Tu Carrito de Compras en REW Tienda')
+@section('og_description', 'Finaliza la compra de tus licencias oficiales de Rich-E Chatbot y plugins de alta conversión para WordPress.')
+@section('og_image', asset('images/rew_og_card.png'))
 
 @section('content')
 <section class="section" style="background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%);">

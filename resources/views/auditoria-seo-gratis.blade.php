@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Auditoría SEO Gratuita en Chile | Diagnóstico de Velocidad & Google | REW')
-@section('meta_description', 'Solicita una auditoría SEO técnica y de velocidad Core Web Vitals gratuita para tu sitio web en Chile. Descubre qué frena tus ventas en Google y cómo rankear en el Top 1.')
+@section('title', '🚀 ¿Por qué tu competencia te gana en Google? | Auditoría SEO & Velocidad 100% Gratis')
+@section('meta_description', '⚠️ Descubre los errores ocultos que frenan tus ventas online en Chile. Diagnóstico técnico en vivo con métricas Core Web Vitals reales. ¡Haz tu auditoría gratis aquí!')
 
 @section('og_type', 'website')
-@section('og_title', 'Auditoría SEO Gratuita en Chile | REW')
-@section('og_description', 'Evalúa la velocidad y el SEO técnico de tu página web en segundos. Diagnóstico profesional y plan de acción.')
-@section('og_image', asset('images/logo.webp'))
+@section('og_title', '🚀 ¿Por qué tu competencia te gana en Google? | Auditoría SEO & Velocidad 100% Gratis')
+@section('og_description', '⚠️ Diagnóstico técnico en segundos: Descubre por qué tu web es lenta y cómo superar a tu competencia en el Top 1 de Google Chile.')
+@section('og_image', asset('images/rew_og_card.png'))
 
 @section('content')
 <!-- Hero Section with Interactive Audit Box -->

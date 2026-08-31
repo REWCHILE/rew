@@ -3,6 +3,10 @@
 @section('title', 'Política de Privacidad y Protección de Datos | REW Chile')
 @section('meta_description', 'Conoce nuestra política de privacidad, uso de cookies y tratamiento de datos personales en REW.cl conforme a los más altos estándares de seguridad.')
 
+@section('og_title', 'Política de Privacidad y Protección de Datos | REW Chile')
+@section('og_description', 'Transparencia, seguridad y protección de datos personales de acuerdo con la legislación vigente en Chile.')
+@section('og_image', asset('images/rew_og_card.png'))
+
 @section('content')
 <section class="section" style="background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%); padding-top: 5rem; padding-bottom: 4rem;">
     <div class="container" style="max-width: 900px;">

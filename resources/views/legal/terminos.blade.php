@@ -3,6 +3,10 @@
 @section('title', 'Términos y Condiciones del Servicio & Políticas de Alojamiento | REW Chile')
 @section('meta_description', 'Consulta los términos y condiciones de uso, políticas estrictas de alojamiento web ético, alcance de cotizaciones y licenciamiento de software en REW.cl.')
 
+@section('og_title', 'Términos y Condiciones del Servicio | REW Chile')
+@section('og_description', 'Términos de servicio, políticas de alojamiento ético y licenciamiento de software en REW Chile.')
+@section('og_image', asset('images/rew_og_card.png'))
+
 @section('content')
 <section class="section" style="background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%); padding-top: 5rem; padding-bottom: 5rem;">
     <div class="container" style="max-width: 960px;">

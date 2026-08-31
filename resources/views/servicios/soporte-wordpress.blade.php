@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Soporte WordPress En Chile | Solución De Errores, Caídas Y Seguridad')
-@section('meta_description', 'Soporte WordPress en Chile para empresas y ecommerce. Solucionamos errores críticos, caídas, plugins, seguridad y velocidad. Respuesta rápida por WhatsApp.')
+@section('title', '🚨 ¿Se cayó tu WordPress o te hackearon? Soporte de Emergencia & Desinfección en Chile | REW')
+@section('meta_description', '⚡ Solucionamos caídas críticas, errores 500, pantalla blanca, incompatibilidad de plugins y desinfección de malware con atención directa por WhatsApp.')
 
-@section('og_title', 'Soporte WordPress En Chile | Solución De Errores, Caídas Y Seguridad')
-@section('og_description', 'Soporte WordPress en Chile para empresas y ecommerce. Solucionamos errores críticos, caídas, plugins, seguridad y velocidad. Respuesta rápida por WhatsApp.')
+@section('og_title', '🚨 Soporte WordPress de Emergencia en Chile: Solución de Errores & Caídas | REW')
+@section('og_description', '⚡ ¿Tu web se cayó o tiene errores críticos? Ingenieros especializados en WordPress y WooCommerce para emergencias técnicas y desinfección.')
 @section('og_image', asset('images/services/soporte_wp_hero.webp'))
 
 @section('content')

@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Implementación Odoo ERP en Chile | Consultoría, Facturación SII & Módulos | REW')
-@section('meta_description', 'Servicio profesional de implementación y consultoría de Odoo ERP en Chile. Facturación electrónica SII, inventario, CRM, contabilidad y migraciones personalizadas para tu empresa.')
+@section('title', '📊 Implementación Odoo ERP en Chile: Facturación SII, Inventario & CRM | REW')
+@section('meta_description', '🚀 Centraliza toda la gestión de tu empresa en una sola plataforma robusta, ágil y adaptada a la legislación chilena con consultores expertos.')
 
 @section('og_type', 'service')
-@section('og_title', 'Implementación Odoo ERP en Chile | REW')
-@section('og_description', 'Consultoría e implantación experta de Odoo ERP con localización chilena (Facturación SII, inventario y CRM).')
-@section('og_image', asset('images/logo.webp'))
+@section('og_title', '📊 Implementación Odoo ERP en Chile: Facturación Electrónica SII & Gestión | REW')
+@section('og_description', '🚀 Consultoría e implantación de Odoo ERP con localización chilena: Facturación SII, inventario, CRM y contabilidad automatizada.')
+@section('og_image', asset('images/services/software_casos_uso.webp'))
 
 @section('content')
 <!-- Hero Section -->

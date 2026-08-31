@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Nosotros | Álvaro Valenzuela Valdés & REW Chile')
-@section('meta_description', 'Conoce la historia, visión y metodología de REW y su fundador Álvaro Valenzuela Valdés, Ingeniero Informático, especialista en desarrollo de software, IA y estrategias de Inbound Marketing.')
+@section('title', '👨‍💻 Conoce al Equipo de REW | Ingeniería de Software, SEO & Trato Directo')
+@section('meta_description', '🚀 Liderados por Álvaro Valenzuela Valdés, transformamos empresas con arquitectura Laravel, WooCommerce de alto impacto, SEO y agentes de IA.')
 
-@section('og_title', 'Nosotros | Álvaro Valenzuela Valdés & REW Chile')
-@section('og_description', 'Ingeniería de software a medida, desarrollo web, plataformas LMS, IA con agentes autónomos y estrategias de inbound marketing.')
-@section('og_image', asset('images/logo.webp'))
+@section('og_title', '👨‍💻 Conoce al Equipo detrás de REW | Ingeniería de Software en Chile')
+@section('og_description', '🚀 Sin ejecutivos intermediarios: Trato directo con ingenieros informáticos para construir plataformas escalables, rápidas y rentables.')
+@section('og_image', asset('images/rew_og_card.png'))
 
 @section('content')
 <section class="section" style="background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%);">

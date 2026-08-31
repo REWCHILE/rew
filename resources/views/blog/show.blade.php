@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', ($post->meta_title ?? $post->title))
+@section('title', Str::contains($post->meta_title ?? $post->title, 'REW') ? ($post->meta_title ?? $post->title) : ($post->meta_title ?? $post->title) . ' | REW Blog')
 @section('meta_description', $post->meta_description ?? $post->excerpt)
 
 @section('og_type', 'article')
-@section('og_title', $post->title)
-@section('og_description', $post->excerpt)
-@section('og_image', $post->featured_image ? asset(ltrim($post->featured_image, '/')) : asset('images/logo.webp'))
+@section('og_title', $post->meta_title ?? $post->title)
+@section('og_description', $post->meta_description ?? $post->excerpt)
+@section('og_image', !empty($post->featured_image) ? (Str::startsWith($post->featured_image, 'http') ? $post->featured_image : asset(ltrim($post->featured_image, '/'))) : asset('images/rew_og_card.png'))
 @section('article_published_time', $post->created_at->toIso8601String())
 @section('article_modified_time', $post->updated_at->toIso8601String())
 
@@ -16,7 +16,7 @@
     "@@context": "https://schema.org",
     "@@type": "BlogPosting",
     "headline": "{{ $post->title }}",
-    "image": "{{ $post->featured_image ? asset(ltrim($post->featured_image, '/')) : asset('images/logo.webp') }}",
+    "image": "{{ !empty($post->featured_image) ? (Str::startsWith($post->featured_image, 'http') ? $post->featured_image : asset(ltrim($post->featured_image, '/'))) : asset('images/rew_og_card.png') }}",
     "author": {
         "@@type": "Person",
         "name": "{{ $post->author_name }}"

@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Desarrollo Web Chile | Sitios Rápidos, Modernos y Profesionales - REW')
-@section('meta_description', 'Servicio de desarrollo web en Chile. Creamos sitios rápidos, modernos y optimizados para tu negocio. Diseño web profesional, arquitectura escalable y SEO técnico.')
+@section('title', '💻 Sitios Web que Facturan de Verdad | Desarrollo Web Ultraligero & High-Conversion en Chile')
+@section('meta_description', '🚀 Deja atrás los sitios lentos y genéricos. Diseñamos webs optimizadas para posicionar en Google, cargar en menos de 1s y multiplicar tus clientes.')
 
-@section('og_title', 'Desarrollo Web Chile | Sitios Profesionales - REW')
-@section('og_description', 'Creamos sitios web y aplicaciones de alto rendimiento, optimizados para posicionar en Google y convertir visitantes en clientes.')
+@section('og_title', '💻 Sitios Web que Facturan de Verdad | Desarrollo Web en Chile - REW')
+@section('og_description', '🚀 Deja atrás las plantillas lentas. Creamos sitios optimizados para posicionar en Google y convertir visitas en clientes con Core Web Vitals en verde.')
 @section('og_image', asset('images/services/desarrollo_web_hero.webp'))
 
 @section('content')

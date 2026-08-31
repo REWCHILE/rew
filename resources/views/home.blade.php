@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'REW | Agencia SEO En Chile Para Empresas Que Quieren Resultados')
-@section('meta_description', 'Agencia SEO y desarrollo de software en Chile especializada en posicionamiento web, ecommerce y crecimiento orgánico real. Agenda una auditoría HOY.')
+@section('title', '⚡ ¿Tu web no vende o es lenta? | Desarrollo de Software, SEO & Plugins IA - REW')
+@section('meta_description', '🔥 Dejamos tu sitio cargando en menos de 1 segundo y rankeando #1 en Google. Desarrollamos software a medida en Laravel, WooCommerce de alta conversión y Chatbots de IA en Chile.')
 
-@section('og_title', 'REW | Agencia SEO y Desarrollo de Software en Chile')
-@section('og_description', 'Agencia de software en Laravel, tiendas WooCommerce de alta conversión, optimización SEO técnica y asistentes de IA con arquitectura RAG.')
-@section('og_image', asset('images/logo.webp'))
+@section('og_title', '⚡ ¿Tu web no vende o es lenta? | Desarrollo de Software & SEO en Chile - REW')
+@section('og_description', '🔥 Multiplica tus ventas con sitios web ultra veloces, software a medida en Laravel y Chatbots de IA para WooCommerce. ¡Pide tu auditoría gratuita hoy!')
+@section('og_image', asset('images/rew_og_card.png'))
 
 @section('content')
 <!-- ==========================================================================

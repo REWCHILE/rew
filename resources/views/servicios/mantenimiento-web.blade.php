@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Mantenimiento Web Profesional En Chile | WordPress Y Soporte Técnico')
-@section('meta_description', 'Servicio de mantenimiento web en Chile. Actualizaciones, seguridad, respaldos y soporte técnico para sitios WordPress empresariales y Servidores Linux.')
+@section('title', '🛡️ Tu Web Blindada, Ultrarrápida y 100% Operativa 24/7 | Mantenimiento Web Profesional REW')
+@section('meta_description', '🔒 Respaldos diarios en la nube, optimización de velocidad continua y protección contra hackeos para que tu empresa nunca pierda una venta.')
 
-@section('og_title', 'Mantenimiento Web Profesional En Chile | WordPress Y Soporte Técnico')
-@section('og_description', 'Servicio de mantenimiento web en Chile. Actualizaciones, seguridad, respaldos y soporte técnico para sitios WordPress empresariales y Servidores Linux.')
+@section('og_title', '🛡️ Mantenimiento Web Profesional en Chile: Seguridad & Rendimiento 24/7 | REW')
+@section('og_description', '🔒 Tu web segura, actualizada y rápida: Respaldos automáticos en la nube, monitoreo de caídas y soporte técnico prioritario.')
 @section('og_image', asset('images/services/mantenimiento_hero.webp'))
 
 @section('content')

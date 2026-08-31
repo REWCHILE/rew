@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Rich-E AI: Chatbot de Inteligencia Artificial RAG para WordPress y WooCommerce | REW')
-@section('meta_description', 'Transforma tu tienda online con Rich-E: Asistente virtual de IA con arquitectura RAG que indexa tu catálogo WooCommerce, responde dudas técnicas y vende 24/7 sin alucinaciones.')
+@section('title', '🤖 ¿Por qué perder ventas mientras duermes? | Rich-E: Chatbot IA para WordPress & WooCommerce')
+@section('meta_description', '🔥 Conecta la Inteligencia Artificial a tu catálogo sin alucinaciones. Respuestas en milisegundos, recomendaciones y cierre de ventas automático 24/7 con Rich-E.')
 
-@section('og_title', 'Rich-E AI: Chatbot de Inteligencia Artificial RAG para WordPress & WooCommerce')
-@section('og_description', 'Entrena a tu asistente virtual con tu catálogo de productos, blog y documentos. Cierre automático de ventas 24/7 con Groq y OpenAI.')
+@section('og_title', '🤖 ¿Por qué perder ventas mientras duermes? | Rich-E Chatbot IA para WordPress & WooCommerce')
+@section('og_description', '🔥 Asistente de IA con arquitectura RAG para WooCommerce: Aprende de tus productos, resuelve dudas técnicas 24/7 y cierra ventas automáticas.')
 @section('og_image', asset('images/products/riche_hero_banner.webp'))
 
 @section('schema_json')

@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Empresa Desarrollo De Software | Soluciones A Medida CL - REW')
-@section('meta_description', 'Somos una empresa de desarrollo de software en Chile. Creamos soluciones tecnológicas a medida para empresas, integrando innovación, diseño UX y SEO técnico.')
+@section('title', '⚡ Software Factory en Chile: Desarrollos en Laravel & Sistemas que Escalan tu Negocio | REW')
+@section('meta_description', '🛠️ Automatiza tus operaciones y digitaliza tu empresa con plataformas SaaS, APIs bancarias y sistemas a medida programados por ingenieros de software.')
 
-@section('og_title', 'Empresa Desarrollo De Software | Soluciones A Medida CL - REW')
-@section('og_description', 'Creamos soluciones de software a medida, aplicaciones SaaS y plataformas escalables para empresas en Chile con arquitectura en Laravel y soporte continuo.')
+@section('og_title', '⚡ Software Factory en Chile: Sistemas a Medida & SaaS con Laravel | REW')
+@section('og_description', '🛠️ Diseñamos plataformas web robustas, automatización de procesos y software escalable con trato directo de ingenieros informáticos.')
 @section('og_image', asset('images/services/software_hero.webp'))
 
 @section('content')

@@ -3,9 +3,9 @@
 @section('title', $service->meta_title ?? $service->name . ' | REW Chile')
 @section('meta_description', $service->meta_description ?? $service->tagline)
 
-@section('og_title', $service->meta_title ?? $service->name . ' | REW Chile')
+@section('og_title', '⚡ ' . ($service->meta_title ?? $service->name . ' | REW'))
 @section('og_description', $service->meta_description ?? $service->tagline)
-@section('og_image', asset('images/logo.webp'))
+@section('og_image', !empty($service->hero_image) ? (Str::startsWith($service->hero_image, 'http') ? $service->hero_image : asset(ltrim($service->hero_image, '/'))) : asset('images/rew_og_card.png'))
 
 @section('content')
 <section class="section" style="background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%);">

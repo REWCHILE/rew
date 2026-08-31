@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Integración Bsale con WooCommerce en Chile | Sincronización Automática & DTE | REW')
-@section('meta_description', 'Conecta tu tienda WooCommerce con el ERP Bsale en Chile. Sincronización automática de stock en tiempo real, catálogo de productos y emisión de boletas y facturas electrónicas.')
+@section('title', '🔄 Sincroniza Bsale con WooCommerce en Tiempo Real: Stock, Precios y Boletas SII Automáticas | REW')
+@section('meta_description', '⚙️ Elimina el trabajo manual y los errores de stock. Facturación electrónica DTE automática y sincronización bidireccional entre Bsale y tu tienda online.')
 
 @section('og_type', 'service')
-@section('og_title', 'Integración Bsale con WooCommerce en Chile | REW')
-@section('og_description', 'Sincroniza inventario, precios y boletas/facturas electrónicas automáticas entre Bsale y WooCommerce sin errores.')
-@section('og_image', asset('images/logo.webp'))
+@section('og_title', '🔄 Integración Bsale con WooCommerce en Chile: Stock y Facturas SII Automáticas | REW')
+@section('og_description', '⚙️ Sincroniza inventario, precios y emisión de boletas/facturas electrónicas automáticas sin errores entre Bsale y WooCommerce.')
+@section('og_image', asset('images/services/desarrollo_web_tecnologias.webp'))
 
 @section('content')
 <!-- Hero Section -->

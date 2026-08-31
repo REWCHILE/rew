@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Finalizar Compra / Checkout | REW Tienda')
-@section('meta_description', 'Completa tus datos para activar tus licencias de plugins WordPress y asistentes de IA.')
+@section('title', '💳 Finalizar Compra Segura | REW Tienda')
+@section('meta_description', 'Pago 100% seguro con Webpay Plus o Mercado Pago. Activación instantánea de licencias y soporte técnico de ingenieros REW.')
+
+@section('og_title', '💳 Finalizar Compra Segura | REW Tienda de Plugins')
+@section('og_description', 'Pago seguro con Webpay Plus y Mercado Pago. Activación inmediata de licencias para WordPress y WooCommerce.')
+@section('og_image', asset('images/rew_og_card.png'))
 
 @section('content')
 <section class="section" style="background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%);">

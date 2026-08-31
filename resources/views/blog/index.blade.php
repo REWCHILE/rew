@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Blog de Tecnología, SEO, Chatbots & Marketing Digital | REW Chile')
-@section('meta_description', 'Artículos técnicos, estrategias de redes sociales, desarrollo web en Laravel, integración de chatbots IA con RAG y marketing digital por Álvaro Valenzuela.')
+@section('title', '📚 Knowledge Hub: Guías de SEO, IA, Chatbots RAG & Desarrollo Web | REW Chile')
+@section('meta_description', '🔥 Artículos técnicos, benchmarks, hacks de conversión, comparativas y tendencias digitales escritas por ingenieros para multiplicar tus resultados online.')
 
-@section('og_title', 'Blog de Tecnología, SEO, Chatbots & Marketing Digital | REW')
-@section('og_description', 'Artículos técnicos y guías prácticas sobre desarrollo web, IA conversacional, redes sociales y posicionamiento en Google.')
-@section('og_image', asset('images/logo.webp'))
+@section('og_title', '📚 Knowledge Hub de Ingeniería Web, SEO & IA | REW Blog')
+@section('og_description', '🔥 Guías prácticas, hacks de conversión, comparativas técnicas y tendencias para dominar el mercado digital en Chile.')
+@section('og_image', asset('images/rew_og_card.png'))
 
 @section('content')
 <section class="section" style="background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%); padding: 5rem 0;">

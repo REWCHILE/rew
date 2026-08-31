@@ -5,32 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    @php
+        $rawOgImage = trim($__env->yieldContent('og_image'));
+        if (empty($rawOgImage)) {
+            $ogImageUrl = asset('images/rew_og_card.png');
+        } elseif (\Illuminate\Support\Str::startsWith($rawOgImage, ['http://', 'https://'])) {
+            $ogImageUrl = $rawOgImage;
+        } else {
+            $ogImageUrl = asset(ltrim($rawOgImage, '/'));
+        }
+
+        $imageExtension = strtolower(pathinfo(parse_url($ogImageUrl, PHP_URL_PATH), PATHINFO_EXTENSION));
+        $ogMimeType = match ($imageExtension) {
+            'png' => 'image/png',
+            'jpg', 'jpeg' => 'image/jpeg',
+            'webp' => 'image/webp',
+            'svg' => 'image/svg+xml',
+            default => 'image/png'
+        };
+
+        $pageTitle = trim($__env->yieldContent('title', 'REW | Agencia de Software, SEO y Tienda de Plugins en Chile'));
+        $ogTitle = trim($__env->yieldContent('og_title', $pageTitle));
+        $metaDescription = trim($__env->yieldContent('meta_description', 'Agencia de desarrollo de software en Laravel, tiendas e-commerce de alto rendimiento, optimización SEO en Chile y plugins con Inteligencia Artificial.'));
+        $ogDescription = trim($__env->yieldContent('og_description', $metaDescription));
+    @endphp
+
     <!-- Page Title & Standard Meta Tags -->
-    <title>@yield('title', 'REW | Agencia de Software, SEO y Tienda de Plugins en Chile')</title>
-    <meta name="description" content="@yield('meta_description', 'Agencia de desarrollo de software, diseño web, posicionamiento SEO en Chile y tienda de plugins de WordPress con Inteligencia Artificial. Liderada por Álvaro Valenzuela Valdés.')">
+    <title>{{ $pageTitle }}</title>
+    <meta name="description" content="{{ $metaDescription }}">
     <meta name="author" content="Álvaro Valenzuela Valdés - REW Chile">
     <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
     <link rel="canonical" href="@yield('canonical', url()->current())">
 
-    <!-- Facebook Sharing Debugger / OpenGraph Tags (100% Optimized) -->
+    <!-- Facebook Sharing Debugger / OpenGraph Tags (100% Optimized for CTR) -->
     <meta property="og:locale" content="es_CL">
     <meta property="og:type" content="@yield('og_type', 'website')">
-    <meta property="og:title" content="@yield('og_title', 'REW | Agencia de Software, SEO y Plugins WordPress')">
-    <meta property="og:description" content="@yield('og_description', 'Agencia especializada en desarrollo web, software a medida, SEO y plugins WordPress con IA en Chile.')">
+    <meta property="og:title" content="{{ $ogTitle }}">
+    <meta property="og:description" content="{{ $ogDescription }}">
     <meta property="og:url" content="@yield('og_url', url()->current())">
-    <meta property="og:site_name" content="REW">
-    <meta property="og:image" content="@yield('og_image', asset('images/logo.webp'))">
-    <meta property="og:image:secure_url" content="@yield('og_image', asset('images/logo.webp'))">
+    <meta property="og:site_name" content="REW - Software Factory & SEO Chile">
+    <meta property="og:image" content="{{ $ogImageUrl }}">
+    <meta property="og:image:secure_url" content="{{ $ogImageUrl }}">
     <meta property="og:image:width" content="@yield('og_image_width', '1200')">
     <meta property="og:image:height" content="@yield('og_image_height', '630')">
-    <meta property="og:image:alt" content="@yield('og_image_alt', 'REW - Agencia de Software y Posicionamiento')">
-    <meta property="og:image:type" content="image/webp">
+    <meta property="og:image:alt" content="@yield('og_image_alt', $ogTitle)">
+    <meta property="og:image:type" content="{{ $ogMimeType }}">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('og_title', 'REW | Agencia de Software, SEO y Plugins')">
-    <meta name="twitter:description" content="@yield('og_description', 'Agencia de desarrollo web y software en Chile.')">
-    <meta name="twitter:image" content="@yield('og_image', asset('images/logo.webp'))">
+    <meta name="twitter:title" content="{{ $ogTitle }}">
+    <meta name="twitter:description" content="{{ $ogDescription }}">
+    <meta name="twitter:image" content="{{ $ogImageUrl }}">
 
     <!-- Favicon & Modern Touch Icons (Official REW Isologo) -->
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}?v={{ time() }}">

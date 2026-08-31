@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'PUBLICIDAD DIGITAL | REW')
-@section('meta_description', 'Potencia tu tráfico web con campañas de Google Ads y Meta Ads en Chile. En REW diseñamos estrategias de publicidad digital que convierten clicks en clientes.')
+@section('title', '🎯 Campañas en Google Ads & Meta Ads que Sí Convierten Clics en Dinero Real | REW')
+@section('meta_description', '💥 Deja de quemar presupuesto publicitario. Diseñamos pauta en Google y Meta con segmentación láser y embudos de alta conversión.')
 
-@section('og_title', 'PUBLICIDAD DIGITAL | REW')
-@section('og_description', 'Potencia tu tráfico web con campañas de Google Ads y Meta Ads en Chile. En REW diseñamos estrategias de publicidad digital que convierten clicks en clientes.')
+@section('og_title', '🎯 Publicidad Digital en Chile: Google & Meta Ads Orientados a ROAS | REW')
+@section('og_description', '💥 Deja de quemar presupuesto. Optimizamos tus campañas con embudos de venta y medición precisa para rentabilizar cada peso invertido.')
 @section('og_image', asset('images/services/ads_hero.webp'))
 
 @section('content')

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Tienda de Plugins WordPress & Chatbots IA | REW')
-@section('meta_description', 'Comercialización oficial de plugins de WordPress, extensiones WooCommerce y asistentes de Inteligencia Artificial con RAG creados por REW.')
+@section('title', '🛒 Plugins WordPress & Chatbots IA con Tecnología RAG en Chile | REW Tienda')
+@section('meta_description', '🤖 Automatiza tus ventas, añade pagos multi-moneda y potencia tu WooCommerce con plugins desarrollados por ingenieros chilenos. Soporte directo y licencias oficiales.')
 
-@section('og_title', 'Tienda de Plugins WordPress & Chatbots IA | REW')
-@section('og_description', 'Descubre nuestros plugins profesionales para WordPress y WooCommerce: Rich-E Chatbot Assistant, Multi-Currency Pro y más.')
-@section('og_image', asset('images/logo.webp'))
+@section('og_title', '🛒 Plugins WordPress & Chatbots de IA para E-Commerce | REW Tienda')
+@section('og_description', '🔥 Dispara las conversiones de tu tienda online con Rich-E Chatbot, Multi-Currency Pro y plugins diseñados para vender 24/7 sin fricciones.')
+@section('og_image', asset('images/products/pack_chatbot_ecommerce.webp'))
 
 @section('content')
 <section class="section" style="background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%);">

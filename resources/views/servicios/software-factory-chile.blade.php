@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Software Factory en Chile | Células Ágiles & Desarrollo a Medida | REW')
-@section('meta_description', 'Fábrica de software en Chile. Células de desarrollo ágil en Laravel, PHP 8.3, React, APIs e Inteligencia Artificial. Trato directo con Ingeniero Informático Líder.')
+@section('title', '⚡ Software Factory en Chile: Células Ágiles & Desarrollo a Medida | REW')
+@section('meta_description', '🛠️ Células de desarrollo ágil en Laravel, PHP 8.3, APIs y microservicios con entregas por sprints y trato directo con ingenieros.')
 
 @section('og_type', 'service')
-@section('og_title', 'Software Factory en Chile | REW')
-@section('og_description', 'Fábrica de software especializada en desarrollo a medida, plataformas web, APIs y células de ingeniería en Chile.')
-@section('og_image', asset('images/logo.webp'))
+@section('og_title', '⚡ Software Factory en Chile: Células Ágiles & Desarrollo a Medida | REW')
+@section('og_description', '🛠️ Externaliza tu desarrollo tecnológico con ingenieros expertos en Laravel, arquitectura cloud y plataformas de alta demanda en Chile.')
+@section('og_image', asset('images/services/software_fabrica.webp'))
 
 @section('content')
 <!-- Hero Section -->

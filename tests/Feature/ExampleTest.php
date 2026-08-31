@@ -94,20 +94,18 @@ class ExampleTest extends TestCase
         $response = $this->get('/portafolio');
 
         $response->assertStatus(200);
-        $response->assertSee('Domingo Isaín');
-        $response->assertSee('Gasfiter Certificado SEC Chile');
-        $response->assertSee('Monarch Trading AI');
+        $response->assertSee('Cuarteto de Nos');
+        $response->assertSee('Los Auténticos Decadentes');
+        $response->assertSee('Academiaflix');
     }
 
     public function test_portfolio_project_detail_pages_return_successful_response(): void
     {
         $this->seed();
 
-        $this->get('/portafolio/domingo-isain')->assertStatus(200)->assertSee('Domingo Isaín');
-        $this->get('/portafolio/gasfiter-certificado')->assertStatus(200)->assertSee('Gasfiter Certificado SEC Chile');
-        $this->get('/portafolio/gasfiter-autorizado')->assertStatus(200)->assertSee('Gasfiter Autorizado Chile');
-        $this->get('/portafolio/bastian-selah')->assertStatus(200)->assertSee('Bastián Selah');
-        $this->get('/portafolio/venta-de-paltas')->assertStatus(200)->assertSee('Venta de Paltas Chile');
-        $this->get('/portafolio/monarch-trading-ai')->assertStatus(200)->assertSee('Monarch Trading AI');
+        $this->get('/portafolio/cuarteto-de-nos')->assertStatus(200)->assertSee('Cuarteto de Nos');
+        $this->get('/portafolio/los-autenticos-decadentes')->assertStatus(200)->assertSee('Los Auténticos Decadentes');
+        $this->get('/portafolio/sotemono')->assertStatus(200)->assertSee('Sotemono');
+        $this->get('/portafolio/academiaflix')->assertStatus(200)->assertSee('Academiaflix');
     }
 }

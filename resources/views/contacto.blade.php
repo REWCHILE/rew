@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Cotizador de Software y Contacto | REW Chile')
-@section('meta_description', 'Calcula el presupuesto estimado de tu software, sitio web o plugin en tiempo real. Trato directo con Álvaro Valenzuela Valdés.')
+@section('title', '💬 Cotiza tu Proyecto Web o Software en Minutos | Trato Directo con Álvaro Valenzuela')
+@section('meta_description', '⚡ Obtén un estimado de presupuesto en tiempo real y chatea directamente con el ingeniero desarrollador sin ejecutivos intermediarios ni demoras.')
 
-@section('og_title', 'Cotizador en Línea & Contacto - REW Chile')
-@section('og_description', 'Calcula tu presupuesto estimado y habla directamente con Álvaro Valenzuela por WhatsApp.')
+@section('og_title', '💬 Cotiza tu Proyecto Web o Software en Minutos | REW Chile')
+@section('og_description', '⚡ Calcula el presupuesto de tu web, software en Laravel o plugin WooCommerce y agenda reunión técnica directa con Álvaro Valenzuela.')
+@section('og_image', asset('images/rew_og_card.png'))
 
 @section('content')
 <!-- Page Header -->

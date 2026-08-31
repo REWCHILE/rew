@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Agencia SEO Chile | Posicionamiento Web Rápido 2025 REW')
-@section('meta_description', 'Agencia SEO Chile especializada en posicionamiento web. Aumenta tu visibilidad, tráfico y ventas con estrategias SEO personalizadas. Cotiza hoy.')
+@section('title', '📈 Posicionamiento SEO en Chile: ¿Quieres estar en el Top 1 de Google sin tirar plata en Ads? | REW')
+@section('meta_description', '🎯 Multiplica tu tráfico orgánico calificado y tus ventas con SEO técnico, arquitectura de contenidos y GEO para buscadores de IA en Chile.')
 
-@section('og_title', 'Agencia SEO Chile | Posicionamiento Web Rápido 2025 REW')
-@section('og_description', 'Agencia SEO en Chile especializada en posicionamiento web para empresas. Aumenta tráfico orgánico y conversiones con SEO técnico y estrategias a medida.')
+@section('og_title', '📈 Posicionamiento SEO en Chile: Rankea #1 en Google sin tirar plata en Ads | REW')
+@section('og_description', '🎯 Aumenta visitas y ventas con SEO técnico, optimización de velocidad y posicionamiento en motores de IA (ChatGPT, Gemini, Perplexity).')
 @section('og_image', asset('images/services/seo_hero.webp'))
 
 @section('content')
