@@ -314,28 +314,33 @@
             </div>
         </div>
 
-        <!-- CTA Box con fondo de Cyber-Océano Digital de REW (Ubicada al final) -->
-        <div class="card spotlight-card" style="background: radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.35) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.2) 0%, transparent 40%), linear-gradient(135deg, #090d16 0%, #0f172a 50%, #1e1b4b 100%); color: #ffffff; text-align: center; padding: 4rem 2rem; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.5); position: relative; overflow: hidden; margin-top: 2rem; margin-bottom: 2rem;">
-            <!-- Glow background orb -->
-            <div style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 400px; height: 120px; background: radial-gradient(circle, rgba(79,70,229,0.4) 0%, transparent 70%); pointer-events: none;"></div>
-            
-            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); padding: 5px 16px; border-radius: 9999px; font-size: 0.82rem; font-weight: 700; color: #38bdf8; margin-bottom: 1.25rem;">
-                <span>🌊</span> ECOSISTEMA DIGITAL REW
-            </div>
+        <!-- CTA Box con fondo de Cyber-Océano Digital de REW con Partículas y Formas Marinas en Movimiento -->
+        <div class="card spotlight-card ocean-cta-container" style="background: radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.35) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.2) 0%, transparent 40%), linear-gradient(135deg, #090d16 0%, #0f172a 50%, #1e1b4b 100%); color: #ffffff; text-align: center; padding: 4.5rem 2rem; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.5); position: relative; overflow: hidden; margin-top: 2.5rem; margin-bottom: 2rem;">
+            <!-- Canvas Interactivo de Océano (Partículas, Constelaciones, Medusas y Ondas Marinas) -->
+            <canvas id="nosotrosOceanCanvas" data-ocean-canvas data-bubbles="50" data-shapes="7" data-waves="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
 
-            <h2 style="color: #ffffff; font-size: 2.3rem; margin-bottom: 1rem; font-weight: 900; letter-spacing: -0.02em;">
-                ¿Listo para iniciar tu próximo gran proyecto?
-            </h2>
-            <p style="color: #cbd5e1; font-size: 1.15rem; max-width: 650px; margin: 0 auto 2.25rem; line-height: 1.7;">
-                Agenda una consulta técnica directa con el Ingeniero Álvaro Valenzuela o solicita tu cotización formal en línea.
-            </p>
-            <div style="display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap;">
-                <a href="{{ route('contacto') }}" class="btn btn-gold btn-lg" style="font-weight: 800; font-size: 1.05rem; padding: 1rem 2rem; box-shadow: 0 4px 20px rgba(245, 158, 11, 0.35);">
-                    🚀 Cotizar Proyecto Online
-                </a>
-                <a href="https://api.whatsapp.com/send?phone=56987261127&text={{ rawurlencode('Hola Álvaro, quiero consultar por un proyecto para mi empresa.') }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-lg" style="font-weight: 800; font-size: 1.05rem; padding: 1rem 2rem;">
-                    💬 Conversar por WhatsApp (+56 9 8726 1127)
-                </a>
+            <!-- Glow background orb -->
+            <div style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 400px; height: 120px; background: radial-gradient(circle, rgba(79,70,229,0.4) 0%, transparent 70%); pointer-events: none; z-index: 1;"></div>
+            
+            <div style="position: relative; z-index: 2;">
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); padding: 5px 16px; border-radius: 9999px; font-size: 0.82rem; font-weight: 700; color: #38bdf8; margin-bottom: 1.25rem; backdrop-filter: blur(8px);">
+                    <span>🌊</span> ECOSISTEMA DIGITAL REW
+                </div>
+
+                <h2 style="color: #ffffff; font-size: 2.3rem; margin-bottom: 1rem; font-weight: 900; letter-spacing: -0.02em;">
+                    ¿Listo para iniciar tu próximo gran proyecto?
+                </h2>
+                <p style="color: #cbd5e1; font-size: 1.15rem; max-width: 650px; margin: 0 auto 2.25rem; line-height: 1.7;">
+                    Agenda una consulta técnica directa con el Ingeniero Álvaro Valenzuela o solicita tu cotización formal en línea.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap;">
+                    <a href="{{ route('contacto') }}" class="btn btn-gold btn-lg" style="font-weight: 800; font-size: 1.05rem; padding: 1rem 2rem; box-shadow: 0 4px 20px rgba(245, 158, 11, 0.35);">
+                        🚀 Cotizar Proyecto Online
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=56987261127&text={{ rawurlencode('Hola Álvaro, quiero consultar por un proyecto para mi empresa.') }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-lg" style="font-weight: 800; font-size: 1.05rem; padding: 1rem 2rem;">
+                        💬 Conversar por WhatsApp (+56 9 8726 1127)
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -388,6 +393,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 4500);
     });
+
+    // Initialize Cyber-Ocean Marine Particles
+    if (typeof window.initOceanParticles === 'function') {
+        window.initOceanParticles('nosotrosOceanCanvas', {
+            bubbleCount: 50,
+            shapeCount: 7,
+            showWaves: true,
+            showShapes: true,
+            interactive: true
+        });
+    }
 });
 </script>
 @endpush
