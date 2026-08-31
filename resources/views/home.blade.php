@@ -671,7 +671,7 @@
             </div>
 
             <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: var(--radius-xl); padding: 2.25rem; text-align: center;">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">👨‍💻</div>
+                <x-founder-animated-avatar />
                 <h3 style="color: #ffffff; font-size: 1.35rem; margin-bottom: 0.5rem;">Álvaro Valenzuela Valdés</h3>
                 <div style="color: var(--accent-gold); font-size: 0.9rem; font-weight: 700; margin-bottom: 1.25rem;">Ingeniero Informático • Fundador de REW</div>
                 <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem;">
