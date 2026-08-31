@@ -1,99 +1,100 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
   <defs>
-    <!-- Background Gradient -->
+    <!-- Background Gradient (Deep Navy Slate) -->
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="0%" stop-color="#080d1a" />
       <stop offset="50%" stop-color="#0f172a" />
       <stop offset="100%" stop-color="#020617" />
     </linearGradient>
 
-    <!-- Border Glow Gradient -->
+    <!-- Border Glow Gradient (Electric Indigo to Amber Gold) -->
     <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.8" />
-      <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.6" />
-      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.9" />
-    </linearGradient>
-
-    <!-- REW Monogram Letter Gradient -->
-    <linearGradient id="letterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="35%" stop-color="#e0e7ff" />
-      <stop offset="70%" stop-color="#6366f1" />
-      <stop offset="100%" stop-color="#fbbf24" />
-    </linearGradient>
-
-    <!-- Accent Gold Gradient -->
-    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="50%" stop-color="#38bdf8" />
       <stop offset="100%" stop-color="#f59e0b" />
     </linearGradient>
 
-    <!-- Glow Filter -->
-    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="8" result="blur" />
+    <!-- Letter E Gradient -->
+    <linearGradient id="eGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+
+    <!-- Letter W Gradient (Luminous Gold) -->
+    <linearGradient id="wGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047" />
+      <stop offset="50%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+
+    <!-- Subtle Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
 
   <!-- Background Squircle Card -->
-  <rect x="16" y="16" width="480" height="480" rx="108" ry="108" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="12" />
+  <rect x="20" y="20" width="472" height="472" rx="108" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="16" />
 
-  <!-- Monogram REW - Unified Interlocking Geometric Geometry -->
-  <g transform="translate(48, 116)" filter="url(#subtleGlow)">
+  <!-- Monogram REW - Crisp, Bold Geometric Architecture -->
+  <g id="rew-monogram" filter="url(#glow)">
     
-    <!-- Letter R -->
-    <path d="M 16 0 
-             L 94 0 
-             C 138 0, 168 28, 168 68 
-             C 168 102, 142 126, 108 132 
-             L 168 260 
-             L 114 260 
-             L 64 148 
-             L 64 260 
-             L 16 260 
-             Z 
-             M 64 44 
-             L 64 104 
-             L 92 104 
-             C 114 104, 124 92, 124 74 
-             C 124 56, 114 44, 92 44 
-             Z" 
+    <!-- 1. Letter R (Bold White) -->
+    <path d="M 68 146
+             L 136 146
+             C 166 146, 184 164, 184 196
+             C 184 224, 166 242, 140 248
+             L 186 366
+             L 144 366
+             L 104 262
+             L 104 366
+             L 68 366
+             Z
+             M 104 178
+             L 104 230
+             L 132 230
+             C 146 230, 154 220, 154 204
+             C 154 188, 146 178, 132 178
+             Z"
           fill="#ffffff" />
 
-    <!-- Letter E (Interlocked with R & W) -->
-    <path d="M 152 0 
-             L 256 0 
-             L 256 44 
-             L 196 44 
-             L 196 108 
-             L 248 108 
-             L 248 152 
-             L 196 152 
-             L 196 216 
-             L 260 216 
-             L 260 260 
-             L 152 260 
-             Z" 
-          fill="url(#letterGrad)" />
+    <!-- 2. Letter E (Electric Indigo) -->
+    <path d="M 206 146
+             L 294 146
+             L 294 180
+             L 242 180
+             L 242 236
+             L 286 236
+             L 286 270
+             L 242 270
+             L 242 332
+             L 296 332
+             L 296 366
+             L 206 366
+             Z"
+          fill="url(#eGrad)" />
 
-    <!-- Letter W (Dynamic Forward Stride) -->
-    <path d="M 252 0 
-             L 296 0 
-             L 328 172 
-             L 362 0 
-             L 404 0 
-             L 404 260 
-             L 362 260 
-             L 362 88 
-             L 328 260 
-             L 294 88 
-             L 294 260 
-             L 252 260 
-             Z" 
-          fill="url(#goldGrad)" />
+    <!-- 3. Letter W (Vibrant Amber Gold) -->
+    <path d="M 314 146
+             L 348 146
+             L 374 278
+             L 398 146
+             L 426 146
+             L 452 278
+             L 478 146
+             L 510 146
+             L 470 366
+             L 438 366
+             L 412 238
+             L 386 366
+             L 354 366
+             Z"
+          transform="scale(0.88) translate(38, 26)"
+          fill="url(#wGrad)" />
   </g>
 
-  <!-- High-Tech Core Spark Dot -->
-  <circle cx="420" cy="92" r="14" fill="#fbbf24" filter="url(#subtleGlow)" />
-  <circle cx="420" cy="92" r="7" fill="#ffffff" />
+  <!-- Spark Dot Top-Right -->
+  <circle cx="414" cy="98" r="14" fill="#fbbf24" filter="url(#glow)" />
+  <circle cx="414" cy="98" r="7" fill="#ffffff" />
 </svg>

@@ -58,13 +58,14 @@
     <meta name="twitter:image" content="{{ $ogImageUrl }}">
 
     <!-- Favicon & Modern Touch Icons (Official REW Isologo) -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}?v={{ time() }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}?v={{ time() }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}?v={{ time() }}">
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('android-chrome-192x192.png') }}?v={{ time() }}">
     <link rel="icon" type="image/png" sizes="512x512" href="{{ asset('android-chrome-512x512.png') }}?v={{ time() }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}?v={{ time() }}">
     <link rel="icon" type="image/webp" href="{{ asset('images/favicon.webp') }}?v={{ time() }}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}?v={{ time() }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}?v={{ time() }}">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ time() }}">
