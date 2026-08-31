@@ -21,10 +21,9 @@
         <!-- Founder Profile Card -->
         <div class="card" style="margin-bottom: 4rem; border-color: rgba(79, 70, 229, 0.2); box-shadow: var(--shadow-xl);">
             <div class="grid-2col-profile">
-                <!-- Left: Profile Badge with Cyber-Ocean Animated Avatar -->
-                <div style="background: linear-gradient(135deg, #060d19 0%, #0f172a 50%, #1e293b 100%); border-radius: var(--radius-lg); padding: 2rem 1.5rem; text-align: center; color: #ffffff; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(56, 189, 248, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+                <!-- Left: Profile Badge -->
+                <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: var(--radius-lg); padding: 2.25rem 2rem; text-align: center; color: #ffffff; display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
-                        <!-- Animated Vector Developer with Cyber-Ocean Background & Thought Logistics Stream -->
                         <x-founder-animated-avatar />
 
                         <h3 style="color: #ffffff; font-size: 1.45rem; margin-bottom: 0.25rem; font-weight: 800; letter-spacing: -0.01em;">Álvaro Valenzuela Valdés</h3>
