@@ -117,4 +117,22 @@ class NewLandingPagesTest extends TestCase
         $response->assertSee('Wilson 2.0');
         $response->assertSee('Puerto Seguro');
     }
+
+    public function test_new_deepseek_and_llm_blog_posts_return_ok(): void
+    {
+        $this->seed();
+
+        $post1 = $this->get('/blog/deepseek-y-llama-wordpress-respuestas-instantaneas');
+        $post1->assertStatus(200);
+        $post1->assertSee('DeepSeek');
+        $post1->assertSee('Llama 3.3');
+
+        $redirect1 = $this->get('/2026/05/31/deepseek-y-llama-wordpress-respuestas-instantaneas');
+        $redirect1->assertStatus(301);
+
+        $post2 = $this->get('/blog/que-es-un-llm-valor-humanidad-negocios');
+        $post2->assertStatus(200);
+        $post2->assertSee('Large Language Model');
+        $post2->assertSee('Transformer');
+    }
 }
