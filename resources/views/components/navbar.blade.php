@@ -823,3 +823,72 @@
         </div>
     </div>
 </aside>
+
+<script>
+(function() {
+    function setupMobileNav() {
+        const openBtn = document.getElementById('mobileNavOpenBtn');
+        const closeBtn = document.getElementById('mobileNavCloseBtn');
+        const drawer = document.getElementById('mobileNavDrawer');
+        const backdrop = document.getElementById('mobileNavBackdrop');
+        const servicesToggle = document.getElementById('mobileServicesToggle');
+        const servicesMenu = document.getElementById('mobileServicesMenu');
+
+        if (!drawer) return;
+
+        function openMenu(e) {
+            if (e) { e.preventDefault(); e.stopPropagation(); }
+            drawer.classList.add('is-open', 'open');
+            if (backdrop) backdrop.classList.add('is-open', 'active', 'open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu(e) {
+            if (e) { e.preventDefault(); }
+            drawer.classList.remove('is-open', 'open');
+            if (backdrop) backdrop.classList.remove('is-open', 'active', 'open');
+            document.body.style.overflow = '';
+        }
+
+        if (openBtn) {
+            openBtn.onclick = openMenu;
+        }
+        if (closeBtn) {
+            closeBtn.onclick = closeMenu;
+        }
+        if (backdrop) {
+            backdrop.onclick = closeMenu;
+        }
+
+        if (servicesToggle && servicesMenu) {
+            servicesToggle.onclick = function(e) {
+                e.preventDefault();
+                const isOpen = servicesMenu.classList.contains('is-open') || servicesMenu.classList.contains('open');
+                if (isOpen) {
+                    servicesMenu.classList.remove('is-open', 'open');
+                    servicesToggle.classList.remove('open', 'is-open');
+                } else {
+                    servicesMenu.classList.add('is-open', 'open');
+                    servicesToggle.classList.add('open', 'is-open');
+                }
+            };
+        }
+
+        drawer.querySelectorAll('a:not(#mobileServicesToggle)').forEach(function(link) {
+            link.addEventListener('click', closeMenu);
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && (drawer.classList.contains('is-open') || drawer.classList.contains('open'))) {
+                closeMenu();
+            }
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupMobileNav);
+    } else {
+        setupMobileNav();
+    }
+})();
+</script>
