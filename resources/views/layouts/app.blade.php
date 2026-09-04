@@ -80,7 +80,16 @@
                 "@@type": "Organization",
                 "@@id": "{{ url('/') }}/#organization",
                 "name": "REW",
+                "alternateName": ["REW Chile", "Agencia REW", "REW Software & SEO", "rew.cl", "REW SpA"],
+                "legalName": "REW SpA",
+                "disambiguatingDescription": "Software factory y agencia chilena de desarrollo de software a medida en Laravel, tiendas WooCommerce, integraciones ERP en tiempo real y posicionamiento SEO, fundada por el Ingeniero Álvaro Valenzuela Valdés.",
                 "url": "{{ url('/') }}",
+                "sameAs": [
+                    "https://www.linkedin.com/in/%C3%A1lvaro-valenzuela-vald%C3%A9s-584065281/",
+                    "https://github.com/REWCHILE",
+                    "https://www.instagram.com/rew_chile/",
+                    "https://rew.cl"
+                ],
                 "email": "alvaro@rew.cl",
                 "telephone": "+56987261127",
                 "logo": {
@@ -107,7 +116,7 @@
                         "availableLanguage": ["Spanish", "English"]
                     }
                 ],
-                "description": "Agencia y empresa de desarrollo de software a medida, diseño web con Laravel y WordPress, optimización SEO y tienda de plugins de Inteligencia Artificial en Chile."
+                "description": "Agencia y software factory de desarrollo a medida con Laravel, tiendas WooCommerce de alta conversión, optimización SEO y plugins de Inteligencia Artificial en Chile."
             },
             {
                 "@@type": "Person",

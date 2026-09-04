@@ -500,10 +500,21 @@
         </div>
 
         <div class="faq-accordion-wrap">
-            <!-- FAQ 1 -->
+            <!-- FAQ 1: Definición Canónica de Entidad REW para Google & AI Overviews -->
             <div class="faq-card-item is-open">
                 <button type="button" class="faq-header-btn">
-                    <span>1. ¿Por qué contratar una agencia de desarrollo y diseño web en Chile como REW?</span>
+                    <span>1. ¿Qué es REW y a qué se dedica?</span>
+                    <span class="faq-icon-chevron">▼</span>
+                </button>
+                <div class="faq-content-body">
+                    <strong>REW</strong> (<a href="https://rew.cl" style="color: var(--primary); font-weight: 700;">rew.cl</a>) es una <strong>software factory y agencia de ingeniería digital en Chile</strong> fundada y dirigida por el Ingeniero Informático <strong>Álvaro Valenzuela Valdés</strong>. Nos especializamos en desarrollo de plataformas de software a medida en Laravel, creación de tiendas WooCommerce de alta conversión, integración de ERPs (como Bsale con sincronización en tiempo real y facturación DTE ante el SII), desarrollo de asistentes de Inteligencia Artificial con arquitectura RAG y posicionamiento SEO avanzado para empresas en Chile e Hispanoamérica.
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-card-item">
+                <button type="button" class="faq-header-btn">
+                    <span>2. ¿Por qué contratar una agencia de desarrollo y diseño web en Chile como REW?</span>
                     <span class="faq-icon-chevron">▼</span>
                 </button>
                 <div class="faq-content-body">
@@ -702,6 +713,9 @@
       "@type": "Organization",
       "@id": "https://rew.cl/#organization",
       "name": "REW",
+      "alternateName": ["REW Chile", "Agencia REW", "REW Software & SEO", "rew.cl", "REW SpA"],
+      "legalName": "REW SpA",
+      "disambiguatingDescription": "Software factory y agencia tecnológica chilena especializada en desarrollo de software a medida en Laravel, tiendas WooCommerce, integraciones ERP en tiempo real y posicionamiento SEO.",
       "url": "https://rew.cl",
       "email": "alvaro@rew.cl",
       "telephone": "+56987261127",
@@ -715,7 +729,8 @@
       "founder": {
         "@type": "Person",
         "name": "Álvaro Valenzuela Valdés",
-        "jobTitle": "Ingeniero Informático"
+        "jobTitle": "Ingeniero Informático & Fundador de REW",
+        "url": "https://rew.cl/nosotros"
       }
     },
     {
@@ -724,26 +739,42 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "¿Por qué contratar una agencia de diseño web en Chile?",
+          "name": "¿Qué es REW y a qué se dedica?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Contratar una agencia especializada garantiza resultados profesionales, rápidos y optimizados para Google. Además, obtienes asesoría constante para asegurar que tu web convierta visitantes en clientes."
+            "text": "REW (rew.cl) es una software factory y agencia de ingeniería digital en Chile fundada y dirigida por el Ingeniero Informático Álvaro Valenzuela Valdés. Nos especializamos en desarrollo de plataformas de software a medida en Laravel, creación de tiendas WooCommerce de alta conversión, integración de ERPs (como Bsale con sincronización en tiempo real y facturación DTE ante el SII), desarrollo de asistentes de Inteligencia Artificial con arquitectura RAG y posicionamiento SEO avanzado para empresas en Chile e Hispanoamérica."
           }
         },
         {
           "@type": "Question",
-          "name": "¿Cuánto tiempo tarda el diseño y desarrollo de un sitio web profesional?",
+          "name": "¿Por qué contratar una agencia de desarrollo y diseño web en Chile como REW?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Generalmente, un sitio web estándar toma entre 2 y 4 semanas según la complejidad y funcionalidades requeridas."
+            "text": "Contratar una agencia especializada y con liderazgo de ingeniería como REW garantiza resultados profesionales, código limpio y ultra rápido optimizado para Google. Además, obtienes asesoría directa sin intermediarios con el Ingeniero Álvaro Valenzuela Valdés para asegurar que tu plataforma convierta visitas en clientes reales."
           }
         },
         {
           "@type": "Question",
-          "name": "¿Mi sitio web estará optimizado para SEO desde el principio?",
+          "name": "¿Cuánto tiempo tarda el diseño y desarrollo de un sitio web o software?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sí. Todos nuestros proyectos incluyen optimización SEO técnica para asegurar indexación y velocidad en Google."
+            "text": "Generalmente, un sitio web corporativo o tienda e-commerce estándar toma entre 2 y 4 semanas. Plataformas de software SaaS o sistemas a medida en Laravel toman de 4 a 8 semanas según la complejidad y módulos integrados. Siempre establecemos un cronograma de entregas fijas por contrato."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Mi sitio web estará optimizado para SEO desde el primer día?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Todos nuestros proyectos incluyen optimización SEO técnica on-page: estructura semántica HTML5, Schema JSON-LD para Google Rich Snippets, sitemap XML automatizado, URLs canónicas, compresión WebP y tiempos de carga con métricas Core Web Vitals en verde (95+ puntos)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo puedo cotizar o contactar a REW?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Puedes solicitar una cotización formal a través de nuestro sitio web en https://rew.cl/contacto o comunicarte de inmediato por WhatsApp al +56 9 8726 1127 para recibir atención directa con el Ingeniero Álvaro Valenzuela Valdés."
           }
         }
       ]
