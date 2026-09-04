@@ -582,14 +582,34 @@ function initCartDrawer() {
     const drawer = document.querySelector('.cart-drawer');
     const openBtns = document.querySelectorAll('.open-cart-drawer, .cart-trigger-btn');
     const closeBtns = document.querySelectorAll('.close-cart-drawer');
+    let autoCloseTimer = null;
 
-    function openCart() {
+    function resetAutoClose() {
+        if (autoCloseTimer) {
+            clearTimeout(autoCloseTimer);
+            autoCloseTimer = null;
+        }
+    }
+
+    function startAutoClose(seconds = 20) {
+        resetAutoClose();
+        autoCloseTimer = setTimeout(() => {
+            closeCart();
+        }, seconds * 1000);
+    }
+
+    function openCart(withTimer = false) {
         if (overlay) overlay.classList.add('open');
         if (drawer) drawer.classList.add('open');
         document.body.style.overflow = 'hidden';
+
+        if (withTimer) {
+            startAutoClose(20); // 20s delay
+        }
     }
 
     function closeCart() {
+        resetAutoClose();
         if (overlay) overlay.classList.remove('open');
         if (drawer) drawer.classList.remove('open');
         document.body.style.overflow = '';
@@ -598,7 +618,7 @@ function initCartDrawer() {
     openBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            openCart();
+            openCart(false);
         });
     });
 
@@ -612,6 +632,17 @@ function initCartDrawer() {
     if (overlay) {
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) closeCart();
+        });
+    }
+
+    if (drawer) {
+        drawer.addEventListener('mouseenter', () => {
+            resetAutoClose(); // Pause timer while user is hovering/reading
+        });
+        drawer.addEventListener('mouseleave', () => {
+            if (overlay && overlay.classList.contains('open')) {
+                startAutoClose(10); // Grace period when mouse leaves
+            }
         });
     }
 
@@ -668,8 +699,8 @@ function initCartDrawer() {
                 // Render cart items inside drawer
                 renderCartItems(data.cart || {}, data.cart_total_usd, data.cart_total_clp);
 
-                // Open cart drawer from the left
-                openCart();
+                // Open cart drawer from the right with 20s auto-close timer
+                openCart(true);
             } else {
                 form.submit();
             }
