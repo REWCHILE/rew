@@ -55,27 +55,31 @@
                         </div>
                     </div>
 
+                    @php
+                        $currentCur = $currency ?? session('currency', (app()->getLocale() === 'es' ? 'CLP' : 'USD'));
+                    @endphp
+
                     <h3 style="font-size: 1.3rem; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-light);">
                         2. Método de Pago Preferido
                     </h3>
 
                     <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;">
-                        <label class="option-card selected" style="width: 100%;">
-                            <input type="radio" name="payment_method" value="Webpay Plus / Tarjeta de Débito o Crédito (CLP)" checked>
+                        <label class="option-card payment-clp {{ $currentCur === 'CLP' ? 'selected' : '' }}" style="width: 100%;">
+                            <input type="radio" name="payment_method" value="Webpay Plus / Tarjeta de Débito o Crédito (CLP)" {{ $currentCur === 'CLP' ? 'checked' : '' }}>
                             <span class="option-title">🇨🇱 Webpay Plus / Tarjetas Chilenas (CLP $)</span>
-                            <span style="font-size: 0.82rem; color: var(--text-muted);">Pago seguro a través de Transbank Webpay Plus.</span>
+                            <span style="font-size: 0.82rem; color: var(--text-muted);">Pago seguro a través de Transbank Webpay Plus (Débito, Crédito y Redcompra).</span>
                         </label>
 
-                        <label class="option-card" style="width: 100%;">
+                        <label class="option-card payment-clp" style="width: 100%;">
                             <input type="radio" name="payment_method" value="Transferencia Bancaria Directa (Chile)">
                             <span class="option-title">🏦 Transferencia Bancaria (Chile)</span>
-                            <span style="font-size: 0.82rem; color: var(--text-muted);">Envío inmediato de datos bancarios para depósito o transferencia.</span>
+                            <span style="font-size: 0.82rem; color: var(--text-muted);">Envío inmediato de datos bancarios para depósito o transferencia electrónica en CLP.</span>
                         </label>
 
-                        <label class="option-card" style="width: 100%;">
-                            <input type="radio" name="payment_method" value="PayPal / Tarjeta Internacional (USD)">
+                        <label class="option-card payment-usd {{ $currentCur === 'USD' ? 'selected' : '' }}" style="width: 100%;">
+                            <input type="radio" name="payment_method" value="PayPal / Tarjeta Internacional (USD)" {{ $currentCur === 'USD' ? 'checked' : '' }}>
                             <span class="option-title">🌎 PayPal / Tarjeta Internacional (USD $)</span>
-                            <span style="font-size: 0.82rem; color: var(--text-muted);">Ideal para clientes internacionales en dólares estadounidenses.</span>
+                            <span style="font-size: 0.82rem; color: var(--text-muted);">Ideal para clientes internacionales o pagos en dólares estadounidenses.</span>
                         </label>
                     </div>
 
@@ -98,7 +102,11 @@
                                 <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
                                     <span>{{ $item['name'] }} (x{{ $item['quantity'] }})</span>
                                     <span class="price-tag-dynamic" data-usd="{{ $item['price_usd'] * $item['quantity'] }}" data-clp="{{ $item['price_clp'] * $item['quantity'] }}" style="font-weight: 700;">
-                                        ${{ number_format($item['price_usd'] * $item['quantity'], 0) }} USD
+                                        @if($currentCur === 'CLP')
+                                            ${{ number_format($item['price_clp'] * $item['quantity'], 0, ',', '.') }} CLP
+                                        @else
+                                            ${{ number_format($item['price_usd'] * $item['quantity'], 0) }} USD
+                                        @endif
                                     </span>
                                 </div>
                             @endforeach
@@ -109,7 +117,11 @@
                             <span class="price-tag-dynamic" style="font-size: 1.6rem; font-weight: 900; color: var(--primary);"
                                   data-usd="{{ collect($cart)->sum(fn($i) => $i['price_usd'] * $i['quantity']) }}" 
                                   data-clp="{{ collect($cart)->sum(fn($i) => $i['price_clp'] * $i['quantity']) }}">
-                                ${{ number_format(collect($cart)->sum(fn($i) => $i['price_usd'] * $i['quantity']), 0) }} USD
+                                @if($currentCur === 'CLP')
+                                    ${{ number_format(collect($cart)->sum(fn($i) => $i['price_clp'] * $i['quantity']), 0, ',', '.') }} CLP
+                                @else
+                                    ${{ number_format(collect($cart)->sum(fn($i) => $i['price_usd'] * $i['quantity']), 0) }} USD
+                                @endif
                             </span>
                         </div>
 

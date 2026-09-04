@@ -256,6 +256,7 @@
                         <form action="{{ route('cart.add') }}" method="POST" class="ajax-add-to-cart-form" style="margin: 0;">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $productId }}">
+                            <input type="hidden" name="product_slug" value="plugin-integracion-bsale-woocommerce">
                             <div style="display: flex; gap: 0.75rem; align-items: stretch; flex-wrap: wrap;">
                                 <div style="width: 75px;">
                                     <input type="number" name="quantity" value="1" min="1" max="10" 

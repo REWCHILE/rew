@@ -27,18 +27,25 @@
                 <a href="{{ route('tienda.index') }}" class="btn btn-primary">Ir a la Tienda de Plugins</a>
             </div>
         @else
+            @php
+                $cartCurrency = $currency ?? session('currency', (app()->getLocale() === 'es' ? 'CLP' : 'USD'));
+            @endphp
             <div class="grid-2col-sidebar">
                 <!-- Cart Items Table -->
                 <div class="card" style="padding: 1.5rem;">
                     <div style="display: flex; flex-direction: column; gap: 1.25rem;">
                         @foreach($cart as $item)
                             <div class="cart-item-row" style="display: flex; gap: 1.25rem; align-items: center; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-light); flex-wrap: wrap;">
-                                <img src="{{ !empty($item['image']) ? (Str::startsWith($item['image'], 'http') ? $item['image'] : asset(ltrim($item['image'], '/'))) : asset('images/logo.webp') }}" alt="{{ $item['name'] }}" style="width: 70px; height: 70px; object-fit: contain; background: #0f172a; padding: 6px; border-radius: 10px;">
+                                <img src="{{ !empty($item['image']) ? (Str::startsWith($item['image'], 'http') || Str::startsWith($item['image'], 'data:') ? $item['image'] : asset(ltrim($item['image'], '/'))) : asset('images/logo.webp') }}" alt="{{ $item['name'] }}" style="width: 70px; height: 70px; object-fit: contain; background: #0f172a; padding: 6px; border-radius: 10px;">
                                 <div style="flex-grow: 1; min-width: 180px;">
                                     <h4 style="font-size: 1.05rem; margin-bottom: 4px;">{{ $item['name'] }}</h4>
                                     <div class="price-tag-dynamic" style="font-size: 0.95rem; font-weight: 700; color: var(--primary);" 
                                          data-usd="{{ $item['price_usd'] * $item['quantity'] }}" data-clp="{{ $item['price_clp'] * $item['quantity'] }}">
-                                        ${{ number_format($item['price_usd'] * $item['quantity'], 0) }} USD
+                                        @if($cartCurrency === 'CLP')
+                                            ${{ number_format($item['price_clp'] * $item['quantity'], 0, ',', '.') }} CLP
+                                        @else
+                                            ${{ number_format($item['price_usd'] * $item['quantity'], 0) }} USD
+                                        @endif
                                     </div>
                                     <div style="font-size: 0.8rem; color: var(--text-muted);">Cantidad: {{ $item['quantity'] }}</div>
                                 </div>
@@ -61,7 +68,11 @@
                         <span class="price-tag-dynamic" style="font-size: 1.4rem; font-weight: 900; color: var(--primary);"
                               data-usd="{{ collect($cart)->sum(fn($i) => $i['price_usd'] * $i['quantity']) }}" 
                               data-clp="{{ collect($cart)->sum(fn($i) => $i['price_clp'] * $i['quantity']) }}">
-                            ${{ number_format(collect($cart)->sum(fn($i) => $i['price_usd'] * $i['quantity']), 0) }} USD
+                            @if($cartCurrency === 'CLP')
+                                ${{ number_format(collect($cart)->sum(fn($i) => $i['price_clp'] * $i['quantity']), 0, ',', '.') }} CLP
+                            @else
+                                ${{ number_format(collect($cart)->sum(fn($i) => $i['price_usd'] * $i['quantity']), 0) }} USD
+                            @endif
                         </span>
                     </div>
 

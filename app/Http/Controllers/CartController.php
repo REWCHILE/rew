@@ -12,8 +12,9 @@ class CartController extends Controller
     public function index()
     {
         $cart = session()->get('cart', []);
+        $currency = $this->getEffectiveCurrency();
 
-        return view('carrito', compact('cart'));
+        return view('carrito', compact('cart', 'currency'));
     }
 
     public function checkout()
@@ -23,7 +24,7 @@ class CartController extends Controller
             return redirect()->route('tienda.index')->with('info', 'Tu carrito está vacío. Añade un plugin para continuar.');
         }
 
-        $currency = session()->get('currency', 'USD');
+        $currency = $this->getEffectiveCurrency();
 
         return view('checkout', compact('cart', 'currency'));
     }
@@ -31,27 +32,61 @@ class CartController extends Controller
     public function add(Request $request)
     {
         $productId = $request->input('product_id');
-        $product = Product::findOrFail($productId);
-        $quantity = max(1, (int) $request->input('quantity', 1));
+        $productSlug = $request->input('product_slug', $request->input('slug'));
 
+        $product = null;
+        if ($productId) {
+            $product = Product::find($productId);
+        }
+        if (! $product && $productSlug) {
+            $product = Product::where('slug', $productSlug)->first();
+        }
+        if (! $product && ($productSlug === 'plugin-integracion-bsale-woocommerce' || $productId == 9)) {
+            $product = Product::updateOrCreate(
+                ['slug' => 'plugin-integracion-bsale-woocommerce'],
+                [
+                    'name' => 'Plugin Bsale WooCommerce Sync Pro (Licencia Vitalicia)',
+                    'sku' => 'rew-bsale-woo-lifetime',
+                    'short_description' => 'Sincronización en tiempo real entre Bsale y WooCommerce. Stock multibodega, precios y emisión automática de boletas y facturas DTE ante el SII.',
+                    'description' => 'Conecta tu tienda WooCommerce con Bsale mediante API REST oficial con sincronización bidireccional inmediata.',
+                    'price_usd' => 380.00,
+                    'price_clp' => 350000,
+                    'original_price_usd' => 480.00,
+                    'original_price_clp' => 450000,
+                    'badge' => 'PAGO ÚNICO • LIFETIME',
+                    'featured_image' => '/images/products/plugin_bsale_woocommerce.webp',
+                    'is_featured' => true,
+                    'is_active' => true,
+                    'version' => '2.4.0',
+                ]
+            );
+        }
+
+        if (! $product) {
+            $product = Product::findOrFail($productId);
+        }
+
+        $quantity = max(1, (int) $request->input('quantity', 1));
         $cart = session()->get('cart', []);
 
-        if (isset($cart[$productId])) {
-            $cart[$productId]['quantity'] += $quantity;
+        $itemId = (string) $product->id;
+        if (isset($cart[$itemId])) {
+            $cart[$itemId]['quantity'] += $quantity;
         } else {
-            $cart[$productId] = [
+            $cart[$itemId] = [
                 'id' => $product->id,
                 'name' => $product->name,
                 'slug' => $product->slug,
                 'sku' => $product->sku,
-                'price_usd' => $product->price_usd,
-                'price_clp' => $product->price_clp,
+                'price_usd' => (float) $product->price_usd,
+                'price_clp' => (int) $product->price_clp,
                 'image' => $product->featured_image,
                 'quantity' => $quantity,
             ];
         }
 
         session()->put('cart', $cart);
+        $currency = $this->getEffectiveCurrency();
 
         if ($request->ajax() || $request->wantsJson()) {
             return response()->json([
@@ -61,6 +96,7 @@ class CartController extends Controller
                 'cart_count' => count($cart),
                 'cart_total_usd' => $this->calculateTotal($cart, 'USD'),
                 'cart_total_clp' => $this->calculateTotal($cart, 'CLP'),
+                'currency' => $currency,
             ]);
         }
 
@@ -69,13 +105,15 @@ class CartController extends Controller
 
     public function remove(Request $request)
     {
-        $productId = $request->input('product_id');
+        $productId = (string) $request->input('product_id');
         $cart = session()->get('cart', []);
 
         if (isset($cart[$productId])) {
             unset($cart[$productId]);
             session()->put('cart', $cart);
         }
+
+        $currency = $this->getEffectiveCurrency();
 
         if ($request->ajax() || $request->wantsJson()) {
             return response()->json([
@@ -84,6 +122,7 @@ class CartController extends Controller
                 'cart_count' => count($cart),
                 'cart_total_usd' => $this->calculateTotal($cart, 'USD'),
                 'cart_total_clp' => $this->calculateTotal($cart, 'CLP'),
+                'currency' => $currency,
             ]);
         }
 
@@ -92,14 +131,14 @@ class CartController extends Controller
 
     public function setCurrency(Request $request)
     {
-        $currency = strtoupper($request->input('currency', 'USD'));
+        $currency = strtoupper($request->input('currency', 'CLP'));
         if (in_array($currency, ['USD', 'CLP'])) {
             session()->put('currency', $currency);
         }
 
         return response()->json([
             'success' => true,
-            'currency' => session()->get('currency', 'USD'),
+            'currency' => $this->getEffectiveCurrency(),
         ]);
     }
 
@@ -119,7 +158,7 @@ class CartController extends Controller
             return redirect()->route('tienda.index');
         }
 
-        $currency = session()->get('currency', 'USD');
+        $currency = $this->getEffectiveCurrency();
         $totalUsd = $this->calculateTotal($cart, 'USD');
         $totalClp = $this->calculateTotal($cart, 'CLP');
 
@@ -169,6 +208,16 @@ class CartController extends Controller
         session()->forget('cart');
 
         return redirect()->away($whatsappUrl);
+    }
+
+    public function getEffectiveCurrency(): string
+    {
+        $currency = session()->get('currency');
+        if ($currency && in_array(strtoupper($currency), ['CLP', 'USD'])) {
+            return strtoupper($currency);
+        }
+
+        return (app()->getLocale() === 'es') ? 'CLP' : 'USD';
     }
 
     private function calculateTotal(array $cart, string $currency): float

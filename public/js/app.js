@@ -220,108 +220,7 @@ function initHeaderScroll() {
 
 
 
-/* ==========================================================================
-   Shopping Cart Drawer & Global AJAX Add-to-Cart Manager
-   ========================================================================== */
-function initCartDrawer() {
-    const overlay = document.querySelector('.cart-drawer-overlay');
-    const drawer = document.querySelector('.cart-drawer');
-    const triggers = document.querySelectorAll('.cart-trigger-btn, .open-cart-drawer');
-    const closeBtns = document.querySelectorAll('.close-cart-drawer');
 
-    function openCart() {
-        if (overlay) overlay.classList.add('open');
-        if (drawer) drawer.classList.add('open');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeCart() {
-        if (overlay) overlay.classList.remove('open');
-        if (drawer) drawer.classList.remove('open');
-        document.body.style.overflow = '';
-    }
-
-    triggers.forEach(btn => btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        openCart();
-    }));
-
-    closeBtns.forEach(btn => btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        closeCart();
-    }));
-
-    if (overlay) {
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) closeCart();
-        });
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && drawer && drawer.classList.contains('open')) {
-            closeCart();
-        }
-    });
-
-    // Global Delegated Event for AJAX Add-to-Cart (Supports dynamically loaded infinite scroll cards)
-    document.addEventListener('submit', async (e) => {
-        const form = e.target.closest('.ajax-add-to-cart-form');
-        if (!form) return;
-
-        e.preventDefault();
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn ? submitBtn.innerHTML : '';
-        if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span>⏳ Agregando...</span>';
-        }
-
-        try {
-            const formData = new FormData(form);
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'Accept': 'application/json'
-                }
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                if (submitBtn) {
-                    submitBtn.innerHTML = '<span>✓ ¡Añadido!</span>';
-                    setTimeout(() => {
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = originalText;
-                    }, 1800);
-                }
-
-                // Update cart count badge
-                const countBadges = document.querySelectorAll('.cart-count-badge, .cart-count');
-                if (data.cart_count !== undefined) {
-                    countBadges.forEach(b => {
-                        b.textContent = data.cart_count;
-                        b.style.display = data.cart_count > 0 ? 'inline-flex' : 'none';
-                    });
-                }
-
-                // Update drawer items if HTML provided
-                if (data.drawer_html) {
-                    const itemsContainer = document.querySelector('.cart-drawer-items');
-                    if (itemsContainer) itemsContainer.innerHTML = data.drawer_html;
-                }
-
-                // Open cart drawer
-                openCart();
-            } else {
-                form.submit();
-            }
-        } catch (err) {
-            form.submit();
-        }
-    });
-}
 
 /* ==========================================================================
    Multi-Language & Multi-Currency Switcher (100% Native - No Google Banners)
@@ -499,8 +398,8 @@ function initLangCurrencySwitcher() {
     const currencyBtns = document.querySelectorAll('.currency-option-btn');
 
     let currentLang = localStorage.getItem('rew_lang') || 'es';
-    let currentCurrency = localStorage.getItem('rew_currency') || 'CLP';
-    let currentFlag = localStorage.getItem('rew_flag') || '🇨🇱';
+    let currentCurrency = localStorage.getItem('rew_currency') || (currentLang === 'es' ? 'CLP' : 'USD');
+    let currentFlag = localStorage.getItem('rew_flag') || (currentLang === 'es' ? '🇨🇱' : '🇺🇸');
 
     // Toggle Dropdown
     if (toggleBtn && widget) {
@@ -530,8 +429,28 @@ function initLangCurrencySwitcher() {
             localStorage.setItem('rew_lang', lang);
             localStorage.setItem('rew_flag', flag);
 
+            // Automatic currency assignment: Spanish -> CLP, other languages -> USD
+            currentCurrency = (lang === 'es') ? 'CLP' : 'USD';
+            localStorage.setItem('rew_currency', currentCurrency);
+
+            currencyBtns.forEach(b => {
+                if (b.getAttribute('data-currency') === currentCurrency) b.classList.add('active');
+                else b.classList.remove('active');
+            });
+
             updateTriggerLabel();
             applyNativeTranslations(lang);
+            applyCurrencyPrices(currentCurrency);
+
+            fetch('/currency', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN': getCsrfToken()
+                },
+                body: JSON.stringify({ currency: currentCurrency })
+            }).catch(() => {});
         });
     });
 
@@ -553,6 +472,7 @@ function initLangCurrencySwitcher() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
                     'X-CSRF-TOKEN': getCsrfToken()
                 },
                 body: JSON.stringify({ currency: currency })
@@ -578,6 +498,29 @@ function initLangCurrencySwitcher() {
                 el.textContent = '$' + parseInt(usd).toLocaleString('en-US') + ' USD';
             }
         });
+
+        // Sync checkout payment method radio options if present on page
+        const clpOption = document.querySelector('.payment-clp input[type="radio"]');
+        const usdOption = document.querySelector('.payment-usd input[type="radio"]');
+        const allOptionCards = document.querySelectorAll('.option-card');
+
+        if (currency === 'CLP') {
+            if (clpOption && !clpOption.checked) {
+                clpOption.checked = true;
+                allOptionCards.forEach(c => c.classList.remove('selected'));
+                if (clpOption.closest('.option-card')) {
+                    clpOption.closest('.option-card').classList.add('selected');
+                }
+            }
+        } else if (currency === 'USD') {
+            if (usdOption && !usdOption.checked) {
+                usdOption.checked = true;
+                allOptionCards.forEach(c => c.classList.remove('selected'));
+                if (usdOption.closest('.option-card')) {
+                    usdOption.closest('.option-card').classList.add('selected');
+                }
+            }
+        }
 
         window.dispatchEvent(new CustomEvent('currencyChanged', { detail: { currency } }));
     }
@@ -632,84 +575,113 @@ function initLangCurrencySwitcher() {
 }
 
 /* ==========================================================================
-   Shopping Cart Drawer
+   Shopping Cart Drawer & Global AJAX Add-to-Cart Manager
    ========================================================================== */
 function initCartDrawer() {
     const overlay = document.querySelector('.cart-drawer-overlay');
-    const openBtns = document.querySelectorAll('.open-cart-drawer');
+    const drawer = document.querySelector('.cart-drawer');
+    const openBtns = document.querySelectorAll('.open-cart-drawer, .cart-trigger-btn');
     const closeBtns = document.querySelectorAll('.close-cart-drawer');
+
+    function openCart() {
+        if (overlay) overlay.classList.add('open');
+        if (drawer) drawer.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeCart() {
+        if (overlay) overlay.classList.remove('open');
+        if (drawer) drawer.classList.remove('open');
+        document.body.style.overflow = '';
+    }
 
     openBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            if (overlay) overlay.classList.add('open');
+            openCart();
         });
     });
 
     closeBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            if (overlay) overlay.classList.remove('open');
+            closeCart();
         });
     });
 
     if (overlay) {
         overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) {
-                overlay.classList.remove('open');
-            }
+            if (e.target === overlay) closeCart();
         });
     }
 
-    document.querySelectorAll('.ajax-add-to-cart-form').forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn ? submitBtn.innerHTML : '';
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<span>Agregando...</span>';
-            }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay && overlay.classList.contains('open')) {
+            closeCart();
+        }
+    });
 
-            const formData = new FormData(this);
+    // Global Delegated AJAX Add-to-Cart
+    document.addEventListener('submit', async (e) => {
+        const form = e.target.closest('.ajax-add-to-cart-form');
+        if (!form) return;
 
-            fetch('/carrito/agregar', {
+        e.preventDefault();
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn ? submitBtn.innerHTML : '';
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>⏳ Agregando...</span>';
+        }
+
+        try {
+            const formData = new FormData(form);
+            const actionUrl = form.getAttribute('action') || '/carrito/agregar';
+
+            const response = await fetch(actionUrl, {
                 method: 'POST',
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest',
+                    'Accept': 'application/json',
                     'X-CSRF-TOKEN': getCsrfToken()
                 },
                 body: formData
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    updateCartCount(data.cart_count);
-                    if (submitBtn) {
-                        submitBtn.innerHTML = '<span>✓ ¡Añadido!</span>';
-                        setTimeout(() => {
-                            submitBtn.disabled = false;
-                            submitBtn.innerHTML = originalText;
-                        }, 2000);
-                    }
-                    if (overlay) {
-                        overlay.classList.add('open');
-                        renderCartItems(data.cart, data.cart_total_usd, data.cart_total_clp);
-                    }
-                }
-            })
-            .catch(() => {
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalText;
-                }
             });
-        });
+
+            if (!response.ok) {
+                form.submit();
+                return;
+            }
+
+            const data = await response.json();
+
+            if (data.success) {
+                updateCartCount(data.cart_count || 0);
+                if (submitBtn) {
+                    submitBtn.innerHTML = '<span>✓ ¡Añadido!</span>';
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalText;
+                    }, 2000);
+                }
+
+                // Render cart items inside drawer
+                renderCartItems(data.cart || {}, data.cart_total_usd, data.cart_total_clp);
+
+                // Open cart drawer from the left
+                openCart();
+            } else {
+                form.submit();
+            }
+        } catch (err) {
+            console.error('Error adding to cart:', err);
+            form.submit();
+        }
     });
 }
 
 function updateCartCount(count) {
-    document.querySelectorAll('.cart-count-badge').forEach(el => {
+    document.querySelectorAll('.cart-count-badge, .cart-count').forEach(el => {
         el.textContent = count;
         el.style.display = count > 0 ? 'inline-flex' : 'none';
     });
@@ -720,29 +692,46 @@ function renderCartItems(cart, totalUsd, totalClp) {
     const totalEl = document.querySelector('.cart-drawer-total-amount');
     if (!container) return;
 
-    const currency = localStorage.getItem('rew_currency') || 'USD';
-    const items = Object.values(cart);
+    const currency = localStorage.getItem('rew_currency') || 'CLP';
+    const items = Object.values(cart || {});
 
     if (items.length === 0) {
-        container.innerHTML = '<div class="text-center py-5 text-muted"><p>Tu carrito está vacío</p></div>';
-        if (totalEl) totalEl.textContent = '$0';
+        container.innerHTML = `
+            <div class="text-center py-5" style="text-align: center; padding: 3rem 1rem; color: #64748b;">
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🛒</div>
+                <p style="font-weight: 600;">Tu carrito está vacío</p>
+                <a href="/tienda" class="btn btn-primary btn-sm close-cart-drawer" style="margin-top: 1rem;">Explorar Tienda</a>
+            </div>
+        `;
+        if (totalEl) totalEl.textContent = currency === 'CLP' ? '$0 CLP' : '$0 USD';
         return;
     }
 
     let html = '';
     items.forEach(item => {
+        const itemQty = item.quantity || 1;
         const price = currency === 'CLP' 
-            ? '$' + parseInt(item.price_clp).toLocaleString('es-CL') + ' CLP'
-            : '$' + parseInt(item.price_usd).toLocaleString('en-US') + ' USD';
+            ? '$' + parseInt(item.price_clp * itemQty).toLocaleString('es-CL') + ' CLP'
+            : '$' + parseInt(item.price_usd * itemQty).toLocaleString('en-US') + ' USD';
+
+        const rawImg = item.image || '';
+        let imgSrc = '/images/logo.webp';
+        if (rawImg) {
+            if (rawImg.startsWith('http') || rawImg.startsWith('data:')) {
+                imgSrc = rawImg;
+            } else {
+                imgSrc = rawImg.startsWith('/') ? rawImg : '/' + rawImg;
+            }
+        }
 
         html += `
-            <div class="cart-item">
-                <img src="${item.image || '/images/logo.webp'}" alt="${item.name}" class="cart-item-img">
-                <div class="cart-item-info">
-                    <h5 class="cart-item-title">${item.name}</h5>
-                    <div class="cart-item-price">${price} (x${item.quantity})</div>
+            <div class="cart-item" style="display: flex; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid #f1f5f9;">
+                <img src="${imgSrc}" alt="${item.name}" class="cart-item-img" style="width: 55px; height: 55px; object-fit: contain; background: #0f172a; padding: 4px; border-radius: 8px; flex-shrink: 0;">
+                <div class="cart-item-info" style="flex: 1; min-width: 0;">
+                    <h5 class="cart-item-title" style="font-size: 0.92rem; font-weight: 700; margin: 0 0 4px 0; color: #0f172a; line-height: 1.3;">${item.name}</h5>
+                    <div class="cart-item-price" style="font-size: 0.88rem; font-weight: 800; color: #0284c7;">${price} <span style="font-weight: 500; color: #64748b;">(x${itemQty})</span></div>
                 </div>
-                <button type="button" class="btn btn-sm btn-outline remove-from-cart-btn" data-id="${item.id}" title="Eliminar">✕</button>
+                <button type="button" class="btn btn-sm btn-outline remove-from-cart-btn" data-id="${item.id}" title="Eliminar" style="padding: 4px 8px; font-size: 0.85rem; border-radius: 6px; cursor: pointer; border: 1px solid #e2e8f0; background: #ffffff;">✕</button>
             </div>
         `;
     });
@@ -750,32 +739,38 @@ function renderCartItems(cart, totalUsd, totalClp) {
     container.innerHTML = html;
 
     if (totalEl) {
-        totalEl.textContent = currency === 'CLP' 
-            ? '$' + parseInt(totalClp).toLocaleString('es-CL') + ' CLP'
-            : '$' + parseInt(totalUsd).toLocaleString('en-US') + ' USD';
+        if (totalClp !== undefined && totalUsd !== undefined) {
+            totalEl.textContent = currency === 'CLP' 
+                ? '$' + parseInt(totalClp).toLocaleString('es-CL') + ' CLP'
+                : '$' + parseInt(totalUsd).toLocaleString('en-US') + ' USD';
+        }
     }
 
     container.querySelectorAll('.remove-from-cart-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', async function(e) {
+            e.preventDefault();
             const prodId = this.getAttribute('data-id');
             const fd = new FormData();
             fd.append('product_id', prodId);
 
-            fetch('/carrito/eliminar', {
-                method: 'POST',
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRF-TOKEN': getCsrfToken()
-                },
-                body: fd
-            })
-            .then(res => res.json())
-            .then(data => {
+            try {
+                const res = await fetch('/carrito/eliminar', {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': getCsrfToken()
+                    },
+                    body: fd
+                });
+                const data = await res.json();
                 if (data.success) {
-                    updateCartCount(data.cart_count);
-                    renderCartItems(data.cart, data.cart_total_usd, data.cart_total_clp);
+                    updateCartCount(data.cart_count || 0);
+                    renderCartItems(data.cart || {}, data.cart_total_usd, data.cart_total_clp);
                 }
-            });
+            } catch (err) {
+                console.error('Error removing item from cart:', err);
+            }
         });
     });
 }

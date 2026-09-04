@@ -148,4 +148,46 @@ class NewLandingPagesTest extends TestCase
         $post2->assertSee('Large Language Model');
         $post2->assertSee('Transformer');
     }
+
+    public function test_add_bsale_plugin_to_cart_via_ajax_and_checkout(): void
+    {
+        $this->seed();
+
+        // 1. Add via AJAX
+        $response = $this->postJson('/carrito/agregar', [
+            'product_slug' => 'plugin-integracion-bsale-woocommerce',
+            'quantity' => 1,
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'success' => true,
+            'cart_count' => 1,
+            'cart_total_clp' => 350000,
+            'cart_total_usd' => 380,
+        ]);
+
+        // 2. View cart page
+        $cartPage = $this->get('/carrito');
+        $cartPage->assertStatus(200);
+        $cartPage->assertSee('Plugin Bsale WooCommerce Sync Pro');
+        $cartPage->assertSee('350.000');
+
+        // 3. View checkout page with CLP default
+        $checkoutPage = $this->get('/checkout');
+        $checkoutPage->assertStatus(200);
+        $checkoutPage->assertSee('350.000');
+        $checkoutPage->assertSee('Webpay Plus');
+
+        // 4. Switch currency to USD
+        $curResponse = $this->postJson('/currency', ['currency' => 'USD']);
+        $curResponse->assertStatus(200);
+        $curResponse->assertJson(['success' => true, 'currency' => 'USD']);
+
+        // 5. Verify checkout in USD
+        $checkoutUsd = $this->get('/checkout');
+        $checkoutUsd->assertStatus(200);
+        $checkoutUsd->assertSee('380');
+        $checkoutUsd->assertSee('PayPal');
+    }
 }
