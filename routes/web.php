@@ -120,6 +120,36 @@ Route::get('/favicon.ico', function () {
     abort(404);
 });
 
+// Fallback directo para imágenes de productos en entornos de despliegue cPanel / LiteSpeed
+Route::get('/images/products/{filename}', function ($filename) {
+    $candidates = [
+        public_path('images/products/'.$filename),
+        base_path('public/images/products/'.$filename),
+        base_path('public_html/images/products/'.$filename),
+    ];
+
+    foreach ($candidates as $path) {
+        if (file_exists($path)) {
+            $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+            $mimes = [
+                'webp' => 'image/webp',
+                'jpg' => 'image/jpeg',
+                'jpeg' => 'image/jpeg',
+                'png' => 'image/png',
+                'svg' => 'image/svg+xml',
+            ];
+            $contentType = $mimes[$ext] ?? 'application/octet-stream';
+
+            return response()->file($path, [
+                'Content-Type' => $contentType,
+                'Cache-Control' => 'public, max-age=604800',
+            ]);
+        }
+    }
+
+    abort(404);
+})->where('filename', '[A-Za-z0-9_\-\.]+');
+
 // 11. Autenticación & Control de Acceso
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1')->name('login.post');

@@ -81,7 +81,52 @@
     </div>
 </section>
 
-<!-- Sección de Compra Directa del Plugin -->
+<!-- Ventajas Clave -->
+<section class="section" style="background: #ffffff;">
+    <div class="container">
+        <div style="text-align: center; max-width: 750px; margin: 0 auto 3.5rem;">
+            <span class="badge badge-gold" style="margin-bottom: 0.75rem;">Cero Errores Manuales</span>
+            <h2 style="font-size: 2.4rem; color: var(--text-dark); margin-bottom: 1rem;">Beneficios de Conectar Bsale con REW</h2>
+            <p style="color: var(--text-body); font-size: 1.1rem;">Desarrollamos soluciones de alta ingeniería que respetan tus listas de precios, bodegas y reglas de negocio sin depender de plugins de terceros lentos.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+            <div class="card" style="padding: 2rem;">
+                <div style="font-size: 2.2rem; margin-bottom: 1rem;">📦</div>
+                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Sincronización de Stock Multibodega</h3>
+                <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
+                    Elige qué sucursal o bodega de Bsale alimenta tu tienda online. Si vendes en tu local físico a través del POS, el stock web se actualiza al instante para evitar sobreventas.
+                </p>
+            </div>
+
+            <div class="card" style="padding: 2rem;">
+                <div style="font-size: 2.2rem; margin-bottom: 1rem;">🧾</div>
+                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Emisión Automática de Boleta y Factura DTE</h3>
+                <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
+                    Generación de Documentos Tributarios Electrónicos válidos ante el SII en Chile, adjuntando el PDF de la boleta o factura directamente en el correo de confirmación de WooCommerce.
+                </p>
+            </div>
+
+            <div class="card" style="padding: 2rem; border-top: 3px solid #0284c7;">
+                <div style="font-size: 2.2rem; margin-bottom: 1rem;">🎨</div>
+                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Productos Variables en Automático</h3>
+                <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
+                    Soporte nativo y automático para todas las variaciones (tallas, colores, atributos y SKUs hijos). A diferencia de otras integraciones del mercado que fallan o cobran extra, REW lo incluye al 100%.
+                </p>
+            </div>
+
+            <div class="card" style="padding: 2rem; border-top: 3px solid #f59e0b;">
+                <div style="font-size: 2.2rem; margin-bottom: 1rem;">🔗</div>
+                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Integración con Otros Sistemas & ERPs</h3>
+                <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
+                    ¿Tienes tu catálogo o contabilidad en otros sistemas (Softland, Odoo, SAP, Defontana, CRM o bases de datos propias)? Desarrollamos conectores a medida para centralizar toda tu operación.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Compra Directa del Plugin (Antes de Preguntas Frecuentes) -->
 @php
     $plugin = $pluginProduct ?? \App\Models\Product::where('slug', 'plugin-integracion-bsale-woocommerce')->first();
     $productId = $plugin->id ?? 9;
@@ -90,11 +135,20 @@
     $originalClp = $plugin->original_price_clp ?? 450000;
     $originalUsd = $plugin->original_price_usd ?? 480;
     $waBuyMsg = "¡Hola Álvaro! Quiero comprar la licencia vitalicia del Plugin Bsale WooCommerce Sync Pro ($350.000 CLP / Lifetime). ¿Cuáles son los datos de transferencia para coordinar la instalación?";
+
+    $pluginImgPath = public_path('images/products/plugin_bsale_woocommerce.webp');
+    $basePathImg = base_path('public/images/products/plugin_bsale_woocommerce.webp');
+    $imgSrc = asset('images/products/plugin_bsale_woocommerce.webp');
+    if (file_exists($pluginImgPath)) {
+        $imgSrc = 'data:image/webp;base64,' . base64_encode(file_get_contents($pluginImgPath));
+    } elseif (file_exists($basePathImg)) {
+        $imgSrc = 'data:image/webp;base64,' . base64_encode(file_get_contents($basePathImg));
+    }
 @endphp
 
-<section id="comprar-plugin" class="section" style="background: linear-gradient(180deg, var(--bg-main) 0%, #0b1329 100%); padding-top: 4.5rem; padding-bottom: 5rem; color: #ffffff;">
+<section id="comprar-plugin" class="section" style="background: linear-gradient(180deg, #070d19 0%, #0b1329 100%); padding-top: 5rem; padding-bottom: 5.5rem; color: #ffffff;">
     <div class="container">
-        <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+        <div style="text-align: center; max-width: 820px; margin: 0 auto 3rem;">
             <span class="badge badge-gold" style="margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">
                 ⚡ Software Oficial REW • Licencia Vitalicia
             </span>
@@ -102,7 +156,7 @@
                 Adquiere el <span class="gradient-text">Plugin Bsale WooCommerce Sync Pro</span>
             </h2>
             <p style="color: #94a3b8; font-size: 1.15rem; line-height: 1.6;">
-                La solución definitiva para automatizar stock multibodega y facturación DTE electrónica sin intermediarios. Un solo pago de por vida, sin comisiones por boleta ni mensualidades.
+                La solución definitiva para automatizar stock multibodega, productos variables y facturación DTE electrónica sin intermediarios. Un solo pago de por vida, sin comisiones por boleta ni mensualidades.
             </p>
         </div>
 
@@ -115,9 +169,9 @@
                         <span class="badge badge-gold" style="position: absolute; top: 15px; left: 15px; z-index: 2; font-weight: 800; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
                             ⭐ PAGO ÚNICO • LIFETIME
                         </span>
-                        <img src="{{ asset('images/products/plugin_bsale_woocommerce.webp') }}" 
+                        <img src="{{ $imgSrc }}" 
                              alt="Plugin Bsale WooCommerce Sync Pro REW" 
-                             style="width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: 0 20px 40px -15px rgba(2, 132, 199, 0.4); border: 1px solid rgba(56, 189, 248, 0.3); transition: transform 0.3s ease;"
+                             style="width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: 0 20px 40px -15px rgba(2, 132, 199, 0.4); border: 1px solid rgba(56, 189, 248, 0.3); transition: transform 0.3s ease; display: block;"
                              onmouseover="this.style.transform='scale(1.02)'"
                              onmouseout="this.style.transform='scale(1)'">
                     </div>
@@ -181,7 +235,11 @@
                         </div>
                         <div style="display: flex; align-items: flex-start; gap: 10px;">
                             <span style="color: #38bdf8; font-weight: 900; font-size: 1.1rem;">✓</span>
-                            <div><strong>Precios y Variaciones Sincronizadas:</strong> Soporte completo para tallas, colores y SKUs simples o variables con precios normales y ofertas.</div>
+                            <div><strong>Productos Variables en Automático:</strong> Soporte nativo para tallas, colores, atributos y SKUs hijos sin plugins adicionales ni fallos.</div>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 10px;">
+                            <span style="color: #38bdf8; font-weight: 900; font-size: 1.1rem;">✓</span>
+                            <div><strong>Integración con Otros Sistemas & ERPs:</strong> Conectividad abierta con SAP, Softland, Odoo, Defontana o bases de datos a medida.</div>
                         </div>
                         <div style="display: flex; align-items: flex-start; gap: 10px;">
                             <span style="color: #38bdf8; font-weight: 900; font-size: 1.1rem;">✓</span>
@@ -236,43 +294,6 @@
     </div>
 </section>
 
-<!-- Ventajas Clave -->
-<section class="section" style="background: #ffffff;">
-    <div class="container">
-        <div style="text-align: center; max-width: 750px; margin: 0 auto 3.5rem;">
-            <span class="badge badge-gold" style="margin-bottom: 0.75rem;">Cero Errores Manuales</span>
-            <h2 style="font-size: 2.4rem; color: var(--text-dark); margin-bottom: 1rem;">Beneficios de Conectar Bsale con REW</h2>
-            <p style="color: var(--text-body); font-size: 1.1rem;">Desarrollamos soluciones personalizadas que respetan tus listas de precios, bodegas y reglas de negocio sin depender de plugins de terceros lentos.</p>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-            <div class="card" style="padding: 2rem;">
-                <div style="font-size: 2.2rem; margin-bottom: 1rem;">📦</div>
-                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Sincronización de Stock Multibodega</h3>
-                <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
-                    Elige qué sucursal o bodega de Bsale alimenta tu tienda online. Si vendes en tu local físico, el stock web se actualiza automáticamente para evitar sobreventas.
-                </p>
-            </div>
-
-            <div class="card" style="padding: 2rem;">
-                <div style="font-size: 2.2rem; margin-bottom: 1rem;">🧾</div>
-                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Emisión Automática de Boleta y Factura DTE</h3>
-                <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
-                    Generación de Documentos Tributarios Electrónicos válidos ante el SII en Chile, adjuntando el PDF de la boleta directamente en el correo de confirmación de WooCommerce.
-                </p>
-            </div>
-
-            <div class="card" style="padding: 2rem;">
-                <div style="font-size: 2.2rem; margin-bottom: 1rem;">🏷️</div>
-                <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Listas de Precios & Variaciones</h3>
-                <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
-                    Soporte para productos simples y variables (tallas, colores, SKUs) con sincronización bidireccional de precios normales y de oferta.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- FAQ Accordion -->
 <section class="section" style="background: var(--bg-alt);">
     <div class="container">
@@ -290,9 +311,30 @@
             </div>
 
             <div class="card" style="padding: 1.75rem;">
+                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">¿Soporta productos variables (tallas, colores, atributos) automáticamente?</h3>
+                <p style="color: var(--text-body); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    <strong>Sí, 100% en automático.</strong> A diferencia de la mayoría de soluciones del mercado que solo soportan productos simples o cobran suscripciones caras por gestionar atributos, nuestro plugin maneja productos variables completos con sus variaciones, SKUs hijos, precios normales, ofertas y stock por bodega sin costos adicionales.
+                </p>
+            </div>
+
+            <div class="card" style="padding: 1.75rem;">
+                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">¿Podemos integrar Bsale y WooCommerce con otros sistemas o ERPs de la empresa?</h3>
+                <p style="color: var(--text-body); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    <strong>Totalmente.</strong> Como agencia y software factory experta en desarrollo en Chile, creamos conectores, webhooks y APIs a medida si necesitas comunicar Bsale o tu tienda con otros ERPs (como Softland, Odoo, SAP, Defontana), CRMs o bases de datos propietarias.
+                </p>
+            </div>
+
+            <div class="card" style="padding: 1.75rem;">
                 <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">¿Cuánto tarda la puesta en marcha?</h3>
                 <p style="color: var(--text-body); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                    La integración estándar toma entre 3 y 5 días hábiles, incluyendo pruebas en entorno sandbox, homologación de SKUs y validación de emisión de DTEs reales.
+                    La integración estándar toma entre 3 y 5 días hábiles, incluyendo pruebas en entorno sandbox, homologación de SKUs y validación de emisión de DTEs reales ante el SII.
+                </p>
+            </div>
+
+            <div class="card" style="padding: 1.75rem;">
+                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">¿Tiene costos mensuales o pagos por cada boleta emitida?</h3>
+                <p style="color: var(--text-body); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    <strong>Cero costos mensuales.</strong> Es una licencia vitalicia (Lifetime) de pago único de $350.000 CLP. Pagas una sola vez y usas el plugin sin mensualidades ni cobros por documento emitido.
                 </p>
             </div>
 
