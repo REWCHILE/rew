@@ -28,17 +28,20 @@
                 <p style="font-size: 1.2rem; color: var(--text-body); line-height: 1.65; margin-bottom: 2rem;">
                     Automatiza tus ventas, inventario y facturación electrónica. Conectamos tu tienda <strong>WooCommerce</strong> con <strong>Bsale</strong> mediante API REST oficial para que el stock de tus sucursales físicas y web esté 100% sincronizado, emitiendo boletas y facturas DTE automáticamente.
                 </p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem;">
-                    <a href="{{ route('contacto') }}" class="btn btn-primary btn-lg">
-                        <span>🚀 Cotizar Integración Bsale</span>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                    <a href="#comprar-plugin" class="btn btn-primary btn-lg" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.4);">
+                        <span>🛒 Adquirir Plugin Lifetime ($350.000 CLP)</span>
                     </a>
-                    <a href="https://api.whatsapp.com/send?phone=56987261127&text={{ rawurlencode('Hola Álvaro, me interesa cotizar la integración de Bsale con WooCommerce para mi tienda.') }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-lg">
+                    <a href="{{ route('contacto') }}" class="btn btn-outline btn-lg">
+                        <span>📋 Cotizar Integración</span>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=56987261127&text={{ rawurlencode('Hola Álvaro, me interesa comprar o cotizar la integración del Plugin Bsale con WooCommerce.') }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-lg">
                         <span>💬 Hablar por WhatsApp</span>
                     </a>
                 </div>
                 <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; color: var(--text-muted);">
-                    <div>✓ API REST Oficial Bsale</div>
-                    <div>✓ Boleta y Factura DTE Automática</div>
+                    <div>✓ Licencia Vitalicia (Pago Único)</div>
+                    <div>✓ Boleta y Factura DTE Automática SII</div>
                     <div>✓ Sin sobreventas por stock desfasado</div>
                 </div>
             </div>
@@ -73,6 +76,161 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Compra Directa del Plugin -->
+@php
+    $plugin = $pluginProduct ?? \App\Models\Product::where('slug', 'plugin-integracion-bsale-woocommerce')->first();
+    $productId = $plugin->id ?? 9;
+    $priceClp = $plugin->price_clp ?? 350000;
+    $priceUsd = $plugin->price_usd ?? 380;
+    $originalClp = $plugin->original_price_clp ?? 450000;
+    $originalUsd = $plugin->original_price_usd ?? 480;
+    $waBuyMsg = "¡Hola Álvaro! Quiero comprar la licencia vitalicia del Plugin Bsale WooCommerce Sync Pro ($350.000 CLP / Lifetime). ¿Cuáles son los datos de transferencia para coordinar la instalación?";
+@endphp
+
+<section id="comprar-plugin" class="section" style="background: linear-gradient(180deg, var(--bg-main) 0%, #0b1329 100%); padding-top: 4.5rem; padding-bottom: 5rem; color: #ffffff;">
+    <div class="container">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+            <span class="badge badge-gold" style="margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">
+                ⚡ Software Oficial REW • Licencia Vitalicia
+            </span>
+            <h2 style="font-size: clamp(2rem, 4vw, 2.7rem); color: #ffffff; margin-bottom: 1rem; line-height: 1.2;">
+                Adquiere el <span class="gradient-text">Plugin Bsale WooCommerce Sync Pro</span>
+            </h2>
+            <p style="color: #94a3b8; font-size: 1.15rem; line-height: 1.6;">
+                La solución definitiva para automatizar stock multibodega y facturación DTE electrónica sin intermediarios. Un solo pago de por vida, sin comisiones por boleta ni mensualidades.
+            </p>
+        </div>
+
+        <div class="card" style="background: linear-gradient(145deg, #090e17 0%, #0f172a 60%, #172554 100%); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: var(--radius-xl); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); padding: clamp(1.75rem, 4vw, 3rem); color: #ffffff;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(2rem, 4vw, 3.5rem); align-items: center;">
+                
+                <!-- Columna Izquierda: Imagen Mockup 3D y Sellos de Confianza -->
+                <div style="text-align: center;">
+                    <div style="position: relative; display: inline-block; width: 100%; max-width: 440px;">
+                        <span class="badge badge-gold" style="position: absolute; top: 15px; left: 15px; z-index: 2; font-weight: 800; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+                            ⭐ PAGO ÚNICO • LIFETIME
+                        </span>
+                        <img src="{{ asset('images/products/plugin_bsale_woocommerce.webp') }}" 
+                             alt="Plugin Bsale WooCommerce Sync Pro REW" 
+                             style="width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: 0 20px 40px -15px rgba(2, 132, 199, 0.4); border: 1px solid rgba(56, 189, 248, 0.3); transition: transform 0.3s ease;"
+                             onmouseover="this.style.transform='scale(1.02)'"
+                             onmouseout="this.style.transform='scale(1)'">
+                    </div>
+
+                    <div style="display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; font-size: 0.82rem; color: #94a3b8;">
+                        <span style="background: rgba(255,255,255,0.06); padding: 4px 12px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.1);">✓ WordPress 5.8+ a 6.x</span>
+                        <span style="background: rgba(255,255,255,0.06); padding: 4px 12px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.1);">✓ WooCommerce 6.x a 9.x</span>
+                        <span style="background: rgba(255,255,255,0.06); padding: 4px 12px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.1);">✓ PHP 7.4 a 8.3</span>
+                        <span style="background: rgba(255,255,255,0.06); padding: 4px 12px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.1);">✓ API REST Oficial Bsale</span>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Detalles del Producto, Precios y Formulario de Compra -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
+                        <span class="badge badge-primary" style="background: rgba(14, 165, 233, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">
+                            Plugin WordPress & WooCommerce
+                        </span>
+                        <span style="color: #fbbf24; font-size: 0.9rem; font-weight: 700;">
+                            ⭐⭐⭐⭐⭐ 5.0 (Clientes Satisfechos)
+                        </span>
+                    </div>
+
+                    <h3 style="font-size: clamp(1.8rem, 3.5vw, 2.3rem); color: #ffffff; margin-bottom: 1rem; line-height: 1.2;">
+                        Plugin Bsale WooCommerce Sync Pro
+                    </h3>
+
+                    <!-- Bloque de Precios -->
+                    <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: var(--radius-md); padding: 1.25rem 1.5rem; margin-bottom: 1.75rem;">
+                        <div style="display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;">
+                            <span class="price-current price-tag-dynamic" 
+                                  data-usd="{{ $priceUsd }}" 
+                                  data-clp="{{ $priceClp }}" 
+                                  style="font-size: clamp(2.2rem, 4vw, 2.8rem); font-weight: 900; color: #38bdf8; letter-spacing: -0.5px;">
+                                ${{ number_format($priceClp, 0, ',', '.') }} CLP
+                            </span>
+                            <span class="price-original price-tag-dynamic" 
+                                  data-usd="{{ $originalUsd }}" 
+                                  data-clp="{{ $originalClp }}" 
+                                  style="font-size: 1.35rem; color: #64748b; text-decoration: line-through;">
+                                ${{ number_format($originalClp, 0, ',', '.') }} CLP
+                            </span>
+                            <span class="badge badge-gold" style="font-size: 0.82rem; font-weight: 800;">
+                                AHORRA $100.000 CLP
+                            </span>
+                        </div>
+                        <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #cbd5e1; display: flex; align-items: center; gap: 8px;">
+                            <span style="color: #34d399; font-weight: 700;">✓ Pago Único de por Vida (Lifetime)</span> • Sin suscripciones mensuales ni costos por documento.
+                        </div>
+                    </div>
+
+                    <!-- Lista de Beneficios Exclusivos -->
+                    <div style="display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2rem; font-size: 0.95rem; color: #e2e8f0;">
+                        <div style="display: flex; align-items: flex-start; gap: 10px;">
+                            <span style="color: #38bdf8; font-weight: 900; font-size: 1.1rem;">✓</span>
+                            <div><strong>Sincronización Multibodega en Tiempo Real:</strong> Descuenta automáticamente stock de la sucursal que elijas evitando sobreventas físicas y web.</div>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 10px;">
+                            <span style="color: #38bdf8; font-weight: 900; font-size: 1.1rem;">✓</span>
+                            <div><strong>Emisión Automática de Boletas y Facturas SII:</strong> DTE electrónico oficial generado al pagar y adjuntado en PDF al correo del cliente.</div>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 10px;">
+                            <span style="color: #38bdf8; font-weight: 900; font-size: 1.1rem;">✓</span>
+                            <div><strong>Precios y Variaciones Sincronizadas:</strong> Soporte completo para tallas, colores y SKUs simples o variables con precios normales y ofertas.</div>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 10px;">
+                            <span style="color: #38bdf8; font-weight: 900; font-size: 1.1rem;">✓</span>
+                            <div><strong>Arquitectura Asíncrona Ultra Rápida:</strong> Sin demoras en el checkout ni consumo excesivo de servidor gracias a workers en segundo plano.</div>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 10px;">
+                            <span style="color: #38bdf8; font-weight: 900; font-size: 1.1rem;">✓</span>
+                            <div><strong>Instalación Asistida con Álvaro Valenzuela:</strong> Ingeniero Informático a cargo para homologar catálogos y validar DTEs en vivo.</div>
+                        </div>
+                    </div>
+
+                    <!-- Formulario de Compra Online + Botón WhatsApp -->
+                    <div style="display: flex; flex-direction: column; gap: 1rem; background: rgba(0,0,0,0.25); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.08);">
+                        <form action="{{ route('cart.add') }}" method="POST" class="ajax-add-to-cart-form" style="margin: 0;">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $productId }}">
+                            <div style="display: flex; gap: 0.75rem; align-items: stretch; flex-wrap: wrap;">
+                                <div style="width: 75px;">
+                                    <input type="number" name="quantity" value="1" min="1" max="10" 
+                                           style="width: 100%; height: 100%; padding: 0.75rem; border: 1px solid rgba(56,189,248,0.4); border-radius: var(--radius-sm); font-size: 1.1rem; text-align: center; background: #0f172a; color: #ffffff; font-weight: 700;">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg" style="flex: 1; min-width: 220px; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); font-size: 1.05rem; padding: 0.85rem 1.5rem; justify-content: center; box-shadow: 0 10px 20px -5px rgba(2, 132, 199, 0.5);">
+                                    <span>🛒 Añadir al Carrito y Comprar</span>
+                                </button>
+                            </div>
+                        </form>
+
+                        <a href="https://api.whatsapp.com/send?phone=56987261127&text={{ rawurlencode($waBuyMsg) }}" 
+                           target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-lg" style="width: 100%; justify-content: center; font-size: 1rem;">
+                            <span>💬 Comprar Directo por WhatsApp (+56 9 8726 1127)</span>
+                        </a>
+
+                        @if($plugin)
+                        <div style="text-align: center; margin-top: 0.25rem;">
+                            <a href="{{ route('tienda.show', $plugin->slug) }}" style="font-size: 0.88rem; color: #38bdf8; text-decoration: underline;">
+                                Ver ficha técnica completa en la Tienda Oficial REW →
+                            </a>
+                        </div>
+                        @endif
+                    </div>
+
+                    <!-- Garantías y Soporte Directo -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.82rem; color: #94a3b8; text-align: center;">
+                        <div>🔒 <strong>Pago 100% Seguro</strong><br>Webpay Plus / Transferencia</div>
+                        <div>📄 <strong>Factura DTE</strong><br>Emitimos factura para empresas</div>
+                        <div>⚡ <strong>Garantía REW</strong><br>Soporte directo con el fundador</div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -208,6 +366,29 @@
       "description": "Sincronización automática de inventario en tiempo real, catálogo y boleta/factura electrónica DTE entre Bsale y tiendas WooCommerce en Chile."
     },
     {
+      "@type": "Product",
+      "@id": "https://rew.cl/servicios/integracion-bsale-woocommerce#product",
+      "name": "Plugin Bsale WooCommerce Sync Pro (Licencia Vitalicia)",
+      "image": "https://rew.cl/images/products/plugin_bsale_woocommerce.webp",
+      "description": "Plugin oficial de integración en tiempo real entre Bsale y WooCommerce. Stock multibodega, precios y emisión automática de boletas/facturas DTE ante el SII. Licencia vitalicia de pago único.",
+      "sku": "rew-bsale-woo-lifetime",
+      "brand": {
+        "@type": "Brand",
+        "name": "REW"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://rew.cl/servicios/integracion-bsale-woocommerce#comprar-plugin",
+        "priceCurrency": "CLP",
+        "price": "350000",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "REW"
+        }
+      }
+    },
+    {
       "@type": "FAQPage",
       "mainEntity": [
         {
@@ -224,6 +405,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "La integración estándar toma entre 3 y 5 días hábiles, incluyendo homologación de productos y pruebas DTE."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Tiene costos mensuales la licencia del plugin?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. La licencia del Plugin Bsale WooCommerce Sync Pro es vitalicia (Lifetime) de pago único de $350.000 CLP, sin mensualidades ni cobros por boleta emitida."
           }
         }
       ]

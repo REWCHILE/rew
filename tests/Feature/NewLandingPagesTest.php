@@ -11,10 +11,23 @@ class NewLandingPagesTest extends TestCase
 
     public function test_bsale_woocommerce_page_returns_ok(): void
     {
+        $this->seed();
         $response = $this->get('/servicios/integracion-bsale-woocommerce');
         $response->assertStatus(200);
         $response->assertSee('Bsale');
         $response->assertSee('WooCommerce');
+        $response->assertSee('Plugin Bsale WooCommerce Sync Pro');
+        $response->assertSee('350.000');
+        $response->assertSee('LIFETIME');
+    }
+
+    public function test_bsale_plugin_product_page_returns_ok(): void
+    {
+        $this->seed();
+        $response = $this->get('/producto/plugin-integracion-bsale-woocommerce');
+        $response->assertStatus(200);
+        $response->assertSee('Plugin Bsale WooCommerce Sync Pro');
+        $response->assertSee('350.000');
     }
 
     public function test_odoo_erp_page_returns_ok(): void

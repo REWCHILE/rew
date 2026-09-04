@@ -23,12 +23,13 @@ class ServiceController extends Controller
 
         $relatedProjects = PortfolioProject::take(3)->get();
         $relatedProducts = Product::where('is_active', true)->take(2)->get();
+        $pluginProduct = Product::where('slug', 'plugin-integracion-bsale-woocommerce')->first();
 
         if (view()->exists('servicios.'.$slug)) {
-            return view('servicios.'.$slug, compact('service', 'relatedProjects', 'relatedProducts'));
+            return view('servicios.'.$slug, compact('service', 'relatedProjects', 'relatedProducts', 'pluginProduct'));
         }
 
-        return view('servicios.show', compact('service', 'relatedProjects', 'relatedProducts'));
+        return view('servicios.show', compact('service', 'relatedProjects', 'relatedProducts', 'pluginProduct'));
     }
 
     public function desarrolloWeb()
