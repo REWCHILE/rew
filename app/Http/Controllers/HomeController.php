@@ -11,7 +11,24 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $featuredProducts = Product::where('is_active', true)->where('is_featured', true)->take(4)->get();
+        $featuredSlugs = [
+            'plugin-integracion-bsale-woocommerce',
+            'rich-e-chatbot-assistant',
+            'pack-chatbot-ecommerce-pro',
+            'rew-multi-currency-translator-pro',
+        ];
+
+        $featuredProducts = Product::where('is_active', true)
+            ->where('is_featured', true)
+            ->get()
+            ->sortBy(function ($product) use ($featuredSlugs) {
+                $idx = array_search($product->slug, $featuredSlugs);
+
+                return $idx !== false ? $idx : 999;
+            })
+            ->take(4)
+            ->values();
+
         $featuredProjects = PortfolioProject::where('is_featured', true)->orderBy('order')->take(6)->get();
         $services = Service::orderBy('order')->get();
         $latestPosts = Post::where('is_published', true)->latest()->take(3)->get();

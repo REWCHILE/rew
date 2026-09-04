@@ -234,23 +234,28 @@
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 2rem;">
             @foreach($featuredProducts as $prod)
+                @php
+                    $prodUrl = ($prod->slug === 'plugin-integracion-bsale-woocommerce') 
+                        ? route('servicios.bsale-woocommerce') 
+                        : route('tienda.show', $prod->slug);
+                @endphp
                 <div class="card product-card spotlight-card">
                     <div class="product-img-wrap">
                         @if($prod->badge)
                             <div class="product-badge-top">
-                                <span class="badge {{ str_contains($prod->badge, 'OFERTA') ? 'badge-gold' : 'badge-primary' }}">
+                                <span class="badge {{ (str_contains($prod->badge, 'OFERTA') || str_contains($prod->badge, 'LIFETIME') || str_contains($prod->badge, 'PAGO ÚNICO')) ? 'badge-gold' : 'badge-primary' }}">
                                     {{ $prod->badge }}
                                 </span>
                             </div>
                         @endif
-                        <a href="{{ route('tienda.show', $prod->slug) }}">
+                        <a href="{{ $prodUrl }}">
                             <img src="{{ Str::startsWith($prod->featured_image, 'http') ? $prod->featured_image : asset(ltrim($prod->featured_image, '/')) }}" alt="{{ $prod->name }}" class="product-img" loading="lazy">
                         </a>
                     </div>
                     <div class="product-content">
-                        <div class="product-category">{{ $prod->category_slug }}</div>
+                        <div class="product-category">{{ str_replace('-', ' ', Str::title($prod->category_slug)) }}</div>
                         <h3 class="product-title">
-                            <a href="{{ route('tienda.show', $prod->slug) }}" style="color: inherit;">
+                            <a href="{{ $prodUrl }}" style="color: inherit;">
                                 {{ $prod->name }}
                             </a>
                         </h3>
@@ -275,7 +280,7 @@
                                     <span>Añadir al Carrito</span>
                                 </button>
                             </form>
-                            <a href="{{ route('tienda.show', $prod->slug) }}" class="btn btn-outline" title="Ver Detalles">
+                            <a href="{{ $prodUrl }}" class="btn btn-outline" title="Ver Detalles">
                                 <span>Detalles</span>
                             </a>
                         </div>
