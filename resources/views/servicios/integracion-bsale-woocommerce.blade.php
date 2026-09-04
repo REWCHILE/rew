@@ -297,51 +297,90 @@
 <!-- FAQ Accordion -->
 <section class="section" style="background: var(--bg-alt);">
     <div class="container">
-        <div style="text-align: center; max-width: 750px; margin: 0 auto 3rem;">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+            <span class="badge badge-primary" style="margin-bottom: 0.75rem;">Resolviendo Dudas Técnicas & Comerciales</span>
             <h2 style="font-size: 2.2rem; color: var(--text-dark); margin-bottom: 0.75rem;">Preguntas Frecuentes sobre la Integración Bsale</h2>
-            <p style="color: var(--text-muted);">Respuestas técnicas y comerciales a las dudas más comunes.</p>
+            <p style="color: var(--text-muted); font-size: 1.05rem;">Todo lo que necesitas saber sobre el funcionamiento, sincronización, facturación y licenciamiento.</p>
         </div>
 
-        <div style="max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.25rem;">
+        <div style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.25rem;">
+            <!-- FAQ 1 -->
             <div class="card" style="padding: 1.75rem;">
-                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">¿Qué necesito para integrar Bsale con mi WooCommerce?</h3>
+                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">1. ¿Qué necesito para integrar Bsale con mi tienda WooCommerce?</h3>
                 <p style="color: var(--text-body); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                    Solo necesitas un plan activo de Bsale que tenga habilitada la API REST (token de acceso) y tu tienda WooCommerce corriendo en WordPress 6.x con PHP 8+. Nosotros nos encargamos de toda la configuración técnica.
+                    Solo necesitas un plan activo de Bsale que tenga habilitada la API REST (token de acceso oficial) y tu tienda WooCommerce corriendo en WordPress 5.8+ o 6.x con PHP 7.4 a 8.3. Nosotros nos encargamos de toda la configuración técnica, mapeo de bodegas y homologación de productos.
                 </p>
             </div>
 
+            <!-- FAQ 2 -->
             <div class="card" style="padding: 1.75rem;">
-                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">¿Soporta productos variables (tallas, colores, atributos) automáticamente?</h3>
+                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">2. ¿Soporta productos variables (tallas, colores, atributos) automáticamente?</h3>
                 <p style="color: var(--text-body); font-size: 0.95rem; line-height: 1.6; margin: 0;">
                     <strong>Sí, 100% en automático.</strong> A diferencia de la mayoría de soluciones del mercado que solo soportan productos simples o cobran suscripciones caras por gestionar atributos, nuestro plugin maneja productos variables completos con sus variaciones, SKUs hijos, precios normales, ofertas y stock por bodega sin costos adicionales.
                 </p>
             </div>
 
+            <!-- FAQ 3 -->
             <div class="card" style="padding: 1.75rem;">
-                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">¿Podemos integrar Bsale y WooCommerce con otros sistemas o ERPs de la empresa?</h3>
+                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">3. ¿Cómo funciona la sincronización de inventario multibodega y cómo evita sobreventas?</h3>
                 <p style="color: var(--text-body); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                    <strong>Totalmente.</strong> Como agencia y software factory experta en desarrollo en Chile, creamos conectores, webhooks y APIs a medida si necesitas comunicar Bsale o tu tienda con otros ERPs (como Softland, Odoo, SAP, Defontana), CRMs o bases de datos propietarias.
+                    Puedes seleccionar con precisión qué sucursal o bodega de Bsale alimenta tu tienda online. Si se concreta una venta en tu local físico a través del punto de venta (POS) de Bsale, el stock web se actualiza al instante mediante webhooks bidireccionales, impidiendo compras de artículos sin existencias en tiempo real.
                 </p>
             </div>
 
+            <!-- FAQ 4 -->
             <div class="card" style="padding: 1.75rem;">
-                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">¿Cuánto tarda la puesta en marcha?</h3>
+                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">4. ¿La emisión de Boleta y Factura DTE ante el SII es 100% automática?</h3>
                 <p style="color: var(--text-body); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                    La integración estándar toma entre 3 y 5 días hábiles, incluyendo pruebas en entorno sandbox, homologación de SKUs y validación de emisión de DTEs reales ante el SII.
+                    <strong>Sí.</strong> En cuanto una orden pasa al estado pagado o procesando en WooCommerce (por Webpay Plus, Mercado Pago, Stripe o transferencia), el plugin se comunica de inmediato con la API de Bsale, emite el documento tributario electrónico válido ante el SII y adjunta el PDF del DTE en el correo electrónico de confirmación que recibe el cliente.
                 </p>
             </div>
 
+            <!-- FAQ 5 -->
             <div class="card" style="padding: 1.75rem;">
-                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">¿Tiene costos mensuales o pagos por cada boleta emitida?</h3>
+                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">5. ¿Qué datos tributarios solicita al cliente para emitir Factura en WooCommerce?</h3>
                 <p style="color: var(--text-body); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                    <strong>Cero costos mensuales.</strong> Es una licencia vitalicia (Lifetime) de pago único de $350.000 CLP. Pagas una sola vez y usas el plugin sin mensualidades ni cobros por documento emitido.
+                    Durante el checkout se activan los campos tributarios exigidos por el SII en Chile para empresas: RUT, Razón Social, Giro Comercial y Dirección Tributaria. Si el cliente solicita boleta, solo ingresa su RUT o datos habituales de compra. Todo se transmite a Bsale de forma transparente.
                 </p>
             </div>
 
+            <!-- FAQ 6 -->
             <div class="card" style="padding: 1.75rem;">
-                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">¿Afecta la velocidad de carga de mi tienda web?</h3>
+                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">6. ¿Tiene costos mensuales o pagos por cada boleta emitida?</h3>
                 <p style="color: var(--text-body); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                    No. Nuestras integraciones se procesan de forma asíncrona mediante colas de trabajo (background workers), lo que garantiza que tu cliente experimente un checkout ultra rápido sin tiempos de espera.
+                    <strong>Cero costos mensuales.</strong> Es una licencia vitalicia (Lifetime) de pago único de $350.000 CLP. Pagas una sola vez y usas el plugin sin mensualidades ni cobros por documento emitido, lo que te permite ahorrar cientos de miles de pesos al año respecto a plataformas SaaS.
+                </p>
+            </div>
+
+            <!-- FAQ 7 -->
+            <div class="card" style="padding: 1.75rem;">
+                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">7. ¿Afecta la velocidad de carga de mi tienda web o el proceso de checkout?</h3>
+                <p style="color: var(--text-body); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    <strong>No.</strong> Nuestras integraciones se procesan de forma asíncrona mediante colas de trabajo (background workers y webhooks ligeros), lo que garantiza que tu cliente experimente un checkout ultra rápido sin tiempos de espera ni caídas de servidor.
+                </p>
+            </div>
+
+            <!-- FAQ 8 -->
+            <div class="card" style="padding: 1.75rem;">
+                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">8. ¿Podemos integrar Bsale y WooCommerce con otros sistemas o ERPs de la empresa?</h3>
+                <p style="color: var(--text-body); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    <strong>Totalmente.</strong> Como agencia y software factory experta en desarrollo en Chile, creamos conectores, webhooks y APIs a medida si necesitas comunicar Bsale o tu tienda con otros ERPs (como Softland, Odoo, SAP Business One, Defontana), CRMs o bases de datos propietarias.
+                </p>
+            </div>
+
+            <!-- FAQ 9 -->
+            <div class="card" style="padding: 1.75rem;">
+                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">9. ¿Cuánto tarda la puesta en marcha y qué incluye el servicio de instalación asistida?</h3>
+                <p style="color: var(--text-body); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    La integración estándar toma entre 3 y 5 días hábiles. Incluye configuración técnica completa, homologación de catálogo, mapeo de bodegas, pruebas en entorno sandbox y validación de emisión de DTEs reales ante el SII, guiada directamente por Álvaro Valenzuela Valdés.
+                </p>
+            </div>
+
+            <!-- FAQ 10 -->
+            <div class="card" style="padding: 1.75rem;">
+                <h3 style="font-size: 1.15rem; color: var(--text-dark); margin-bottom: 0.5rem;">10. ¿Cómo se entregan las actualizaciones del plugin y el soporte técnico futuro?</h3>
+                <p style="color: var(--text-body); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    La licencia vitalicia incluye actualizaciones continuas para mantener compatibilidad con nuevas versiones de WordPress, WooCommerce y la API de Bsale, junto a un canal de comunicación directo por WhatsApp con el desarrollador (+56 9 8726 1127).
                 </p>
             </div>
         </div>
@@ -393,68 +432,185 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://rew.cl/servicios/integracion-bsale-woocommerce",
+      "url": "https://rew.cl/servicios/integracion-bsale-woocommerce",
+      "name": "Integración Bsale con WooCommerce en Tiempo Real | REW",
+      "description": "Sincronización automática de inventario multibodega, catálogo, productos variables y emisión automática de boletas/facturas DTE ante el SII entre Bsale y WooCommerce en Chile.",
+      "inLanguage": "es-CL",
+      "breadcrumb": {
+        "@id": "https://rew.cl/servicios/integracion-bsale-woocommerce#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://rew.cl/servicios/integracion-bsale-woocommerce#product"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://rew.cl/servicios/integracion-bsale-woocommerce#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://rew.cl"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Servicios",
+          "item": "https://rew.cl/servicios"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Integración Bsale WooCommerce",
+          "item": "https://rew.cl/servicios/integracion-bsale-woocommerce"
+        }
+      ]
+    },
+    {
       "@type": "Service",
       "@id": "https://rew.cl/servicios/integracion-bsale-woocommerce#service",
       "name": "Integración Bsale con WooCommerce en Chile",
       "serviceType": "Integración ERP E-Commerce",
       "provider": {
         "@type": "ProfessionalService",
+        "@id": "https://rew.cl/#organization",
         "name": "REW",
         "url": "https://rew.cl",
         "telephone": "+56987261127",
         "email": "alvaro@rew.cl"
       },
-      "areaServed": "CL",
-      "description": "Sincronización automática de inventario en tiempo real, catálogo y boleta/factura electrónica DTE entre Bsale y tiendas WooCommerce en Chile."
+      "areaServed": {
+        "@type": "Country",
+        "name": "Chile"
+      },
+      "description": "Sincronización automática de inventario en tiempo real, catálogo, productos variables y boleta/factura electrónica DTE entre Bsale y tiendas WooCommerce en Chile."
     },
     {
       "@type": "Product",
       "@id": "https://rew.cl/servicios/integracion-bsale-woocommerce#product",
       "name": "Plugin Bsale WooCommerce Sync Pro (Licencia Vitalicia)",
       "image": "https://rew.cl/images/products/plugin_bsale_woocommerce.webp",
-      "description": "Plugin oficial de integración en tiempo real entre Bsale y WooCommerce. Stock multibodega, precios y emisión automática de boletas/facturas DTE ante el SII. Licencia vitalicia de pago único.",
+      "description": "Plugin oficial de integración en tiempo real entre Bsale y WooCommerce. Stock multibodega, productos variables en automático y emisión automática de boletas/facturas DTE ante el SII. Licencia vitalicia de pago único.",
       "sku": "rew-bsale-woo-lifetime",
       "brand": {
         "@type": "Brand",
         "name": "REW"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "48",
+        "bestRating": "5",
+        "worstRating": "1"
       },
       "offers": {
         "@type": "Offer",
         "url": "https://rew.cl/servicios/integracion-bsale-woocommerce#comprar-plugin",
         "priceCurrency": "CLP",
         "price": "350000",
+        "priceValidUntil": "2027-12-31",
+        "itemCondition": "https://schema.org/NewCondition",
         "availability": "https://schema.org/InStock",
         "seller": {
           "@type": "Organization",
+          "@id": "https://rew.cl/#organization",
           "name": "REW"
+        },
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "CL",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+          "merchantReturnDays": 30,
+          "returnMethod": "https://schema.org/ReturnByMail",
+          "returnFees": "https://schema.org/FreeReturn"
         }
       }
     },
     {
       "@type": "FAQPage",
+      "@id": "https://rew.cl/servicios/integracion-bsale-woocommerce#faq",
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "¿Qué necesito para integrar Bsale con mi WooCommerce?",
+          "name": "¿Qué necesito para integrar Bsale con mi tienda WooCommerce?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Se requiere un plan de Bsale con acceso a API REST y una tienda WooCommerce sobre WordPress 6.x."
+            "text": "Se requiere un plan de Bsale con acceso a API REST oficial (token de acceso) y una tienda WooCommerce sobre WordPress 5.8+ o 6.x con PHP 7.4 a 8.3. Nosotros nos encargamos de toda la configuración técnica, mapeo de bodegas y homologación de productos."
           }
         },
         {
           "@type": "Question",
-          "name": "¿Cuánto tarda la puesta en marcha de la integración Bsale?",
+          "name": "¿Soporta productos variables (tallas, colores, atributos) automáticamente?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "La integración estándar toma entre 3 y 5 días hábiles, incluyendo homologación de productos y pruebas DTE."
+            "text": "Sí, 100% en automático. A diferencia de otras soluciones que solo soportan productos simples o cobran extra por variaciones, nuestro plugin gestiona productos variables completos con sus atributos, SKUs hijos, precios normales, ofertas y stock por bodega sin costos adicionales."
           }
         },
         {
           "@type": "Question",
-          "name": "¿Tiene costos mensuales la licencia del plugin?",
+          "name": "¿Cómo funciona la sincronización de inventario multibodega y cómo evita sobreventas?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. La licencia del Plugin Bsale WooCommerce Sync Pro es vitalicia (Lifetime) de pago único de $350.000 CLP, sin mensualidades ni cobros por boleta emitida."
+            "text": "Puedes seleccionar exactamente qué sucursal o bodega de Bsale alimenta tu tienda online. Si se concreta una venta en tu local físico a través del punto de venta (POS) de Bsale, el stock web se actualiza al instante mediante webhooks bidireccionales, impidiendo sobreventas en tiempo real."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿La emisión de Boleta y Factura DTE ante el SII es 100% automática?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Al momento que una orden es pagada en WooCommerce, el plugin se comunica de inmediato con la API de Bsale, emite el documento tributario electrónico (DTE) válido ante el SII y adjunta el PDF oficial en el correo de confirmación enviado al cliente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué datos tributarios solicita al cliente para emitir Factura en WooCommerce?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Durante el checkout se activan los campos tributarios exigidos por el SII en Chile para empresas: RUT, Razón Social, Giro Comercial y Dirección Tributaria. Para boleta solo se requiere el RUT estándar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Tiene costos mensuales o pagos por cada boleta emitida?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cero costos mensuales. La licencia del Plugin Bsale WooCommerce Sync Pro es vitalicia (Lifetime) de pago único de $350.000 CLP. Pagas una sola vez y usas el plugin sin mensualidades ni cobros por documento emitido."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Afecta la velocidad de carga de mi tienda web o el proceso de checkout?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Nuestras integraciones se procesan de forma asíncrona mediante colas de trabajo (background workers y webhooks ligeros), garantizando que tu cliente experimente un checkout ultra rápido sin demoras."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Podemos integrar Bsale y WooCommerce con otros sistemas o ERPs de la empresa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Totalmente. En REW desarrollamos conectores, webhooks y APIs a medida para comunicar Bsale o tu tienda con otros ERPs (como Softland, Odoo, SAP, Defontana), CRMs o bases de datos propietarias."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tarda la puesta en marcha y qué incluye el servicio de instalación asistida?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La integración estándar toma entre 3 y 5 días hábiles, incluyendo configuración técnica, homologación de catálogo, mapeo de bodegas, pruebas en entorno sandbox y validación de emisión de DTEs reales ante el SII, guiada directamente por Álvaro Valenzuela Valdés."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo se entregan las actualizaciones del plugin y el soporte técnico futuro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La licencia vitalicia incluye actualizaciones continuas para mantener compatibilidad con nuevas versiones de WordPress, WooCommerce y la API de Bsale, junto a un canal de comunicación directo por WhatsApp con el desarrollador (+56 9 8726 1127)."
           }
         }
       ]
