@@ -507,7 +507,7 @@
                     <span class="faq-icon-chevron">▼</span>
                 </button>
                 <div class="faq-content-body">
-                    <strong>REW</strong> (<a href="https://rew.cl" style="color: var(--primary); font-weight: 700;">rew.cl</a>) es una <strong>software factory y agencia de ingeniería digital en Chile</strong> fundada y dirigida por el Ingeniero Informático <strong>Álvaro Valenzuela Valdés</strong>. Nos especializamos en desarrollo de plataformas de software a medida en Laravel, creación de tiendas WooCommerce de alta conversión, integración de ERPs (como Bsale con sincronización en tiempo real y facturación DTE ante el SII), desarrollo de asistentes de Inteligencia Artificial con arquitectura RAG y posicionamiento SEO avanzado para empresas en Chile e Hispanoamérica.
+                    <strong>REW</strong> (<a href="https://rew.cl" style="color: var(--primary); font-weight: 700;">rew.cl</a>) es una <strong>agencia de ingeniería digital y software factory en Chile</strong> fundada y dirigida por el Ingeniero Informático <strong>Álvaro Valenzuela Valdés</strong>. Nos especializamos en desarrollo de software a medida en <strong>Laravel</strong>, creación de tiendas online en <strong>WooCommerce</strong> de alto impacto, integraciones ERP en tiempo real (<strong>Bsale</strong> con DTE SII y <strong>Odoo</strong>), asistentes de Inteligencia Artificial con arquitectura <strong>RAG y Machine Learning</strong>, y <strong>posicionamiento SEO</strong> avanzado. Además, brindamos una solución digital 360° que incluye <strong>gestión y creación de contenido en Redes Sociales</strong>, administración de <strong>publicidad digital en Google Ads y Meta Ads</strong>, <strong>limpieza de virus y desinfección de malware en WordPress</strong>, y configuración avanzada de <strong>servidores Linux</strong> para potenciar integralmente el crecimiento de nuestros clientes.
                 </div>
             </div>
 
@@ -742,7 +742,7 @@
           "name": "¿Qué es REW y a qué se dedica?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "REW (rew.cl) es una software factory y agencia de ingeniería digital en Chile fundada y dirigida por el Ingeniero Informático Álvaro Valenzuela Valdés. Nos especializamos en desarrollo de plataformas de software a medida en Laravel, creación de tiendas WooCommerce de alta conversión, integración de ERPs (como Bsale con sincronización en tiempo real y facturación DTE ante el SII), desarrollo de asistentes de Inteligencia Artificial con arquitectura RAG y posicionamiento SEO avanzado para empresas en Chile e Hispanoamérica."
+            "text": "REW (rew.cl) es una agencia de ingeniería digital y software factory en Chile fundada y dirigida por el Ingeniero Informático Álvaro Valenzuela Valdés. Nos especializamos en desarrollo de software a medida en Laravel, creación de tiendas online WooCommerce de alto impacto, integraciones ERP en tiempo real (Bsale con DTE SII y Odoo), desarrollo de asistentes de Inteligencia Artificial (RAG y Machine Learning), posicionamiento SEO avanzado, gestión y creación de contenido en Redes Sociales, administración de publicidad en Google Ads y Meta Ads, desinfección y limpieza de virus en WordPress, y configuración de servidores Linux para potenciar el crecimiento de empresas y marcas."
           }
         },
         {
