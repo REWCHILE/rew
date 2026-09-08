@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('title', 'Desarrollo de Software en Chile | Sistemas a Medida & SaaS | REW')
-@section('meta_description', 'Desarrollo de software a medida en Chile para empresas y startups. Creamos sistemas SaaS, APIs y plataformas robustas en Laravel y PHP 8.3. Cotiza hoy.')
+@section('meta_description', 'Desarrollo de software a medida en Chile para empresas y startups. Creamos SaaS, APIs y plataformas robustas con Laravel y PHP. Cotiza hoy.')
 
 @section('og_title', 'Desarrollo de Software en Chile | Sistemas a Medida & SaaS | REW')
-@section('og_description', 'Desarrollo de software a medida en Chile para empresas y startups. Creamos sistemas SaaS, APIs y plataformas robustas en Laravel y PHP 8.3. Cotiza hoy.')
+@section('og_description', 'Desarrollo de software a medida en Chile para empresas y startups. Creamos SaaS, APIs y plataformas robustas con Laravel y PHP. Cotiza hoy.')
 @section('og_image', asset('images/services/software_hero.webp'))
 
 @section('content')
@@ -32,11 +32,11 @@
                 </div>
 
                 <h1 style="font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 900; line-height: 1.15; color: var(--text-dark); margin-bottom: 1.25rem;">
-                    Empresa de Desarrollo de Software en Chile: <span class="gradient-text">Soluciones a Medida</span>
+                    Desarrollo de Software <span class="gradient-text">a Medida en Chile</span>
                 </h1>
 
                 <p style="font-size: 1.15rem; color: var(--text-body); line-height: 1.7; margin-bottom: 2rem;">
-                    En <strong>REW</strong> somos una empresa de desarrollo de software que crea plataformas y herramientas tecnológicas a la medida para empresas y pymes. Combinamos arquitectura de vanguardia en Laravel & PHP 8.3, diseño UX intuitivo y prácticas ágiles para impulsar resultados de negocio reales.
+                    Diseñamos, desarrollamos y evolucionamos sistemas, plataformas SaaS y APIs para empresas y startups que necesitan tecnología preparada para crecer.
                 </p>
 
                 <!-- Value Highlights Grid -->
@@ -529,7 +529,7 @@
       "@id": "https://rew.cl/desarrollo-de-software-chile/#service",
       "name": "Desarrollo de Software a Medida en Chile",
       "serviceType": "Desarrollo de software a medida, Integraciones, Apps web, SaaS",
-      "description": "Somos una empresa de desarrollo de software en Chile. Creamos plataformas web, sistemas a medida, APIs e integraciones robustas con arquitectura escalable.",
+      "description": "Desarrollo de software a medida en Chile para empresas y startups. Creamos SaaS, APIs y plataformas robustas con Laravel y PHP.",
       "provider": {
         "@id": "https://rew.cl/#organization"
       },
