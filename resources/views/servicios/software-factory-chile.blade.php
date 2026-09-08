@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', '⚡ Software Factory en Chile: Células Ágiles & Desarrollo a Medida | REW')
-@section('meta_description', '🛠️ Células de desarrollo ágil en Laravel, PHP 8.3, APIs y microservicios con entregas por sprints y trato directo con ingenieros.')
+@section('title', 'Software Factory en Chile | Desarrollo de Software | REW')
+@section('meta_description', 'Software Factory en Chile para crear, modernizar y escalar productos digitales. Equipos ágiles en Laravel, React e IA. Conversemos sobre tu proyecto.')
 
 @section('og_type', 'service')
-@section('og_title', '⚡ Software Factory en Chile: Células Ágiles & Desarrollo a Medida | REW')
-@section('og_description', '🛠️ Externaliza tu desarrollo tecnológico con ingenieros expertos en Laravel, arquitectura cloud y plataformas de alta demanda en Chile.')
+@section('og_title', 'Software Factory en Chile | Desarrollo de Software | REW')
+@section('og_description', 'Software Factory en Chile para crear, modernizar y escalar productos digitales. Equipos ágiles en Laravel, React e IA. Conversemos sobre tu proyecto.')
 @section('og_image', asset('images/services/software_fabrica.webp'))
 
 @section('content')
@@ -23,7 +23,7 @@
             <div>
                 <span class="badge badge-primary" style="margin-bottom: 1rem;">Ingeniería de Software & Células Ágiles</span>
                 <h1 style="font-size: 3.2rem; margin-bottom: 1.25rem; line-height: 1.15; color: var(--text-dark);">
-                    <span class="gradient-text">Software Factory</span> en Chile con Código Propio y Escalable 🏭⚡
+                    <span class="gradient-text">Software Factory en Chile</span>: Creamos y Escalamos tus Productos Digitales
                 </h1>
                 <p style="font-size: 1.2rem; color: var(--text-body); line-height: 1.65; margin-bottom: 2rem;">
                     Desarrollamos soluciones tecnológicas robustas para empresas que no pueden permitirse fallas ni dependencias frágiles. En <strong>REW</strong> construimos sistemas SaaS, CRMs, plataformas web a medida y APIs de alto rendimiento con arquitectura limpia y soporte directo de ingeniería.
@@ -163,7 +163,7 @@
         "email": "alvaro@rew.cl"
       },
       "areaServed": "CL",
-      "description": "Fábrica de software y células de desarrollo ágil en Laravel, PHP 8.3, React y arquitectura cloud en Chile."
+      "description": "Software Factory en Chile para crear, modernizar y escalar productos digitales con equipos ágiles especializados en Laravel, React e Inteligencia Artificial."
     }
   ]
 }

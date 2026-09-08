@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', '⚡ Software Factory en Chile: Desarrollos en Laravel & Sistemas que Escalan tu Negocio | REW')
-@section('meta_description', '🛠️ Automatiza tus operaciones y digitaliza tu empresa con plataformas SaaS, APIs bancarias y sistemas a medida programados por ingenieros de software.')
+@section('title', 'Desarrollo de Software en Chile | Sistemas a Medida & SaaS | REW')
+@section('meta_description', 'Desarrollo de software a medida en Chile para empresas y startups. Creamos sistemas SaaS, APIs y plataformas robustas en Laravel y PHP 8.3. Cotiza hoy.')
 
-@section('og_title', '⚡ Software Factory en Chile: Sistemas a Medida & SaaS con Laravel | REW')
-@section('og_description', '🛠️ Diseñamos plataformas web robustas, automatización de procesos y software escalable con trato directo de ingenieros informáticos.')
+@section('og_title', 'Desarrollo de Software en Chile | Sistemas a Medida & SaaS | REW')
+@section('og_description', 'Desarrollo de software a medida en Chile para empresas y startups. Creamos sistemas SaaS, APIs y plataformas robustas en Laravel y PHP 8.3. Cotiza hoy.')
 @section('og_image', asset('images/services/software_hero.webp'))
 
 @section('content')
