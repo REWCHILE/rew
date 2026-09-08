@@ -101,6 +101,9 @@
                 {!! $post->content !!}
             </div>
 
+            <!-- Commercial Inbound CTA Banner -->
+            <x-blog-cta-banner :post="$post" />
+
             <!-- Interactive FAQ Section if present -->
             @if(!empty($post->faq_schema) && is_array($post->faq_schema))
                 <div style="margin-top: 3.5rem; padding-top: 2.5rem; border-top: 2px solid var(--border-light);">

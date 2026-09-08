@@ -38,7 +38,8 @@ class ExampleTest extends TestCase
         $response = $this->get('/desarrollo-de-software-chile');
 
         $response->assertStatus(200);
-        $response->assertSee('Empresa de Desarrollo de Software en Chile');
+        $response->assertSee('Desarrollo de Software');
+        $response->assertSee('a Medida en Chile');
         $response->assertSee('Servicios de Software a Medida');
         $response->assertSee('Por Qué Elegir a REW');
     }

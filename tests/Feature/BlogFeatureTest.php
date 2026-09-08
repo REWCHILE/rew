@@ -31,5 +31,7 @@ class BlogFeatureTest extends TestCase
         $response->assertSee($post->title);
         $response->assertSee('FAQPage');
         $response->assertSee('Artículos Relacionados en');
+        $response->assertSee('banner_marketing_digital.webp');
+        $response->assertSee('Cotizar Marketing');
     }
 }
