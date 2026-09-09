@@ -67,9 +67,198 @@
   padding: 0;
 }
 
+/* ==========================================================================
+   REW Hydrodynamic Ocean Wave Scrollbar (Ola de Mar en Mapudungún)
+   ========================================================================== */
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: #06b6d4 #070b14;
+}
+
+/* Chrome, Edge, Safari Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+
+/* Abyssal Oceanic Trench (Canal Fosa Marina) */
+::-webkit-scrollbar-track {
+  background: #070b14;
+  border-left: 1px solid rgba(56, 189, 248, 0.08);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-track:hover {
+  background: #090e1a;
+  border-left-color: rgba(56, 189, 248, 0.18);
+}
+
+/* REW Wave Surge Thumb (La Ola de Mar Bioluminiscente) */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0284c7 0%, #06b6d4 35%, #38bdf8 70%, #2dd4bf 100%);
+  border-radius: 9999px;
+  border: 2px solid #070b14;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.35);
+  transition: all 0.25s ease;
+}
+
+/* Cresta de Ola Rompiendo (Hover) */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #38bdf8 0%, #22d3ee 40%, #2dd4bf 80%, #67e8f9 100%);
+  border-color: #0c1527;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.85), 0 0 6px rgba(45, 212, 191, 0.9), inset 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+/* Marea Fuerte en Arrastre (Active/Dragging) */
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(180deg, #67e8f9 0%, #38bdf8 45%, #4f46e5 100%);
+  border-color: #020617;
+  box-shadow: 0 0 24px rgba(99, 102, 241, 0.9), 0 0 10px rgba(56, 189, 248, 1), inset 0 0 6px #ffffff;
+}
+
+::-webkit-scrollbar-corner {
+  background: #070b14;
+}
+
+/* Top Ocean Wave Progress Tracker ("Marea Alta REW") */
+.rew-ocean-tide-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3.5px;
+  width: 0%;
+  background: linear-gradient(90deg, #0284c7 0%, #06b6d4 35%, #38bdf8 70%, #2dd4bf 100%);
+  z-index: 10001;
+  pointer-events: none;
+  transition: width 0.08s ease-out;
+  box-shadow: 0 1px 8px rgba(56, 189, 248, 0.4);
+}
+
+.rew-ocean-tide-bar::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  top: -3px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #67e8f9;
+  box-shadow: 0 0 10px #38bdf8, 0 0 20px #2dd4bf, 0 0 30px #06b6d4;
+  animation: rewWaveCrestPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes rewWaveCrestPulse {
+  0% { transform: scale(0.9); opacity: 0.85; filter: drop-shadow(0 0 4px #38bdf8); }
+  50% { transform: scale(1.35); opacity: 1; filter: drop-shadow(0 0 12px #2dd4bf); }
+  100% { transform: scale(0.9); opacity: 0.85; filter: drop-shadow(0 0 4px #38bdf8); }
+}
+
+/* REW Depth Sonar HUD (Sonda Batimétrica de Código y Marea) */
+.rew-depth-sonar {
+  position: fixed;
+  right: 18px;
+  bottom: 96px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(7, 11, 20, 0.9);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 7px 14px;
+  border-radius: 9999px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 14px rgba(56, 189, 248, 0.2);
+  z-index: 9990;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+  font-family: var(--font-mono, monospace);
+  pointer-events: none;
+}
+
+.rew-depth-sonar.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.rew-depth-sonar:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.45);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.sonar-wave-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.rew-depth-sonar:hover .sonar-wave-icon {
+  transform: rotate(-15deg) scale(1.2);
+}
+
+.sonar-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.sonar-tier {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  background: linear-gradient(90deg, #38bdf8, #2dd4bf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sonar-depth {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+/* Micro Estela de Burbujas en el Arrastre / Scroll rápido */
+.rew-ocean-bubble {
+  position: fixed;
+  right: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #38bdf8 60%, #0284c7);
+  box-shadow: 0 0 6px #38bdf8;
+  pointer-events: none;
+  z-index: 10000;
+  animation: rewBubbleRise 0.9s cubic-bezier(0.2, 0.8, 0.4, 1) forwards;
+}
+
+@keyframes rewBubbleRise {
+  0% {
+    opacity: 0.9;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translate(-4px, -24px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-8px, -45px) scale(0.4);
+  }
+}
+
+@media (max-width: 768px) {
+  .rew-depth-sonar {
+    display: none;
+  }
 }
 
 body {

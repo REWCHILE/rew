@@ -144,19 +144,6 @@
         border: 1px solid #e2e8f0;
         border-left: 4px solid var(--primary);
     }
-    .architecture-diagram {
-        background: #090d16;
-        color: #38bdf8;
-        padding: 1.5rem;
-        border-radius: 12px;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-        font-size: 0.9rem;
-        line-height: 1.6;
-        overflow-x: auto;
-        margin: 2rem 0;
-        border: 1px solid #1e293b;
-        box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
-    }
     .checklist-card {
         background: #f8fafc;
         border: 1px solid #cbd5e1;

@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFaqAccordion();
     initSpeedBenchmarkRace();
     initHomeScrollAnimations();
+    initOceanScrollSystem();
 });
 
 /* ==========================================================================
@@ -216,6 +217,105 @@ function initHeaderScroll() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
+}
+
+/* ==========================================================================
+   REW Hydrodynamic Ocean Wave Scroll System (Ola de Mar en Mapudungún)
+   ========================================================================== */
+function initOceanScrollSystem() {
+    const tideBar = document.getElementById('rewOceanTideBar');
+    const sonarHud = document.getElementById('rewDepthSonar');
+    const sonarTier = document.getElementById('sonarTier');
+    const sonarDepth = document.getElementById('sonarDepth');
+    
+    let hideTimeout = null;
+    let lastScrollY = window.scrollY || 0;
+    let lastBubbleTime = 0;
+
+    // Click on Sonar HUD: Smoothly Surf to Surface (Top of Ocean)
+    if (sonarHud) {
+        sonarHud.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            createOceanSplash(window.innerHeight - 100);
+        });
+    }
+
+    function createOceanSplash(y) {
+        for (let i = 0; i < 6; i++) {
+            const bubble = document.createElement('div');
+            bubble.className = 'rew-ocean-bubble';
+            bubble.style.right = (Math.random() * 24 + 10) + 'px';
+            bubble.style.top = (y + (Math.random() * 40 - 20)) + 'px';
+            bubble.style.width = (Math.random() * 4 + 3) + 'px';
+            bubble.style.height = bubble.style.width;
+            document.body.appendChild(bubble);
+            setTimeout(() => bubble.remove(), 900);
+        }
+    }
+
+    function updateOceanScroll() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (docHeight <= 0) return;
+
+        const progress = Math.min(Math.max((scrollTop / docHeight) * 100, 0), 100);
+
+        // 1. Top Tide Bar
+        if (tideBar) {
+            tideBar.style.width = progress + '%';
+        }
+
+        // 2. Depth Sonar Telemetry
+        if (sonarHud && sonarTier && sonarDepth) {
+            // Calculate simulated ocean depth (up to 1200m)
+            const meters = Math.round((progress / 100) * 1200);
+            sonarDepth.textContent = `${Math.round(progress)}% • ${meters}m`;
+
+            // Mapudungun Marine Tiers (REW = Ola de Mar)
+            if (progress <= 20) {
+                sonarTier.textContent = '🌊 Lafken (Superficie)';
+            } else if (progress <= 50) {
+                sonarTier.textContent = '🏄 Rew Rüpü (Corriente)';
+            } else if (progress <= 80) {
+                sonarTier.textContent = '⚡ Meulen (Profundidad)';
+            } else {
+                sonarTier.textContent = '⚓ Futa Rew (Gran Marea)';
+            }
+
+            // Show HUD only after user scrolls
+            if (scrollTop > 80) {
+                sonarHud.classList.add('is-visible');
+                
+                if (hideTimeout) clearTimeout(hideTimeout);
+                
+                hideTimeout = setTimeout(() => {
+                    sonarHud.classList.remove('is-visible');
+                }, 1600);
+            } else {
+                sonarHud.classList.remove('is-visible');
+            }
+        }
+
+        // 3. Fast-scroll Micro Bubble Wake Effect
+        const scrollSpeed = Math.abs(scrollTop - lastScrollY);
+        const now = performance.now();
+        if (scrollSpeed > 45 && now - lastBubbleTime > 150 && window.innerWidth > 768) {
+            lastBubbleTime = now;
+            const bubble = document.createElement('div');
+            bubble.className = 'rew-ocean-bubble';
+            bubble.style.right = (Math.random() * 8 + 4) + 'px';
+            bubble.style.top = (Math.random() * 300 + (window.innerHeight / 2 - 150)) + 'px';
+            bubble.style.width = (Math.random() * 5 + 3) + 'px';
+            bubble.style.height = bubble.style.width;
+            document.body.appendChild(bubble);
+            setTimeout(() => bubble.remove(), 900);
+        }
+
+        lastScrollY = scrollTop;
+    }
+
+    window.addEventListener('scroll', updateOceanScroll, { passive: true });
+    updateOceanScroll();
 }
 
 

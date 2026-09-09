@@ -159,6 +159,17 @@
     @stack('head')
 </head>
 <body>
+    <!-- REW Hydrodynamic Ocean Wave Scroll Tracker & Depth Sonar HUD -->
+    <div id="rewOceanTideBar" class="rew-ocean-tide-bar" aria-hidden="true"></div>
+
+    <aside id="rewDepthSonar" class="rew-depth-sonar" title="🌊 Sonda Batimétrica REW — Clic para surfear a la superficie" aria-label="Profundidad de navegación">
+        <div class="sonar-wave-icon">🌊</div>
+        <div class="sonar-info">
+            <span class="sonar-tier" id="sonarTier">Lafken</span>
+            <span class="sonar-depth" id="sonarDepth">0% • 0m</span>
+        </div>
+    </aside>
+
     <!-- Navbar Component -->
     @include('components.navbar')
 
