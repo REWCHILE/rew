@@ -52,5 +52,13 @@ class BlogFeatureTest extends TestCase
         $redirect = $this->get('/blog/migrar-wordpress-a-laravel');
         $redirect->assertRedirect('/blog/laravel-vs-wordpress-cuando-elegir-cada-uno');
         $redirect->assertStatus(301);
+
+        $rootRedirect = $this->get('/migrar-wordpress-a-laravel');
+        $rootRedirect->assertRedirect('/blog/laravel-vs-wordpress-cuando-elegir-cada-uno');
+        $rootRedirect->assertStatus(301);
+
+        $typoRedirect = $this->get('/migrar-wordpress-a-larave');
+        $typoRedirect->assertRedirect('/blog/laravel-vs-wordpress-cuando-elegir-cada-uno');
+        $typoRedirect->assertStatus(301);
     }
 }

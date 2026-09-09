@@ -58,7 +58,11 @@ Route::get('/implementacion-odoo-chile', [ServiceController::class, 'implementac
 Route::get('/servicios/software-factory-chile', [ServiceController::class, 'softwareFactory'])->name('servicios.software-factory');
 Route::get('/software-factory-chile', [ServiceController::class, 'softwareFactory']);
 Route::get('/servicios/migracion-wordpress-laravel', fn () => redirect()->route('servicios.software-factory', [], 301));
-Route::get('/migracion-wordpress-laravel', fn () => redirect()->route('servicios.software-factory', [], 301));
+Route::redirect('/migrar-wordpress-a-laravel', '/blog/laravel-vs-wordpress-cuando-elegir-cada-uno', 301);
+Route::redirect('/migrar-wordpress-a-larave', '/blog/laravel-vs-wordpress-cuando-elegir-cada-uno', 301);
+Route::redirect('/migracion-wordpress-a-laravel', '/blog/laravel-vs-wordpress-cuando-elegir-cada-uno', 301);
+Route::redirect('/migracion-wordpress-laravel', '/blog/laravel-vs-wordpress-cuando-elegir-cada-uno', 301);
+Route::redirect('/laravel-vs-wordpress-cuando-elegir-cada-uno', '/blog/laravel-vs-wordpress-cuando-elegir-cada-uno', 301);
 
 // Herramienta de Auditoría SEO Gratuita (Diagnóstico en Vivo)
 Route::get('/auditoria-seo-gratis', [AuditController::class, 'landing'])->name('auditoria.landing');
@@ -71,6 +75,7 @@ Route::get('/terminos', [HomeController::class, 'terminos']);
 
 // 5. Blog & Knowledge Hub
 Route::redirect('/blog/migrar-wordpress-a-laravel', '/blog/laravel-vs-wordpress-cuando-elegir-cada-uno', 301);
+Route::redirect('/blog/migrar-wordpress-a-larave', '/blog/laravel-vs-wordpress-cuando-elegir-cada-uno', 301);
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 

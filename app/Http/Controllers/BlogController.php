@@ -51,6 +51,30 @@ class BlogController extends Controller
     {
         $post = Post::where('slug', $slug)->where('is_published', true)->firstOrFail();
 
+        // Auto-sincronización de contenido maestro desde posts_export.json en caso de que aún no se haya corrido seeder en DB
+        if ($slug === 'laravel-vs-wordpress-cuando-elegir-cada-uno' && ! str_contains((string) $post->content, 'Matriz de Decisión con Scoring')) {
+            $exportPath = database_path('seeders/posts_export.json');
+            if (file_exists($exportPath)) {
+                $postsData = json_decode(file_get_contents($exportPath), true);
+                if (is_array($postsData)) {
+                    foreach ($postsData as $item) {
+                        if (($item['slug'] ?? '') === $slug) {
+                            $post->update([
+                                'title' => $item['title'] ?? $post->title,
+                                'meta_title' => $item['meta_title'] ?? $post->meta_title,
+                                'meta_description' => $item['meta_description'] ?? $post->meta_description,
+                                'excerpt' => $item['excerpt'] ?? $post->excerpt,
+                                'content' => $item['content'] ?? $post->content,
+                                'faq_schema' => $item['faq_schema'] ?? $post->faq_schema,
+                                'read_time_minutes' => $item['read_time_minutes'] ?? 18,
+                            ]);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
         // 1. Obtener artículos relacionados del MISMO cluster / categoría
         $relatedPosts = Post::where('id', '!=', $post->id)
             ->where('category', $post->category)
