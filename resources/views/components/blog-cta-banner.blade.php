@@ -3,28 +3,23 @@
 @php
     $isMarketing = in_array($post->category, ['Marketing & Redes Sociales', 'Marketing Digital', 'Publicidad']);
     $bannerImage = $isMarketing 
-        ? asset('images/banners/banner_marketing_digital.webp') 
-        : asset('images/banners/banner_desarrollo_web.webp');
+        ? asset('images/services/ads_hero.webp') 
+        : asset('images/services/software_fabrica.webp');
     $bannerAlt = $isMarketing 
         ? 'Agencia de Marketing Digital y Publicidad en Chile - REW' 
-        : 'Empresa de Desarrollo Web y Software en Chile - REW';
+        : 'Software Factory y Desarrollo Web en Chile - REW';
 @endphp
 
 <!-- High-Converting Commercial Banner Box -->
 <div class="blog-conversion-banner" style="margin: 3.5rem 0 2rem; background: linear-gradient(135deg, #090d16 0%, #0f172a 50%, #1e1b4b 100%); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-2xl); position: relative;">
-    <!-- Visual Image Header with Overlay and Multi-Format Fallback -->
-    <div style="position: relative; width: 100%; max-height: 320px; min-height: 180px; overflow: hidden; background: radial-gradient(circle at center, #1e1b4b 0%, #090d16 100%);">
-        <picture style="display: block; width: 100%; height: 100%;">
-            <source srcset="/images/banners/{{ $isMarketing ? 'banner_marketing_digital.webp' : 'banner_desarrollo_web.webp' }}, /images/blog/{{ $isMarketing ? 'banner_marketing_digital.webp' : 'banner_desarrollo_web.webp' }}" type="image/webp">
-            <source srcset="/images/banners/{{ $isMarketing ? 'banner_marketing_digital.jpg' : 'banner_desarrollo_web.jpg' }}, /images/blog/{{ $isMarketing ? 'banner_marketing_digital.jpg' : 'banner_desarrollo_web.jpg' }}" type="image/jpeg">
-            <img src="/images/banners/{{ $isMarketing ? 'banner_marketing_digital.webp' : 'banner_desarrollo_web.webp' }}" 
-                 alt="{{ $bannerAlt }}" 
-                 loading="lazy"
-                 onerror="this.onerror=null; this.src='/images/banners/{{ $isMarketing ? 'banner_marketing_digital.jpg' : 'banner_desarrollo_web.jpg' }}'; this.onerror=function(){ this.style.display='none'; };"
-                 style="width: 100%; max-height: 320px; object-fit: cover; display: block; opacity: 0.95; transition: transform 0.6s ease;"
-                 onmouseover="this.style.transform='scale(1.03)'"
-                 onmouseout="this.style.transform='scale(1)'">
-        </picture>
+    <!-- Visual Image Header with Overlay -->
+    <div style="position: relative; width: 100%; max-height: 280px; overflow: hidden; background: #090d16;">
+        <img src="{{ $bannerImage }}" 
+             alt="{{ $bannerAlt }}" 
+             loading="lazy"
+             style="width: 100%; max-height: 280px; object-fit: cover; display: block; opacity: 0.92; transition: transform 0.6s ease;"
+             onmouseover="this.style.transform='scale(1.03)'"
+             onmouseout="this.style.transform='scale(1)'">
         <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(9, 13, 22, 0.15) 0%, rgba(9, 13, 22, 0.9) 100%); pointer-events: none;"></div>
     </div>
 
