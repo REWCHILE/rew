@@ -454,28 +454,43 @@ function initLangCurrencySwitcher() {
 
     function triggerGoogleTranslation(targetLang) {
         const isSpanish = targetLang === 'es';
-        const cookieVal = isSpanish ? '' : `/es/${targetLang}`;
+        const host = window.location.hostname;
+        const rootDomain = host.replace(/^www\./, '');
 
-        if (cookieVal) {
-            document.cookie = `googtrans=${cookieVal}; path=/;`;
-            document.cookie = `googtrans=${cookieVal}; path=/; domain=${window.location.hostname};`;
+        if (isSpanish) {
+            // Delete all possible googtrans cookies across all domains
+            ['', host, '.' + host, '.' + rootDomain].forEach(d => {
+                const dom = d ? ` domain=${d};` : '';
+                document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;${dom}`;
+            });
+            if (window.location.hash.includes('googtrans')) {
+                history.replaceState(null, null, window.location.pathname + window.location.search);
+            }
         } else {
-            document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname};`;
+            // Set googtrans cookie for Spanish -> targetLang (/es/LANG and /auto/LANG)
+            const pair1 = `/es/${targetLang}`;
+            const pair2 = `/auto/${targetLang}`;
+            [pair1, pair2].forEach(val => {
+                document.cookie = `googtrans=${val}; path=/;`;
+                document.cookie = `googtrans=${val}; path=/; domain=${host};`;
+                if (rootDomain !== host) {
+                    document.cookie = `googtrans=${val}; path=/; domain=.${rootDomain};`;
+                }
+            });
+            window.location.hash = `#googtrans(es|${targetLang})`;
         }
 
+        // Trigger Google Translate select element if present
         const combo = document.querySelector('.goog-te-combo');
         if (combo) {
             combo.value = isSpanish ? 'es' : targetLang;
-            combo.dispatchEvent(new Event('change'));
-            if (isSpanish) {
-                setTimeout(() => {
-                    window.location.reload();
-                }, 150);
-            }
-        } else {
-            window.location.reload();
+            combo.dispatchEvent(new Event('change', { bubbles: true }));
         }
+
+        // Reload to allow Google Translate engine to parse & translate the full DOM
+        setTimeout(() => {
+            window.location.reload();
+        }, 150);
     }
 
     // Language Selection (Enforces Chile=CLP, all other languages=USD)
@@ -568,13 +583,19 @@ function initLangCurrencySwitcher() {
 
         // Translate Nav links
         const navLinks = document.querySelectorAll('.nav-menu > li > a');
-        if (navLinks.length >= 6) {
-            if (navLinks[0]) navLinks[0].childNodes[0].nodeValue = dict.inicio + ' ';
-            if (navLinks[1]) navLinks[1].childNodes[0].nodeValue = dict.nosotros + ' ';
-            if (navLinks[2]) navLinks[2].childNodes[0].nodeValue = dict.tienda + ' ';
-            if (navLinks[4]) navLinks[4].childNodes[0].nodeValue = dict.portafolio + ' ';
-            if (navLinks[5]) navLinks[5].childNodes[0].nodeValue = dict.blog + ' ';
-            if (navLinks[6]) navLinks[6].childNodes[0].nodeValue = dict.contacto + ' ';
+        if (navLinks.length >= 7) {
+            if (navLinks[0] && navLinks[0].childNodes[0]) navLinks[0].childNodes[0].nodeValue = dict.inicio + ' ';
+            if (navLinks[1] && navLinks[1].childNodes[0]) navLinks[1].childNodes[0].nodeValue = dict.nosotros + ' ';
+            if (navLinks[2] && navLinks[2].childNodes[0]) navLinks[2].childNodes[0].nodeValue = dict.tienda + ' ';
+            if (navLinks[3] && navLinks[3].childNodes[0]) navLinks[3].childNodes[0].nodeValue = dict.servicios + ' ';
+            if (navLinks[4] && navLinks[4].childNodes[0]) navLinks[4].childNodes[0].nodeValue = dict.portafolio + ' ';
+            if (navLinks[5] && navLinks[5].childNodes[0]) navLinks[5].childNodes[0].nodeValue = dict.blog + ' ';
+            if (navLinks[6] && navLinks[6].childNodes[0]) navLinks[6].childNodes[0].nodeValue = dict.contacto + ' ';
+        }
+
+        const cotizarNavBtn = document.querySelector('.navbar .btn-primary');
+        if (cotizarNavBtn && dict.cotizar) {
+            cotizarNavBtn.textContent = dict.cotizar;
         }
 
         // Translate Add to Cart buttons
@@ -600,6 +621,17 @@ function initLangCurrencySwitcher() {
     applyCurrencyPrices(currentCurrency);
     if (currentLang !== 'es') {
         applyNativeTranslations(currentLang);
+        // Ensure googtrans cookie persists on load
+        const host = window.location.hostname;
+        const rootDomain = host.replace(/^www\./, '');
+        if (!document.cookie.includes('googtrans=')) {
+            const pair = `/es/${currentLang}`;
+            document.cookie = `googtrans=${pair}; path=/;`;
+            document.cookie = `googtrans=${pair}; path=/; domain=${host};`;
+            if (rootDomain !== host) {
+                document.cookie = `googtrans=${pair}; path=/; domain=.${rootDomain};`;
+            }
+        }
     }
 
     langBtns.forEach(b => {

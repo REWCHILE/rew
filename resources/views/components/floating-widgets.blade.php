@@ -225,6 +225,49 @@
     bottom: 18px !important;
   }
 }
+
+/* Headless Google Translate (Completely Invisible Off-Screen) */
+body {
+  top: 0 !important;
+  position: static !important;
+}
+.goog-te-banner-frame,
+.goog-te-balloon-frame,
+#goog-gt-tt,
+.goog-te-spinner-pos,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-ZVi9od-aZ2wEe-OiiCO,
+.VIpgJd-ZVi9od-aZ2wEe,
+.VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q,
+.skiptranslate iframe,
+iframe.skiptranslate,
+.goog-te-gadget-simple,
+.goog-te-gadget {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  pointer-events: none !important;
+}
+#google_translate_element {
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.goog-text-highlight {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+font[style] {
+  background: transparent !important;
+  box-shadow: none !important;
+}
 </style>
 
 <!-- 1. Floating WhatsApp Button (Bottom Left) -->
@@ -433,15 +476,16 @@
     </div>
 </div>
 
-<!-- 4. Headless Google Translate Element (Completely Invisible) -->
-<div id="google_translate_element" style="display:none;" aria-hidden="true"></div>
+<!-- 4. Headless Google Translate Element (Completely Invisible Off-Screen) -->
+<div id="google_translate_element" aria-hidden="true"></div>
 <script type="text/javascript">
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
         pageLanguage: 'es',
         includedLanguages: 'es,en,pt,fr,de,it,zh-CN,ja',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
         autoDisplay: false
     }, 'google_translate_element');
 }
 </script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
