@@ -61,4 +61,19 @@ class BlogFeatureTest extends TestCase
         $typoRedirect->assertRedirect('/blog/laravel-vs-wordpress-cuando-elegir-cada-uno');
         $typoRedirect->assertStatus(301);
     }
+
+    public function test_software_factory_pillar_article_renders_correctly(): void
+    {
+        $this->seed();
+
+        $post = Post::where('slug', 'que-es-una-software-factory')->firstOrFail();
+
+        $response = $this->get('/blog/'.$post->slug);
+        $response->assertStatus(200);
+        $response->assertSee('¿Qué es una Software Factory? Guía Completa para Empresas');
+        $response->assertSee('FAQPage');
+        $response->assertSee('/servicios/software-factory-chile');
+        $response->assertSee('Álvaro Valenzuela Valdés');
+        $response->assertSee('Célula de Desarrollo');
+    }
 }
