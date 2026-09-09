@@ -34,6 +34,27 @@
                     <input type="hidden" name="estimated_budget_usd" id="hidden_budget_usd" value="0">
                     <input type="hidden" name="estimated_budget_clp" id="hidden_budget_clp" value="0">
 
+                    @if ($errors->any())
+                        <div class="alert alert-danger" style="background: #fef2f2; border: 1px solid #f87171; color: #991b1b; padding: 1rem 1.25rem; border-radius: 12px; margin-bottom: 1.75rem;">
+                            <div style="font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                                <span>⚠️</span> Por favor corrige los siguientes campos:
+                            </div>
+                            <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.92rem; line-height: 1.6;">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <div id="quoteFormErrorAlert" style="display: none; background: #fef2f2; border: 1px solid #f87171; color: #991b1b; padding: 1rem 1.25rem; border-radius: 12px; margin-bottom: 1.75rem;">
+                        <div style="font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                            <span>⚠️</span> Por favor completa los campos requeridos:
+                        </div>
+                        <div id="quoteFormErrorMessage" style="font-size: 0.92rem; line-height: 1.6;"></div>
+                    </div>
+
+
                     <!-- Step 1: Service Type -->
                     <div style="margin-bottom: 2.5rem;">
                         <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
@@ -286,4 +307,26 @@
         </div>
     </div>
 </section>
+
+<!-- Success Modal for Cotizador -->
+<div id="quoteSuccessModal" style="display: none; position: fixed; inset: 0; z-index: 100000; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 1.5rem;">
+    <div style="background: #ffffff; border-radius: 20px; max-width: 520px; width: 100%; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35); border: 1px solid rgba(226, 232, 240, 0.8);">
+        <div style="width: 72px; height: 72px; background: #ecfdf5; border: 2px solid #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; font-size: 2rem;">
+            ✅
+        </div>
+        <h3 style="font-size: 1.6rem; color: #0f172a; margin-bottom: 0.5rem; font-weight: 900;">¡Cotización Registrada con Éxito!</h3>
+        <p style="color: #475569; font-size: 1rem; line-height: 1.6; margin-bottom: 1.75rem;">
+            Hemos recibido los detalles de tu proyecto. Te estamos redirigiendo a WhatsApp con <strong>Álvaro Valenzuela Valdés</strong> para coordinar la evaluación técnica.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <a id="quoteModalWhatsappBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-lg" style="font-weight: 800; font-size: 1.05rem; padding: 1rem;">
+                💬 Continuar a WhatsApp Ahora ↗
+            </a>
+            <button type="button" onclick="document.getElementById('quoteSuccessModal').style.display='none'" class="btn btn-outline btn-sm" style="margin-top: 5px;">
+                Cerrar
+            </button>
+        </div>
+    </div>
+</div>
 @endsection
+

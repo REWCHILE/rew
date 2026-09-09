@@ -22,10 +22,19 @@ class QuoteController extends Controller
             return response()->json(['success' => false, 'message' => 'Solicitud rechazada.'], 400);
         }
 
+        // Sanitizar array de custom_feature_items para eliminar cadenas vacías antes de validar
+        if ($request->has('custom_feature_items') && is_array($request->input('custom_feature_items'))) {
+            $filteredItems = array_values(array_filter(
+                $request->input('custom_feature_items'),
+                fn ($item) => is_string($item) && trim($item) !== ''
+            ));
+            $request->merge(['custom_feature_items' => $filteredItems]);
+        }
+
         $validated = $request->validate([
-            'name' => 'required|string|max:120',
-            'email' => 'required|email:rfc,dns|max:150',
-            'phone' => ['required', 'string', 'max:40', 'regex:/^[0-9\+\-\s\(\)]+$/'],
+            'name' => 'required|string|min:2|max:120',
+            'email' => 'required|email:rfc,filter|max:150',
+            'phone' => ['required', 'string', 'min:7', 'max:40', 'regex:/^[0-9\+\-\s\(\)\.]+$/'],
             'company' => 'nullable|string|max:150',
             'service_type' => 'required|string|max:120',
             'project_description' => 'nullable|string|max:2000',
@@ -36,6 +45,14 @@ class QuoteController extends Controller
             'estimated_budget_clp' => 'nullable|numeric|max:999999999',
             'preferred_contact_channel' => 'nullable|string|max:30',
             'features' => 'nullable',
+        ], [
+            'name.required' => 'Por favor ingresa tu nombre y apellido.',
+            'name.min' => 'El nombre debe tener al menos 2 caracteres.',
+            'email.required' => 'Por favor ingresa tu correo electrónico de contacto.',
+            'email.email' => 'Por favor ingresa un correo electrónico válido (ej: tu@empresa.cl).',
+            'phone.required' => 'Por favor ingresa tu número de WhatsApp o teléfono.',
+            'phone.regex' => 'El teléfono ingresado contiene caracteres no válidos.',
+            'service_type.required' => 'Por favor selecciona el tipo de proyecto principal.',
         ]);
 
         // 2. Sanitización estricta contra XSS / Injection

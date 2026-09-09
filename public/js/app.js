@@ -1003,6 +1003,11 @@ function initInteractiveQuoteCalculator() {
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
+
+        const errorAlert = document.getElementById('quoteFormErrorAlert');
+        const errorMsg = document.getElementById('quoteFormErrorMessage');
+        if (errorAlert) errorAlert.style.display = 'none';
+
         const submitBtn = this.querySelector('button[type="submit"]');
         if (submitBtn) {
             submitBtn.disabled = true;
@@ -1015,24 +1020,75 @@ function initInteractiveQuoteCalculator() {
             method: 'POST',
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': getCsrfToken()
+                'X-CSRF-TOKEN': getCsrfToken(),
+                'Accept': 'application/json'
             },
             body: formData
         })
-        .then(res => res.json())
-        .then(data => {
+        .then(async res => {
+            const data = await res.json().catch(() => ({}));
+
+            if (!res.ok) {
+                let errHtml = 'Ocurrió un error al procesar tu solicitud.';
+                if (data.errors) {
+                    errHtml = '<ul style="margin: 0; padding-left: 1.25rem;">' +
+                        Object.values(data.errors).flat().map(err => `<li>${err}</li>`).join('') +
+                        '</ul>';
+                } else if (data.message) {
+                    errHtml = data.message;
+                }
+
+                if (errorAlert && errorMsg) {
+                    errorMsg.innerHTML = errHtml;
+                    errorAlert.style.display = 'block';
+                    errorAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span>🚀 Enviar Cotización y Abrir WhatsApp (+56987261127)</span>';
+                }
+                return;
+            }
+
             if (data.success && data.whatsapp_url) {
-                window.location.href = data.whatsapp_url;
+                const modal = document.getElementById('quoteSuccessModal');
+                const modalBtn = document.getElementById('quoteModalWhatsappBtn');
+                if (modal && modalBtn) {
+                    modalBtn.href = data.whatsapp_url;
+                    modal.style.display = 'flex';
+                }
+
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span>✅ Cotización Enviada con Éxito</span>';
+                }
+
+                // Intentar redirección a WhatsApp tras pequeño delay para permitir ver el modal
+                setTimeout(() => {
+                    window.location.href = data.whatsapp_url;
+                }, 1200);
             } else if (submitBtn) {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '<span>🚀 Enviar Cotización y Abrir WhatsApp (+56987261127)</span>';
             }
         })
-        .catch(() => {
-            form.submit();
+        .catch(err => {
+            console.error('Error enviando cotización:', err);
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>🚀 Enviar Cotización y Abrir WhatsApp (+56987261127)</span>';
+            }
+            if (errorAlert && errorMsg) {
+                errorMsg.innerHTML = 'Hubo un problema de conexión al enviar el formulario. Puedes contactarnos directamente por WhatsApp al <a href="https://api.whatsapp.com/send?phone=56987261127" target="_blank" style="color: #15803d; font-weight: bold; text-decoration: underline;">+56 9 8726 1127</a>.';
+                errorAlert.style.display = 'block';
+            } else {
+                form.submit();
+            }
         });
     });
 }
+
 
 /* ==========================================================================
    Rich-E AI Chatbot Engine (Connected to Laravel / Groq / RAG)
