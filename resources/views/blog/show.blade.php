@@ -57,6 +57,130 @@
 @endif
 @endsection
 
+@push('styles')
+<style>
+    .prose-content h2 {
+        font-size: clamp(1.5rem, 2.8vw, 2rem);
+        font-weight: 800;
+        color: var(--text-dark);
+        margin: 3rem 0 1.25rem;
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+        border-bottom: 2px solid #f1f5f9;
+        padding-bottom: 0.6rem;
+    }
+    .prose-content h3 {
+        font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+        font-weight: 700;
+        color: var(--text-dark);
+        margin: 2.25rem 0 1rem;
+        line-height: 1.35;
+    }
+    .prose-content p {
+        margin-bottom: 1.4rem;
+        color: #334155;
+        font-size: 1.06rem;
+        line-height: 1.85;
+    }
+    .prose-content ul, .prose-content ol {
+        margin-bottom: 1.6rem;
+        padding-left: 1.5rem;
+    }
+    .prose-content li {
+        margin-bottom: 0.55rem;
+        color: #334155;
+        line-height: 1.75;
+    }
+    .prose-content strong {
+        color: #0f172a;
+        font-weight: 700;
+    }
+    .table-responsive-box {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 2.25rem 0;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .custom-prose-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.94rem;
+        text-align: left;
+        background: #ffffff;
+    }
+    .custom-prose-table th {
+        background: #0f172a;
+        color: #ffffff;
+        padding: 14px 18px;
+        font-weight: 700;
+        border-bottom: 2px solid #334155;
+    }
+    .custom-prose-table td {
+        padding: 12px 18px;
+        border-bottom: 1px solid #e2e8f0;
+        color: #334155;
+        vertical-align: middle;
+    }
+    .custom-prose-table tr:last-child td {
+        border-bottom: none;
+    }
+    .custom-prose-table tr:nth-child(even) td {
+        background: #f8fafc;
+    }
+    .custom-prose-table tr:hover td {
+        background: #f1f5f9;
+    }
+    .quote-callout {
+        border-left: 4px solid var(--primary);
+        background: #f8fafc;
+        padding: 1.35rem 1.6rem;
+        margin: 2rem 0;
+        border-radius: 0 12px 12px 0;
+        font-style: italic;
+        color: #1e293b;
+        font-size: 1.05rem;
+        border: 1px solid #e2e8f0;
+        border-left: 4px solid var(--primary);
+    }
+    .architecture-diagram {
+        background: #090d16;
+        color: #38bdf8;
+        padding: 1.5rem;
+        border-radius: 12px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        overflow-x: auto;
+        margin: 2rem 0;
+        border: 1px solid #1e293b;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+    }
+    .checklist-card {
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        padding: 1.5rem 1.75rem;
+        margin: 2rem 0;
+    }
+    .checklist-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 0.75rem;
+        margin-top: 1rem;
+    }
+    .checklist-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.95rem;
+        color: #1e293b;
+        font-weight: 600;
+    }
+</style>
+@endpush
+
 @section('content')
 <section class="section" style="background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%); padding: 4.5rem 0;">
     <div class="container container-narrow">

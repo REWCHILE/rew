@@ -70,6 +70,7 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ time() }}">
+    @stack('styles')
 
     <!-- Schema.org JSON-LD Structured Data for Organization, Person & WebSite -->
     <script type="application/ld+json">

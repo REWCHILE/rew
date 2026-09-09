@@ -43,8 +43,9 @@ class BlogFeatureTest extends TestCase
 
         $response = $this->get('/blog/'.$post->slug);
         $response->assertStatus(200);
-        $response->assertSee('Migrar WordPress a Laravel');
-        $response->assertSee('Protocolo de Preservación SEO en Migraciones');
+        $response->assertSee('Laravel vs WordPress');
+        $response->assertSee('¿Cuándo deberías considerar migrar de WordPress a Laravel?');
+        $response->assertSee('Checklist Técnico de Migración SEO');
         $response->assertSee('FAQPage');
 
         // Test 301 alias redirect

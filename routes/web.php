@@ -57,6 +57,8 @@ Route::get('/servicios/implementacion-odoo-chile', [ServiceController::class, 'i
 Route::get('/implementacion-odoo-chile', [ServiceController::class, 'implementacionOdoo']);
 Route::get('/servicios/software-factory-chile', [ServiceController::class, 'softwareFactory'])->name('servicios.software-factory');
 Route::get('/software-factory-chile', [ServiceController::class, 'softwareFactory']);
+Route::get('/servicios/migracion-wordpress-laravel', fn () => redirect()->route('servicios.software-factory', [], 301));
+Route::get('/migracion-wordpress-laravel', fn () => redirect()->route('servicios.software-factory', [], 301));
 
 // Herramienta de Auditoría SEO Gratuita (Diagnóstico en Vivo)
 Route::get('/auditoria-seo-gratis', [AuditController::class, 'landing'])->name('auditoria.landing');
