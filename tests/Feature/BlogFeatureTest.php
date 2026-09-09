@@ -34,4 +34,22 @@ class BlogFeatureTest extends TestCase
         $response->assertSee('banner_marketing_digital.webp');
         $response->assertSee('Cotizar Marketing');
     }
+
+    public function test_migration_post_renders_expanded_content_and_faqs(): void
+    {
+        $this->seed();
+
+        $post = Post::where('slug', 'laravel-vs-wordpress-cuando-elegir-cada-uno')->firstOrFail();
+
+        $response = $this->get('/blog/'.$post->slug);
+        $response->assertStatus(200);
+        $response->assertSee('Migrar WordPress a Laravel');
+        $response->assertSee('Protocolo de Preservación SEO en Migraciones');
+        $response->assertSee('FAQPage');
+
+        // Test 301 alias redirect
+        $redirect = $this->get('/blog/migrar-wordpress-a-laravel');
+        $redirect->assertRedirect('/blog/laravel-vs-wordpress-cuando-elegir-cada-uno');
+        $redirect->assertStatus(301);
+    }
 }

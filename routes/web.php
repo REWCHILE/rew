@@ -68,6 +68,7 @@ Route::get('/terminos-y-condiciones', [HomeController::class, 'terminos'])->name
 Route::get('/terminos', [HomeController::class, 'terminos']);
 
 // 5. Blog & Knowledge Hub
+Route::redirect('/blog/migrar-wordpress-a-laravel', '/blog/laravel-vs-wordpress-cuando-elegir-cada-uno', 301);
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
