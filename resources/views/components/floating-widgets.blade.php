@@ -15,64 +15,78 @@
 <div class="floating-lang-currency-widget">
     <!-- Trigger Button -->
     <button type="button" class="lang-currency-toggle-btn" aria-label="Seleccionar Idioma y Moneda">
-        <span class="active-flag-icon">🇨🇱</span>
+        <span class="active-flag-icon">
+            <img src="{{ asset('images/flags/cl.svg') }}" alt="Chile" class="flag-img active-flag-img">
+        </span>
         <span class="active-lang-currency-text">ES / CLP</span>
         <span class="chevron-icon">▲</span>
     </button>
 
-    <!-- Dropdown Menu matching exact user design -->
+    <!-- Dropdown Menu with SVG Flags and Strict Currency Association -->
     <div class="lang-currency-popup">
-        <!-- Language Section -->
-        <div class="popup-section-header">SELECCIONAR IDIOMA</div>
+        <div class="popup-section-header">SELECCIONAR IDIOMA & MONEDA</div>
         <div class="lang-options-list">
-            <button type="button" class="lang-option-btn active" data-lang="es" data-flag="🇨🇱" data-name="ES">
-                <span class="flag">🇨🇱</span>
+            <button type="button" class="lang-option-btn active" data-lang="es" data-flag="{{ asset('images/flags/cl.svg') }}" data-name="ES" data-currency="CLP">
+                <img src="{{ asset('images/flags/cl.svg') }}" alt="Chile" class="flag-img">
                 <span class="name">Español</span>
+                <span class="currency-tag">CLP</span>
             </button>
-            <button type="button" class="lang-option-btn" data-lang="en" data-flag="🇺🇸" data-name="EN">
-                <span class="flag">🇺🇸</span>
+            <button type="button" class="lang-option-btn" data-lang="en" data-flag="{{ asset('images/flags/us.svg') }}" data-name="EN" data-currency="USD">
+                <img src="{{ asset('images/flags/us.svg') }}" alt="English" class="flag-img">
                 <span class="name">English</span>
+                <span class="currency-tag">USD</span>
             </button>
-            <button type="button" class="lang-option-btn" data-lang="pt" data-flag="🇧🇷" data-name="PT">
-                <span class="flag">🇧🇷</span>
+            <button type="button" class="lang-option-btn" data-lang="pt" data-flag="{{ asset('images/flags/br.svg') }}" data-name="PT" data-currency="USD">
+                <img src="{{ asset('images/flags/br.svg') }}" alt="Português" class="flag-img">
                 <span class="name">Português</span>
+                <span class="currency-tag">USD</span>
             </button>
-            <button type="button" class="lang-option-btn" data-lang="fr" data-flag="🇫🇷" data-name="FR">
-                <span class="flag">🇫🇷</span>
+            <button type="button" class="lang-option-btn" data-lang="fr" data-flag="{{ asset('images/flags/fr.svg') }}" data-name="FR" data-currency="USD">
+                <img src="{{ asset('images/flags/fr.svg') }}" alt="Français" class="flag-img">
                 <span class="name">Français</span>
+                <span class="currency-tag">USD</span>
             </button>
-            <button type="button" class="lang-option-btn" data-lang="de" data-flag="🇩🇪" data-name="DE">
-                <span class="flag">🇩🇪</span>
+            <button type="button" class="lang-option-btn" data-lang="de" data-flag="{{ asset('images/flags/de.svg') }}" data-name="DE" data-currency="USD">
+                <img src="{{ asset('images/flags/de.svg') }}" alt="Deutsch" class="flag-img">
                 <span class="name">Deutsch</span>
+                <span class="currency-tag">USD</span>
             </button>
-            <button type="button" class="lang-option-btn" data-lang="it" data-flag="🇮🇹" data-name="IT">
-                <span class="flag">🇮🇹</span>
+            <button type="button" class="lang-option-btn" data-lang="it" data-flag="{{ asset('images/flags/it.svg') }}" data-name="IT" data-currency="USD">
+                <img src="{{ asset('images/flags/it.svg') }}" alt="Italiano" class="flag-img">
                 <span class="name">Italiano</span>
+                <span class="currency-tag">USD</span>
             </button>
-            <button type="button" class="lang-option-btn" data-lang="zh-CN" data-flag="🇨🇳" data-name="ZH">
-                <span class="flag">🇨🇳</span>
+            <button type="button" class="lang-option-btn" data-lang="zh-CN" data-flag="{{ asset('images/flags/cn.svg') }}" data-name="ZH" data-currency="USD">
+                <img src="{{ asset('images/flags/cn.svg') }}" alt="简体中文" class="flag-img">
                 <span class="name">简体中文</span>
+                <span class="currency-tag">USD</span>
             </button>
-            <button type="button" class="lang-option-btn" data-lang="ja" data-flag="🇯🇵" data-name="JA">
-                <span class="flag">🇯🇵</span>
+            <button type="button" class="lang-option-btn" data-lang="ja" data-flag="{{ asset('images/flags/jp.svg') }}" data-name="JA" data-currency="USD">
+                <img src="{{ asset('images/flags/jp.svg') }}" alt="日本語" class="flag-img">
                 <span class="name">日本語</span>
+                <span class="currency-tag">USD</span>
             </button>
         </div>
 
-        <!-- Currency Section -->
-        <div class="popup-section-header" style="margin-top: 10px;">SELECCIONAR MONEDA</div>
-        <div class="currency-options-list">
-            <button type="button" class="currency-option-btn active" data-currency="CLP" data-flag="🇨🇱" data-code="CLP">
-                <span class="flag">🇨🇱</span>
-                <span class="name">CLP ($)</span>
-            </button>
-            <button type="button" class="currency-option-btn" data-currency="USD" data-flag="🇺🇸" data-code="USD">
-                <span class="flag">🇺🇸</span>
-                <span class="name">USD ($)</span>
-            </button>
+        <div class="popup-section-header" style="margin-top: 10px;">CONDICIÓN MONETARIA</div>
+        <div style="font-size: 0.74rem; color: #64748b; padding: 4px 6px 2px; line-height: 1.4;">
+            🇨🇱 Chile opera en <strong>CLP ($)</strong>. Todos los demás idiomas operan en <strong>USD ($)</strong>.
         </div>
     </div>
 </div>
+
+<!-- Headless Google Translate element -->
+<div id="google_translate_element" style="display:none;" aria-hidden="true"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'es',
+        includedLanguages: 'es,en,pt,fr,de,it,zh-CN,ja',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
 
 
 <!-- 3. Rich-E AI Chatbot Agent (Exact User Match) -->

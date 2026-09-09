@@ -415,13 +415,30 @@ function initLangCurrencySwitcher() {
     const toggleBtn = document.querySelector('.lang-currency-toggle-btn');
     const flagIcon = document.querySelector('.active-flag-icon');
     const triggerText = document.querySelector('.active-lang-currency-text');
-
     const langBtns = document.querySelectorAll('.lang-option-btn');
-    const currencyBtns = document.querySelectorAll('.currency-option-btn');
+
+    const flagMap = {
+        'es': '/images/flags/cl.svg',
+        'en': '/images/flags/us.svg',
+        'pt': '/images/flags/br.svg',
+        'fr': '/images/flags/fr.svg',
+        'de': '/images/flags/de.svg',
+        'it': '/images/flags/it.svg',
+        'zh-CN': '/images/flags/cn.svg',
+        'ja': '/images/flags/jp.svg'
+    };
 
     let currentLang = localStorage.getItem('rew_lang') || 'es';
-    let currentCurrency = localStorage.getItem('rew_currency') || (currentLang === 'es' ? 'CLP' : 'USD');
-    let currentFlag = localStorage.getItem('rew_flag') || (currentLang === 'es' ? '🇨🇱' : '🇺🇸');
+    // Strict condition: Only Chile has CLP, all other languages operate in USD
+    let currentCurrency = (currentLang === 'es') ? 'CLP' : 'USD';
+    let currentFlag = localStorage.getItem('rew_flag');
+    if (!currentFlag || !currentFlag.includes('.svg')) {
+        currentFlag = flagMap[currentLang] || '/images/flags/cl.svg';
+    }
+
+    localStorage.setItem('rew_lang', currentLang);
+    localStorage.setItem('rew_currency', currentCurrency);
+    localStorage.setItem('rew_flag', currentFlag);
 
     // Toggle Dropdown
     if (toggleBtn && widget) {
@@ -437,33 +454,56 @@ function initLangCurrencySwitcher() {
         });
     }
 
-    // Language Selection
+    function triggerGoogleTranslation(targetLang) {
+        const isSpanish = targetLang === 'es';
+        const cookieVal = isSpanish ? '' : `/es/${targetLang}`;
+
+        if (cookieVal) {
+            document.cookie = `googtrans=${cookieVal}; path=/;`;
+            document.cookie = `googtrans=${cookieVal}; path=/; domain=${window.location.hostname};`;
+        } else {
+            document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname};`;
+        }
+
+        const combo = document.querySelector('.goog-te-combo');
+        if (combo) {
+            combo.value = isSpanish ? 'es' : targetLang;
+            combo.dispatchEvent(new Event('change'));
+            if (isSpanish) {
+                setTimeout(() => {
+                    window.location.reload();
+                }, 150);
+            }
+        } else {
+            window.location.reload();
+        }
+    }
+
+    // Language Selection (Enforces Chile=CLP, all other languages=USD)
     langBtns.forEach(btn => {
         btn.addEventListener('click', function() {
             const lang = this.getAttribute('data-lang');
-            const flag = this.getAttribute('data-flag');
+            const flag = this.getAttribute('data-flag') || flagMap[lang] || '/images/flags/cl.svg';
+            const name = this.getAttribute('data-name');
 
             langBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
 
             currentLang = lang;
             currentFlag = flag;
+            // Strict rule: Chile is CLP, all international languages are USD
+            currentCurrency = (lang === 'es') ? 'CLP' : 'USD';
+
             localStorage.setItem('rew_lang', lang);
             localStorage.setItem('rew_flag', flag);
-
-            // Automatic currency assignment: Spanish -> CLP, other languages -> USD
-            currentCurrency = (lang === 'es') ? 'CLP' : 'USD';
             localStorage.setItem('rew_currency', currentCurrency);
-
-            currencyBtns.forEach(b => {
-                if (b.getAttribute('data-currency') === currentCurrency) b.classList.add('active');
-                else b.classList.remove('active');
-            });
 
             updateTriggerLabel();
             applyNativeTranslations(lang);
             applyCurrencyPrices(currentCurrency);
 
+            // Sync with backend session
             fetch('/currency', {
                 method: 'POST',
                 headers: {
@@ -473,37 +513,18 @@ function initLangCurrencySwitcher() {
                 },
                 body: JSON.stringify({ currency: currentCurrency })
             }).catch(() => {});
-        });
-    });
 
-    // Currency Selection
-    currencyBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const currency = this.getAttribute('data-currency');
+            if (widget) widget.classList.remove('active');
 
-            currencyBtns.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-
-            currentCurrency = currency;
-            localStorage.setItem('rew_currency', currency);
-
-            updateTriggerLabel();
-            applyCurrencyPrices(currency);
-
-            fetch('/currency', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRF-TOKEN': getCsrfToken()
-                },
-                body: JSON.stringify({ currency: currency })
-            }).catch(() => {});
+            // Trigger full website translation
+            triggerGoogleTranslation(lang);
         });
     });
 
     function updateTriggerLabel() {
-        if (flagIcon) flagIcon.textContent = currentFlag;
+        if (flagIcon) {
+            flagIcon.innerHTML = `<img src="${currentFlag}" alt="${currentLang}" class="flag-img active-flag-img">`;
+        }
         if (triggerText) {
             const langCode = (currentLang === 'zh-CN' ? 'ZH' : currentLang.toUpperCase()).slice(0, 2);
             triggerText.textContent = `${langCode} / ${currentCurrency}`;
@@ -588,10 +609,6 @@ function initLangCurrencySwitcher() {
 
     langBtns.forEach(b => {
         if (b.getAttribute('data-lang') === currentLang) b.classList.add('active');
-        else b.classList.remove('active');
-    });
-    currencyBtns.forEach(b => {
-        if (b.getAttribute('data-currency') === currentCurrency) b.classList.add('active');
         else b.classList.remove('active');
     });
 }

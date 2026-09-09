@@ -1512,68 +1512,7 @@ img {
   color: var(--primary);
 }
 
-/* Rich-E Chatbot Widget (Bottom Right) */
-.floating-riche-bot {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  z-index: 1000;
-}
-
-.riche-toggle-btn {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-gold) 0%, #ea580c 100%);
-  border: 3px solid #ffffff;
-  box-shadow: 0 6px 22px rgba(245, 158, 11, 0.45);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  color: #ffffff;
-  transition: var(--transition);
-  position: relative;
-}
-
-.riche-toggle-btn:hover {
-  transform: scale(1.08);
-}
-
-.riche-status-dot {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #10b981;
-  border: 2px solid #ffffff;
-}
-
-/* Rich-E Chat Window */
-.riche-chat-window {
-  position: fixed;
-  bottom: 95px;
-  right: 25px;
-  width: 380px;
-  max-width: calc(100vw - 40px);
-  height: 540px;
-  background: #ffffff;
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-xl);
-  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.2);
-  display: none;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 1000;
-  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.floating-riche-bot.open .riche-chat-window {
-  display: flex;
-}
+/* Rich-E Chatbot Widget styles defined in Floating Widgets section */
 
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(20px); }
@@ -2297,12 +2236,12 @@ img {
 }
 
 /* ==========================================================================
-   Multi-Language & Multi-Currency Popup (Bottom Right, next to Rich-E)
+   Multi-Language & Multi-Currency Popup (Bottom Right)
    ========================================================================== */
 .floating-lang-currency-widget {
   position: fixed;
-  bottom: 28px;
-  right: 98px;
+  bottom: 25px;
+  right: 25px;
   z-index: 990;
 }
 
@@ -2336,7 +2275,7 @@ img {
   border-radius: 16px;
   box-shadow: 0 15px 35px rgba(15, 23, 42, 0.18);
   padding: 12px;
-  width: 230px;
+  width: 250px;
   display: none;
   z-index: 1050;
   animation: slideUp 0.25s ease-out;
@@ -2391,23 +2330,51 @@ img {
   font-weight: 700;
 }
 
-.lang-option-btn .flag, .currency-option-btn .flag {
-  font-size: 1.1rem;
+.flag-img {
+  width: 22px;
+  height: 15px;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.active-flag-img {
+  width: 20px;
+  height: 14px;
+}
+
+.currency-tag {
+  margin-left: auto;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(79, 70, 229, 0.08);
+  color: #4f46e5;
+}
+
+.lang-option-btn.active .currency-tag {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
 }
 
 /* ==========================================================================
-   Rich-E AI Chatbot UI (Bottom Right)
+   Rich-E AI Chatbot UI (Stacked vertically above WhatsApp CTA on Bottom Left)
    ========================================================================== */
 .floating-riche-bot {
   position: fixed;
-  bottom: 25px;
-  right: 25px;
-  z-index: 1000;
+  bottom: 96px; /* Directly above WhatsApp CTA button */
+  left: 25px;
+  right: auto;
+  z-index: 999;
 }
 
 .riche-toggle-btn {
-  width: 62px;
-  height: 62px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: linear-gradient(135deg, #ffc800 0%, #ff9e00 100%);
   border: 3px solid #ffffff;
@@ -2448,12 +2415,13 @@ img {
 
 .riche-chat-window {
   position: fixed;
-  bottom: 100px;
-  right: 25px;
+  bottom: 25px;
+  left: 98px; /* Opens to the right of WhatsApp and Rich-E buttons */
+  right: auto;
   width: 380px;
-  max-width: calc(100vw - 35px);
+  max-width: calc(100vw - 120px);
   height: 540px;
-  max-height: calc(100vh - 120px);
+  max-height: calc(100vh - 40px);
   background: #ffffff;
   border-radius: 20px;
   box-shadow: 0 20px 60px rgba(15, 23, 42, 0.25);
@@ -2465,8 +2433,52 @@ img {
   animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+@media (max-width: 768px) {
+  .riche-chat-window {
+    left: 15px !important;
+    right: 15px !important;
+    bottom: 95px !important;
+    width: calc(100vw - 30px) !important;
+    max-width: 100% !important;
+  }
+}
+
 .floating-riche-bot.open .riche-chat-window {
   display: flex;
+}
+
+/* ==========================================================================
+   Headless Google Translate Styles (Completely Invisible)
+   ========================================================================== */
+body {
+  top: 0 !important;
+  position: static !important;
+}
+.goog-te-banner-frame,
+.goog-te-balloon-frame,
+#goog-gt-tt,
+.goog-te-spinner-pos,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-ZVi9od-aZ2wEe-OiiCO,
+.VIpgJd-ZVi9od-aZ2wEe,
+.VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q,
+.skiptranslate iframe,
+iframe.skiptranslate,
+#google_translate_element {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  pointer-events: none !important;
+}
+.goog-text-highlight {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+font[style] {
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .riche-chat-messages {
