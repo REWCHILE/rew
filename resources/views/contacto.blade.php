@@ -11,14 +11,14 @@
 <!-- Page Header -->
 <section style="background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%); padding: 4rem 0 2rem;">
     <div class="container text-center">
-        <span class="badge badge-primary" style="margin-bottom: 0.75rem;">Cotización & Asesoría Técnica</span>
-        <h1 style="font-size: 3rem; margin-bottom: 1rem;">Calcula tu Proyecto en Minutos</h1>
+        <span class="badge badge-primary" style="margin-bottom: 0.75rem;">Evaluación & Asesoría Técnica</span>
+        <h1 style="font-size: 3rem; margin-bottom: 1rem;">Cotiza tu Proyecto a Medida</h1>
         <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 750px; margin: 0 auto 1.5rem;">
-            Selecciona el tipo de proyecto y los módulos que necesitas. Te entregamos una estimación referencial inmediata y coordinamos una sesión técnica directa con <strong>Álvaro Valenzuela Valdés</strong>.
+            Selecciona el tipo de proyecto y los módulos que necesitas. Coordinamos una sesión técnica directa con <strong>Álvaro Valenzuela Valdés</strong> para evaluar tu requerimiento y entregarte una propuesta formal.
         </p>
         
-        <div style="display: inline-flex; align-items: center; gap: 8px; background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 8px 16px; border-radius: 9999px; font-size: 0.85rem; font-weight: 700;">
-            <span>⚠️ Todos los precios son referenciales y están siempre a la espera de evaluación técnica.</span>
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: #e0e7ff; border: 1px solid #6366f1; color: #3730a3; padding: 8px 16px; border-radius: 9999px; font-size: 0.85rem; font-weight: 700;">
+            <span>⚡ Propuesta técnica personalizada y cotización a medida sin compromiso.</span>
         </div>
     </div>
 </section>
@@ -31,8 +31,8 @@
             <div class="card" style="padding: clamp(1.25rem, 3vw, 2.5rem);">
                 <form id="quoteCalculatorForm" action="{{ route('cotizar.store') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="estimated_budget_usd" id="hidden_budget_usd" value="850">
-                    <input type="hidden" name="estimated_budget_clp" id="hidden_budget_clp" value="790000">
+                    <input type="hidden" name="estimated_budget_usd" id="hidden_budget_usd" value="0">
+                    <input type="hidden" name="estimated_budget_clp" id="hidden_budget_clp" value="0">
 
                     <!-- Step 1: Service Type -->
                     <div style="margin-bottom: 2.5rem;">
@@ -43,46 +43,46 @@
 
                         <div class="option-select-grid">
                             <label class="option-card selected">
-                                <input type="radio" name="service_type" value="Desarrollo Web Corporativo" data-base-usd="850" data-base-clp="790000" checked>
+                                <input type="radio" name="service_type" value="Desarrollo Web Corporativo" checked>
                                 <span class="option-title">🌐 Sitio Web Corporativo</span>
-                                <span class="option-price-tag price-tag-dynamic" data-usd="850" data-clp="790000">Desde $850 USD</span>
+                                <span class="badge-mini badge-blue" style="font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Web Corporativa</span>
                             </label>
 
                             <label class="option-card">
-                                <input type="radio" name="service_type" value="Tienda E-Commerce WooCommerce" data-base-usd="1200" data-base-clp="1100000">
+                                <input type="radio" name="service_type" value="Tienda E-Commerce WooCommerce">
                                 <span class="option-title">🛒 Tienda E-Commerce</span>
-                                <span class="option-price-tag price-tag-dynamic" data-usd="1200" data-clp="1100000">Desde $1.200 USD</span>
+                                <span class="badge-mini badge-green" style="font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Ventas Online</span>
                             </label>
 
                             <label class="option-card">
-                                <input type="radio" name="service_type" value="Software a Medida / SaaS Laravel" data-base-usd="2400" data-base-clp="2200000">
+                                <input type="radio" name="service_type" value="Software a Medida / SaaS Laravel">
                                 <span class="option-title">💻 Software SaaS / Laravel</span>
-                                <span class="option-price-tag price-tag-dynamic" data-usd="2400" data-clp="2200000">Desde $2.400 USD</span>
+                                <span class="badge-mini badge-purple" style="font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Arquitectura Propietaria</span>
                             </label>
 
                             <label class="option-card">
-                                <input type="radio" name="service_type" value="Chatbot IA con RAG Empresarial" data-base-usd="950" data-base-clp="890000">
+                                <input type="radio" name="service_type" value="Chatbot IA con RAG Empresarial">
                                 <span class="option-title">🤖 Chatbot IA con RAG</span>
-                                <span class="option-price-tag price-tag-dynamic" data-usd="950" data-clp="890000">Desde $950 USD</span>
+                                <span class="badge-mini badge-pink" style="font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">IA Generativa</span>
                             </label>
 
                             <label class="option-card">
-                                <input type="radio" name="service_type" value="Estrategia SEO & Posicionamiento" data-base-usd="650" data-base-clp="590000">
+                                <input type="radio" name="service_type" value="Estrategia SEO & Posicionamiento">
                                 <span class="option-title">📈 Optimización SEO & GEO</span>
-                                <span class="option-price-tag price-tag-dynamic" data-usd="650" data-clp="590000">Desde $650 USD</span>
+                                <span class="badge-mini badge-teal" style="font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Top 1 Google</span>
                             </label>
 
                             <label class="option-card">
-                                <input type="radio" name="service_type" value="Mantenimiento & Soporte WordPress" data-base-usd="250" data-base-clp="220000">
+                                <input type="radio" name="service_type" value="Mantenimiento & Soporte WordPress">
                                 <span class="option-title">🛡️ Mantenimiento Web</span>
-                                <span class="option-price-tag price-tag-dynamic" data-usd="250" data-clp="220000">Desde $250 USD</span>
+                                <span class="badge-mini badge-amber" style="font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Soporte & SLA</span>
                             </label>
 
                             <!-- NEW CUSTOMIZADO OPTION -->
                             <label class="option-card" style="border-color: var(--accent-gold); background: rgba(255, 200, 0, 0.05);">
-                                <input type="radio" name="service_type" value="Software 100% Customizado en Laravel" data-base-usd="0" data-base-clp="0">
+                                <input type="radio" name="service_type" value="Software 100% Customizado en Laravel">
                                 <span class="option-title" style="color: #b45309; font-weight: 800;">⚙️ Proyecto 100% Customizado</span>
-                                <span class="badge badge-gold" style="font-size: 0.75rem;">A evaluar</span>
+                                <span class="badge badge-gold" style="font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Alcance a Medida</span>
                             </label>
                         </div>
                     </div>
@@ -101,39 +101,39 @@
 
                         <div class="option-select-grid" style="margin-bottom: 1.5rem;">
                             <label class="option-card">
-                                <input type="checkbox" name="features[]" value="Pasarela Webpay Plus / MercadoPago" data-price-usd="200" data-price-clp="180000">
+                                <input type="checkbox" name="features[]" value="Pasarela Webpay Plus / MercadoPago">
                                 <span class="option-title">💳 Pasarelas de Pago (Webpay/Stripe)</span>
-                                <span class="option-price-tag price-tag-dynamic" data-usd="200" data-clp="180000">+$200 USD</span>
+                                <span class="badge-mini badge-blue" style="font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Integración</span>
                             </label>
 
                             <label class="option-card">
-                                <input type="checkbox" name="features[]" value="Multi-Moneda CLP/USD y Traductor" data-price-usd="150" data-price-clp="140000">
+                                <input type="checkbox" name="features[]" value="Multi-Moneda CLP/USD y Traductor">
                                 <span class="option-title">🌐 Multi-Moneda / Idiomas</span>
-                                <span class="option-price-tag price-tag-dynamic" data-usd="150" data-clp="140000">+$150 USD</span>
+                                <span class="badge-mini badge-purple" style="font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Internacional</span>
                             </label>
 
                             <label class="option-card">
-                                <input type="checkbox" name="features[]" value="Integración CRM y WhatsApp API" data-price-usd="250" data-price-clp="230000">
+                                <input type="checkbox" name="features[]" value="Integración CRM y WhatsApp API">
                                 <span class="option-title">📱 CRM & WhatsApp API</span>
-                                <span class="option-price-tag price-tag-dynamic" data-usd="250" data-clp="230000">+$250 USD</span>
+                                <span class="badge-mini badge-green" style="font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Automatización</span>
                             </label>
 
                             <label class="option-card">
-                                <input type="checkbox" name="features[]" value="Panel de Control & Roles en Laravel" data-price-usd="350" data-price-clp="320000">
+                                <input type="checkbox" name="features[]" value="Panel de Control & Roles en Laravel">
                                 <span class="option-title">🛡️ Panel de Control & Roles</span>
-                                <span class="option-price-tag price-tag-dynamic" data-usd="350" data-clp="320000">+$350 USD</span>
+                                <span class="badge-mini badge-teal" style="font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Seguridad</span>
                             </label>
 
                             <label class="option-card">
-                                <input type="checkbox" name="features[]" value="Facturación Electrónica SII / APIs" data-price-usd="400" data-price-clp="380000">
+                                <input type="checkbox" name="features[]" value="Facturación Electrónica SII / APIs">
                                 <span class="option-title">⚡ Facturación SII / APIs</span>
-                                <span class="option-price-tag price-tag-dynamic" data-usd="400" data-clp="380000">+$400 USD</span>
+                                <span class="badge-mini badge-amber" style="font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">DTE / Conectividad</span>
                             </label>
 
                             <label class="option-card">
-                                <input type="checkbox" name="features[]" value="Soporte Prioritario & Capacitación 1 a 1" data-price-usd="180" data-price-clp="160000">
+                                <input type="checkbox" name="features[]" value="Soporte Prioritario & Capacitación 1 a 1">
                                 <span class="option-title">👨‍🏫 Capacitación 1 a 1</span>
-                                <span class="option-price-tag price-tag-dynamic" data-usd="180" data-clp="160000">+$180 USD</span>
+                                <span class="badge-mini badge-pink" style="font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Acompañamiento</span>
                             </label>
                         </div>
 
@@ -230,27 +230,37 @@
                 </form>
             </div>
 
-            <!-- Right: Real-time Budget Estimation Card -->
+            <!-- Right: Selected Scope & Technical Proposal Card -->
             <div style="position: sticky; top: 110px;">
                 <div class="quote-estimate-summary">
-                    <span class="badge badge-gold" style="margin-bottom: 0.75rem;">Estimación Técnica</span>
-                    <h3>Resumen del Presupuesto</h3>
+                    <span class="badge badge-gold" style="margin-bottom: 0.75rem;">Evaluación Técnica</span>
+                    <h3>Resumen de Requerimientos</h3>
                     
                     <div style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 1.25rem;">
-                        Los valores calculados son <strong>referenciales</strong> y se ajustan al alcance técnico definitivo tras la evaluación.
+                        Elaboramos una propuesta técnica formal y cronograma de entrega según la arquitectura y módulos que selecciones.
                     </div>
 
-                    <div class="estimate-total-box">
-                        <div style="font-size: 0.78rem; text-transform: uppercase; color: #cbd5e1; font-weight: 700;">Presupuesto Referencial:</div>
-                        <div class="estimate-total-amount" id="calcEstimatedCost">$850 USD</div>
-                        <div style="font-size: 0.72rem; color: #fef08a; margin-top: 4px; font-weight: 600;">* Sujeto a evaluación técnica</div>
+                    <div class="estimate-total-box" style="border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(15, 23, 42, 0.6); padding: 1.25rem; border-radius: 12px; margin: 1.25rem 0;">
+                        <div style="font-size: 0.75rem; text-transform: uppercase; color: #94a3b8; font-weight: 700; margin-bottom: 4px;">Proyecto Principal:</div>
+                        <div id="summarySelectedService" style="font-size: 1.05rem; font-weight: 800; color: #ffffff; margin-bottom: 0.85rem; line-height: 1.3;">🌐 Sitio Web Corporativo</div>
+                        
+                        <div style="font-size: 0.75rem; text-transform: uppercase; color: #94a3b8; font-weight: 700; margin-bottom: 4px;">Módulos Base:</div>
+                        <div id="summaryFeaturesCount" style="font-size: 0.9rem; font-weight: 700; color: #38bdf8; margin-bottom: 0.5rem;">0 módulos seleccionados</div>
+
+                        <div style="font-size: 0.75rem; text-transform: uppercase; color: #94a3b8; font-weight: 700; margin-bottom: 4px;">Funcionalidades Personalizadas:</div>
+                        <div id="summaryCustomFeaturesCount" style="font-size: 0.85rem; color: #e2e8f0; font-weight: 600;">1 función personalizada agregada</div>
+
+                        <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: space-between;">
+                            <span style="font-size: 0.75rem; text-transform: uppercase; color: #cbd5e1; font-weight: 700;">Presupuesto:</span>
+                            <span class="badge badge-gold" style="font-size: 0.78rem; font-weight: 800;">A Medida / Sin Costo</span>
+                        </div>
                     </div>
 
                     <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.25rem; font-size: 0.85rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 8px;">
                         <div>✓ Trato directo con Álvaro Valenzuela Valdés</div>
-                        <div>✓ Envío instantáneo a WhatsApp y Correo</div>
-                        <div>✓ Facturación electrónica para empresas</div>
-                        <div>✓ Sesión de evaluación técnica sin costo</div>
+                        <div>✓ Propuesta técnica detallada y formal</div>
+                        <div>✓ Facturación electrónica SII para empresas</div>
+                        <div>✓ Sesión de evaluación técnica inicial sin costo</div>
                     </div>
                 </div>
 

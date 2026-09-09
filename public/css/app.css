@@ -2174,7 +2174,7 @@ img {
 
 .mobile-accordion-content.open,
 .mobile-accordion-content.is-open {
-  display: flex;
+  display: flex !important;
 }
 
 .mobile-sub-link {

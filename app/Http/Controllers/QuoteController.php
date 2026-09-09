@@ -132,13 +132,13 @@ class QuoteController extends Controller
         if ($quote->estimated_budget_clp && $quote->estimated_budget_clp > 0) {
             $msg .= "\n💰 *Presupuesto Referencial:* $".number_format($quote->estimated_budget_clp, 0, ',', '.').' CLP ($'.number_format($quote->estimated_budget_usd, 0)." USD) _(Sujeto a evaluación técnica)_\n";
         } else {
-            $msg .= "\n💰 *Presupuesto:* A evaluar según requerimientos técnicos\n";
+            $msg .= "\n💰 *Presupuesto:* Propuesta a medida (Sujeto a evaluación técnica)\n";
         }
 
         if ($projDesc) {
             $msg .= "\n📝 *Comentarios del Cliente:*\n{$projDesc}\n";
         }
-        $msg .= "\n---\nEnviado seguro desde https://rew.cl (Precios referenciales sujetos a evaluación)";
+        $msg .= "\n---\nEnviado seguro desde https://rew.cl (Solicitud de evaluación técnica y propuesta)";
 
         $whatsappUrl = "https://api.whatsapp.com/send?phone={$whatsappNumber}&text=".rawurlencode($msg);
 

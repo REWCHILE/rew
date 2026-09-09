@@ -171,6 +171,7 @@ function initMobileNav() {
     if (servicesToggle && servicesMenu) {
         servicesToggle.addEventListener('click', (e) => {
             e.preventDefault();
+            e.stopPropagation();
             const isOpen = servicesMenu.classList.contains('is-open') || servicesMenu.classList.contains('open');
             if (isOpen) {
                 servicesMenu.classList.remove('is-open', 'open');
@@ -828,43 +829,38 @@ function renderCartItems(cart, totalUsd, totalClp) {
 }
 
 /* ==========================================================================
-   Interactive Step-by-Step Quote Calculator
+   Interactive Step-by-Step Quote Manager (Price-free Scope Selector)
    ========================================================================== */
 function initInteractiveQuoteCalculator() {
     const form = document.querySelector('#quoteCalculatorForm');
     if (!form) return;
 
+    const summaryService = document.querySelector('#summarySelectedService');
+    const summaryFeatures = document.querySelector('#summaryFeaturesCount');
+    const summaryCustom = document.querySelector('#summaryCustomFeaturesCount');
     const baseCostEl = document.querySelector('#calcEstimatedCost');
 
-    function recalculate() {
-        let totalUSD = 0;
-        let totalCLP = 0;
-
-        const selectedService = form.querySelector('input[name="service_type"]:checked');
-        if (selectedService) {
-            totalUSD += parseFloat(selectedService.getAttribute('data-base-usd') || 0);
-            totalCLP += parseInt(selectedService.getAttribute('data-base-clp') || 0);
+    function updateScopeSummary() {
+        const selectedRadio = form.querySelector('input[name="service_type"]:checked');
+        if (selectedRadio && summaryService) {
+            const label = selectedRadio.closest('.option-card');
+            const titleEl = label ? label.querySelector('.option-title') : null;
+            summaryService.textContent = titleEl ? titleEl.textContent.trim() : selectedRadio.value;
         }
 
-        form.querySelectorAll('input[name="features[]"]:checked').forEach(feat => {
-            totalUSD += parseFloat(feat.getAttribute('data-price-usd') || 0);
-            totalCLP += parseInt(feat.getAttribute('data-price-clp') || 0);
-        });
+        const checkedFeatures = form.querySelectorAll('input[name="features[]"]:checked');
+        if (summaryFeatures) {
+            const count = checkedFeatures.length;
+            summaryFeatures.textContent = count === 1 ? '1 módulo seleccionado' : `${count} módulos seleccionados`;
+        }
 
         const usdInput = form.querySelector('input[name="estimated_budget_usd"]');
         const clpInput = form.querySelector('input[name="estimated_budget_clp"]');
-        if (usdInput) usdInput.value = totalUSD;
-        if (clpInput) clpInput.value = totalCLP;
+        if (usdInput) usdInput.value = 0;
+        if (clpInput) clpInput.value = 0;
 
         if (baseCostEl) {
-            const cur = localStorage.getItem('rew_currency') || 'CLP';
-            if (totalUSD === 0 && totalCLP === 0) {
-                baseCostEl.textContent = 'A evaluar / A medida';
-            } else if (cur === 'CLP') {
-                baseCostEl.textContent = '$' + totalCLP.toLocaleString('es-CL') + ' CLP';
-            } else {
-                baseCostEl.textContent = '$' + totalUSD.toLocaleString('en-US') + ' USD';
-            }
+            baseCostEl.textContent = 'A medida / A evaluar';
         }
     }
 
@@ -882,12 +878,11 @@ function initInteractiveQuoteCalculator() {
                 else card.classList.remove('selected');
             }
 
-            recalculate();
+            updateScopeSummary();
         });
     });
 
-    window.addEventListener('currencyChanged', recalculate);
-    recalculate();
+    updateScopeSummary();
 
     // Dynamic Custom Features Repeater (Max 10)
     const featuresList = document.querySelector('#customFeaturesList');
@@ -901,6 +896,9 @@ function initInteractiveQuoteCalculator() {
 
         if (counterBadge) {
             counterBadge.textContent = `${count} / 10 agregadas`;
+        }
+        if (summaryCustom) {
+            summaryCustom.textContent = count === 1 ? '1 función personalizada agregada' : `${count} funciones personalizadas agregadas`;
         }
 
         rows.forEach((row, idx) => {

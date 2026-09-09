@@ -93,7 +93,7 @@
                 @if($quote->estimated_budget_clp && $quote->estimated_budget_clp > 0)
                     💰 Inversión Referencial: ${{ number_format($quote->estimated_budget_clp, 0, ',', '.') }} CLP (${{ number_format($quote->estimated_budget_usd, 0) }} USD)
                 @else
-                    💰 Presupuesto: A evaluar según requerimientos técnicos
+                    📋 Modalidad: Propuesta técnica y presupuesto a medida
                 @endif
                 <div style="font-size: 11px; font-weight: 600; color: rgba(15,23,42,0.8); margin-top: 4px;">* Sujeto a evaluación de alcance por ingeniería REW</div>
             </div>

@@ -109,4 +109,24 @@ class ExampleTest extends TestCase
         $this->get('/portafolio/sotemono')->assertStatus(200)->assertSee('Sotemono');
         $this->get('/portafolio/academiaflix')->assertStatus(200)->assertSee('Academiaflix');
     }
+
+    public function test_contacto_cotizador_has_no_prices(): void
+    {
+        $this->seed();
+
+        $response = $this->get('/contacto');
+        $response->assertStatus(200);
+
+        // Verify prices have been removed from the cotizador
+        $response->assertDontSee('Desde $850 USD');
+        $response->assertDontSee('Desde $1.200 USD');
+        $response->assertDontSee('+$200 USD');
+        $response->assertDontSee('Todos los precios son referenciales');
+
+        // Verify scope and custom proposal headers exist
+        $response->assertSee('Cotiza tu Proyecto a Medida');
+        $response->assertSee('Resumen de Requerimientos');
+        $response->assertSee('Sitio Web Corporativo');
+        $response->assertSee('Software SaaS / Laravel');
+    }
 }
