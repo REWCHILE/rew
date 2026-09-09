@@ -1,3 +1,232 @@
+<style>
+/* ==========================================================================
+   FLOATING WIDGETS BULLETPROOF POSITIONING & STYLES (FORCE INLINE OVERRIDES)
+   ========================================================================== */
+/* 1. WhatsApp CTA: Bottom-Left */
+.floating-whatsapp-btn {
+  position: fixed !important;
+  bottom: 25px !important;
+  left: 25px !important;
+  right: auto !important;
+  top: auto !important;
+  width: 60px !important;
+  height: 60px !important;
+  background: #25d366 !important;
+  color: #ffffff !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45) !important;
+  z-index: 9990 !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  text-decoration: none !important;
+}
+
+.floating-whatsapp-btn:hover {
+  transform: scale(1.08) !important;
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6) !important;
+}
+
+/* 2. Rich-E AI Bot: Strictly STACKED DIRECTLY ABOVE WHATSAPP CTA on Bottom-Left */
+.floating-riche-bot {
+  position: fixed !important;
+  left: 25px !important;
+  bottom: 96px !important; /* Stacked right on top of WhatsApp button */
+  right: auto !important;
+  top: auto !important;
+  width: 60px !important;
+  height: 60px !important;
+  z-index: 9995 !important;
+  display: block !important;
+}
+
+.floating-riche-bot .riche-toggle-btn {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, #ffc800 0%, #ff9e00 100%) !important;
+  border: 3px solid #ffffff !important;
+  box-shadow: 0 6px 24px rgba(255, 184, 0, 0.5) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  outline: none !important;
+}
+
+.floating-riche-bot .riche-toggle-btn:hover {
+  transform: scale(1.08) !important;
+  box-shadow: 0 10px 32px rgba(255, 184, 0, 0.7) !important;
+}
+
+.floating-riche-bot .riche-btn-avatar {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  background: #ffffff !important;
+  padding: 2px !important;
+  display: block !important;
+}
+
+.floating-riche-bot .riche-status-dot {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50% !important;
+  background: #10b981 !important;
+  border: 2.5px solid #ffffff !important;
+}
+
+/* Rich-E Chat Window: Expands to the right of the stacked left buttons */
+.floating-riche-bot .riche-chat-window {
+  position: fixed !important;
+  bottom: 25px !important;
+  left: 98px !important;
+  right: auto !important;
+  top: auto !important;
+  width: 380px !important;
+  max-width: calc(100vw - 120px) !important;
+  height: 540px !important;
+  max-height: calc(100vh - 40px) !important;
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.25) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  overflow: hidden !important;
+  z-index: 10005 !important;
+  display: none !important;
+  flex-direction: column !important;
+}
+
+.floating-riche-bot.open .riche-chat-window {
+  display: flex !important;
+}
+
+/* 3. Floating Multi-Language & Multi-Currency Switcher: Bottom-Right */
+.floating-lang-currency-widget {
+  position: fixed !important;
+  right: 25px !important;
+  bottom: 25px !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: 9980 !important;
+  display: block !important;
+}
+
+.floating-lang-currency-widget .lang-currency-toggle-btn {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 8px 14px !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  border-radius: 30px !important;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.12) !important;
+  cursor: pointer !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  transition: all 0.25s ease !important;
+  outline: none !important;
+}
+
+.floating-lang-currency-widget .lang-currency-toggle-btn:hover {
+  background: #ffffff !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.18) !important;
+  transform: translateY(-2px) !important;
+}
+
+.floating-lang-currency-widget .lang-currency-popup {
+  position: absolute !important;
+  bottom: 52px !important;
+  right: 0 !important;
+  left: auto !important;
+  top: auto !important;
+  width: 255px !important;
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.2) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  padding: 12px !important;
+  display: none !important;
+  z-index: 10010 !important;
+  max-height: 80vh !important;
+  overflow-y: auto !important;
+}
+
+.floating-lang-currency-widget.active .lang-currency-popup {
+  display: block !important;
+}
+
+/* Inline SVG Flags Vector Styling */
+.flag-svg-icon {
+  width: 22px !important;
+  height: 15px !important;
+  border-radius: 3px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18) !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  flex-shrink: 0 !important;
+  overflow: hidden !important;
+}
+
+.active-flag-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.active-flag-icon .flag-svg-icon {
+  width: 20px !important;
+  height: 14px !important;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .floating-whatsapp-btn {
+    left: 18px !important;
+    bottom: 18px !important;
+    width: 54px !important;
+    height: 54px !important;
+  }
+  .floating-riche-bot {
+    left: 18px !important;
+    bottom: 82px !important;
+    width: 54px !important;
+    height: 54px !important;
+  }
+  .floating-riche-bot .riche-toggle-btn {
+    width: 54px !important;
+    height: 54px !important;
+  }
+  .floating-riche-bot .riche-btn-avatar {
+    width: 42px !important;
+    height: 42px !important;
+  }
+  .floating-riche-bot .riche-chat-window {
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 80px !important;
+    width: calc(100vw - 20px) !important;
+    max-width: 100% !important;
+  }
+  .floating-lang-currency-widget {
+    right: 18px !important;
+    bottom: 18px !important;
+  }
+}
+</style>
+
 <!-- 1. Floating WhatsApp Button (Bottom Left) -->
 <a href="https://api.whatsapp.com/send?phone=56987261127&text={{ rawurlencode('¡Hola Álvaro! Vengo desde rew.cl y me gustaría cotizar un proyecto.') }}" 
    class="floating-whatsapp-btn" 
@@ -11,85 +240,7 @@
     </svg>
 </a>
 
-<!-- 2. Floating Multi-Language & Multi-Currency Switcher (Bottom Right) -->
-<div class="floating-lang-currency-widget">
-    <!-- Trigger Button -->
-    <button type="button" class="lang-currency-toggle-btn" aria-label="Seleccionar Idioma y Moneda">
-        <span class="active-flag-icon">
-            <img src="{{ asset('images/flags/cl.svg') }}" alt="Chile" class="flag-img active-flag-img">
-        </span>
-        <span class="active-lang-currency-text">ES / CLP</span>
-        <span class="chevron-icon">▲</span>
-    </button>
-
-    <!-- Dropdown Menu with SVG Flags and Strict Currency Association -->
-    <div class="lang-currency-popup">
-        <div class="popup-section-header">SELECCIONAR IDIOMA & MONEDA</div>
-        <div class="lang-options-list">
-            <button type="button" class="lang-option-btn active" data-lang="es" data-flag="{{ asset('images/flags/cl.svg') }}" data-name="ES" data-currency="CLP">
-                <img src="{{ asset('images/flags/cl.svg') }}" alt="Chile" class="flag-img">
-                <span class="name">Español</span>
-                <span class="currency-tag">CLP</span>
-            </button>
-            <button type="button" class="lang-option-btn" data-lang="en" data-flag="{{ asset('images/flags/us.svg') }}" data-name="EN" data-currency="USD">
-                <img src="{{ asset('images/flags/us.svg') }}" alt="English" class="flag-img">
-                <span class="name">English</span>
-                <span class="currency-tag">USD</span>
-            </button>
-            <button type="button" class="lang-option-btn" data-lang="pt" data-flag="{{ asset('images/flags/br.svg') }}" data-name="PT" data-currency="USD">
-                <img src="{{ asset('images/flags/br.svg') }}" alt="Português" class="flag-img">
-                <span class="name">Português</span>
-                <span class="currency-tag">USD</span>
-            </button>
-            <button type="button" class="lang-option-btn" data-lang="fr" data-flag="{{ asset('images/flags/fr.svg') }}" data-name="FR" data-currency="USD">
-                <img src="{{ asset('images/flags/fr.svg') }}" alt="Français" class="flag-img">
-                <span class="name">Français</span>
-                <span class="currency-tag">USD</span>
-            </button>
-            <button type="button" class="lang-option-btn" data-lang="de" data-flag="{{ asset('images/flags/de.svg') }}" data-name="DE" data-currency="USD">
-                <img src="{{ asset('images/flags/de.svg') }}" alt="Deutsch" class="flag-img">
-                <span class="name">Deutsch</span>
-                <span class="currency-tag">USD</span>
-            </button>
-            <button type="button" class="lang-option-btn" data-lang="it" data-flag="{{ asset('images/flags/it.svg') }}" data-name="IT" data-currency="USD">
-                <img src="{{ asset('images/flags/it.svg') }}" alt="Italiano" class="flag-img">
-                <span class="name">Italiano</span>
-                <span class="currency-tag">USD</span>
-            </button>
-            <button type="button" class="lang-option-btn" data-lang="zh-CN" data-flag="{{ asset('images/flags/cn.svg') }}" data-name="ZH" data-currency="USD">
-                <img src="{{ asset('images/flags/cn.svg') }}" alt="简体中文" class="flag-img">
-                <span class="name">简体中文</span>
-                <span class="currency-tag">USD</span>
-            </button>
-            <button type="button" class="lang-option-btn" data-lang="ja" data-flag="{{ asset('images/flags/jp.svg') }}" data-name="JA" data-currency="USD">
-                <img src="{{ asset('images/flags/jp.svg') }}" alt="日本語" class="flag-img">
-                <span class="name">日本語</span>
-                <span class="currency-tag">USD</span>
-            </button>
-        </div>
-
-        <div class="popup-section-header" style="margin-top: 10px;">CONDICIÓN MONETARIA</div>
-        <div style="font-size: 0.74rem; color: #64748b; padding: 4px 6px 2px; line-height: 1.4;">
-            🇨🇱 Chile opera en <strong>CLP ($)</strong>. Todos los demás idiomas operan en <strong>USD ($)</strong>.
-        </div>
-    </div>
-</div>
-
-<!-- Headless Google Translate element -->
-<div id="google_translate_element" style="display:none;" aria-hidden="true"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'es',
-        includedLanguages: 'es,en,pt,fr,de,it,zh-CN,ja',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
-
-
-<!-- 3. Rich-E AI Chatbot Agent (Exact User Match) -->
+<!-- 2. Rich-E AI Chatbot Agent (Stacked DIRECTLY ABOVE WhatsApp on Bottom Left) -->
 <div class="floating-riche-bot">
     <!-- Toggle Button -->
     <button type="button" class="riche-toggle-btn" aria-label="Abrir asistente de IA Rich-E">
@@ -156,3 +307,141 @@ function googleTranslateElementInit() {
         </div>
     </div>
 </div>
+
+<!-- 3. Floating Multi-Language & Multi-Currency Switcher (Bottom Right) -->
+<div class="floating-lang-currency-widget">
+    <!-- Trigger Button -->
+    <button type="button" class="lang-currency-toggle-btn" aria-label="Seleccionar Idioma y Moneda">
+        <span class="active-flag-icon">
+            <svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="300" height="100" fill="#ffffff"/>
+                <rect y="100" width="300" height="100" fill="#d52b1e"/>
+                <rect width="100" height="100" fill="#0039a6"/>
+                <polygon points="50,22 59,50 88,50 65,67 74,95 50,78 26,95 35,67 12,50 41,50" fill="#ffffff"/>
+            </svg>
+        </span>
+        <span class="active-lang-currency-text">ES / CLP</span>
+        <span class="chevron-icon">▲</span>
+    </button>
+
+    <!-- Dropdown Menu with SVG Flags and Strict Currency Association -->
+    <div class="lang-currency-popup">
+        <div class="popup-section-header">SELECCIONAR IDIOMA & MONEDA</div>
+        <div class="lang-options-list">
+            <!-- Chile (CLP) -->
+            <button type="button" class="lang-option-btn active" data-lang="es" data-name="ES" data-currency="CLP">
+                <svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="300" height="100" fill="#ffffff"/>
+                    <rect y="100" width="300" height="100" fill="#d52b1e"/>
+                    <rect width="100" height="100" fill="#0039a6"/>
+                    <polygon points="50,22 59,50 88,50 65,67 74,95 50,78 26,95 35,67 12,50 41,50" fill="#ffffff"/>
+                </svg>
+                <span class="name">Español</span>
+                <span class="currency-tag">CLP</span>
+            </button>
+
+            <!-- English (USD) -->
+            <button type="button" class="lang-option-btn" data-lang="en" data-name="EN" data-currency="USD">
+                <svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="300" height="200" fill="#b22234"/>
+                    <path d="M0,15.38h300M0,46.15h300M0,76.92h300M0,107.69h300M0,138.46h300M0,169.23h300" stroke="#ffffff" stroke-width="15.38"/>
+                    <rect width="120" height="107.69" fill="#3c3b6e"/>
+                    <circle cx="20" cy="20" r="4" fill="#ffffff"/><circle cx="40" cy="20" r="4" fill="#ffffff"/><circle cx="60" cy="20" r="4" fill="#ffffff"/><circle cx="80" cy="20" r="4" fill="#ffffff"/><circle cx="100" cy="20" r="4" fill="#ffffff"/>
+                    <circle cx="30" cy="38" r="4" fill="#ffffff"/><circle cx="50" cy="38" r="4" fill="#ffffff"/><circle cx="70" cy="38" r="4" fill="#ffffff"/><circle cx="90" cy="38" r="4" fill="#ffffff"/>
+                    <circle cx="20" cy="56" r="4" fill="#ffffff"/><circle cx="40" cy="56" r="4" fill="#ffffff"/><circle cx="60" cy="56" r="4" fill="#ffffff"/><circle cx="80" cy="56" r="4" fill="#ffffff"/><circle cx="100" cy="56" r="4" fill="#ffffff"/>
+                    <circle cx="30" cy="74" r="4" fill="#ffffff"/><circle cx="50" cy="74" r="4" fill="#ffffff"/><circle cx="70" cy="74" r="4" fill="#ffffff"/><circle cx="90" cy="74" r="4" fill="#ffffff"/>
+                    <circle cx="20" cy="92" r="4" fill="#ffffff"/><circle cx="40" cy="92" r="4" fill="#ffffff"/><circle cx="60" cy="92" r="4" fill="#ffffff"/><circle cx="80" cy="92" r="4" fill="#ffffff"/><circle cx="100" cy="92" r="4" fill="#ffffff"/>
+                </svg>
+                <span class="name">English</span>
+                <span class="currency-tag">USD</span>
+            </button>
+
+            <!-- Português (USD) -->
+            <button type="button" class="lang-option-btn" data-lang="pt" data-name="PT" data-currency="USD">
+                <svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="300" height="200" fill="#009c3b"/>
+                    <polygon points="150,20 280,100 150,180 20,100" fill="#ffdf00"/>
+                    <circle cx="150" cy="100" r="46" fill="#002776"/>
+                    <path d="M106,108 Q150,88 194,106" fill="none" stroke="#ffffff" stroke-width="7"/>
+                </svg>
+                <span class="name">Português</span>
+                <span class="currency-tag">USD</span>
+            </button>
+
+            <!-- Français (USD) -->
+            <button type="button" class="lang-option-btn" data-lang="fr" data-name="FR" data-currency="USD">
+                <svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100" height="200" fill="#002395"/>
+                    <rect x="100" width="100" height="200" fill="#ffffff"/>
+                    <rect x="200" width="100" height="200" fill="#ed2939"/>
+                </svg>
+                <span class="name">Français</span>
+                <span class="currency-tag">USD</span>
+            </button>
+
+            <!-- Deutsch (USD) -->
+            <button type="button" class="lang-option-btn" data-lang="de" data-name="DE" data-currency="USD">
+                <svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="300" height="66.67" fill="#000000"/>
+                    <rect y="66.67" width="300" height="66.67" fill="#dd0000"/>
+                    <rect y="133.34" width="300" height="66.67" fill="#ffce00"/>
+                </svg>
+                <span class="name">Deutsch</span>
+                <span class="currency-tag">USD</span>
+            </button>
+
+            <!-- Italiano (USD) -->
+            <button type="button" class="lang-option-btn" data-lang="it" data-name="IT" data-currency="USD">
+                <svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100" height="200" fill="#009246"/>
+                    <rect x="100" width="100" height="200" fill="#ffffff"/>
+                    <rect x="200" width="100" height="200" fill="#ce2b37"/>
+                </svg>
+                <span class="name">Italiano</span>
+                <span class="currency-tag">USD</span>
+            </button>
+
+            <!-- 简体中文 (USD) -->
+            <button type="button" class="lang-option-btn" data-lang="zh-CN" data-name="ZH" data-currency="USD">
+                <svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="300" height="200" fill="#ee1c25"/>
+                    <polygon points="50,25 57,48 80,48 61,62 68,85 50,71 32,85 39,62 20,48 43,48" fill="#ffff00"/>
+                    <circle cx="100" cy="30" r="7" fill="#ffff00"/>
+                    <circle cx="120" cy="50" r="7" fill="#ffff00"/>
+                    <circle cx="120" cy="80" r="7" fill="#ffff00"/>
+                    <circle cx="100" cy="100" r="7" fill="#ffff00"/>
+                </svg>
+                <span class="name">简体中文</span>
+                <span class="currency-tag">USD</span>
+            </button>
+
+            <!-- 日本語 (USD) -->
+            <button type="button" class="lang-option-btn" data-lang="ja" data-name="JA" data-currency="USD">
+                <svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="300" height="200" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+                    <circle cx="150" cy="100" r="60" fill="#bc002d"/>
+                </svg>
+                <span class="name">日本語</span>
+                <span class="currency-tag">USD</span>
+            </button>
+        </div>
+
+        <div class="popup-section-header" style="margin-top: 10px;">CONDICIÓN MONETARIA</div>
+        <div style="font-size: 0.74rem; color: #64748b; padding: 4px 6px 2px; line-height: 1.4;">
+            🇨🇱 Chile opera en <strong>CLP ($)</strong>. Todos los demás idiomas operan en <strong>USD ($)</strong>.
+        </div>
+    </div>
+</div>
+
+<!-- 4. Headless Google Translate Element (Completely Invisible) -->
+<div id="google_translate_element" style="display:none;" aria-hidden="true"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'es',
+        includedLanguages: 'es,en,pt,fr,de,it,zh-CN,ja',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
