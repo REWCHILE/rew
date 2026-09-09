@@ -14,6 +14,8 @@ class BlogController extends Controller
      */
     public function index(Request $request): View|JsonResponse
     {
+        $this->syncPostsIfOutdated();
+
         $category = $request->query('category');
         $query = Post::where('is_published', true)->latest();
 
@@ -49,7 +51,12 @@ class BlogController extends Controller
      */
     public function show(string $slug): View
     {
-        $post = Post::where('slug', $slug)->where('is_published', true)->firstOrFail();
+        $post = Post::where('slug', $slug)->where('is_published', true)->first();
+
+        if (! $post) {
+            $this->syncPostsIfOutdated();
+            $post = Post::where('slug', $slug)->where('is_published', true)->firstOrFail();
+        }
 
         // Auto-sincronización de contenido maestro desde posts_export.json en caso de que aún no se haya corrido seeder en DB
         if ($slug === 'laravel-vs-wordpress-cuando-elegir-cada-uno' && ! str_contains((string) $post->content, 'Matriz de Decisión con Scoring')) {
@@ -115,5 +122,48 @@ class BlogController extends Controller
         }
 
         return redirect()->route('blog.index', [], 301);
+    }
+
+    /**
+     * Auto-sincronización de artículos desde posts_export.json en caso de que la BD remota o local no esté al día
+     */
+    protected function syncPostsIfOutdated(): void
+    {
+        $exportPath = database_path('seeders/posts_export.json');
+        if (! file_exists($exportPath)) {
+            return;
+        }
+
+        $postsData = json_decode(file_get_contents($exportPath), true);
+        if (! is_array($postsData)) {
+            return;
+        }
+
+        $dbCount = Post::where('is_published', true)->count();
+        if ($dbCount >= count($postsData)) {
+            return;
+        }
+
+        foreach ($postsData as $item) {
+            if (empty($item['slug'])) {
+                continue;
+            }
+            Post::updateOrCreate(
+                ['slug' => $item['slug']],
+                [
+                    'title' => $item['title'],
+                    'excerpt' => $item['excerpt'] ?? '',
+                    'content' => $item['content'] ?? '',
+                    'author_name' => $item['author_name'] ?? 'Álvaro Valenzuela Valdés',
+                    'category' => $item['category'] ?? 'General',
+                    'featured_image' => $item['featured_image'] ?? null,
+                    'read_time_minutes' => $item['read_time_minutes'] ?? 10,
+                    'is_published' => true,
+                    'meta_title' => $item['meta_title'] ?? $item['title'],
+                    'meta_description' => $item['meta_description'] ?? ($item['excerpt'] ?? ''),
+                    'faq_schema' => $item['faq_schema'] ?? null,
+                ]
+            );
+        }
     }
 }
