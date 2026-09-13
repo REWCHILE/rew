@@ -77,22 +77,37 @@ class PortfolioController extends Controller
             ],
             'ecommerce' => [
                 'name' => 'E-Commerce & Merch',
-                'count' => PortfolioProject::where(fn ($q) => $q->where('category', 'like', '%E-Commerce%')->orWhere('category', 'like', '%Merch%'))->count(),
+                'count' => PortfolioProject::where(fn ($q) => $q->where('category', 'like', '%E-Commerce%')
+                    ->orWhere('category', 'like', '%Merch%')
+                    ->orWhere('category', 'like', '%Moda%')
+                    ->orWhere('category', 'like', '%Indumentaria%'))->count(),
                 'icon' => '🛍️',
             ],
             'web-corporativo' => [
                 'name' => 'Web Corporativa & Turismo',
-                'count' => PortfolioProject::where(fn ($q) => $q->where('category', 'like', '%Web%')->orWhere('category', 'like', '%Streaming%')->orWhere('category', 'like', '%Turismo%')->orWhere('category', 'like', '%Inmobiliaria%'))->count(),
+                'count' => PortfolioProject::where(fn ($q) => $q->where('category', 'like', '%Web%')
+                    ->orWhere('category', 'like', '%Streaming%')
+                    ->orWhere('category', 'like', '%Salud%')
+                    ->orWhere('category', 'like', '%Inmobiliaria%')
+                    ->orWhere('category', 'like', '%Turismo%')
+                    ->orWhere('category', 'like', '%Corporativo%'))->count(),
                 'icon' => '🌐',
             ],
             'software-edtech' => [
                 'name' => 'Software a Medida & EdTech',
-                'count' => PortfolioProject::where(fn ($q) => $q->where('category', 'like', '%Software%')->orWhere('category', 'like', '%EdTech%')->orWhere('category', 'like', '%Interactividad%'))->count(),
+                'count' => PortfolioProject::where(fn ($q) => $q->where('category', 'like', '%Software%')
+                    ->orWhere('category', 'like', '%EdTech%')
+                    ->orWhere('category', 'like', '%Learning%')
+                    ->orWhere('category', 'like', '%Interactividad%')
+                    ->orWhere('category', 'like', '%Servicios%'))->count(),
                 'icon' => '💻',
             ],
             'ia-fintech' => [
                 'name' => 'Inteligencia Artificial & FinTech',
-                'count' => PortfolioProject::where(fn ($q) => $q->where('category', 'like', '%IA%')->orWhere('category', 'like', '%FinTech%')->orWhere('category', 'like', '%LLM%'))->count(),
+                'count' => PortfolioProject::where(fn ($q) => $q->where('category', 'like', '%Inteligencia Artificial%')
+                    ->orWhere('category', 'like', '%IA%')
+                    ->orWhere('category', 'like', '%FinTech%')
+                    ->orWhere('category', 'like', '%LLM%'))->count(),
                 'icon' => '🤖',
             ],
         ];

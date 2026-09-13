@@ -98,6 +98,8 @@ class ExampleTest extends TestCase
         $response->assertSee('Cuarteto de Nos');
         $response->assertSee('Los Auténticos Decadentes');
         $response->assertSee('Academiaflix');
+        $response->assertSee('Funktographer');
+        $response->assertSee('Prodoral Chile');
     }
 
     public function test_portfolio_project_detail_pages_return_successful_response(): void
@@ -108,6 +110,14 @@ class ExampleTest extends TestCase
         $this->get('/portafolio/los-autenticos-decadentes')->assertStatus(200)->assertSee('Los Auténticos Decadentes');
         $this->get('/portafolio/sotemono')->assertStatus(200)->assertSee('Sotemono');
         $this->get('/portafolio/academiaflix')->assertStatus(200)->assertSee('Academiaflix');
+        $this->get('/portafolio/funktographer')->assertStatus(200)
+            ->assertSee('Funktographer')
+            ->assertSee('Live Link Bio')
+            ->assertSee('autoadministrable');
+        $this->get('/portafolio/prodoral-chile')->assertStatus(200)
+            ->assertSee('Prodoral Chile')
+            ->assertSee('Fugas de Gas')
+            ->assertSee('SEO');
     }
 
     public function test_contacto_cotizador_has_no_prices(): void
