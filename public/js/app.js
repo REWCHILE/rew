@@ -3,6 +3,10 @@
  * Featuring Rich-E AI Agent, 100% Native Multi-Language & Multi-Currency Switcher, and Portfolio Interactive Mockups
  */
 
+try {
+    localStorage.removeItem('rew_flag');
+} catch (_) {}
+
 document.addEventListener('DOMContentLoaded', () => {
     initHeaderScroll();
     initMobileNav();

@@ -352,6 +352,50 @@ font[style] {
 </div>
 
 <!-- 3. Floating Multi-Language & Multi-Currency Switcher (Bottom Right) -->
+<script>
+(function() {
+    try {
+        localStorage.removeItem('rew_flag');
+        var l = localStorage.getItem('rew_lang');
+        if (!l || l === 'null' || l === 'undefined') {
+            localStorage.setItem('rew_lang', 'es');
+            localStorage.setItem('rew_currency', 'CLP');
+        }
+        if (localStorage.getItem('rew_lang') === 'es') {
+            localStorage.setItem('rew_currency', 'CLP');
+        }
+    } catch (e) {}
+
+    var clSvg = '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="100" fill="#ffffff"/><rect y="100" width="300" height="100" fill="#d52b1e"/><rect width="100" height="100" fill="#0039a6"/><polygon points="50,22 59,50 88,50 65,67 74,95 50,78 26,95 35,67 12,50 41,50" fill="#ffffff"/></svg>';
+
+    function purgeNullFlag() {
+        var el = document.querySelector('.active-flag-icon');
+        if (el) {
+            var txt = el.textContent ? el.textContent.trim() : '';
+            if (txt === 'null' || txt === 'undefined' || el.innerHTML.indexOf('null') !== -1 || (!el.querySelector('svg') && !el.querySelector('img') && txt !== '🇨🇱')) {
+                el.innerHTML = clSvg;
+            }
+        }
+    }
+
+    if (window.MutationObserver) {
+        document.addEventListener('DOMContentLoaded', function() {
+            var target = document.querySelector('.active-flag-icon');
+            if (target) {
+                new MutationObserver(purgeNullFlag).observe(target, { childList: true, characterData: true, subtree: true });
+            }
+            purgeNullFlag();
+        });
+    }
+
+    var counter = 0;
+    var timer = setInterval(function() {
+        purgeNullFlag();
+        counter++;
+        if (counter > 30) clearInterval(timer);
+    }, 50);
+})();
+</script>
 <div class="floating-lang-currency-widget notranslate" translate="no">
     <!-- Trigger Button -->
     <button type="button" class="lang-currency-toggle-btn notranslate" translate="no" aria-label="Seleccionar Idioma y Moneda">
