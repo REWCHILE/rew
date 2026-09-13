@@ -1272,26 +1272,88 @@ function initPortfolioMockup() {
     const zoomBtn = document.querySelector('.zoom-fullscreen-btn');
     const closeZoomBtn = document.getElementById('closeZoomBtn');
 
-    if (viewport && img) {
-        viewport.addEventListener('mouseenter', () => {
-            const scrollDistance = img.offsetHeight - viewport.offsetHeight;
-            if (scrollDistance > 0) {
-                viewport.scrollTo({ top: scrollDistance, behavior: 'smooth' });
+    if (viewport && img && !viewport.dataset.mockupInitialized) {
+        viewport.dataset.mockupInitialized = 'true';
+        let scrollAnimId = null;
+        let isAutoScrolling = false;
+        const scrollDownSpeed = 220; // Píxeles por segundo (suave y legible)
+        const scrollUpSpeed = 450;   // Retorno al inicio ágil y fluido
+
+        const stopScroll = () => {
+            if (scrollAnimId) {
+                cancelAnimationFrame(scrollAnimId);
+                scrollAnimId = null;
             }
+            isAutoScrolling = false;
+        };
+
+        const animateScroll = (direction) => {
+            stopScroll();
+            isAutoScrolling = true;
+            let lastTime = performance.now();
+
+            const step = (currentTime) => {
+                if (!isAutoScrolling) return;
+
+                const deltaTime = (currentTime - lastTime) / 1000;
+                lastTime = currentTime;
+
+                const maxScroll = viewport.scrollHeight - viewport.clientHeight;
+                if (maxScroll <= 0) {
+                    stopScroll();
+                    return;
+                }
+
+                if (direction === 'down') {
+                    const delta = scrollDownSpeed * deltaTime;
+                    if (viewport.scrollTop + delta >= maxScroll) {
+                        viewport.scrollTop = maxScroll;
+                        stopScroll();
+                        return;
+                    }
+                    viewport.scrollTop += delta;
+                    scrollAnimId = requestAnimationFrame(step);
+                } else if (direction === 'up') {
+                    const delta = scrollUpSpeed * deltaTime;
+                    if (viewport.scrollTop - delta <= 0) {
+                        viewport.scrollTop = 0;
+                        stopScroll();
+                        return;
+                    }
+                    viewport.scrollTop -= delta;
+                    scrollAnimId = requestAnimationFrame(step);
+                }
+            };
+
+            scrollAnimId = requestAnimationFrame(step);
+        };
+
+        viewport.addEventListener('mouseenter', () => {
+            animateScroll('down');
         });
 
         viewport.addEventListener('mouseleave', () => {
-            viewport.scrollTo({ top: 0, behavior: 'smooth' });
+            animateScroll('up');
         });
+
+        viewport.addEventListener('wheel', () => {
+            stopScroll();
+        }, { passive: true });
+
+        viewport.addEventListener('touchstart', () => {
+            stopScroll();
+        }, { passive: true });
     }
 
-    if (zoomBtn && zoomModal) {
+    if (zoomBtn && zoomModal && !zoomBtn.dataset.zoomInitialized) {
+        zoomBtn.dataset.zoomInitialized = 'true';
         zoomBtn.addEventListener('click', () => {
             zoomModal.classList.add('open');
         });
     }
 
-    if (closeZoomBtn && zoomModal) {
+    if (closeZoomBtn && zoomModal && !closeZoomBtn.dataset.zoomInitialized) {
+        closeZoomBtn.dataset.zoomInitialized = 'true';
         closeZoomBtn.addEventListener('click', () => {
             zoomModal.classList.remove('open');
         });

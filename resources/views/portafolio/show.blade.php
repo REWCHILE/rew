@@ -117,7 +117,7 @@
     overflow-x: hidden !important;
     background: #0f172a !important;
     position: relative !important;
-    scroll-behavior: smooth !important;
+    scroll-behavior: auto !important;
 }
 
 /* Custom Scrollbar for Viewport */
@@ -480,12 +480,106 @@
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Abrir enlaces externos de la descripción en nueva pestaña
     document.querySelectorAll('.project-description-content a').forEach(function(link) {
         if (link.hostname !== window.location.hostname) {
             link.setAttribute('target', '_blank');
             link.setAttribute('rel', 'noopener noreferrer');
         }
     });
+
+    // Control de scroll suave al posar el mouse sobre el mockup interactivo
+    const rawViewport = document.getElementById('browserViewport');
+    if (rawViewport) {
+        // Clonar para limpiar cualquier listener anterior y asegurar comportamiento suave
+        const viewport = rawViewport.cloneNode(true);
+        rawViewport.parentNode.replaceChild(viewport, rawViewport);
+
+        let scrollAnimId = null;
+        let isAutoScrolling = false;
+        const scrollDownSpeed = 220; // Píxeles por segundo (suave, cómodo y legible)
+        const scrollUpSpeed = 450;   // Retorno al inicio ágil y fluido
+
+        const stopScroll = () => {
+            if (scrollAnimId) {
+                cancelAnimationFrame(scrollAnimId);
+                scrollAnimId = null;
+            }
+            isAutoScrolling = false;
+        };
+
+        const animateScroll = (direction) => {
+            stopScroll();
+            isAutoScrolling = true;
+            let lastTime = performance.now();
+
+            const step = (currentTime) => {
+                if (!isAutoScrolling) return;
+
+                const deltaTime = (currentTime - lastTime) / 1000;
+                lastTime = currentTime;
+
+                const maxScroll = viewport.scrollHeight - viewport.clientHeight;
+                if (maxScroll <= 0) {
+                    stopScroll();
+                    return;
+                }
+
+                if (direction === 'down') {
+                    const delta = scrollDownSpeed * deltaTime;
+                    if (viewport.scrollTop + delta >= maxScroll) {
+                        viewport.scrollTop = maxScroll;
+                        stopScroll();
+                        return;
+                    }
+                    viewport.scrollTop += delta;
+                    scrollAnimId = requestAnimationFrame(step);
+                } else if (direction === 'up') {
+                    const delta = scrollUpSpeed * deltaTime;
+                    if (viewport.scrollTop - delta <= 0) {
+                        viewport.scrollTop = 0;
+                        stopScroll();
+                        return;
+                    }
+                    viewport.scrollTop -= delta;
+                    scrollAnimId = requestAnimationFrame(step);
+                }
+            };
+
+            scrollAnimId = requestAnimationFrame(step);
+        };
+
+        viewport.addEventListener('mouseenter', () => {
+            animateScroll('down');
+        });
+
+        viewport.addEventListener('mouseleave', () => {
+            animateScroll('up');
+        });
+
+        viewport.addEventListener('wheel', () => {
+            stopScroll();
+        }, { passive: true });
+
+        viewport.addEventListener('touchstart', () => {
+            stopScroll();
+        }, { passive: true });
+    }
+
+    // Modal de Zoom Fullscreen HD
+    const zoomModal = document.getElementById('portfolioZoomModal');
+    const zoomBtn = document.querySelector('.zoom-fullscreen-btn');
+    const closeZoomBtn = document.getElementById('closeZoomBtn');
+
+    if (zoomBtn && zoomModal) {
+        zoomBtn.onclick = () => zoomModal.classList.add('open');
+    }
+    if (closeZoomBtn && zoomModal) {
+        closeZoomBtn.onclick = () => zoomModal.classList.remove('open');
+        zoomModal.onclick = (e) => {
+            if (e.target === zoomModal) zoomModal.classList.remove('open');
+        };
+    }
 });
 </script>
 @endsection
