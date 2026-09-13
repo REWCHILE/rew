@@ -18,6 +18,8 @@ class NewLandingPagesTest extends TestCase
         $response->assertSee('Plugin Bsale WooCommerce Sync Pro');
         $response->assertSee('350.000');
         $response->assertSee('LIFETIME');
+        $response->assertSee('price-tag-dynamic');
+        $response->assertSee('price-save-dynamic');
 
         $this->get('/integracion-bsale-woocommerce')->assertRedirect('/servicios/integracion-bsale-woocommerce');
         $this->get('/bsale-woocommerce')->assertRedirect('/servicios/integracion-bsale-woocommerce');

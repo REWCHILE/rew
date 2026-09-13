@@ -447,23 +447,34 @@ function initLangCurrencySwitcher() {
 
     // Auto-detect visitor settings based on manual preference, GeoIP, and browser languages
     function detectVisitorSettings() {
-        // 1. If user previously chose manually, respect it unconditionally
+        // 1. Saved preference in localStorage (highest priority)
         try {
-            const manual = localStorage.getItem('rew_user_selected_lang');
             const storedLang = localStorage.getItem('rew_lang');
-            if (manual === 'true' && storedLang && svgFlagMap[storedLang]) {
+            if (storedLang && svgFlagMap[storedLang]) {
                 return { lang: storedLang, currency: getCurrencyForLang(storedLang), autoDetected: false };
             }
         } catch (_) {}
 
-        // 2. Server Geo-IP Meta Tag (Cloudflare / GeoIP if present)
+        // 2. Check googtrans cookie if localStorage was empty
+        try {
+            const match = document.cookie.match(/googtrans=\/(?:es|auto)\/([a-zA-Z\-]+)/);
+            if (match && match[1]) {
+                let cLang = match[1];
+                if (cLang === 'zh') cLang = 'zh-CN';
+                if (svgFlagMap[cLang]) {
+                    return { lang: cLang, currency: getCurrencyForLang(cLang), autoDetected: false };
+                }
+            }
+        } catch (_) {}
+
+        // 3. Server Geo-IP Meta Tag (Cloudflare / GeoIP if present)
         let countryCode = '';
         const geoMeta = document.querySelector('meta[name="geo-country"]');
         if (geoMeta && geoMeta.getAttribute('content')) {
             countryCode = geoMeta.getAttribute('content').trim().toUpperCase();
         }
 
-        // 3. Browser Navigator Language Preferences
+        // 4. Browser Navigator Language Preferences
         const browserLangs = (navigator.languages && navigator.languages.length)
             ? navigator.languages
             : [navigator.language || navigator.userLanguage || 'es'];
@@ -567,20 +578,28 @@ function initLangCurrencySwitcher() {
                     document.cookie = `googtrans=${val}; path=/; domain=.${rootDomain};`;
                 }
             });
-            window.location.hash = `#googtrans(es|${googleLang})`;
         }
 
-        // Trigger Google Translate select element if present
-        const combo = document.querySelector('.goog-te-combo');
-        if (combo) {
-            combo.value = isSpanish ? 'es' : googleLang;
-            combo.dispatchEvent(new Event('change', { bubbles: true }));
+        // In-situ translation via Google Translate select element
+        function applyToCombo() {
+            const combo = document.querySelector('.goog-te-combo');
+            if (combo) {
+                combo.value = isSpanish ? 'es' : googleLang;
+                combo.dispatchEvent(new Event('change', { bubbles: true }));
+                return true;
+            }
+            return false;
         }
 
-        // Reload to allow Google Translate engine to parse & translate the full DOM
-        setTimeout(() => {
-            window.location.reload();
-        }, 150);
+        if (!applyToCombo()) {
+            let attempts = 0;
+            const timer = setInterval(() => {
+                attempts++;
+                if (applyToCombo() || attempts > 30) {
+                    clearInterval(timer);
+                }
+            }, 80);
+        }
     }
 
     // Language Selection (Enforces Chile=CLP, all other languages=USD)
@@ -623,7 +642,7 @@ function initLangCurrencySwitcher() {
 
             if (widget) widget.classList.remove('active');
 
-            // Trigger full website translation
+            // Trigger full website translation in-place
             triggerGoogleTranslation(lang);
         });
     });
@@ -650,6 +669,16 @@ function initLangCurrencySwitcher() {
                 el.textContent = '$' + parseInt(clp).toLocaleString('es-CL') + ' CLP';
             } else if (usd) {
                 el.textContent = '$' + parseInt(usd).toLocaleString('en-US') + ' USD';
+            }
+        });
+
+        document.querySelectorAll('.price-save-dynamic').forEach(el => {
+            const usd = el.getAttribute('data-usd');
+            const clp = el.getAttribute('data-clp');
+            if (currency === 'CLP' && clp) {
+                el.textContent = 'AHORRA $' + parseInt(clp).toLocaleString('es-CL') + ' CLP';
+            } else if (usd) {
+                el.textContent = 'SAVE $' + parseInt(usd).toLocaleString('en-US') + ' USD';
             }
         });
 
@@ -722,17 +751,7 @@ function initLangCurrencySwitcher() {
     applyCurrencyPrices(currentCurrency);
     if (currentLang !== 'es') {
         applyNativeTranslations(currentLang);
-        const googleLang = currentLang.startsWith('pt') ? 'pt' : currentLang;
-        const host = window.location.hostname;
-        const rootDomain = host.replace(/^www\./, '');
-        if (!document.cookie.includes('googtrans=')) {
-            const pair = `/es/${googleLang}`;
-            document.cookie = `googtrans=${pair}; path=/;`;
-            document.cookie = `googtrans=${pair}; path=/; domain=${host};`;
-            if (rootDomain !== host) {
-                document.cookie = `googtrans=${pair}; path=/; domain=.${rootDomain};`;
-            }
-        }
+        triggerGoogleTranslation(currentLang);
     }
 
     langBtns.forEach(b => {

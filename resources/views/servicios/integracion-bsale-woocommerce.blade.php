@@ -10,6 +10,24 @@
 @section('og_image', asset('images/products/plugin_bsale_woocommerce.webp'))
 
 @section('content')
+@php
+    $plugin = $pluginProduct ?? \App\Models\Product::where('slug', 'plugin-integracion-bsale-woocommerce')->first();
+    $productId = $plugin->id ?? 9;
+    $priceClp = $plugin->price_clp ?? 350000;
+    $priceUsd = $plugin->price_usd ?? 380;
+    $originalClp = $plugin->original_price_clp ?? 450000;
+    $originalUsd = $plugin->original_price_usd ?? 480;
+    $waBuyMsg = "¡Hola Álvaro! Quiero comprar la licencia vitalicia del Plugin Bsale WooCommerce Sync Pro ($350.000 CLP / Lifetime). ¿Cuáles son los datos de transferencia para coordinar la instalación?";
+
+    $pluginImgPath = public_path('images/products/plugin_bsale_woocommerce.webp');
+    $basePathImg = base_path('public/images/products/plugin_bsale_woocommerce.webp');
+    $imgSrc = asset('images/products/plugin_bsale_woocommerce.webp');
+    if (file_exists($pluginImgPath)) {
+        $imgSrc = 'data:image/webp;base64,' . base64_encode(file_get_contents($pluginImgPath));
+    } elseif (file_exists($basePathImg)) {
+        $imgSrc = 'data:image/webp;base64,' . base64_encode(file_get_contents($basePathImg));
+    }
+@endphp
 <!-- Hero Section -->
 <section class="section" style="background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%); padding-top: 5rem; padding-bottom: 4rem;">
     <div class="container">
@@ -31,7 +49,7 @@
                 </p>
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
                     <a href="#comprar-plugin" class="btn btn-primary btn-lg" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.4);">
-                        <span>🛒 Adquirir Plugin Lifetime ($350.000 CLP)</span>
+                        <span>🛒 Adquirir Plugin Lifetime (<span class="price-tag-dynamic" data-usd="{{ $priceUsd }}" data-clp="{{ $priceClp }}">${{ number_format($priceClp, 0, ',', '.') }} CLP</span>)</span>
                     </a>
                     <a href="{{ route('contacto') }}" class="btn btn-outline btn-lg">
                         <span>📋 Cotizar Integración</span>
@@ -128,25 +146,6 @@
 </section>
 
 <!-- Sección de Compra Directa del Plugin (Antes de Preguntas Frecuentes) -->
-@php
-    $plugin = $pluginProduct ?? \App\Models\Product::where('slug', 'plugin-integracion-bsale-woocommerce')->first();
-    $productId = $plugin->id ?? 9;
-    $priceClp = $plugin->price_clp ?? 350000;
-    $priceUsd = $plugin->price_usd ?? 380;
-    $originalClp = $plugin->original_price_clp ?? 450000;
-    $originalUsd = $plugin->original_price_usd ?? 480;
-    $waBuyMsg = "¡Hola Álvaro! Quiero comprar la licencia vitalicia del Plugin Bsale WooCommerce Sync Pro ($350.000 CLP / Lifetime). ¿Cuáles son los datos de transferencia para coordinar la instalación?";
-
-    $pluginImgPath = public_path('images/products/plugin_bsale_woocommerce.webp');
-    $basePathImg = base_path('public/images/products/plugin_bsale_woocommerce.webp');
-    $imgSrc = asset('images/products/plugin_bsale_woocommerce.webp');
-    if (file_exists($pluginImgPath)) {
-        $imgSrc = 'data:image/webp;base64,' . base64_encode(file_get_contents($pluginImgPath));
-    } elseif (file_exists($basePathImg)) {
-        $imgSrc = 'data:image/webp;base64,' . base64_encode(file_get_contents($basePathImg));
-    }
-@endphp
-
 <section id="comprar-plugin" class="section" style="background: linear-gradient(180deg, #070d19 0%, #0b1329 100%); padding-top: 5rem; padding-bottom: 5.5rem; color: #ffffff;">
     <div class="container">
         <div style="text-align: center; max-width: 820px; margin: 0 auto 3rem;">
@@ -215,8 +214,8 @@
                                   style="font-size: 1.35rem; color: #64748b; text-decoration: line-through;">
                                 ${{ number_format($originalClp, 0, ',', '.') }} CLP
                             </span>
-                            <span class="badge badge-gold" style="font-size: 0.82rem; font-weight: 800;">
-                                AHORRA $100.000 CLP
+                            <span class="badge badge-gold price-save-dynamic" data-usd="{{ $originalUsd - $priceUsd }}" data-clp="{{ $originalClp - $priceClp }}" style="font-size: 0.82rem; font-weight: 800;">
+                                AHORRA ${{ number_format($originalClp - $priceClp, 0, ',', '.') }} CLP
                             </span>
                         </div>
                         <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #cbd5e1; display: flex; align-items: center; gap: 8px;">

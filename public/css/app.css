@@ -2462,10 +2462,7 @@ body {
 .VIpgJd-ZVi9od-aZ2wEe-OiiCO,
 .VIpgJd-ZVi9od-aZ2wEe,
 .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q,
-.skiptranslate iframe,
-iframe.skiptranslate,
-.goog-te-gadget-simple,
-.goog-te-gadget {
+.goog-te-gadget-simple {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
@@ -2473,15 +2470,27 @@ iframe.skiptranslate,
   width: 0 !important;
   pointer-events: none !important;
 }
+.skiptranslate iframe,
+iframe.skiptranslate {
+  position: fixed !important;
+  bottom: -9999px !important;
+  right: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -9999 !important;
+}
 #google_translate_element {
-  position: absolute !important;
-  left: -9999px !important;
-  top: -9999px !important;
+  position: fixed !important;
+  bottom: 0 !important;
+  right: 0 !important;
   width: 1px !important;
   height: 1px !important;
   overflow: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
+  z-index: -9999 !important;
 }
 .goog-text-highlight {
   background: transparent !important;
@@ -2490,6 +2499,10 @@ iframe.skiptranslate,
 font[style] {
   background: transparent !important;
   box-shadow: none !important;
+}
+body {
+  top: 0px !important;
+  position: static !important;
 }
 
 .riche-chat-messages {
