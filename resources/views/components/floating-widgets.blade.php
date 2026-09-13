@@ -358,12 +358,10 @@ font[style] {
         localStorage.removeItem('rew_flag');
         var l = localStorage.getItem('rew_lang');
         if (!l || l === 'null' || l === 'undefined') {
+            l = 'es';
             localStorage.setItem('rew_lang', 'es');
-            localStorage.setItem('rew_currency', 'CLP');
         }
-        if (localStorage.getItem('rew_lang') === 'es') {
-            localStorage.setItem('rew_currency', 'CLP');
-        }
+        localStorage.setItem('rew_currency', (l === 'es') ? 'CLP' : 'USD');
     } catch (e) {}
 
     var clSvg = '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="100" fill="#ffffff"/><rect y="100" width="300" height="100" fill="#d52b1e"/><rect width="100" height="100" fill="#0039a6"/><polygon points="50,22 59,50 88,50 65,67 74,95 50,78 26,95 35,67 12,50 41,50" fill="#ffffff"/></svg>';
@@ -528,7 +526,7 @@ font[style] {
 
         <div class="popup-section-header" style="margin-top: 10px;">CONDICIÓN MONETARIA</div>
         <div style="font-size: 0.74rem; color: #64748b; padding: 4px 6px 2px; line-height: 1.4;">
-            🇨🇱 Chile opera en <strong>CLP ($)</strong>. Todos los demás idiomas operan en <strong>USD ($)</strong>.
+            🇨🇱 Español opera en <strong>CLP ($)</strong>. Todos los demás idiomas operan en <strong>USD ($)</strong>.
         </div>
     </div>
 </div>

@@ -175,11 +175,7 @@
     var autoCloseTimer = null;
 
     function getEffectiveCurrency() {
-        var storedCur = localStorage.getItem('rew_currency');
         var storedLang = localStorage.getItem('rew_lang') || 'es';
-        if (storedCur && (storedCur === 'CLP' || storedCur === 'USD')) {
-            return storedCur;
-        }
         return (storedLang === 'es') ? 'CLP' : 'USD';
     }
 

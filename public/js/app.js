@@ -440,6 +440,11 @@ function initLangCurrencySwitcher() {
         localStorage.removeItem('rew_flag');
     } catch (e) {}
 
+    // Strict Rule: Spanish is ALWAYS CLP, all other languages are ALWAYS USD
+    function getCurrencyForLang(lang) {
+        return (lang === 'es') ? 'CLP' : 'USD';
+    }
+
     // Auto-detect visitor settings based on manual preference, GeoIP, and browser languages
     function detectVisitorSettings() {
         // 1. If user previously chose manually, respect it unconditionally
@@ -447,8 +452,7 @@ function initLangCurrencySwitcher() {
             const manual = localStorage.getItem('rew_user_selected_lang');
             const storedLang = localStorage.getItem('rew_lang');
             if (manual === 'true' && storedLang && svgFlagMap[storedLang]) {
-                const cur = (storedLang === 'es') ? 'CLP' : 'USD';
-                return { lang: storedLang, currency: cur, autoDetected: false };
+                return { lang: storedLang, currency: getCurrencyForLang(storedLang), autoDetected: false };
             }
         } catch (_) {}
 
@@ -466,9 +470,9 @@ function initLangCurrencySwitcher() {
         const primaryFull = (browserLangs[0] || 'es').toLowerCase();
         const primaryLang = primaryFull.split('-')[0];
 
-        // Specific Country & Language Matrix:
-        // Chile -> es-CL or CL -> Español / CLP
-        if (countryCode === 'CL' || primaryFull === 'es-cl' || (primaryLang === 'es' && primaryFull.includes('cl'))) {
+        // Strict Matrix:
+        // Any Spanish visitor -> ALWAYS Español / CLP ($)
+        if (countryCode === 'CL' || primaryLang === 'es') {
             return { lang: 'es', currency: 'CLP', autoDetected: true };
         }
 
@@ -507,18 +511,13 @@ function initLangCurrencySwitcher() {
             return { lang: 'ja', currency: 'USD', autoDetected: true };
         }
 
-        // Other Spanish speakers outside Chile (AR, MX, CO, PE, ES, etc.) -> Español / USD ($)
-        if (primaryLang === 'es') {
-            return { lang: 'es', currency: 'USD', autoDetected: true };
-        }
-
         // Default for English and all rest of the world -> English / USD
         return { lang: 'en', currency: 'USD', autoDetected: true };
     }
 
     const detected = detectVisitorSettings();
     let currentLang = detected.lang;
-    let currentCurrency = detected.currency;
+    let currentCurrency = getCurrencyForLang(currentLang);
 
     try {
         localStorage.setItem('rew_lang', currentLang);
@@ -630,6 +629,7 @@ function initLangCurrencySwitcher() {
     });
 
     function updateTriggerLabel() {
+        currentCurrency = getCurrencyForLang(currentLang);
         if (flagIcon) {
             flagIcon.innerHTML = svgFlagMap[currentLang] || svgFlagMap['es'];
         }
