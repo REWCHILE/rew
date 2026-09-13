@@ -36,6 +36,9 @@
                     <a href="{{ route('admin.leads.index') }}" class="admin-nav-link {{ request()->routeIs('admin.leads.*') ? 'active' : '' }}">
                         <span>📊</span> Leads & Cotizaciones
                     </a>
+                    <a href="{{ route('admin.portfolio.index') }}" class="admin-nav-link {{ request()->routeIs('admin.portfolio.*') ? 'active' : '' }}">
+                        <span>💼</span> Portafolio
+                    </a>
                     <a href="{{ route('admin.riche.index') }}" class="admin-nav-link {{ request()->routeIs('admin.riche.*') ? 'active' : '' }}">
                         <span>🤖</span> Asistente Rich-E
                     </a>

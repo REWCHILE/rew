@@ -150,8 +150,10 @@ class CartController extends Controller
             'phone' => 'required|string|max:50',
             'company' => 'nullable|string|max:255',
             'notes' => 'nullable|string',
-            'payment_method' => 'required|string',
+            'payment_method' => 'nullable|string',
         ]);
+
+        $paymentMethod = ! empty($validated['payment_method']) ? $validated['payment_method'] : 'Transferencia Bancaria Directa (Chile)';
 
         $cart = session()->get('cart', []);
         if (empty($cart)) {
@@ -184,7 +186,7 @@ class CartController extends Controller
         if (! empty($validated['company'])) {
             $msg .= "🏢 *Empresa:* {$validated['company']}\n";
         }
-        $msg .= "💳 *Método de Pago:* {$validated['payment_method']}\n\n";
+        $msg .= "💳 *Método de Pago:* {$paymentMethod}\n\n";
         $msg .= "*Productos Seleccionados:*\n{$itemsList}\n";
         $msg .= "💰 *TOTAL:* {$totalFormatted}\n";
         if (! empty($validated['notes'])) {

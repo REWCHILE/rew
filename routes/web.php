@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminLeadController;
+use App\Http\Controllers\AdminPortfolioController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\AdminRicheController;
 use App\Http\Controllers\AuditController;
@@ -246,6 +247,15 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('/configuracion', [AdminProfileController::class, 'updateSettings'])->name('settings.update');
     Route::post('/configuracion/test-smtp', [AdminProfileController::class, 'testSmtp'])->name('settings.test-smtp');
     Route::post('/configuracion/test-instagram', [AdminProfileController::class, 'testInstagram'])->name('settings.test-instagram');
+
+    // Administración de Portafolio Web
+    Route::get('/portafolio', [AdminPortfolioController::class, 'index'])->name('portfolio.index');
+    Route::get('/portafolio/crear', [AdminPortfolioController::class, 'create'])->name('portfolio.create');
+    Route::post('/portafolio', [AdminPortfolioController::class, 'store'])->name('portfolio.store');
+    Route::get('/portafolio/{project}/editar', [AdminPortfolioController::class, 'edit'])->name('portfolio.edit');
+    Route::put('/portafolio/{project}', [AdminPortfolioController::class, 'update'])->name('portfolio.update');
+    Route::delete('/portafolio/{project}', [AdminPortfolioController::class, 'destroy'])->name('portfolio.destroy');
+    Route::post('/portafolio/analizar', [AdminPortfolioController::class, 'analyzeAndCapture'])->name('portfolio.analyze');
 
     // Mantenedor Rich-E AI
     Route::get('/riche', [AdminRicheController::class, 'index'])->name('riche.index');

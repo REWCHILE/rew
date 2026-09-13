@@ -179,7 +179,7 @@ class NewLandingPagesTest extends TestCase
         $checkoutPage = $this->get('/checkout');
         $checkoutPage->assertStatus(200);
         $checkoutPage->assertSee('350.000');
-        $checkoutPage->assertSee('Webpay Plus');
+        $checkoutPage->assertSee('Transferencia Bancaria');
 
         // 4. Switch currency to USD
         $curResponse = $this->postJson('/currency', ['currency' => 'USD']);
@@ -190,6 +190,6 @@ class NewLandingPagesTest extends TestCase
         $checkoutUsd = $this->get('/checkout');
         $checkoutUsd->assertStatus(200);
         $checkoutUsd->assertSee('380');
-        $checkoutUsd->assertSee('PayPal');
+        $checkoutUsd->assertSee('Transferencia Bancaria');
     }
 }

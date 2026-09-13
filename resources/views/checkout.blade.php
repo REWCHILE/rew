@@ -60,26 +60,31 @@
                     @endphp
 
                     <h3 style="font-size: 1.3rem; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-light);">
-                        2. Método de Pago Preferido
+                        2. Método de Pago
                     </h3>
 
-                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;">
-                        <label class="option-card payment-clp {{ $currentCur === 'CLP' ? 'selected' : '' }}" style="width: 100%;">
-                            <input type="radio" name="payment_method" value="Webpay Plus / Tarjeta de Débito o Crédito (CLP)" {{ $currentCur === 'CLP' ? 'checked' : '' }}>
-                            <span class="option-title">🇨🇱 Webpay Plus / Tarjetas Chilenas (CLP $)</span>
-                            <span style="font-size: 0.82rem; color: var(--text-muted);">Pago seguro a través de Transbank Webpay Plus (Débito, Crédito y Redcompra).</span>
-                        </label>
-
-                        <label class="option-card payment-clp" style="width: 100%;">
-                            <input type="radio" name="payment_method" value="Transferencia Bancaria Directa (Chile)">
-                            <span class="option-title">🏦 Transferencia Bancaria (Chile)</span>
-                            <span style="font-size: 0.82rem; color: var(--text-muted);">Envío inmediato de datos bancarios para depósito o transferencia electrónica en CLP.</span>
-                        </label>
-
-                        <label class="option-card payment-usd {{ $currentCur === 'USD' ? 'selected' : '' }}" style="width: 100%;">
-                            <input type="radio" name="payment_method" value="PayPal / Tarjeta Internacional (USD)" {{ $currentCur === 'USD' ? 'checked' : '' }}>
-                            <span class="option-title">🌎 PayPal / Tarjeta Internacional (USD $)</span>
-                            <span style="font-size: 0.82rem; color: var(--text-muted);">Ideal para clientes internacionales o pagos en dólares estadounidenses.</span>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label class="selected" style="display: flex; align-items: flex-start; gap: 1rem; width: 100%; padding: 1.25rem; border: 2px solid #10b981; background: #f0fdf4; border-radius: var(--radius-md); cursor: pointer; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08); transition: all 0.2s ease;">
+                            <div style="margin-top: 2px; position: relative; display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #059669; background: #ffffff; flex-shrink: 0;">
+                                <input type="radio" name="payment_method" value="Transferencia Bancaria Directa (Chile)" checked style="position: absolute; opacity: 0; width: 100%; height: 100%; cursor: pointer;">
+                                <div style="width: 12px; height: 12px; border-radius: 50%; background: #059669;"></div>
+                            </div>
+                            <div style="flex: 1;">
+                                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 4px;">
+                                    <span style="font-weight: 800; font-size: 1.05rem; color: #0f172a;">
+                                        🏦 Transferencia Bancaria (Chile)
+                                    </span>
+                                    <span style="background: #10b981; color: #ffffff; font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em;">
+                                        Método Activo
+                                    </span>
+                                </div>
+                                <p style="font-size: 0.88rem; color: #475569; margin: 0 0 6px 0; line-height: 1.4;">
+                                    Envío inmediato de datos bancarios para transferencia electrónica o depósito en CLP ($).
+                                </p>
+                                <div style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; color: #047857; font-weight: 700; background: rgba(16, 185, 129, 0.15); padding: 4px 10px; border-radius: 6px;">
+                                    <span>✓</span> Activación rápida por WhatsApp (+56987261127) y comprobante al correo
+                                </div>
+                            </div>
                         </label>
                     </div>
 
