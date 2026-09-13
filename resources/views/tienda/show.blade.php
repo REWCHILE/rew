@@ -37,6 +37,12 @@
 @endsection
 
 @section('content')
+@php
+    $effectiveCurrency = session('currency');
+    if (!$effectiveCurrency) {
+        $effectiveCurrency = (app()->getLocale() === 'es') ? 'CLP' : 'USD';
+    }
+@endphp
 <section class="section" style="background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%);">
     <div class="container">
         <!-- Breadcrumb -->
@@ -69,12 +75,20 @@
                 <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
                     <span class="price-current price-tag-dynamic" style="font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--primary); font-weight: 800;" 
                           data-usd="{{ $product->price_usd }}" data-clp="{{ $product->price_clp }}">
-                        ${{ number_format($product->price_usd, 0) }} USD
+                        @if($effectiveCurrency === 'CLP')
+                            ${{ number_format($product->price_clp, 0, ',', '.') }} CLP
+                        @else
+                            ${{ number_format($product->price_usd, 0) }} USD
+                        @endif
                     </span>
                     @if($product->original_price_usd)
                         <span class="price-original price-tag-dynamic" style="font-size: 1.3rem;"
                               data-usd="{{ $product->original_price_usd }}" data-clp="{{ $product->original_price_clp }}">
-                            ${{ number_format($product->original_price_usd, 0) }} USD
+                            @if($effectiveCurrency === 'CLP')
+                                ${{ number_format($product->original_price_clp, 0, ',', '.') }} CLP
+                            @else
+                                ${{ number_format($product->original_price_usd, 0) }} USD
+                            @endif
                         </span>
                         <span class="badge badge-gold">{{ $product->discount_percentage }}% Dcto</span>
                     @endif
@@ -102,9 +116,17 @@
 
                     <!-- Direct WhatsApp Buy -->
                     @php
-                        $waText = "¡Hola Álvaro! Quiero comprar la licencia de *{$product->name}* (SKU: {$product->sku}) por \${$product->price_usd} USD.";
+                        $waPrice = ($effectiveCurrency === 'CLP') 
+                            ? '$' . number_format($product->price_clp, 0, ',', '.') . ' CLP' 
+                            : '$' . number_format($product->price_usd, 0) . ' USD';
+                        $waText = "¡Hola Álvaro! Quiero comprar la licencia de *{$product->name}* (SKU: {$product->sku}) por {$waPrice}.";
                     @endphp
                     <a href="https://api.whatsapp.com/send?phone=56987261127&text={{ urlencode($waText) }}" 
+                       id="productDetailWhatsAppBtn"
+                       data-name="{{ $product->name }}"
+                       data-sku="{{ $product->sku }}"
+                       data-usd="{{ $product->price_usd }}"
+                       data-clp="{{ $product->price_clp }}"
                        target="_blank" rel="noopener" class="btn btn-whatsapp" style="width: 100%; text-align: center;">
                         <span>💬 Comprar Directo por WhatsApp (+56987261127)</span>
                     </a>
@@ -184,7 +206,11 @@
                                 </h4>
                                 <div class="product-pricing">
                                     <span class="price-current price-tag-dynamic" data-usd="{{ $rel->price_usd }}" data-clp="{{ $rel->price_clp }}">
-                                        ${{ number_format($rel->price_usd, 0) }} USD
+                                        @if($effectiveCurrency === 'CLP')
+                                            ${{ number_format($rel->price_clp, 0, ',', '.') }} CLP
+                                        @else
+                                            ${{ number_format($rel->price_usd, 0) }} USD
+                                        @endif
                                     </span>
                                 </div>
                                 <a href="{{ route('tienda.show', $rel->slug) }}" class="btn btn-outline btn-sm" style="width: 100%; text-align: center;">

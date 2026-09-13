@@ -164,6 +164,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 // Trigger currency update event for dynamically loaded price tags
+                var activeCur = (localStorage.getItem('rew_lang') === 'es') ? 'CLP' : 'USD';
+                window.dispatchEvent(new CustomEvent('currencyChanged', { detail: { currency: activeCur } }));
                 window.dispatchEvent(new CustomEvent('currency:refresh'));
             }
 

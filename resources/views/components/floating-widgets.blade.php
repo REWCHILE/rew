@@ -117,7 +117,7 @@
   bottom: 25px !important;
   left: auto !important;
   top: auto !important;
-  z-index: 99999 !important;
+  z-index: 10002 !important; /* Above page content and chatbot, strictly below cart overlay (100050) */
   display: block !important;
   pointer-events: auto !important;
 }
@@ -142,7 +142,7 @@
   pointer-events: auto !important;
   user-select: none !important;
   position: relative !important;
-  z-index: 100001 !important;
+  z-index: 2 !important;
 }
 
 .floating-lang-currency-widget .lang-currency-toggle-btn:hover {
@@ -165,7 +165,7 @@
   border: 1px solid rgba(226, 232, 240, 0.9) !important;
   padding: 12px !important;
   display: none !important;
-  z-index: 100002 !important;
+  z-index: 10 !important;
   max-height: 80vh !important;
   overflow-y: auto !important;
   pointer-events: auto !important;
@@ -181,6 +181,27 @@
 }
 
 .floating-lang-currency-widget .lang-option-btn * {
+  pointer-events: none !important;
+}
+
+/* When cart drawer is open, push floating widget behind the overlay and disable interaction */
+body.cart-open .floating-lang-currency-widget,
+body:has(.cart-drawer.open) .floating-lang-currency-widget,
+body:has(.cart-drawer.is-open) .floating-lang-currency-widget,
+body:has(.cart-drawer-overlay.open) .floating-lang-currency-widget,
+body:has(.cart-drawer-overlay.is-open) .floating-lang-currency-widget,
+.cart-drawer-overlay.open ~ .floating-lang-currency-widget,
+.cart-drawer-overlay.open + .floating-lang-currency-widget {
+  z-index: 9980 !important;
+  pointer-events: none !important;
+  opacity: 0.15 !important;
+}
+
+body.cart-open .floating-lang-currency-widget *,
+body:has(.cart-drawer.open) .floating-lang-currency-widget *,
+body:has(.cart-drawer.is-open) .floating-lang-currency-widget *,
+body:has(.cart-drawer-overlay.open) .floating-lang-currency-widget *,
+body:has(.cart-drawer-overlay.is-open) .floating-lang-currency-widget {
   pointer-events: none !important;
 }
 
@@ -443,6 +464,17 @@ font[style] {
                 var code = (l === 'zh-CN') ? 'ZH' : (l.indexOf('pt') === 0 ? 'PT' : l.toUpperCase().slice(0, 2));
                 t.textContent = code + ' / ' + c;
             }
+
+            // Early format any price tags already parsed in the DOM
+            document.querySelectorAll('.price-tag-dynamic').forEach(function(el) {
+                var usd = el.getAttribute('data-usd');
+                var clp = el.getAttribute('data-clp');
+                if (c === 'CLP' && clp) {
+                    el.textContent = '$' + parseInt(clp).toLocaleString('es-CL') + ' CLP';
+                } else if (usd) {
+                    el.textContent = '$' + parseInt(usd).toLocaleString('en-US') + ' USD';
+                }
+            });
         } catch(e) {}
     })();
     </script>
@@ -651,6 +683,7 @@ function googleTranslateElementInit() {
         }
 
         updateUI(curLang, curCurrency);
+        updatePrices(curCurrency);
 
         // Protect flagEl against text node overwrites like 'cl' or emoji
         if (flagEl && window.MutationObserver) {
@@ -811,8 +844,32 @@ function googleTranslateElementInit() {
                 }
             });
 
-            window.dispatchEvent(new CustomEvent('currencyChanged', { detail: { currency: currency } }));
+            var waBtn = document.getElementById('productDetailWhatsAppBtn');
+            if (waBtn) {
+                var name = waBtn.getAttribute('data-name') || '';
+                var sku = waBtn.getAttribute('data-sku') || '';
+                var usd = waBtn.getAttribute('data-usd') || '0';
+                var clp = waBtn.getAttribute('data-clp') || '0';
+                var priceStr = (currency === 'CLP' && clp)
+                    ? '$' + parseInt(clp).toLocaleString('es-CL') + ' CLP'
+                    : '$' + parseInt(usd).toLocaleString('en-US') + ' USD';
+                var msg = '¡Hola Álvaro! Quiero comprar la licencia de *' + name + '* (SKU: ' + sku + ') por ' + priceStr + '.';
+                waBtn.href = 'https://api.whatsapp.com/send?phone=56987261127&text=' + encodeURIComponent(msg);
+            }
+
+            window.dispatchEvent(new CustomEvent('currencyChanged', { detail: { currency: currency, source: 'updatePrices' } }));
         }
+
+        window.addEventListener('currency:refresh', function() {
+            var l = localStorage.getItem('rew_lang') || 'es';
+            updatePrices(getCurrency(l));
+        });
+
+        window.addEventListener('currencyChanged', function(e) {
+            if (e.detail && e.detail.currency && e.detail.source !== 'updatePrices') {
+                updatePrices(e.detail.currency);
+            }
+        });
     }
 
     if (document.readyState === 'loading') {

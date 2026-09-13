@@ -8,7 +8,7 @@
     background: rgba(15, 23, 42, 0.65) !important;
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
-    z-index: 99990 !important;
+    z-index: 100050 !important;
     opacity: 0 !important;
     visibility: hidden !important;
     transition: opacity 0.35s ease, visibility 0.35s ease !important;
@@ -30,7 +30,7 @@
     height: 100dvh !important;
     background: #ffffff !important;
     box-shadow: -15px 0 45px rgba(0, 0, 0, 0.3) !important;
-    z-index: 100000 !important;
+    z-index: 100060 !important;
     display: flex !important;
     flex-direction: column !important;
     transform: translateX(100%) !important;
@@ -212,7 +212,15 @@
         syncDrawerPrices();
         if (overlay) overlay.classList.add('open');
         if (drawer) drawer.classList.add('open');
+        document.body.classList.add('cart-open');
         document.body.style.overflow = 'hidden';
+
+        var langWidget = document.querySelector('.floating-lang-currency-widget');
+        if (langWidget) {
+            langWidget.classList.remove('active');
+            langWidget.style.zIndex = '9980';
+            langWidget.style.pointerEvents = 'none';
+        }
 
         if (withTimer) {
             startAutoClose(20); // 20s delay requested by user
@@ -225,7 +233,14 @@
         var drawer = document.querySelector('.cart-drawer');
         if (overlay) overlay.classList.remove('open');
         if (drawer) drawer.classList.remove('open');
+        document.body.classList.remove('cart-open');
         document.body.style.overflow = '';
+
+        var langWidget = document.querySelector('.floating-lang-currency-widget');
+        if (langWidget) {
+            langWidget.style.zIndex = '';
+            langWidget.style.pointerEvents = '';
+        }
     }
 
     function updateCartCount(count) {

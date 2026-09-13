@@ -243,6 +243,9 @@
                         ? route('servicios.bsale-woocommerce') 
                         : route('tienda.show', $prod->slug);
                 @endphp
+                @php
+                    $effectiveCurrency = session('currency', (app()->getLocale() === 'es') ? 'CLP' : 'USD');
+                @endphp
                 <div class="card product-card spotlight-card">
                     <div class="product-img-wrap">
                         @if($prod->badge)
@@ -267,11 +270,19 @@
 
                         <div class="product-pricing">
                             <span class="price-current price-tag-dynamic" data-usd="{{ $prod->price_usd }}" data-clp="{{ $prod->price_clp }}">
-                                ${{ number_format($prod->price_usd, 0) }} USD
+                                @if($effectiveCurrency === 'CLP')
+                                    ${{ number_format($prod->price_clp, 0, ',', '.') }} CLP
+                                @else
+                                    ${{ number_format($prod->price_usd, 0) }} USD
+                                @endif
                             </span>
                             @if($prod->original_price_usd)
                                 <span class="price-original price-tag-dynamic" data-usd="{{ $prod->original_price_usd }}" data-clp="{{ $prod->original_price_clp }}">
-                                    ${{ number_format($prod->original_price_usd, 0) }} USD
+                                    @if($effectiveCurrency === 'CLP')
+                                        ${{ number_format($prod->original_price_clp, 0, ',', '.') }} CLP
+                                    @else
+                                        ${{ number_format($prod->original_price_usd, 0) }} USD
+                                    @endif
                                 </span>
                             @endif
                         </div>

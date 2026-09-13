@@ -1,3 +1,10 @@
+@php
+    $effectiveCurrency = session('currency');
+    if (!$effectiveCurrency) {
+        $effectiveCurrency = (app()->getLocale() === 'es') ? 'CLP' : 'USD';
+    }
+@endphp
+
 @foreach($products as $prod)
     @php
         $prodUrl = ($prod->slug === 'plugin-integracion-bsale-woocommerce') 
@@ -28,11 +35,19 @@
 
             <div class="product-pricing">
                 <span class="price-current price-tag-dynamic" data-usd="{{ $prod->price_usd }}" data-clp="{{ $prod->price_clp }}">
-                    ${{ number_format($prod->price_usd, 0) }} USD
+                    @if($effectiveCurrency === 'CLP')
+                        ${{ number_format($prod->price_clp, 0, ',', '.') }} CLP
+                    @else
+                        ${{ number_format($prod->price_usd, 0) }} USD
+                    @endif
                 </span>
                 @if($prod->original_price_usd)
                     <span class="price-original price-tag-dynamic" data-usd="{{ $prod->original_price_usd }}" data-clp="{{ $prod->original_price_clp }}">
-                        ${{ number_format($prod->original_price_usd, 0) }} USD
+                        @if($effectiveCurrency === 'CLP')
+                            ${{ number_format($prod->original_price_clp, 0, ',', '.') }} CLP
+                        @else
+                            ${{ number_format($prod->original_price_usd, 0) }} USD
+                        @endif
                     </span>
                 @endif
             </div>
