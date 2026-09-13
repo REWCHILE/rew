@@ -182,14 +182,18 @@
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
             @foreach($featuredProjects as $project)
-                <article class="card portfolio-card spotlight-card" style="position: relative; overflow: hidden; cursor: pointer;">
-                    <a href="{{ route('portafolio.show', $project->slug) }}" class="portfolio-card-stretched-link" aria-label="Ver caso de estudio de {{ $project->title }}"></a>
+                <article class="card portfolio-card spotlight-card" style="position: relative; overflow: hidden; cursor: pointer;" onclick="window.location.href='{{ route('portafolio.show', $project->slug) }}'">
+                    <a href="{{ route('portafolio.show', $project->slug) }}" class="portfolio-card-stretched-link" aria-label="Ver caso de estudio de {{ $project->title }}" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 10; display: block;"></a>
                     
                     <div class="portfolio-img-wrap">
-                        <img src="{{ Str::startsWith($project->featured_image, 'http') ? $project->featured_image : asset(ltrim($project->featured_image, '/')) }}" alt="{{ $project->title }}" class="portfolio-img" loading="lazy">
+                        <a href="{{ route('portafolio.show', $project->slug) }}" style="display: block; width: 100%; height: 100%; position: relative; z-index: 1;">
+                            <img src="{{ Str::startsWith($project->featured_image, 'http') ? $project->featured_image : asset(ltrim($project->featured_image, '/')) }}" alt="{{ $project->title }}" class="portfolio-img" loading="lazy">
+                        </a>
                         <div class="portfolio-overlay">
                             <div class="portfolio-meta-pill">{{ $project->category }}</div>
-                            <h3 style="color: #ffffff; font-size: 1.3rem;">{{ $project->title }}</h3>
+                            <h3 style="color: #ffffff; font-size: 1.3rem;">
+                                <a href="{{ route('portafolio.show', $project->slug) }}" style="color: #ffffff; text-decoration: none;">{{ $project->title }}</a>
+                            </h3>
                         </div>
                     </div>
                     <div class="portfolio-body">
@@ -199,9 +203,9 @@
                                 <span class="tech-tag">{{ trim($tech) }}</span>
                             @endforeach
                         </div>
-                        <div class="btn btn-outline btn-sm" style="width: 100%; text-align: center; pointer-events: none;">
+                        <a href="{{ route('portafolio.show', $project->slug) }}" class="btn btn-outline btn-sm" style="width: 100%; text-align: center; display: inline-block; position: relative; z-index: 12;">
                             <span>Ver Caso de Estudio →</span>
-                        </div>
+                        </a>
                     </div>
                 </article>
             @endforeach

@@ -281,20 +281,24 @@
         @else
             <div class="portfolio-grid">
                 @foreach($projects as $proj)
-                    <article class="portfolio-card-premium" style="position: relative; cursor: pointer;">
-                        <a href="{{ route('portafolio.show', $proj->slug) }}" class="portfolio-card-stretched-link" aria-label="Explorar caso de estudio de {{ $proj->title }}"></a>
+                    <article class="portfolio-card-premium" style="position: relative; cursor: pointer;" onclick="window.location.href='{{ route('portafolio.show', $proj->slug) }}'">
+                        <a href="{{ route('portafolio.show', $proj->slug) }}" class="portfolio-card-stretched-link" aria-label="Explorar caso de estudio de {{ $proj->title }}" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 10; display: block;"></a>
 
                         <div class="portfolio-card-img-box">
-                            <img src="{{ Str::startsWith($proj->featured_image, 'http') ? $proj->featured_image : asset(ltrim($proj->featured_image, '/')) }}" 
-                                 alt="{{ $proj->title }}" 
-                                 loading="lazy">
+                            <a href="{{ route('portafolio.show', $proj->slug) }}" style="display: block; width: 100%; height: 100%; position: relative; z-index: 1;">
+                                <img src="{{ Str::startsWith($proj->featured_image, 'http') ? $proj->featured_image : asset(ltrim($proj->featured_image, '/')) }}" 
+                                     alt="{{ $proj->title }}" 
+                                     loading="lazy">
+                            </a>
                             <div class="portfolio-card-tag">{{ $proj->category }}</div>
                         </div>
                         
                         <div class="portfolio-card-content">
                             <div>
                                 <div class="portfolio-client-title">{{ $proj->client }}</div>
-                                <h2 class="portfolio-project-title">{{ $proj->title }}</h2>
+                                <h2 class="portfolio-project-title">
+                                    <a href="{{ route('portafolio.show', $proj->slug) }}" style="color: inherit; text-decoration: none;">{{ $proj->title }}</a>
+                                </h2>
                                 <p class="portfolio-project-desc">{{ $proj->summary }}</p>
                             </div>
 
@@ -305,9 +309,9 @@
                                     @endforeach
                                 </div>
 
-                                <div class="btn btn-outline" style="width: 100%; text-align: center; pointer-events: none;">
+                                <a href="{{ route('portafolio.show', $proj->slug) }}" class="btn btn-outline" style="width: 100%; text-align: center; display: inline-block; position: relative; z-index: 12;">
                                     <span>Explorar Caso de Estudio →</span>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </article>

@@ -40,6 +40,49 @@ Route::get('/portafolio', [PortfolioController::class, 'index'])->name('portafol
 Route::get('/portafolio-web', [PortfolioController::class, 'index']);
 Route::get('/portafolio/{slug}', [PortfolioController::class, 'show'])->name('portafolio.show');
 
+// Fallback & Auto-sync para imágenes de portafolio en entornos cPanel / LiteSpeed / Web Hosting
+Route::get('/images/portfolio/{filename}', function (string $filename) {
+    $searchPaths = [
+        public_path('images/portfolio/'.$filename),
+        base_path('public/images/portfolio/'.$filename),
+        dirname(base_path()).'/public_html/images/portfolio/'.$filename,
+        dirname(base_path()).'/public/images/portfolio/'.$filename,
+    ];
+
+    foreach ($searchPaths as $path) {
+        if (file_exists($path) && filesize($path) > 0) {
+            // Sincronizar en public_path y public_html si son diferentes y existen
+            $targetPublic = public_path('images/portfolio/'.$filename);
+            if ($path !== $targetPublic) {
+                $dir = dirname($targetPublic);
+                if (! is_dir($dir)) {
+                    @mkdir($dir, 0755, true);
+                }
+                if (is_dir($dir) && is_writable($dir)) {
+                    @copy($path, $targetPublic);
+                }
+            }
+
+            $targetHtml = dirname(base_path()).'/public_html/images/portfolio/'.$filename;
+            if ($path !== $targetHtml) {
+                $dirHtml = dirname($targetHtml);
+                if (is_dir($dirHtml) && is_writable($dirHtml)) {
+                    @copy($path, $targetHtml);
+                }
+            }
+
+            $mime = str_ends_with($filename, '.webp') ? 'image/webp' : (str_ends_with($filename, '.png') ? 'image/png' : 'image/jpeg');
+
+            return response()->file($path, [
+                'Content-Type' => $mime,
+                'Cache-Control' => 'public, max-age=604800',
+            ]);
+        }
+    }
+
+    abort(404);
+})->where('filename', '[a-zA-Z0-9_\-\.]+');
+
 // 4. Servicios Profesionales REW
 Route::get('/servicios', fn () => redirect('/#servicios'))->name('servicios.index');
 Route::get('/desarrollo-web', [ServiceController::class, 'desarrolloWeb'])->name('servicios.desarrollo-web');
