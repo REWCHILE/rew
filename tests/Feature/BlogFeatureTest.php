@@ -76,4 +76,17 @@ class BlogFeatureTest extends TestCase
         $response->assertSee('Álvaro Valenzuela Valdés');
         $response->assertSee('Célula de Desarrollo');
     }
+
+    public function test_bsale_woocommerce_pillar_article_renders_correctly(): void
+    {
+        $this->seed();
+
+        $response = $this->get('/blog/como-integrar-bsale-con-woocommerce');
+        $response->assertStatus(200);
+        $response->assertSee('Cómo Integrar Bsale con WooCommerce en Chile');
+        $response->assertSee('FAQPage');
+        $response->assertSee('/servicios/integracion-bsale-woocommerce');
+        $response->assertSee('Single Source of Truth');
+        $response->assertSee('Álvaro Valenzuela Valdés');
+    }
 }

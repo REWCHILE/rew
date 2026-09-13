@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AdminLeadController;
+use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\AdminPortfolioController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\AdminRicheController;
@@ -311,4 +313,18 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::put('/riche/{item}', [AdminRicheController::class, 'update'])->name('riche.update');
     Route::post('/riche/prompt', [AdminRicheController::class, 'updatePrompt'])->name('riche.prompt');
     Route::delete('/riche/{item}', [AdminRicheController::class, 'destroy'])->name('riche.destroy');
+
+    // Administración de Blog & Artículos SEO (Content Hub)
+    Route::get('/blog', [AdminBlogController::class, 'index'])->name('blog.index');
+    Route::get('/blog/crear', [AdminBlogController::class, 'create'])->name('blog.create');
+    Route::post('/blog', [AdminBlogController::class, 'store'])->name('blog.store');
+    Route::get('/blog/{post}/editar', [AdminBlogController::class, 'edit'])->name('blog.edit');
+    Route::put('/blog/{post}', [AdminBlogController::class, 'update'])->name('blog.update');
+    Route::patch('/blog/{post}/toggle', [AdminBlogController::class, 'togglePublish'])->name('blog.toggle');
+    Route::delete('/blog/{post}', [AdminBlogController::class, 'destroy'])->name('blog.destroy');
+    Route::post('/blog/ai-generate', [AdminBlogController::class, 'aiGenerate'])->name('blog.ai-generate');
+
+    // Administración de Páginas & SEO Performance (Lighthouse & PageSpeed)
+    Route::get('/paginas', [AdminPageController::class, 'index'])->name('pages.index');
+    Route::post('/paginas/analizar', [AdminPageController::class, 'analyze'])->name('pages.analyze');
 });
