@@ -800,16 +800,28 @@ function renderCartItems(cart, totalUsd, totalClp) {
                 <a href="/tienda" class="btn btn-primary btn-sm close-cart-drawer" style="margin-top: 1rem;">Explorar Tienda</a>
             </div>
         `;
-        if (totalEl) totalEl.textContent = currency === 'CLP' ? '$0 CLP' : '$0 USD';
+        if (totalEl) {
+            totalEl.setAttribute('data-clp', 0);
+            totalEl.setAttribute('data-usd', 0);
+            totalEl.textContent = currency === 'CLP' ? '$0 CLP' : '$0 USD';
+        }
         return;
     }
 
     let html = '';
+    let calcTotalClp = 0;
+    let calcTotalUsd = 0;
+
     items.forEach(item => {
-        const itemQty = item.quantity || 1;
+        const itemQty = parseInt(item.quantity) || 1;
+        const itemClp = parseInt(item.price_clp) || 0;
+        const itemUsd = parseFloat(item.price_usd) || 0;
+        calcTotalClp += itemClp * itemQty;
+        calcTotalUsd += itemUsd * itemQty;
+
         const price = currency === 'CLP' 
-            ? '$' + parseInt(item.price_clp * itemQty).toLocaleString('es-CL') + ' CLP'
-            : '$' + parseInt(item.price_usd * itemQty).toLocaleString('en-US') + ' USD';
+            ? '$' + parseInt(itemClp * itemQty).toLocaleString('es-CL') + ' CLP'
+            : '$' + parseInt(itemUsd * itemQty).toLocaleString('en-US') + ' USD';
 
         const rawImg = item.image || '';
         let imgSrc = '/images/logo.webp';
@@ -826,7 +838,7 @@ function renderCartItems(cart, totalUsd, totalClp) {
                 <img src="${imgSrc}" alt="${item.name}" class="cart-item-img" style="width: 55px; height: 55px; object-fit: contain; background: #0f172a; padding: 4px; border-radius: 8px; flex-shrink: 0;">
                 <div class="cart-item-info" style="flex: 1; min-width: 0;">
                     <h5 class="cart-item-title" style="font-size: 0.92rem; font-weight: 700; margin: 0 0 4px 0; color: #0f172a; line-height: 1.3;">${item.name}</h5>
-                    <div class="cart-item-price" style="font-size: 0.88rem; font-weight: 800; color: #0284c7;">${price} <span style="font-weight: 500; color: #64748b;">(x${itemQty})</span></div>
+                    <div class="cart-item-price price-tag-dynamic" data-usd="${itemUsd * itemQty}" data-clp="${itemClp * itemQty}" style="font-size: 0.88rem; font-weight: 800; color: #0284c7;">${price} <span style="font-weight: 500; color: #64748b;">(x${itemQty})</span></div>
                 </div>
                 <button type="button" class="btn btn-sm btn-outline remove-from-cart-btn" data-id="${item.id}" title="Eliminar" style="padding: 4px 8px; font-size: 0.85rem; border-radius: 6px; cursor: pointer; border: 1px solid #e2e8f0; background: #ffffff;">✕</button>
             </div>
@@ -835,12 +847,15 @@ function renderCartItems(cart, totalUsd, totalClp) {
 
     container.innerHTML = html;
 
+    const finalTotalClp = (totalClp !== undefined && totalClp !== null && !isNaN(totalClp) && totalClp > 0) ? totalClp : calcTotalClp;
+    const finalTotalUsd = (totalUsd !== undefined && totalUsd !== null && !isNaN(totalUsd) && totalUsd > 0) ? totalUsd : calcTotalUsd;
+
     if (totalEl) {
-        if (totalClp !== undefined && totalUsd !== undefined) {
-            totalEl.textContent = currency === 'CLP' 
-                ? '$' + parseInt(totalClp).toLocaleString('es-CL') + ' CLP'
-                : '$' + parseInt(totalUsd).toLocaleString('en-US') + ' USD';
-        }
+        totalEl.setAttribute('data-clp', finalTotalClp);
+        totalEl.setAttribute('data-usd', finalTotalUsd);
+        totalEl.textContent = currency === 'CLP' 
+            ? '$' + parseInt(finalTotalClp).toLocaleString('es-CL') + ' CLP'
+            : '$' + parseInt(finalTotalUsd).toLocaleString('en-US') + ' USD';
     }
 
     container.querySelectorAll('.remove-from-cart-btn').forEach(btn => {

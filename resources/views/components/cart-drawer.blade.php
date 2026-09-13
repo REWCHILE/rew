@@ -153,12 +153,12 @@
             <div class="cart-drawer-total">
                 <span>Total Estimado:</span>
                 <span class="cart-drawer-total-amount price-tag-dynamic" 
-                      data-usd="{{ collect($cart)->sum(fn($i) => $i['price_usd'] * $i['quantity']) }}" 
-                      data-clp="{{ collect($cart)->sum(fn($i) => $i['price_clp'] * $i['quantity']) }}">
+                      data-usd="{{ collect($cart)->sum(fn($i) => (float)($i['price_usd'] ?? 0) * (int)($i['quantity'] ?? 1)) }}" 
+                      data-clp="{{ collect($cart)->sum(fn($i) => (float)($i['price_clp'] ?? 0) * (int)($i['quantity'] ?? 1)) }}">
                     @if($cartCurrency === 'CLP')
-                        ${{ number_format(collect($cart)->sum(fn($i) => $i['price_clp'] * $i['quantity']), 0, ',', '.') }} CLP
+                        ${{ number_format(collect($cart)->sum(fn($i) => (float)($i['price_clp'] ?? 0) * (int)($i['quantity'] ?? 1)), 0, ',', '.') }} CLP
                     @else
-                        ${{ number_format(collect($cart)->sum(fn($i) => $i['price_usd'] * $i['quantity']), 0) }} USD
+                        ${{ number_format(collect($cart)->sum(fn($i) => (float)($i['price_usd'] ?? 0) * (int)($i['quantity'] ?? 1)), 0) }} USD
                     @endif
                 </span>
             </div>
@@ -345,17 +345,29 @@
                     <a href="/tienda" class="btn btn-primary btn-sm close-cart-drawer" style="margin-top: 1rem;">Explorar Tienda</a>
                 </div>
             `;
-            if (totalEl) totalEl.textContent = cur === 'CLP' ? '$0 CLP' : '$0 USD';
+            if (totalEl) {
+                totalEl.setAttribute('data-clp', 0);
+                totalEl.setAttribute('data-usd', 0);
+                totalEl.textContent = cur === 'CLP' ? '$0 CLP' : '$0 USD';
+            }
             bindEvents();
             return;
         }
 
         var html = '';
+        var calcTotalClp = 0;
+        var calcTotalUsd = 0;
+
         items.forEach(function(item) {
-            var qty = item.quantity || 1;
+            var qty = parseInt(item.quantity) || 1;
+            var itemClp = parseInt(item.price_clp) || 0;
+            var itemUsd = parseFloat(item.price_usd) || 0;
+            calcTotalClp += itemClp * qty;
+            calcTotalUsd += itemUsd * qty;
+
             var price = (cur === 'CLP')
-                ? '$' + parseInt(item.price_clp * qty).toLocaleString('es-CL') + ' CLP'
-                : '$' + parseInt(item.price_usd * qty).toLocaleString('en-US') + ' USD';
+                ? '$' + parseInt(itemClp * qty).toLocaleString('es-CL') + ' CLP'
+                : '$' + parseInt(itemUsd * qty).toLocaleString('en-US') + ' USD';
 
             var rawImg = item.image || '';
             var imgSrc = '/images/logo.webp';
@@ -372,7 +384,7 @@
                     <img src="${imgSrc}" alt="${item.name}" class="cart-item-img" style="width: 55px; height: 55px; object-fit: contain; background: #0f172a; padding: 4px; border-radius: 8px; flex-shrink: 0;">
                     <div class="cart-item-info" style="flex: 1; min-width: 0;">
                         <h5 class="cart-item-title" style="font-size: 0.92rem; font-weight: 700; margin: 0 0 4px 0; color: #0f172a; line-height: 1.3;">${item.name}</h5>
-                        <div class="cart-item-price price-tag-dynamic" data-usd="${item.price_usd * qty}" data-clp="${item.price_clp * qty}" style="font-size: 0.88rem; font-weight: 800; color: #0284c7;">
+                        <div class="cart-item-price price-tag-dynamic" data-usd="${itemUsd * qty}" data-clp="${itemClp * qty}" style="font-size: 0.88rem; font-weight: 800; color: #0284c7;">
                             ${price} <span style="color: #64748b; font-weight: 500;">(x${qty})</span>
                         </div>
                     </div>
@@ -383,12 +395,15 @@
 
         container.innerHTML = html;
 
+        var finalTotalClp = (totalClp !== undefined && totalClp !== null && !isNaN(totalClp) && totalClp > 0) ? totalClp : calcTotalClp;
+        var finalTotalUsd = (totalUsd !== undefined && totalUsd !== null && !isNaN(totalUsd) && totalUsd > 0) ? totalUsd : calcTotalUsd;
+
         if (totalEl) {
-            if (totalClp !== undefined && totalUsd !== undefined) {
-                totalEl.textContent = (cur === 'CLP')
-                    ? '$' + parseInt(totalClp).toLocaleString('es-CL') + ' CLP'
-                    : '$' + parseInt(totalUsd).toLocaleString('en-US') + ' USD';
-            }
+            totalEl.setAttribute('data-clp', finalTotalClp);
+            totalEl.setAttribute('data-usd', finalTotalUsd);
+            totalEl.textContent = (cur === 'CLP')
+                ? '$' + parseInt(finalTotalClp).toLocaleString('es-CL') + ' CLP'
+                : '$' + parseInt(finalTotalUsd).toLocaleString('en-US') + ' USD';
         }
 
         bindEvents();

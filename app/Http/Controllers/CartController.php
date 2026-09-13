@@ -165,9 +165,10 @@ class CartController extends Controller
         $itemsList = '';
         foreach ($cart as $item) {
             $priceText = $currency === 'CLP'
-                ? '$'.number_format($item['price_clp'], 0, ',', '.').' CLP'
-                : '$'.number_format($item['price_usd'], 0).' USD';
-            $itemsList .= "• {$item['name']} (x{$item['quantity']}) - {$priceText}\n";
+                ? '$'.number_format((float) ($item['price_clp'] ?? 0), 0, ',', '.').' CLP'
+                : '$'.number_format((float) ($item['price_usd'] ?? 0), 0).' USD';
+            $qty = (int) ($item['quantity'] ?? 1);
+            $itemsList .= "• {$item['name']} (x{$qty}) - {$priceText}\n";
         }
 
         $totalFormatted = $currency === 'CLP'
@@ -224,8 +225,9 @@ class CartController extends Controller
     {
         $total = 0;
         foreach ($cart as $item) {
-            $price = $currency === 'CLP' ? $item['price_clp'] : $item['price_usd'];
-            $total += $price * $item['quantity'];
+            $price = $currency === 'CLP' ? ($item['price_clp'] ?? 0) : ($item['price_usd'] ?? 0);
+            $qty = max(1, (int) ($item['quantity'] ?? 1));
+            $total += (float) $price * $qty;
         }
 
         return $total;
