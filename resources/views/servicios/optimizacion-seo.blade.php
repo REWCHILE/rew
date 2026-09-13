@@ -199,7 +199,7 @@
                     <div style="background: #ffffff; padding: 1.15rem 1.35rem; border-radius: 12px; border-left: 4px solid #06b6d4; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
                         <h3 style="font-size: 1.12rem; margin-bottom: 0.35rem; color: var(--text-dark);">6. SEO para Ecommerce & WooCommerce</h3>
                         <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0;">
-                            Optimización de fichas de producto, categorías transaccionales, canonical tags y arquitectura de faceted navigation para incrementar ventas orgánicas sin gastar en anuncios.
+                            Optimización de fichas de producto, categorías transaccionales, canonical tags e <a href="{{ route('servicios.bsale-woocommerce') }}" style="color: var(--primary); text-decoration: underline; font-weight: 600;">integraciones con Bsale y ERPs</a> para incrementar ventas orgánicas sin gastar en anuncios.
                         </p>
                     </div>
                 </div>

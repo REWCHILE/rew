@@ -259,6 +259,10 @@
                         </div>
                         <div class="service-feature-item">
                             <span class="service-feature-check">✓</span>
+                            <span>Sincronización con ERP y <a href="{{ route('servicios.bsale-woocommerce') }}" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Integración Bsale WooCommerce</a></span>
+                        </div>
+                        <div class="service-feature-item">
+                            <span class="service-feature-check">✓</span>
                             <span>Integración Webpay Plus (Transbank), Mercado Pago o Flow</span>
                         </div>
                         <div class="service-feature-item">

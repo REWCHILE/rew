@@ -14,7 +14,7 @@ class NewLandingPagesTest extends TestCase
         $this->seed();
         $response = $this->get('/servicios/integracion-bsale-woocommerce');
         $response->assertStatus(200);
-        $response->assertSee('Bsale WooCommerce: Integración de Stock y Facturas SII | REW');
+        $response->assertSee('Integración Bsale con WooCommerce | Stock, Precios y DTE en Chile | REW');
         $response->assertSee('Plugin Bsale WooCommerce Sync Pro');
         $response->assertSee('350.000');
         $response->assertSee('LIFETIME');

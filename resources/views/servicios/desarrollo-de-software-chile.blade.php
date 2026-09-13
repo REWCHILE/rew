@@ -135,7 +135,7 @@
                     <div style="background: var(--bg-alt); padding: 1.25rem 1.5rem; border-radius: 12px; border-left: 4px solid #10b981;">
                         <h3 style="font-size: 1.2rem; margin-bottom: 0.35rem; color: var(--text-dark);">🔗 Integraciones y APIs Robustas</h3>
                         <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin: 0;">
-                            Conectamos tus plataformas existentes mediante APIs RESTful seguras, webhooks y documentación técnica clara para facilitar la evolución continua del producto.
+                            Conectamos tus plataformas existentes mediante APIs RESTful seguras, webhooks y documentación técnica clara. Especialistas en <a href="{{ route('servicios.bsale-woocommerce') }}" style="color: var(--primary); text-decoration: underline; font-weight: 600;">integración de Bsale con WooCommerce</a>, ERPs, CRMs y sistemas de facturación electrónica en Chile.
                         </p>
                     </div>
 
