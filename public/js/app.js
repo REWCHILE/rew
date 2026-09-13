@@ -425,15 +425,15 @@ function initLangCurrencySwitcher() {
     const langBtns = document.querySelectorAll('.lang-option-btn');
 
     const svgFlagMap = {
-        'es': '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="100" fill="#ffffff"/><rect y="100" width="300" height="100" fill="#d52b1e"/><rect width="100" height="100" fill="#0039a6"/><polygon points="50,22 59,50 88,50 65,67 74,95 50,78 26,95 35,67 12,50 41,50" fill="#ffffff"/></svg>',
-        'en': '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="200" fill="#b22234"/><path d="M0,15.38h300M0,46.15h300M0,76.92h300M0,107.69h300M0,138.46h300M0,169.23h300" stroke="#ffffff" stroke-width="15.38"/><rect width="120" height="107.69" fill="#3c3b6e"/><circle cx="20" cy="20" r="4" fill="#ffffff"/><circle cx="40" cy="20" r="4" fill="#ffffff"/><circle cx="60" cy="20" r="4" fill="#ffffff"/><circle cx="80" cy="20" r="4" fill="#ffffff"/><circle cx="100" cy="20" r="4" fill="#ffffff"/><circle cx="30" cy="38" r="4" fill="#ffffff"/><circle cx="50" cy="38" r="4" fill="#ffffff"/><circle cx="70" cy="38" r="4" fill="#ffffff"/><circle cx="90" cy="38" r="4" fill="#ffffff"/><circle cx="20" cy="56" r="4" fill="#ffffff"/><circle cx="40" cy="56" r="4" fill="#ffffff"/><circle cx="60" cy="56" r="4" fill="#ffffff"/><circle cx="80" cy="56" r="4" fill="#ffffff"/><circle cx="100" cy="56" r="4" fill="#ffffff"/><circle cx="30" cy="74" r="4" fill="#ffffff"/><circle cx="50" cy="74" r="4" fill="#ffffff"/><circle cx="70" cy="74" r="4" fill="#ffffff"/><circle cx="90" cy="74" r="4" fill="#ffffff"/><circle cx="20" cy="92" r="4" fill="#ffffff"/><circle cx="40" cy="92" r="4" fill="#ffffff"/><circle cx="60" cy="92" r="4" fill="#ffffff"/><circle cx="80" cy="92" r="4" fill="#ffffff"/><circle cx="100" cy="92" r="4" fill="#ffffff"/></svg>',
-        'pt': '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="200" fill="#009c3b"/><polygon points="150,20 280,100 150,180 20,100" fill="#ffdf00"/><circle cx="150" cy="100" r="46" fill="#002776"/><path d="M106,108 Q150,88 194,106" fill="none" stroke="#ffffff" stroke-width="7"/></svg>',
-        'pt-PT': '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="200" fill="#006600"/><rect x="120" width="180" height="200" fill="#d52b1e"/><circle cx="120" cy="100" r="42" fill="#ffcc00" stroke="#000000" stroke-width="2"/><rect x="106" y="85" width="28" height="30" rx="3" fill="#ffffff" stroke="#000000" stroke-width="1.5"/><rect x="112" y="90" width="16" height="20" fill="#003399"/></svg>',
-        'fr': '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="200" fill="#002395"/><rect x="100" width="100" height="200" fill="#ffffff"/><rect x="200" width="100" height="200" fill="#ed2939"/></svg>',
-        'de': '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="66.67" fill="#000000"/><rect y="66.67" width="300" height="66.67" fill="#dd0000"/><rect y="133.34" width="300" height="66.67" fill="#ffce00"/></svg>',
-        'it': '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="200" fill="#009246"/><rect x="100" width="100" height="200" fill="#ffffff"/><rect x="200" width="100" height="200" fill="#ce2b37"/></svg>',
-        'zh-CN': '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="200" fill="#ee1c25"/><polygon points="50,25 57,48 80,48 61,62 68,85 50,71 32,85 39,62 20,48 43,48" fill="#ffff00"/><circle cx="100" cy="30" r="7" fill="#ffff00"/><circle cx="120" cy="50" r="7" fill="#ffff00"/><circle cx="120" cy="80" r="7" fill="#ffff00"/><circle cx="100" cy="100" r="7" fill="#ffff00"/></svg>',
-        'ja': '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="200" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/><circle cx="150" cy="100" r="60" fill="#bc002d"/></svg>'
+        'es': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="100" fill="#ffffff"/><rect y="100" width="300" height="100" fill="#d52b1e"/><rect width="100" height="100" fill="#0039a6"/><polygon points="50,22 59,50 88,50 65,67 74,95 50,78 26,95 35,67 12,50 41,50" fill="#ffffff"/></svg>',
+        'en': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="200" fill="#b22234"/><path d="M0,15.38h300M0,46.15h300M0,76.92h300M0,107.69h300M0,138.46h300M0,169.23h300" stroke="#ffffff" stroke-width="15.38"/><rect width="120" height="107.69" fill="#3c3b6e"/><circle cx="20" cy="20" r="4" fill="#ffffff"/><circle cx="40" cy="20" r="4" fill="#ffffff"/><circle cx="60" cy="20" r="4" fill="#ffffff"/><circle cx="80" cy="20" r="4" fill="#ffffff"/><circle cx="100" cy="20" r="4" fill="#ffffff"/><circle cx="30" cy="38" r="4" fill="#ffffff"/><circle cx="50" cy="38" r="4" fill="#ffffff"/><circle cx="70" cy="38" r="4" fill="#ffffff"/><circle cx="90" cy="38" r="4" fill="#ffffff"/><circle cx="20" cy="56" r="4" fill="#ffffff"/><circle cx="40" cy="56" r="4" fill="#ffffff"/><circle cx="60" cy="56" r="4" fill="#ffffff"/><circle cx="80" cy="56" r="4" fill="#ffffff"/><circle cx="100" cy="56" r="4" fill="#ffffff"/><circle cx="30" cy="74" r="4" fill="#ffffff"/><circle cx="50" cy="74" r="4" fill="#ffffff"/><circle cx="70" cy="74" r="4" fill="#ffffff"/><circle cx="90" cy="74" r="4" fill="#ffffff"/><circle cx="20" cy="92" r="4" fill="#ffffff"/><circle cx="40" cy="92" r="4" fill="#ffffff"/><circle cx="60" cy="92" r="4" fill="#ffffff"/><circle cx="80" cy="92" r="4" fill="#ffffff"/><circle cx="100" cy="92" r="4" fill="#ffffff"/></svg>',
+        'pt': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="200" fill="#009c3b"/><polygon points="150,20 280,100 150,180 20,100" fill="#ffdf00"/><circle cx="150" cy="100" r="46" fill="#002776"/><path d="M106,108 Q150,88 194,106" fill="none" stroke="#ffffff" stroke-width="7"/></svg>',
+        'pt-PT': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="200" fill="#006600"/><rect x="120" width="180" height="200" fill="#d52b1e"/><circle cx="120" cy="100" r="42" fill="#ffcc00" stroke="#000000" stroke-width="2"/><rect x="106" y="85" width="28" height="30" rx="3" fill="#ffffff" stroke="#000000" stroke-width="1.5"/><rect x="112" y="90" width="16" height="20" fill="#003399"/></svg>',
+        'fr': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="200" fill="#002395"/><rect x="100" width="100" height="200" fill="#ffffff"/><rect x="200" width="100" height="200" fill="#ed2939"/></svg>',
+        'de': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="66.67" fill="#000000"/><rect y="66.67" width="300" height="66.67" fill="#dd0000"/><rect y="133.34" width="300" height="66.67" fill="#ffce00"/></svg>',
+        'it': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="200" fill="#009246"/><rect x="100" width="100" height="200" fill="#ffffff"/><rect x="200" width="100" height="200" fill="#ce2b37"/></svg>',
+        'zh-CN': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="200" fill="#ee1c25"/><polygon points="50,25 57,48 80,48 61,62 68,85 50,71 32,85 39,62 20,48 43,48" fill="#ffff00"/><circle cx="100" cy="30" r="7" fill="#ffff00"/><circle cx="120" cy="50" r="7" fill="#ffff00"/><circle cx="120" cy="80" r="7" fill="#ffff00"/><circle cx="100" cy="100" r="7" fill="#ffff00"/></svg>',
+        'ja': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="200" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/><circle cx="150" cy="100" r="60" fill="#bc002d"/></svg>'
     };
 
     try {
@@ -552,51 +552,81 @@ function initLangCurrencySwitcher() {
         });
     }
 
-    function triggerGoogleTranslation(targetLang) {
-        const isSpanish = targetLang === 'es';
-        const googleLang = targetLang.startsWith('pt') ? 'pt' : targetLang;
+    function setGoogTransCookies(val) {
         const host = window.location.hostname;
-        const rootDomain = host.replace(/^www\./, '');
+        const parts = host.split('.');
+        const rootDomain = parts.length > 1 ? parts.slice(-2).join('.') : host;
 
-        if (isSpanish) {
-            // Delete all possible googtrans cookies across all domains
-            ['', host, '.' + host, '.' + rootDomain].forEach(d => {
+        if (!val) {
+            ['', host, '.' + host, rootDomain, '.' + rootDomain].forEach(d => {
                 const dom = d ? ` domain=${d};` : '';
                 document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;${dom}`;
+                document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
             });
             if (window.location.hash.includes('googtrans')) {
                 history.replaceState(null, null, window.location.pathname + window.location.search);
             }
         } else {
-            // Set googtrans cookie for Spanish -> googleLang (/es/LANG and /auto/LANG)
-            const pair1 = `/es/${googleLang}`;
-            const pair2 = `/auto/${googleLang}`;
-            [pair1, pair2].forEach(val => {
-                document.cookie = `googtrans=${val}; path=/;`;
-                document.cookie = `googtrans=${val}; path=/; domain=${host};`;
-                if (rootDomain !== host) {
-                    document.cookie = `googtrans=${val}; path=/; domain=.${rootDomain};`;
-                }
-            });
+            document.cookie = `googtrans=${val}; path=/;`;
+            document.cookie = `googtrans=${val}; path=/; domain=${host};`;
+            if (rootDomain !== host) {
+                document.cookie = `googtrans=${val}; path=/; domain=.${rootDomain};`;
+            }
+        }
+    }
+
+    function triggerGoogleTranslation(targetLang, forceReloadOnFail = false) {
+        const isSpanish = targetLang === 'es';
+        const googleLang = targetLang.startsWith('pt') ? 'pt' : targetLang;
+
+        if (isSpanish) {
+            setGoogTransCookies('');
+        } else {
+            setGoogTransCookies(`/es/${googleLang}`);
         }
 
-        // In-situ translation via Google Translate select element
-        function applyToCombo() {
+        function fireCombo() {
             const combo = document.querySelector('.goog-te-combo');
             if (combo) {
                 combo.value = isSpanish ? 'es' : googleLang;
                 combo.dispatchEvent(new Event('change', { bubbles: true }));
+                try {
+                    const evt = document.createEvent('HTMLEvents');
+                    evt.initEvent('change', true, true);
+                    combo.dispatchEvent(evt);
+                } catch (_) {}
+                if (typeof combo.onchange === 'function') {
+                    combo.onchange();
+                }
                 return true;
             }
             return false;
         }
 
-        if (!applyToCombo()) {
+        if (fireCombo()) {
+            if (forceReloadOnFail) {
+                setTimeout(() => {
+                    const isTranslated = document.documentElement.classList.contains('translated-ltr') ||
+                                         document.documentElement.classList.contains('translated-rtl') ||
+                                         document.querySelector('.goog-te-banner-frame');
+                    if (!isSpanish && !isTranslated) {
+                        window.location.reload();
+                    } else if (isSpanish && isTranslated) {
+                        window.location.reload();
+                    }
+                }, 350);
+            }
+        } else {
             let attempts = 0;
             const timer = setInterval(() => {
                 attempts++;
-                if (applyToCombo() || attempts > 30) {
+                if (fireCombo()) {
                     clearInterval(timer);
+                } else if (attempts >= 15) {
+                    clearInterval(timer);
+                    if (forceReloadOnFail) {
+                        window.location.reload();
+                    }
                 }
             }, 80);
         }
@@ -604,9 +634,11 @@ function initLangCurrencySwitcher() {
 
     // Language Selection (Enforces Chile=CLP, all other languages=USD)
     langBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
             const lang = this.getAttribute('data-lang');
-            const name = this.getAttribute('data-name');
 
             // Mark that the user has made an explicit manual selection
             try {
@@ -642,22 +674,24 @@ function initLangCurrencySwitcher() {
 
             if (widget) widget.classList.remove('active');
 
-            // Trigger full website translation in-place
-            triggerGoogleTranslation(lang);
+            // Trigger full website translation
+            triggerGoogleTranslation(lang, true);
         });
     });
 
     function updateTriggerLabel() {
         currentCurrency = getCurrencyForLang(currentLang);
-        if (flagIcon) {
-            flagIcon.innerHTML = svgFlagMap[currentLang] || svgFlagMap['es'];
+        const activeFlag = document.querySelector('.active-flag-icon');
+        const activeText = document.querySelector('.active-lang-currency-text');
+        if (activeFlag) {
+            activeFlag.innerHTML = svgFlagMap[currentLang] || svgFlagMap['es'];
         }
-        if (triggerText) {
+        if (activeText) {
             let langCode = 'ES';
             if (currentLang === 'zh-CN') langCode = 'ZH';
             else if (currentLang.startsWith('pt')) langCode = 'PT';
             else langCode = currentLang.toUpperCase().slice(0, 2);
-            triggerText.textContent = `${langCode} / ${currentCurrency}`;
+            activeText.textContent = `${langCode} / ${currentCurrency}`;
         }
     }
 
@@ -711,22 +745,30 @@ function initLangCurrencySwitcher() {
     function applyNativeTranslations(lang) {
         const dict = UI_TRANSLATIONS[lang] || UI_TRANSLATIONS.es;
 
-        // Translate Nav links
+        // Translate Nav links cleanly
         const navLinks = document.querySelectorAll('.nav-menu > li > a');
         if (navLinks.length >= 7) {
-            if (navLinks[0] && navLinks[0].childNodes[0]) navLinks[0].childNodes[0].nodeValue = dict.inicio + ' ';
-            if (navLinks[1] && navLinks[1].childNodes[0]) navLinks[1].childNodes[0].nodeValue = dict.nosotros + ' ';
-            if (navLinks[2] && navLinks[2].childNodes[0]) navLinks[2].childNodes[0].nodeValue = dict.tienda + ' ';
-            if (navLinks[3] && navLinks[3].childNodes[0]) navLinks[3].childNodes[0].nodeValue = dict.servicios + ' ';
-            if (navLinks[4] && navLinks[4].childNodes[0]) navLinks[4].childNodes[0].nodeValue = dict.portafolio + ' ';
-            if (navLinks[5] && navLinks[5].childNodes[0]) navLinks[5].childNodes[0].nodeValue = dict.blog + ' ';
-            if (navLinks[6] && navLinks[6].childNodes[0]) navLinks[6].childNodes[0].nodeValue = dict.contacto + ' ';
+            if (navLinks[0]) navLinks[0].textContent = dict.inicio;
+            if (navLinks[1]) navLinks[1].textContent = dict.nosotros;
+            if (navLinks[2]) {
+                navLinks[2].innerHTML = `${dict.tienda} <span class="badge badge-gold" style="font-size: 0.65rem; padding: 2px 6px;">IA & WP</span>`;
+            }
+            if (navLinks[3]) {
+                navLinks[3].innerHTML = `${dict.servicios} <span style="font-size: 0.75rem;">▾</span>`;
+            }
+            if (navLinks[4]) navLinks[4].textContent = dict.portafolio;
+            if (navLinks[5]) navLinks[5].textContent = dict.blog;
+            if (navLinks[6]) navLinks[6].textContent = dict.contacto;
         }
 
-        const cotizarNavBtn = document.querySelector('.navbar .btn-primary');
-        if (cotizarNavBtn && dict.cotizar) {
-            cotizarNavBtn.textContent = dict.cotizar;
-        }
+        // Translate Cotizar Button in Header
+        document.querySelectorAll('.site-header a[href*="contacto"].btn-primary, .header-actions a[href*="contacto"].btn-primary, .navbar .btn-primary').forEach(btn => {
+            if (dict.cotizar) {
+                const span = btn.querySelector('span');
+                if (span) span.textContent = dict.cotizar;
+                else btn.textContent = dict.cotizar;
+            }
+        });
 
         // Translate Add to Cart buttons
         document.querySelectorAll('.ajax-add-to-cart-form button[type="submit"]').forEach(btn => {
@@ -751,7 +793,7 @@ function initLangCurrencySwitcher() {
     applyCurrencyPrices(currentCurrency);
     if (currentLang !== 'es') {
         applyNativeTranslations(currentLang);
-        triggerGoogleTranslation(currentLang);
+        triggerGoogleTranslation(currentLang, false);
     }
 
     langBtns.forEach(b => {
