@@ -418,6 +418,9 @@ UI_TRANSLATIONS['pt-PT'] = UI_TRANSLATIONS.pt;
 UI_TRANSLATIONS['pt-BR'] = UI_TRANSLATIONS.pt;
 
 function initLangCurrencySwitcher() {
+    if (window.__rewWidgetActive) {
+        return;
+    }
     const widget = document.querySelector('.floating-lang-currency-widget');
     const toggleBtn = document.querySelector('.lang-currency-toggle-btn');
     const flagIcon = document.querySelector('.active-flag-icon');

@@ -117,8 +117,9 @@
   bottom: 25px !important;
   left: auto !important;
   top: auto !important;
-  z-index: 9980 !important;
+  z-index: 99999 !important;
   display: block !important;
+  pointer-events: auto !important;
 }
 
 .floating-lang-currency-widget .lang-currency-toggle-btn {
@@ -138,6 +139,10 @@
   color: #0f172a !important;
   transition: all 0.25s ease !important;
   outline: none !important;
+  pointer-events: auto !important;
+  user-select: none !important;
+  position: relative !important;
+  z-index: 100001 !important;
 }
 
 .floating-lang-currency-widget .lang-currency-toggle-btn:hover {
@@ -153,19 +158,30 @@
   left: auto !important;
   top: auto !important;
   width: 255px !important;
+  max-width: calc(100vw - 36px) !important;
   background: #ffffff !important;
   border-radius: 16px !important;
   box-shadow: 0 15px 40px rgba(15, 23, 42, 0.2) !important;
   border: 1px solid rgba(226, 232, 240, 0.9) !important;
   padding: 12px !important;
   display: none !important;
-  z-index: 10010 !important;
+  z-index: 100002 !important;
   max-height: 80vh !important;
   overflow-y: auto !important;
+  pointer-events: auto !important;
 }
 
 .floating-lang-currency-widget.active .lang-currency-popup {
   display: block !important;
+}
+
+.floating-lang-currency-widget .lang-option-btn {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+.floating-lang-currency-widget .lang-option-btn * {
+  pointer-events: none !important;
 }
 
 /* Inline SVG Flags Vector Styling */
@@ -647,17 +663,78 @@ function googleTranslateElementInit() {
             obs.observe(flagEl, { childList: true, characterData: true, subtree: true });
         }
 
-        // Toggle popup
-        triggerBtn.onclick = function(e) {
+        // Clean any old listeners from trigger button by cloning it
+        var rawTrigger = document.getElementById('rewLangCurrencyTrigger') || widget.querySelector('.lang-currency-toggle-btn');
+        if (!rawTrigger) return;
+
+        var triggerBtn = rawTrigger.cloneNode(true);
+        rawTrigger.parentNode.replaceChild(triggerBtn, rawTrigger);
+
+        // Explicit toggle function with capture: true & stopImmediatePropagation
+        triggerBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            widget.classList.toggle('active');
-        };
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation();
 
+            var currentlyActive = widget.classList.contains('active');
+            if (currentlyActive) {
+                widget.classList.remove('active');
+            } else {
+                widget.classList.add('active');
+            }
+        }, { capture: true });
+
+        // Close on clicking outside
         document.addEventListener('click', function(e) {
             if (!widget.contains(e.target)) {
                 widget.classList.remove('active');
             }
+        });
+
+        // Clean & attach to all language option buttons
+        var oldLangBtns = widget.querySelectorAll('.lang-option-btn');
+        oldLangBtns.forEach(function(btn) {
+            var cleanBtn = btn.cloneNode(true);
+            btn.parentNode.replaceChild(cleanBtn, btn);
+        });
+
+        var newLangBtns = widget.querySelectorAll('.lang-option-btn');
+        newLangBtns.forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+
+                var selectedLang = btn.getAttribute('data-lang');
+                var selectedCurrency = getCurrency(selectedLang);
+
+                try {
+                    localStorage.setItem('rew_lang', selectedLang);
+                    localStorage.setItem('rew_currency', selectedCurrency);
+                    localStorage.removeItem('rew_flag');
+                    localStorage.setItem('rew_user_selected_lang', 'true');
+                } catch(err) {}
+
+                updateUI(selectedLang, selectedCurrency);
+                updatePrices(selectedCurrency);
+                widget.classList.remove('active');
+
+                // Backend session sync
+                var csrfMeta = document.querySelector('meta[name="csrf-token"]');
+                var token = csrfMeta ? csrfMeta.getAttribute('content') : '';
+                fetch('/currency', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRF-TOKEN': token
+                    },
+                    body: JSON.stringify({ currency: selectedCurrency })
+                }).catch(function() {});
+
+                // Full site translation via Google Translate
+                triggerGoogle(selectedLang);
+            }, { capture: true });
         });
 
         function setCookies(val) {
@@ -736,45 +813,6 @@ function googleTranslateElementInit() {
 
             window.dispatchEvent(new CustomEvent('currencyChanged', { detail: { currency: currency } }));
         }
-
-        // Language Option Clicks with capture: true & stopImmediatePropagation()
-        langBtns.forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-
-                var selectedLang = this.getAttribute('data-lang');
-                var selectedCurrency = getCurrency(selectedLang);
-
-                try {
-                    localStorage.setItem('rew_lang', selectedLang);
-                    localStorage.setItem('rew_currency', selectedCurrency);
-                    localStorage.removeItem('rew_flag');
-                    localStorage.setItem('rew_user_selected_lang', 'true');
-                } catch(err) {}
-
-                updateUI(selectedLang, selectedCurrency);
-                updatePrices(selectedCurrency);
-                widget.classList.remove('active');
-
-                // Backend session sync
-                var csrfMeta = document.querySelector('meta[name="csrf-token"]');
-                var token = csrfMeta ? csrfMeta.getAttribute('content') : '';
-                fetch('/currency', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'X-CSRF-TOKEN': token
-                    },
-                    body: JSON.stringify({ currency: selectedCurrency })
-                }).catch(function() {});
-
-                // Full site translation via Google Translate
-                triggerGoogle(selectedLang);
-            }, { capture: true });
-        });
     }
 
     if (document.readyState === 'loading') {
