@@ -161,6 +161,37 @@
         height: 380px !important;
     }
 }
+
+.project-description-content p {
+    margin-bottom: 1.25rem;
+    line-height: 1.8;
+}
+
+.project-description-content strong {
+    color: var(--text-dark, #0f172a);
+    font-weight: 700;
+}
+
+.project-description-content ol,
+.project-description-content ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.project-description-content li {
+    margin-bottom: 0.85rem;
+    line-height: 1.75;
+}
+
+.project-description-content a {
+    color: var(--primary, #4f46e5);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.project-description-content a:hover {
+    color: var(--primary-dark, #3730a3);
+}
 </style>
 <section class="section" style="background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%);">
     <div class="container">
@@ -237,8 +268,8 @@
                 <!-- Case Study Technical Details -->
                 <div class="card" style="padding: 2.5rem; margin-top: 2.5rem;">
                     <h2 style="font-size: 1.8rem; margin-bottom: 1.25rem;">Descripción del Proyecto</h2>
-                    <div style="font-size: 1.05rem; line-height: 1.8; color: var(--text-body); margin-bottom: 2rem;">
-                        {!! nl2br(e($project->full_description ?? $project->summary)) !!}
+                    <div class="project-description-content" style="font-size: 1.05rem; line-height: 1.8; color: var(--text-body); margin-bottom: 2rem;">
+                        {!! Str::markdown($project->full_description ?? $project->summary) !!}
                     </div>
 
                     @if($project->results)
@@ -446,5 +477,15 @@
     }
   ]
 }
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.project-description-content a').forEach(function(link) {
+        if (link.hostname !== window.location.hostname) {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        }
+    });
+});
 </script>
 @endsection

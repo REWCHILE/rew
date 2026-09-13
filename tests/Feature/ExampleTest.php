@@ -110,10 +110,15 @@ class ExampleTest extends TestCase
         $this->get('/portafolio/los-autenticos-decadentes')->assertStatus(200)->assertSee('Los Auténticos Decadentes');
         $this->get('/portafolio/sotemono')->assertStatus(200)->assertSee('Sotemono');
         $this->get('/portafolio/academiaflix')->assertStatus(200)->assertSee('Academiaflix');
-        $this->get('/portafolio/funktographer')->assertStatus(200)
+        $response = $this->get('/portafolio/funktographer');
+        $response->assertStatus(200)
             ->assertSee('Funktographer')
             ->assertSee('Live Link Bio')
-            ->assertSee('autoadministrable');
+            ->assertSee('autoadministrable')
+            ->assertSee('<strong>Sistema Autoadministrable Custom en PHP</strong>', false)
+            ->assertSee('<a href="https://funktographer.cl/links">funktographer.cl/links</a>', false)
+            ->assertDontSee('**Sistema Autoadministrable', false);
+
         $this->get('/portafolio/prodoral-chile')->assertStatus(200)
             ->assertSee('Prodoral Chile')
             ->assertSee('Fugas de Gas')
