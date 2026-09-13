@@ -565,3 +565,222 @@ function googleTranslateElementInit() {
 }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- 5. Self-Contained Bulletproof Multi-Language & Multi-Currency Switcher Controller -->
+<script>
+(function() {
+    // Neutralize legacy / cached app.js invocations to prevent flag corruption or 'cl' text
+    window.initLangCurrencySwitcher = function() {
+        console.log('[REW] Switcher handled by floating-widgets component');
+    };
+    window.__rewWidgetActive = true;
+
+    try {
+        localStorage.removeItem('rew_flag');
+    } catch (e) {}
+
+    var svgFlags = {
+        'es': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="100" fill="#ffffff"/><rect y="100" width="300" height="100" fill="#d52b1e"/><rect width="100" height="100" fill="#0039a6"/><polygon points="50,22 59,50 88,50 65,67 74,95 50,78 26,95 35,67 12,50 41,50" fill="#ffffff"/></svg>',
+        'en': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="200" fill="#b22234"/><path d="M0,15.38h300M0,46.15h300M0,76.92h300M0,107.69h300M0,138.46h300M0,169.23h300" stroke="#ffffff" stroke-width="15.38"/><rect width="120" height="107.69" fill="#3c3b6e"/><circle cx="20" cy="20" r="4" fill="#ffffff"/><circle cx="40" cy="20" r="4" fill="#ffffff"/><circle cx="60" cy="20" r="4" fill="#ffffff"/><circle cx="80" cy="20" r="4" fill="#ffffff"/><circle cx="100" cy="20" r="4" fill="#ffffff"/><circle cx="30" cy="38" r="4" fill="#ffffff"/><circle cx="50" cy="38" r="4" fill="#ffffff"/><circle cx="70" cy="38" r="4" fill="#ffffff"/><circle cx="90" cy="38" r="4" fill="#ffffff"/><circle cx="20" cy="56" r="4" fill="#ffffff"/><circle cx="40" cy="56" r="4" fill="#ffffff"/><circle cx="60" cy="56" r="4" fill="#ffffff"/><circle cx="80" cy="56" r="4" fill="#ffffff"/><circle cx="100" cy="56" r="4" fill="#ffffff"/><circle cx="30" cy="74" r="4" fill="#ffffff"/><circle cx="50" cy="74" r="4" fill="#ffffff"/><circle cx="70" cy="74" r="4" fill="#ffffff"/><circle cx="90" cy="74" r="4" fill="#ffffff"/><circle cx="20" cy="92" r="4" fill="#ffffff"/><circle cx="40" cy="92" r="4" fill="#ffffff"/><circle cx="60" cy="92" r="4" fill="#ffffff"/><circle cx="80" cy="92" r="4" fill="#ffffff"/><circle cx="100" cy="92" r="4" fill="#ffffff"/></svg>',
+        'pt': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="200" fill="#009c3b"/><polygon points="150,20 280,100 150,180 20,100" fill="#ffdf00"/><circle cx="150" cy="100" r="46" fill="#002776"/><path d="M106,108 Q150,88 194,106" fill="none" stroke="#ffffff" stroke-width="7"/></svg>',
+        'pt-PT': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="200" fill="#006600"/><rect x="120" width="180" height="200" fill="#d52b1e"/><circle cx="120" cy="100" r="42" fill="#ffcc00" stroke="#000000" stroke-width="2"/><rect x="106" y="85" width="28" height="30" rx="3" fill="#ffffff" stroke="#000000" stroke-width="1.5"/><rect x="112" y="90" width="16" height="20" fill="#003399"/></svg>',
+        'fr': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="200" fill="#002395"/><rect x="100" width="100" height="200" fill="#ffffff"/><rect x="200" width="100" height="200" fill="#ed2939"/></svg>',
+        'de': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="66.67" fill="#000000"/><rect y="66.67" width="300" height="66.67" fill="#dd0000"/><rect y="133.34" width="300" height="66.67" fill="#ffce00"/></svg>',
+        'it': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="200" fill="#009246"/><rect x="100" width="100" height="200" fill="#ffffff"/><rect x="200" width="100" height="200" fill="#ce2b37"/></svg>',
+        'zh-CN': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="200" fill="#ee1c25"/><polygon points="50,25 57,48 80,48 61,62 68,85 50,71 32,85 39,62 20,48 43,48" fill="#ffff00"/><circle cx="100" cy="30" r="7" fill="#ffff00"/><circle cx="120" cy="50" r="7" fill="#ffff00"/><circle cx="120" cy="80" r="7" fill="#ffff00"/><circle cx="100" cy="100" r="7" fill="#ffff00"/></svg>',
+        'ja': '<svg class="flag-svg-icon" width="22" height="15" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="200" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/><circle cx="150" cy="100" r="60" fill="#bc002d"/></svg>'
+    };
+
+    function getCurrency(lang) {
+        return (lang === 'es') ? 'CLP' : 'USD';
+    }
+
+    function setupSwitcher() {
+        var widget = document.querySelector('.floating-lang-currency-widget');
+        var triggerBtn = document.getElementById('rewLangCurrencyTrigger') || document.querySelector('.lang-currency-toggle-btn');
+        var flagEl = document.querySelector('.active-flag-icon');
+        var textEl = document.querySelector('.active-lang-currency-text');
+        var langBtns = document.querySelectorAll('.lang-option-btn');
+
+        if (!widget || !triggerBtn) return;
+
+        var curLang = localStorage.getItem('rew_lang') || 'es';
+        if (curLang === 'null' || curLang === 'undefined' || !svgFlags[curLang]) curLang = 'es';
+        var curCurrency = getCurrency(curLang);
+
+        try {
+            localStorage.setItem('rew_lang', curLang);
+            localStorage.setItem('rew_currency', curCurrency);
+            localStorage.removeItem('rew_flag');
+        } catch(e) {}
+
+        function updateUI(lang, curr) {
+            if (flagEl) {
+                flagEl.innerHTML = svgFlags[lang] || svgFlags['es'];
+            }
+            if (textEl) {
+                var code = 'ES';
+                if (lang === 'zh-CN') code = 'ZH';
+                else if (lang.indexOf('pt') === 0) code = 'PT';
+                else code = lang.toUpperCase().slice(0, 2);
+                textEl.textContent = code + ' / ' + curr;
+            }
+            langBtns.forEach(function(btn) {
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        updateUI(curLang, curCurrency);
+
+        // Protect flagEl against text node overwrites like 'cl' or emoji
+        if (flagEl && window.MutationObserver) {
+            var obs = new MutationObserver(function() {
+                if (!flagEl.querySelector('svg')) {
+                    var l = localStorage.getItem('rew_lang') || 'es';
+                    flagEl.innerHTML = svgFlags[l] || svgFlags['es'];
+                }
+            });
+            obs.observe(flagEl, { childList: true, characterData: true, subtree: true });
+        }
+
+        // Toggle popup
+        triggerBtn.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            widget.classList.toggle('active');
+        };
+
+        document.addEventListener('click', function(e) {
+            if (!widget.contains(e.target)) {
+                widget.classList.remove('active');
+            }
+        });
+
+        function setCookies(val) {
+            var host = window.location.hostname;
+            var parts = host.split('.');
+            var rootDomain = parts.length > 1 ? parts.slice(-2).join('.') : host;
+
+            if (!val) {
+                ['', host, '.' + host, rootDomain, '.' + rootDomain].forEach(function(d) {
+                    var dom = d ? (' domain=' + d + ';') : '';
+                    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;' + dom;
+                    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                });
+                if (window.location.hash.includes('googtrans')) {
+                    history.replaceState(null, null, window.location.pathname + window.location.search);
+                }
+            } else {
+                document.cookie = 'googtrans=' + val + '; path=/;';
+                document.cookie = 'googtrans=' + val + '; path=/; domain=' + host + ';';
+                if (rootDomain !== host) {
+                    document.cookie = 'googtrans=' + val + '; path=/; domain=.' + rootDomain + ';';
+                }
+            }
+        }
+
+        function triggerGoogle(targetLang) {
+            var isSpanish = targetLang === 'es';
+            var googleLang = targetLang.startsWith('pt') ? 'pt' : targetLang;
+
+            if (isSpanish) {
+                setCookies('');
+            } else {
+                setCookies('/es/' + googleLang);
+            }
+
+            var combo = document.querySelector('.goog-te-combo');
+            if (combo) {
+                combo.value = isSpanish ? 'es' : googleLang;
+                combo.dispatchEvent(new Event('change', { bubbles: true }));
+                try {
+                    var evt = document.createEvent('HTMLEvents');
+                    evt.initEvent('change', true, true);
+                    combo.dispatchEvent(evt);
+                } catch (_) {}
+                if (typeof combo.onchange === 'function') {
+                    combo.onchange();
+                }
+            }
+
+            // Always reload after short delay so Google Translate parses 100% of the DOM via cookies
+            setTimeout(function() {
+                window.location.reload();
+            }, 300);
+        }
+
+        function updatePrices(currency) {
+            document.querySelectorAll('.price-tag-dynamic').forEach(function(el) {
+                var usd = el.getAttribute('data-usd');
+                var clp = el.getAttribute('data-clp');
+                if (currency === 'CLP' && clp) {
+                    el.textContent = '$' + parseInt(clp).toLocaleString('es-CL') + ' CLP';
+                } else if (usd) {
+                    el.textContent = '$' + parseInt(usd).toLocaleString('en-US') + ' USD';
+                }
+            });
+
+            document.querySelectorAll('.price-save-dynamic').forEach(function(el) {
+                var usd = el.getAttribute('data-usd');
+                var clp = el.getAttribute('data-clp');
+                if (currency === 'CLP' && clp) {
+                    el.textContent = 'AHORRA $' + parseInt(clp).toLocaleString('es-CL') + ' CLP';
+                } else if (usd) {
+                    el.textContent = 'SAVE $' + parseInt(usd).toLocaleString('en-US') + ' USD';
+                }
+            });
+
+            window.dispatchEvent(new CustomEvent('currencyChanged', { detail: { currency: currency } }));
+        }
+
+        // Language Option Clicks with capture: true & stopImmediatePropagation()
+        langBtns.forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+
+                var selectedLang = this.getAttribute('data-lang');
+                var selectedCurrency = getCurrency(selectedLang);
+
+                try {
+                    localStorage.setItem('rew_lang', selectedLang);
+                    localStorage.setItem('rew_currency', selectedCurrency);
+                    localStorage.removeItem('rew_flag');
+                    localStorage.setItem('rew_user_selected_lang', 'true');
+                } catch(err) {}
+
+                updateUI(selectedLang, selectedCurrency);
+                updatePrices(selectedCurrency);
+                widget.classList.remove('active');
+
+                // Backend session sync
+                var csrfMeta = document.querySelector('meta[name="csrf-token"]');
+                var token = csrfMeta ? csrfMeta.getAttribute('content') : '';
+                fetch('/currency', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRF-TOKEN': token
+                    },
+                    body: JSON.stringify({ currency: selectedCurrency })
+                }).catch(function() {});
+
+                // Full site translation via Google Translate
+                triggerGoogle(selectedLang);
+            }, { capture: true });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSwitcher);
+    } else {
+        setupSwitcher();
+    }
+})();
+</script>

@@ -223,6 +223,54 @@ Route::get('/images/flags/{filename}', function ($filename) {
     abort(404);
 })->where('filename', '[A-Za-z0-9_\-\.]+');
 
+// Fallback & Auto-sync para archivos JS en entornos cPanel / LiteSpeed
+Route::get('/js/{filename}', function (string $filename) {
+    $candidates = [
+        public_path('js/'.$filename),
+        base_path('public/js/'.$filename),
+    ];
+
+    foreach ($candidates as $path) {
+        if (file_exists($path)) {
+            $cpanelPublicHtml = dirname(base_path()).'/public_html/js/'.$filename;
+            if (is_dir(dirname($cpanelPublicHtml)) && is_writable(dirname($cpanelPublicHtml))) {
+                @copy($path, $cpanelPublicHtml);
+            }
+
+            return response()->file($path, [
+                'Content-Type' => 'text/javascript',
+                'Cache-Control' => 'no-cache, must-revalidate',
+            ]);
+        }
+    }
+
+    abort(404);
+})->where('filename', '[A-Za-z0-9_\-\.]+');
+
+// Fallback & Auto-sync para archivos CSS en entornos cPanel / LiteSpeed
+Route::get('/css/{filename}', function (string $filename) {
+    $candidates = [
+        public_path('css/'.$filename),
+        base_path('public/css/'.$filename),
+    ];
+
+    foreach ($candidates as $path) {
+        if (file_exists($path)) {
+            $cpanelPublicHtml = dirname(base_path()).'/public_html/css/'.$filename;
+            if (is_dir(dirname($cpanelPublicHtml)) && is_writable(dirname($cpanelPublicHtml))) {
+                @copy($path, $cpanelPublicHtml);
+            }
+
+            return response()->file($path, [
+                'Content-Type' => 'text/css',
+                'Cache-Control' => 'no-cache, must-revalidate',
+            ]);
+        }
+    }
+
+    abort(404);
+})->where('filename', '[A-Za-z0-9_\-\.]+');
+
 // 11. Autenticación & Control de Acceso
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1')->name('login.post');
