@@ -367,10 +367,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            statusBox.style.background = '#ecfdf5';
-            statusBox.style.borderColor = '#a7f3d0';
-            statusBox.style.color = '#065f46';
-            statusMsg.innerHTML = '✅ <strong>¡Captura y análisis completados con éxito!</strong> Captura vertical WebP guardada y campos pre-llenados automáticamente.';
+            if (data.fallback_mode) {
+                statusBox.style.background = '#fffbeb';
+                statusBox.style.borderColor = '#fde68a';
+                statusBox.style.color = '#92400e';
+                statusMsg.innerHTML = '⚡ <strong>¡Análisis de datos y tecnologías completado!</strong> Todos los campos han sido rellenados automáticamente. ' + (data.notice || '');
+            } else {
+                statusBox.style.background = '#ecfdf5';
+                statusBox.style.borderColor = '#a7f3d0';
+                statusBox.style.color = '#065f46';
+                statusMsg.innerHTML = '✅ <strong>¡Captura y análisis completados con éxito!</strong> Captura vertical WebP guardada y campos pre-llenados automáticamente.';
+            }
 
             // Pre-fill form fields
             if (data.title) {

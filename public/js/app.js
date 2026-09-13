@@ -428,12 +428,25 @@ function initLangCurrencySwitcher() {
         'ja': '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="200" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/><circle cx="150" cy="100" r="60" fill="#bc002d"/></svg>'
     };
 
-    let currentLang = localStorage.getItem('rew_lang') || 'es';
+    try {
+        localStorage.removeItem('rew_flag');
+    } catch (e) {}
+
+    let currentLang = 'es';
+    try {
+        const stored = localStorage.getItem('rew_lang');
+        if (stored && stored !== 'null' && stored !== 'undefined' && svgFlagMap[stored]) {
+            currentLang = stored;
+        }
+    } catch (e) {}
+
     // Strict condition: Only Chile has CLP, all other languages operate in USD
     let currentCurrency = (currentLang === 'es') ? 'CLP' : 'USD';
 
-    localStorage.setItem('rew_lang', currentLang);
-    localStorage.setItem('rew_currency', currentCurrency);
+    try {
+        localStorage.setItem('rew_lang', currentLang);
+        localStorage.setItem('rew_currency', currentCurrency);
+    } catch (e) {}
 
     // Initial label setup
     updateTriggerLabel();

@@ -352,10 +352,10 @@ font[style] {
 </div>
 
 <!-- 3. Floating Multi-Language & Multi-Currency Switcher (Bottom Right) -->
-<div class="floating-lang-currency-widget">
+<div class="floating-lang-currency-widget notranslate" translate="no">
     <!-- Trigger Button -->
-    <button type="button" class="lang-currency-toggle-btn" aria-label="Seleccionar Idioma y Moneda">
-        <span class="active-flag-icon">
+    <button type="button" class="lang-currency-toggle-btn notranslate" translate="no" aria-label="Seleccionar Idioma y Moneda">
+        <span class="active-flag-icon notranslate" translate="no">
             <svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
                 <rect width="300" height="100" fill="#ffffff"/>
                 <rect y="100" width="300" height="100" fill="#d52b1e"/>
@@ -363,8 +363,8 @@ font[style] {
                 <polygon points="50,22 59,50 88,50 65,67 74,95 50,78 26,95 35,67 12,50 41,50" fill="#ffffff"/>
             </svg>
         </span>
-        <span class="active-lang-currency-text">ES / CLP</span>
-        <span class="chevron-icon">▲</span>
+        <span class="active-lang-currency-text notranslate" translate="no">ES / CLP</span>
+        <span class="chevron-icon notranslate" translate="no">▲</span>
     </button>
 
     <!-- Dropdown Menu with SVG Flags and Strict Currency Association -->

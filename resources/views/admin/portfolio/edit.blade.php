@@ -363,10 +363,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            statusBox.style.background = '#ecfdf5';
-            statusBox.style.borderColor = '#a7f3d0';
-            statusBox.style.color = '#065f46';
-            statusMsg.innerHTML = '✅ <strong>¡Captura completada con éxito!</strong> Captura WebP actualizada en el servidor.';
+            if (data.fallback_mode) {
+                statusBox.style.background = '#fffbeb';
+                statusBox.style.borderColor = '#fde68a';
+                statusBox.style.color = '#92400e';
+                statusMsg.innerHTML = '⚡ <strong>¡Análisis de datos y tecnologías completado!</strong> ' + (data.notice || '');
+            } else {
+                statusBox.style.background = '#ecfdf5';
+                statusBox.style.borderColor = '#a7f3d0';
+                statusBox.style.color = '#065f46';
+                statusMsg.innerHTML = '✅ <strong>¡Captura completada con éxito!</strong> Captura WebP actualizada en el servidor.';
+            }
 
             if (data.featured_image) {
                 document.getElementById('projectFeaturedImage').value = data.featured_image;
