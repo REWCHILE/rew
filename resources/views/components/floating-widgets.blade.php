@@ -443,7 +443,7 @@ font[style] {
                 <span class="currency-tag">USD</span>
             </button>
 
-            <!-- Português (USD) -->
+            <!-- Português Brasil (USD) -->
             <button type="button" class="lang-option-btn" data-lang="pt" data-name="PT" data-currency="USD">
                 <svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
                     <rect width="300" height="200" fill="#009c3b"/>
@@ -451,7 +451,20 @@ font[style] {
                     <circle cx="150" cy="100" r="46" fill="#002776"/>
                     <path d="M106,108 Q150,88 194,106" fill="none" stroke="#ffffff" stroke-width="7"/>
                 </svg>
-                <span class="name">Português</span>
+                <span class="name">Português (Brasil)</span>
+                <span class="currency-tag">USD</span>
+            </button>
+
+            <!-- Português Portugal (USD) -->
+            <button type="button" class="lang-option-btn" data-lang="pt-PT" data-name="PT" data-currency="USD">
+                <svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="120" height="200" fill="#006600"/>
+                    <rect x="120" width="180" height="200" fill="#d52b1e"/>
+                    <circle cx="120" cy="100" r="42" fill="#ffcc00" stroke="#000000" stroke-width="2"/>
+                    <rect x="106" y="85" width="28" height="30" rx="3" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+                    <rect x="112" y="90" width="16" height="20" fill="#003399"/>
+                </svg>
+                <span class="name">Português (Portugal)</span>
                 <span class="currency-tag">USD</span>
             </button>
 

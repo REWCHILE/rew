@@ -36,6 +36,7 @@
     <meta name="author" content="Álvaro Valenzuela Valdés - REW Chile">
     <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
     <link rel="canonical" href="@yield('canonical', url()->current())">
+    <meta name="geo-country" content="{{ request()->header('CF-IPCountry') ?? request()->server('HTTP_CF_IPCOUNTRY') ?? request()->server('GEOIP_COUNTRY_CODE') ?? '' }}">
 
     <!-- Facebook Sharing Debugger / OpenGraph Tags (100% Optimized for CTR) -->
     <meta property="og:locale" content="es_CL">

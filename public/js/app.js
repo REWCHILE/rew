@@ -414,6 +414,9 @@ const UI_TRANSLATIONS = {
     }
 };
 
+UI_TRANSLATIONS['pt-PT'] = UI_TRANSLATIONS.pt;
+UI_TRANSLATIONS['pt-BR'] = UI_TRANSLATIONS.pt;
+
 function initLangCurrencySwitcher() {
     const widget = document.querySelector('.floating-lang-currency-widget');
     const toggleBtn = document.querySelector('.lang-currency-toggle-btn');
@@ -425,6 +428,7 @@ function initLangCurrencySwitcher() {
         'es': '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="100" fill="#ffffff"/><rect y="100" width="300" height="100" fill="#d52b1e"/><rect width="100" height="100" fill="#0039a6"/><polygon points="50,22 59,50 88,50 65,67 74,95 50,78 26,95 35,67 12,50 41,50" fill="#ffffff"/></svg>',
         'en': '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="200" fill="#b22234"/><path d="M0,15.38h300M0,46.15h300M0,76.92h300M0,107.69h300M0,138.46h300M0,169.23h300" stroke="#ffffff" stroke-width="15.38"/><rect width="120" height="107.69" fill="#3c3b6e"/><circle cx="20" cy="20" r="4" fill="#ffffff"/><circle cx="40" cy="20" r="4" fill="#ffffff"/><circle cx="60" cy="20" r="4" fill="#ffffff"/><circle cx="80" cy="20" r="4" fill="#ffffff"/><circle cx="100" cy="20" r="4" fill="#ffffff"/><circle cx="30" cy="38" r="4" fill="#ffffff"/><circle cx="50" cy="38" r="4" fill="#ffffff"/><circle cx="70" cy="38" r="4" fill="#ffffff"/><circle cx="90" cy="38" r="4" fill="#ffffff"/><circle cx="20" cy="56" r="4" fill="#ffffff"/><circle cx="40" cy="56" r="4" fill="#ffffff"/><circle cx="60" cy="56" r="4" fill="#ffffff"/><circle cx="80" cy="56" r="4" fill="#ffffff"/><circle cx="100" cy="56" r="4" fill="#ffffff"/><circle cx="30" cy="74" r="4" fill="#ffffff"/><circle cx="50" cy="74" r="4" fill="#ffffff"/><circle cx="70" cy="74" r="4" fill="#ffffff"/><circle cx="90" cy="74" r="4" fill="#ffffff"/><circle cx="20" cy="92" r="4" fill="#ffffff"/><circle cx="40" cy="92" r="4" fill="#ffffff"/><circle cx="60" cy="92" r="4" fill="#ffffff"/><circle cx="80" cy="92" r="4" fill="#ffffff"/><circle cx="100" cy="92" r="4" fill="#ffffff"/></svg>',
         'pt': '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="200" fill="#009c3b"/><polygon points="150,20 280,100 150,180 20,100" fill="#ffdf00"/><circle cx="150" cy="100" r="46" fill="#002776"/><path d="M106,108 Q150,88 194,106" fill="none" stroke="#ffffff" stroke-width="7"/></svg>',
+        'pt-PT': '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="200" fill="#006600"/><rect x="120" width="180" height="200" fill="#d52b1e"/><circle cx="120" cy="100" r="42" fill="#ffcc00" stroke="#000000" stroke-width="2"/><rect x="106" y="85" width="28" height="30" rx="3" fill="#ffffff" stroke="#000000" stroke-width="1.5"/><rect x="112" y="90" width="16" height="20" fill="#003399"/></svg>',
         'fr': '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="200" fill="#002395"/><rect x="100" width="100" height="200" fill="#ffffff"/><rect x="200" width="100" height="200" fill="#ed2939"/></svg>',
         'de': '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="66.67" fill="#000000"/><rect y="66.67" width="300" height="66.67" fill="#dd0000"/><rect y="133.34" width="300" height="66.67" fill="#ffce00"/></svg>',
         'it': '<svg class="flag-svg-icon" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="200" fill="#009246"/><rect x="100" width="100" height="200" fill="#ffffff"/><rect x="200" width="100" height="200" fill="#ce2b37"/></svg>',
@@ -436,16 +440,85 @@ function initLangCurrencySwitcher() {
         localStorage.removeItem('rew_flag');
     } catch (e) {}
 
-    let currentLang = 'es';
-    try {
-        const stored = localStorage.getItem('rew_lang');
-        if (stored && stored !== 'null' && stored !== 'undefined' && svgFlagMap[stored]) {
-            currentLang = stored;
-        }
-    } catch (e) {}
+    // Auto-detect visitor settings based on manual preference, GeoIP, and browser languages
+    function detectVisitorSettings() {
+        // 1. If user previously chose manually, respect it unconditionally
+        try {
+            const manual = localStorage.getItem('rew_user_selected_lang');
+            const storedLang = localStorage.getItem('rew_lang');
+            if (manual === 'true' && storedLang && svgFlagMap[storedLang]) {
+                const cur = (storedLang === 'es') ? 'CLP' : 'USD';
+                return { lang: storedLang, currency: cur, autoDetected: false };
+            }
+        } catch (_) {}
 
-    // Strict condition: Only Chile has CLP, all other languages operate in USD
-    let currentCurrency = (currentLang === 'es') ? 'CLP' : 'USD';
+        // 2. Server Geo-IP Meta Tag (Cloudflare / GeoIP if present)
+        let countryCode = '';
+        const geoMeta = document.querySelector('meta[name="geo-country"]');
+        if (geoMeta && geoMeta.getAttribute('content')) {
+            countryCode = geoMeta.getAttribute('content').trim().toUpperCase();
+        }
+
+        // 3. Browser Navigator Language Preferences
+        const browserLangs = (navigator.languages && navigator.languages.length)
+            ? navigator.languages
+            : [navigator.language || navigator.userLanguage || 'es'];
+        const primaryFull = (browserLangs[0] || 'es').toLowerCase();
+        const primaryLang = primaryFull.split('-')[0];
+
+        // Specific Country & Language Matrix:
+        // Chile -> es-CL or CL -> Español / CLP
+        if (countryCode === 'CL' || primaryFull === 'es-cl' || (primaryLang === 'es' && primaryFull.includes('cl'))) {
+            return { lang: 'es', currency: 'CLP', autoDetected: true };
+        }
+
+        // Brazil -> pt-BR or BR -> Português (Brasil) / USD
+        if (countryCode === 'BR' || primaryFull === 'pt-br' || (primaryLang === 'pt' && !primaryFull.includes('pt'))) {
+            return { lang: 'pt', currency: 'USD', autoDetected: true };
+        }
+
+        // Portugal -> pt-PT or PT -> Português (Portugal) / USD
+        if (countryCode === 'PT' || primaryFull === 'pt-pt' || (primaryLang === 'pt' && primaryFull.includes('pt'))) {
+            return { lang: 'pt-PT', currency: 'USD', autoDetected: true };
+        }
+
+        // France -> fr or FR -> Français / USD
+        if (countryCode === 'FR' || primaryLang === 'fr') {
+            return { lang: 'fr', currency: 'USD', autoDetected: true };
+        }
+
+        // China / HK / TW -> CN/HK/TW or zh -> 中文 / USD
+        if (countryCode === 'CN' || countryCode === 'HK' || countryCode === 'TW' || primaryLang === 'zh') {
+            return { lang: 'zh-CN', currency: 'USD', autoDetected: true };
+        }
+
+        // Germany / Austria -> DE/AT/CH or de -> Deutsch / USD
+        if (countryCode === 'DE' || countryCode === 'AT' || countryCode === 'CH' || primaryLang === 'de') {
+            return { lang: 'de', currency: 'USD', autoDetected: true };
+        }
+
+        // Italy -> it or IT -> Italiano / USD
+        if (countryCode === 'IT' || primaryLang === 'it') {
+            return { lang: 'it', currency: 'USD', autoDetected: true };
+        }
+
+        // Japan -> ja or JP -> 日本語 / USD
+        if (countryCode === 'JP' || primaryLang === 'ja') {
+            return { lang: 'ja', currency: 'USD', autoDetected: true };
+        }
+
+        // Other Spanish speakers outside Chile (AR, MX, CO, PE, ES, etc.) -> Español / USD ($)
+        if (primaryLang === 'es') {
+            return { lang: 'es', currency: 'USD', autoDetected: true };
+        }
+
+        // Default for English and all rest of the world -> English / USD
+        return { lang: 'en', currency: 'USD', autoDetected: true };
+    }
+
+    const detected = detectVisitorSettings();
+    let currentLang = detected.lang;
+    let currentCurrency = detected.currency;
 
     try {
         localStorage.setItem('rew_lang', currentLang);
@@ -471,6 +544,7 @@ function initLangCurrencySwitcher() {
 
     function triggerGoogleTranslation(targetLang) {
         const isSpanish = targetLang === 'es';
+        const googleLang = targetLang.startsWith('pt') ? 'pt' : targetLang;
         const host = window.location.hostname;
         const rootDomain = host.replace(/^www\./, '');
 
@@ -484,9 +558,9 @@ function initLangCurrencySwitcher() {
                 history.replaceState(null, null, window.location.pathname + window.location.search);
             }
         } else {
-            // Set googtrans cookie for Spanish -> targetLang (/es/LANG and /auto/LANG)
-            const pair1 = `/es/${targetLang}`;
-            const pair2 = `/auto/${targetLang}`;
+            // Set googtrans cookie for Spanish -> googleLang (/es/LANG and /auto/LANG)
+            const pair1 = `/es/${googleLang}`;
+            const pair2 = `/auto/${googleLang}`;
             [pair1, pair2].forEach(val => {
                 document.cookie = `googtrans=${val}; path=/;`;
                 document.cookie = `googtrans=${val}; path=/; domain=${host};`;
@@ -494,13 +568,13 @@ function initLangCurrencySwitcher() {
                     document.cookie = `googtrans=${val}; path=/; domain=.${rootDomain};`;
                 }
             });
-            window.location.hash = `#googtrans(es|${targetLang})`;
+            window.location.hash = `#googtrans(es|${googleLang})`;
         }
 
         // Trigger Google Translate select element if present
         const combo = document.querySelector('.goog-te-combo');
         if (combo) {
-            combo.value = isSpanish ? 'es' : targetLang;
+            combo.value = isSpanish ? 'es' : googleLang;
             combo.dispatchEvent(new Event('change', { bubbles: true }));
         }
 
@@ -516,6 +590,11 @@ function initLangCurrencySwitcher() {
             const lang = this.getAttribute('data-lang');
             const name = this.getAttribute('data-name');
 
+            // Mark that the user has made an explicit manual selection
+            try {
+                localStorage.setItem('rew_user_selected_lang', 'true');
+            } catch (_) {}
+
             langBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
 
@@ -523,8 +602,10 @@ function initLangCurrencySwitcher() {
             // Strict rule: Chile is CLP, all international languages are USD
             currentCurrency = (lang === 'es') ? 'CLP' : 'USD';
 
-            localStorage.setItem('rew_lang', lang);
-            localStorage.setItem('rew_currency', currentCurrency);
+            try {
+                localStorage.setItem('rew_lang', lang);
+                localStorage.setItem('rew_currency', currentCurrency);
+            } catch (_) {}
 
             updateTriggerLabel();
             applyNativeTranslations(lang);
@@ -553,7 +634,10 @@ function initLangCurrencySwitcher() {
             flagIcon.innerHTML = svgFlagMap[currentLang] || svgFlagMap['es'];
         }
         if (triggerText) {
-            const langCode = (currentLang === 'zh-CN' ? 'ZH' : currentLang.toUpperCase()).slice(0, 2);
+            let langCode = 'ES';
+            if (currentLang === 'zh-CN') langCode = 'ZH';
+            else if (currentLang.startsWith('pt')) langCode = 'PT';
+            else langCode = currentLang.toUpperCase().slice(0, 2);
             triggerText.textContent = `${langCode} / ${currentCurrency}`;
         }
     }
@@ -638,11 +722,11 @@ function initLangCurrencySwitcher() {
     applyCurrencyPrices(currentCurrency);
     if (currentLang !== 'es') {
         applyNativeTranslations(currentLang);
-        // Ensure googtrans cookie persists on load
+        const googleLang = currentLang.startsWith('pt') ? 'pt' : currentLang;
         const host = window.location.hostname;
         const rootDomain = host.replace(/^www\./, '');
         if (!document.cookie.includes('googtrans=')) {
-            const pair = `/es/${currentLang}`;
+            const pair = `/es/${googleLang}`;
             document.cookie = `googtrans=${pair}; path=/;`;
             document.cookie = `googtrans=${pair}; path=/; domain=${host};`;
             if (rootDomain !== host) {
