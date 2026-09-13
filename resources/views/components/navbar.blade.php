@@ -364,6 +364,7 @@ body {
                 $activeService = null;
                 if (request()->routeIs('servicios.software-chile')) $activeService = 'software';
                 elseif (request()->routeIs('servicios.desarrollo-web')) $activeService = 'web';
+                elseif (request()->routeIs('servicios.bsale-woocommerce')) $activeService = 'bsale';
                 elseif (request()->routeIs('servicios.diseno-ux-ui')) $activeService = 'ux';
                 elseif (request()->routeIs('servicios.seo')) $activeService = 'seo';
                 elseif (request()->routeIs('servicios.publicidad')) $activeService = 'ads';
@@ -440,6 +441,29 @@ body {
                                                     @endif
                                                 </div>
                                                 <p class="mega-desc">Sitios corporativos y tiendas online con carga ultra rápida y Core Web Vitals en verde.</p>
+                                            </div>
+                                        </a>
+
+                                        <a href="{{ route('servicios.bsale-woocommerce') }}" 
+                                           class="mega-service-card-v2 {{ $activeService === 'bsale' ? 'active current-page' : '' }}"
+                                           data-service="bsale"
+                                           data-badge="🛒 CONECTIVIDAD ERP & E-COMMERCE"
+                                           data-title="Integración Bsale con WooCommerce"
+                                           data-desc="Sincronización en tiempo real de inventario multibodega, precios y boletas o facturas SII automáticas."
+                                           data-bullets="✓ Plugin oficial con pago único sin mensualidades|✓ Facturación electrónica DTE automática ante el SII"
+                                           data-img="{{ asset('images/products/plugin_bsale_woocommerce.webp') }}"
+                                           data-cta-url="{{ route('servicios.bsale-woocommerce') }}"
+                                           data-cta-text="🛒 Conocer Integración Bsale">
+                                            <div class="mega-icon-box icon-web">🔄</div>
+                                            <div class="mega-info">
+                                                <div class="mega-title">
+                                                    Integración Bsale WooCommerce
+                                                    <span class="badge-mini badge-green">Stock & SII</span>
+                                                    @if($activeService === 'bsale')
+                                                        <span class="badge-active-dot" title="Página Actual">● Actual</span>
+                                                    @endif
+                                                </div>
+                                                <p class="mega-desc">Sincronización de stock multibodega, precios y emisión automática de facturas y boletas SII.</p>
                                             </div>
                                         </a>
 

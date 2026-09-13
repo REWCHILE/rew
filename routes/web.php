@@ -95,7 +95,8 @@ Route::get('/diseno-ux-ui', [ServiceController::class, 'disenoUxUi'])->name('ser
 
 // Nuevas Landing Pages Comerciales de Alta Conversión (GSC Boost)
 Route::get('/servicios/integracion-bsale-woocommerce', [ServiceController::class, 'integracionBsale'])->name('servicios.bsale-woocommerce');
-Route::get('/integracion-bsale-woocommerce', [ServiceController::class, 'integracionBsale']);
+Route::redirect('/integracion-bsale-woocommerce', '/servicios/integracion-bsale-woocommerce', 301);
+Route::redirect('/bsale-woocommerce', '/servicios/integracion-bsale-woocommerce', 301);
 Route::get('/servicios/implementacion-odoo-chile', [ServiceController::class, 'implementacionOdoo'])->name('servicios.odoo-chile');
 Route::get('/implementacion-odoo-chile', [ServiceController::class, 'implementacionOdoo']);
 Route::get('/servicios/software-factory-chile', [ServiceController::class, 'softwareFactory'])->name('servicios.software-factory');

@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
-@section('title', '🔄 Sincroniza Bsale con WooCommerce en Tiempo Real: Stock, Precios y Boletas SII Automáticas | REW')
-@section('meta_description', '⚙️ Elimina el trabajo manual y los errores de stock. Facturación electrónica DTE automática y sincronización bidireccional entre Bsale y tu tienda online.')
+@section('title', 'Bsale WooCommerce: Integración de Stock y Facturas SII | REW')
+@section('meta_description', 'Sincroniza Bsale con WooCommerce en tiempo real: stock multibodega, precios y boletas/facturas SII automáticas. Plugin oficial con pago único en Chile | REW.')
+@section('canonical', 'https://rew.cl/servicios/integracion-bsale-woocommerce')
 
 @section('og_type', 'service')
-@section('og_title', '🔄 Integración Bsale con WooCommerce en Chile: Stock y Facturas SII Automáticas | REW')
-@section('og_description', '⚙️ Sincroniza inventario, precios y emisión de boletas/facturas electrónicas automáticas sin errores entre Bsale y WooCommerce.')
-@section('og_image', asset('images/services/desarrollo_web_tecnologias.webp'))
+@section('og_title', 'Bsale WooCommerce: Integración & Plugin Oficial Chile | REW')
+@section('og_description', 'Sincroniza Bsale con WooCommerce en tiempo real: stock multibodega, precios y emisión de boletas/facturas SII automáticas. Plugin con pago único sin mensualidades.')
+@section('og_image', asset('images/products/plugin_bsale_woocommerce.webp'))
 
 @section('content')
 <!-- Hero Section -->
@@ -26,7 +27,7 @@
                     Integración <span class="gradient-text">Bsale con WooCommerce</span> en Tiempo Real 🛒⚡
                 </h1>
                 <p style="font-size: 1.2rem; color: var(--text-body); line-height: 1.65; margin-bottom: 2rem;">
-                    Automatiza tus ventas, inventario y facturación electrónica. Conectamos tu tienda <strong>WooCommerce</strong> con <strong>Bsale</strong> mediante API REST oficial para que el stock de tus sucursales físicas y web esté 100% sincronizado, emitiendo boletas y facturas DTE automáticamente.
+                    Automatiza tus ventas, inventario y facturación electrónica sin errores manuales. Conectamos tu tienda <strong>WooCommerce</strong> con <strong>Bsale</strong> mediante API REST oficial para sincronizar stock multibodega en tiempo real, soportar productos variables y emitir boletas y facturas DTE ante el SII automáticamente. <strong>Pago único sin mensualidades ni comisiones por venta.</strong>
                 </p>
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
                     <a href="#comprar-plugin" class="btn btn-primary btn-lg" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.4);">
@@ -436,8 +437,8 @@
       "@type": "WebPage",
       "@id": "https://rew.cl/servicios/integracion-bsale-woocommerce",
       "url": "https://rew.cl/servicios/integracion-bsale-woocommerce",
-      "name": "Integración Bsale con WooCommerce en Tiempo Real | REW",
-      "description": "Sincronización automática de inventario multibodega, catálogo, productos variables y emisión automática de boletas/facturas DTE ante el SII entre Bsale y WooCommerce en Chile.",
+      "name": "Bsale WooCommerce: Integración de Stock y Facturas SII | REW",
+      "description": "Sincroniza Bsale con WooCommerce en tiempo real: stock multibodega, precios y boletas/facturas SII automáticas. Plugin oficial con pago único en Chile | REW.",
       "inLanguage": "es-CL",
       "breadcrumb": {
         "@id": "https://rew.cl/servicios/integracion-bsale-woocommerce#breadcrumb"

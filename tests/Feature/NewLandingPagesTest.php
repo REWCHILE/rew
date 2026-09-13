@@ -14,11 +14,13 @@ class NewLandingPagesTest extends TestCase
         $this->seed();
         $response = $this->get('/servicios/integracion-bsale-woocommerce');
         $response->assertStatus(200);
-        $response->assertSee('Bsale');
-        $response->assertSee('WooCommerce');
+        $response->assertSee('Bsale WooCommerce: Integración de Stock y Facturas SII | REW');
         $response->assertSee('Plugin Bsale WooCommerce Sync Pro');
         $response->assertSee('350.000');
         $response->assertSee('LIFETIME');
+
+        $this->get('/integracion-bsale-woocommerce')->assertRedirect('/servicios/integracion-bsale-woocommerce');
+        $this->get('/bsale-woocommerce')->assertRedirect('/servicios/integracion-bsale-woocommerce');
     }
 
     public function test_bsale_plugin_product_page_returns_ok(): void
