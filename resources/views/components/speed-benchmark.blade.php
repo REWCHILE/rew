@@ -126,39 +126,6 @@
                 <div class="benchmark-result-box slow-box" id="slowResultBox">
                     <strong>📉 Consecuencia Comercial:</strong> El 65% de los visitantes abandona antes de ver tu producto o cotizar. Pérdida masiva de inversión publicitaria.
                 </div>
-
-                <!-- Google Search Console Style Audit Search Bar (Card 1) -->
-                <div class="benchmark-search-wrap">
-                    <div class="benchmark-search-label">
-                        <span>⚠️ ¿Tu sitio web carga lento? Compruébalo:</span>
-                    </div>
-                    <form class="google-audit-search-box" autocomplete="off">
-                        <div class="google-search-pill">
-                            <span class="google-search-icon" aria-hidden="true">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="11" cy="11" r="8"></circle>
-                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                </svg>
-                            </span>
-                            <input type="text" class="google-search-input" name="target_url" placeholder="Ingresa tu web para conocer la velocidad..." aria-label="Ingresa tu web para conocer la velocidad" spellcheck="false" autocomplete="url" required>
-                            <button type="button" class="google-search-clear-btn" title="Borrar" aria-label="Borrar texto" style="display: none;">
-                                ✕
-                            </button>
-                            <div class="google-search-divider" aria-hidden="true"></div>
-                            <button type="submit" class="google-search-submit-btn" title="Auditar velocidad con Google PageSpeed">
-                                <span class="google-search-btn-label">Auditar</span>
-                                <svg class="google-lens-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                                    <circle cx="12" cy="13" r="4"></circle>
-                                </svg>
-                                <span class="google-enter-hint">↵ Enter</span>
-                            </button>
-                        </div>
-                        <div class="google-search-subtext">
-                            <span class="google-g-badge">G</span> Auditoría en vivo con motor Google PageSpeed
-                        </div>
-                    </form>
-                </div>
             </div>
 
             <!-- Card 2: Ultra-Fast REW Engineering (Rocket) -->
@@ -212,37 +179,10 @@
                     <strong>📈 Victoria Comercial:</strong> +300% en tasa de conversión, máximo puntaje en Google SEO y clientes que compran de inmediato.
                 </div>
 
-                <!-- Google Search Console Style Audit Search Bar (Card 2) -->
-                <div class="benchmark-search-wrap">
-                    <div class="benchmark-search-label">
-                        <span>⚡ ¿Quieres que tu web vuele a 100/100? Audita tu velocidad:</span>
-                    </div>
-                    <form class="google-audit-search-box" autocomplete="off">
-                        <div class="google-search-pill">
-                            <span class="google-search-icon" aria-hidden="true">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="11" cy="11" r="8"></circle>
-                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                </svg>
-                            </span>
-                            <input type="text" class="google-search-input" name="target_url" placeholder="Ingresa tu web para conocer la velocidad..." aria-label="Ingresa tu web para conocer la velocidad" spellcheck="false" autocomplete="url" required>
-                            <button type="button" class="google-search-clear-btn" title="Borrar" aria-label="Borrar texto" style="display: none;">
-                                ✕
-                            </button>
-                            <div class="google-search-divider" aria-hidden="true"></div>
-                            <button type="submit" class="google-search-submit-btn" title="Auditar velocidad con Google PageSpeed">
-                                <span class="google-search-btn-label">Auditar</span>
-                                <svg class="google-lens-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                                    <circle cx="12" cy="13" r="4"></circle>
-                                </svg>
-                                <span class="google-enter-hint">↵ Enter</span>
-                            </button>
-                        </div>
-                        <div class="google-search-subtext">
-                            <span class="google-g-badge">G</span> Diagnóstico gratuito con Google PageSpeed & Core Web Vitals
-                        </div>
-                    </form>
+                <div style="margin-top: 1.5rem; text-align: center;">
+                    <button type="button" class="btn btn-primary open-audit-modal-btn" style="width: 100%; justify-content: center; font-weight: 800;">
+                        <span>🔍 Auditar la Velocidad de Mi Sitio Web →</span>
+                    </button>
                 </div>
             </div>
         </div>
