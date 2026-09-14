@@ -202,6 +202,7 @@
             <div class="card" style="padding: 0; overflow: hidden; margin-bottom: 3rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); background: #090d16;">
                 <img src="{{ Str::startsWith($post->featured_image, 'http') ? $post->featured_image : asset(ltrim($post->featured_image, '/')) }}" 
                      alt="{{ $post->title }}" 
+                     onerror="this.onerror=null; this.src='{{ asset('images/rew_og_card.png') }}';"
                      style="width: 100%; max-height: 480px; object-fit: cover;">
             </div>
         @endif
@@ -284,6 +285,7 @@
                                 <a href="{{ route('blog.show', $rec->slug) }}" style="height: 140px; overflow: hidden; background: #090d16; display: block;">
                                     <img src="{{ Str::startsWith($rec->featured_image, 'http') ? $rec->featured_image : asset(ltrim($rec->featured_image, '/')) }}" 
                                          alt="{{ $rec->title }}" 
+                                         onerror="this.onerror=null; this.src='{{ asset('images/rew_og_card.png') }}';"
                                          style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;"
                                          onmouseover="this.style.transform='scale(1.06)'"
                                          onmouseout="this.style.transform='scale(1)'"

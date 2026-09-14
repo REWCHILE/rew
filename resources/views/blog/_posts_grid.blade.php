@@ -2,8 +2,9 @@
     <article class="card spotlight-card post-card-item" style="padding: 0; overflow: hidden; display: flex; flex-direction: column; border-radius: var(--radius-lg); transition: transform 0.3s ease, box-shadow 0.3s ease;">
         @if($post->featured_image)
             <a href="{{ route('blog.show', $post->slug) }}" style="display: block; height: 210px; overflow: hidden; background: #090d16; position: relative;">
-                <img src="{{ $post->featured_image }}" 
+                <img src="{{ Str::startsWith($post->featured_image, 'http') ? $post->featured_image : asset(ltrim($post->featured_image, '/')) }}" 
                      alt="{{ $post->title }}" 
+                     onerror="this.onerror=null; this.src='{{ asset('images/rew_og_card.png') }}';"
                      style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;"
                      onmouseover="this.style.transform='scale(1.06)'"
                      onmouseout="this.style.transform='scale(1)'"
