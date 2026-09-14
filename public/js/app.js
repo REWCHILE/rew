@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initDesktopMegaMenu();
     initFaqAccordion();
     initSpeedBenchmarkRace();
+    initGoogleAuditSearchBoxes();
     initHomeScrollAnimations();
     initOceanScrollSystem();
 });
@@ -1825,19 +1826,45 @@ function initSpeedBenchmarkRace() {
     const replayBtn = document.getElementById('replaySpeedRaceBtn');
     const statusPillText = document.getElementById('speedRaceStatusText');
     
-    // Slow elements
+    // Slow elements (Card)
     const cardSlow = document.getElementById('benchmarkCardSlow');
     const timerSlow = document.getElementById('timerSlowVal');
     const barSlow = document.getElementById('raceBarSlow');
     const percentSlow = document.getElementById('slowLoadPercent');
     const msgSlow = document.getElementById('slowStepMsg');
 
-    // Fast elements
+    // Fast elements (Card)
     const cardFast = document.getElementById('benchmarkCardFast');
     const timerFast = document.getElementById('timerFastVal');
     const barFast = document.getElementById('raceBarFast');
     const percentFast = document.getElementById('fastLoadPercent');
     const msgFast = document.getElementById('fastStepMsg');
+
+    // Arena elements (Dual-Track Visible on Mobile & Desktop)
+    const arenaBarFast = document.getElementById('arenaBarFast');
+    const arenaBarSlow = document.getElementById('arenaBarSlow');
+    const arenaTimerFast = document.getElementById('arenaTimerFast');
+    const arenaTimerSlow = document.getElementById('arenaTimerSlow');
+    const arenaPercentFast = document.getElementById('arenaPercentFast');
+    const arenaPercentSlow = document.getElementById('arenaPercentSlow');
+
+    // Mobile segmented tab switcher
+    const benchmarkGrid = document.getElementById('benchmarkGrid');
+    const tabButtons = document.querySelectorAll('#mobileBenchmarkTabs .benchmark-tab-btn');
+    tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tabButtons.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false');
+            });
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
+            const targetTab = btn.getAttribute('data-tab');
+            if (benchmarkGrid) {
+                benchmarkGrid.setAttribute('data-active', targetTab);
+            }
+        });
+    });
 
     let isRunning = false;
     let hasAutoRun = false;
@@ -1851,7 +1878,7 @@ function initSpeedBenchmarkRace() {
         if (fastAnimId) cancelAnimationFrame(fastAnimId);
         if (slowAnimId) cancelAnimationFrame(slowAnimId);
 
-        // Reset states
+        // Reset states (Cards)
         if (cardFast) cardFast.classList.remove('winner-glow');
         if (timerFast) timerFast.textContent = '0.00s';
         if (timerSlow) timerSlow.textContent = '0.00s';
@@ -1863,6 +1890,14 @@ function initSpeedBenchmarkRace() {
         if (msgSlow) msgSlow.textContent = '⏳ Conectando a hosting compartido saturado...';
         if (statusPillText) statusPillText.textContent = '🏎️ ¡Carrera iniciada! Cargando ambas webs...';
 
+        // Reset states (Arena Dual-Track)
+        if (arenaBarFast) arenaBarFast.style.width = '0%';
+        if (arenaBarSlow) arenaBarSlow.style.width = '0%';
+        if (arenaTimerFast) arenaTimerFast.textContent = '0.00s';
+        if (arenaTimerSlow) arenaTimerSlow.textContent = '0.00s';
+        if (arenaPercentFast) arenaPercentFast.textContent = '0%';
+        if (arenaPercentSlow) arenaPercentSlow.textContent = '0%';
+
         const raceStartTime = performance.now();
         const FAST_TARGET_TIME = 380; // 0.38s in ms
         const SLOW_TARGET_TIME = 4350; // 4.35s in ms
@@ -1871,22 +1906,27 @@ function initSpeedBenchmarkRace() {
         function stepFast(now) {
             const elapsed = now - raceStartTime;
             const progress = Math.min(elapsed / FAST_TARGET_TIME, 1);
+            const currentSec = (Math.min(elapsed, FAST_TARGET_TIME) / 1000).toFixed(2) + 's';
+            const currentPct = Math.round(progress * 100) + '%';
             
-            if (timerFast) {
-                const currentSec = (Math.min(elapsed, FAST_TARGET_TIME) / 1000).toFixed(2);
-                timerFast.textContent = currentSec + 's';
-            }
+            if (timerFast) timerFast.textContent = currentSec;
+            if (arenaTimerFast) arenaTimerFast.textContent = currentSec;
 
-            if (barFast) barFast.style.width = Math.round(progress * 100) + '%';
-            if (percentFast) percentFast.textContent = Math.round(progress * 100) + '%';
+            if (barFast) barFast.style.width = currentPct;
+            if (percentFast) percentFast.textContent = currentPct;
+            if (arenaBarFast) arenaBarFast.style.width = currentPct;
+            if (arenaPercentFast) arenaPercentFast.textContent = currentPct;
 
             if (progress < 1) {
                 if (progress > 0.4 && msgFast) msgFast.textContent = '⚡ Caché L1 + PHP 8.3 OPcache entregado...';
                 fastAnimId = requestAnimationFrame(stepFast);
             } else {
                 if (timerFast) timerFast.textContent = '0.38s ⚡';
+                if (arenaTimerFast) arenaTimerFast.textContent = '0.38s ⚡';
                 if (barFast) barFast.style.width = '100%';
+                if (arenaBarFast) arenaBarFast.style.width = '100%';
                 if (percentFast) percentFast.textContent = '100%';
+                if (arenaPercentFast) arenaPercentFast.textContent = '100%';
                 if (msgFast) msgFast.textContent = '🏆 ¡Carga Completa en 0.38s! Score 100/100';
                 if (cardFast) cardFast.classList.add('winner-glow');
             }
@@ -1896,11 +1936,10 @@ function initSpeedBenchmarkRace() {
         function stepSlow(now) {
             const elapsed = now - raceStartTime;
             const progress = Math.min(elapsed / SLOW_TARGET_TIME, 1);
+            const currentSec = (Math.min(elapsed, SLOW_TARGET_TIME) / 1000).toFixed(2) + 's';
 
-            if (timerSlow) {
-                const currentSec = (Math.min(elapsed, SLOW_TARGET_TIME) / 1000).toFixed(2);
-                timerSlow.textContent = currentSec + 's';
-            }
+            if (timerSlow) timerSlow.textContent = currentSec;
+            if (arenaTimerSlow) arenaTimerSlow.textContent = currentSec;
 
             // Nonlinear sluggish progress with simulated lag stalls
             let visualPercent = 0;
@@ -1918,15 +1957,21 @@ function initSpeedBenchmarkRace() {
                 if (msgSlow) msgSlow.textContent = '❌ Finalizado en 4.35s (El 65% de clientes ya cerró la pestaña)';
             }
 
-            if (barSlow) barSlow.style.width = Math.min(Math.round(visualPercent), 100) + '%';
-            if (percentSlow) percentSlow.textContent = Math.min(Math.round(visualPercent), 100) + '%';
+            const slowPct = Math.min(Math.round(visualPercent), 100) + '%';
+            if (barSlow) barSlow.style.width = slowPct;
+            if (percentSlow) percentSlow.textContent = slowPct;
+            if (arenaBarSlow) arenaBarSlow.style.width = slowPct;
+            if (arenaPercentSlow) arenaPercentSlow.textContent = slowPct;
 
             if (progress < 1) {
                 slowAnimId = requestAnimationFrame(stepSlow);
             } else {
                 if (timerSlow) timerSlow.textContent = '4.35s 🐌';
+                if (arenaTimerSlow) arenaTimerSlow.textContent = '4.35s 🐌';
                 if (barSlow) barSlow.style.width = '100%';
+                if (arenaBarSlow) arenaBarSlow.style.width = '100%';
                 if (percentSlow) percentSlow.textContent = '100%';
+                if (arenaPercentSlow) arenaPercentSlow.textContent = '100%';
                 if (statusPillText) {
                     statusPillText.innerHTML = '🏆 <strong>Resultado:</strong> ¡REW ganó por <strong>3.97 segundos de ventaja</strong> (11.4x más veloz)!';
                 }
@@ -1959,6 +2004,68 @@ function initSpeedBenchmarkRace() {
             runRace();
         });
     }
+}
+
+/* ==========================================================================
+   Google Search Console Style URL Audit Pills Handler
+   ========================================================================== */
+function initGoogleAuditSearchBoxes() {
+    const searchBoxes = document.querySelectorAll('.google-audit-search-box');
+    if (!searchBoxes.length) return;
+
+    searchBoxes.forEach(form => {
+        const input = form.querySelector('.google-search-input');
+        const clearBtn = form.querySelector('.google-search-clear-btn');
+
+        if (input && clearBtn) {
+            input.addEventListener('input', () => {
+                clearBtn.style.display = input.value.trim().length > 0 ? 'inline-flex' : 'none';
+            });
+            clearBtn.addEventListener('click', () => {
+                input.value = '';
+                clearBtn.style.display = 'none';
+                input.focus();
+            });
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (!input) return;
+            let url = input.value.trim();
+            if (!url) {
+                input.focus();
+                return;
+            }
+
+            // Automatically normalize domain if scheme is omitted
+            if (!/^https?:\/\//i.test(url)) {
+                url = 'https://' + url;
+            }
+
+            input.value = url;
+
+            // Trigger Google PageSpeed live audit modal and prefill URL
+            const modal = document.getElementById('auditModalOverlay');
+            const websiteInput = document.querySelector('#auditAnalysisForm input[name="website_url"]');
+            const nameInput = document.querySelector('#auditAnalysisForm input[name="name"]');
+
+            if (modal) {
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+
+                if (websiteInput) {
+                    websiteInput.value = url;
+                    websiteInput.dispatchEvent(new Event('input', { bubbles: true }));
+                }
+
+                setTimeout(() => {
+                    if (nameInput) {
+                        nameInput.focus();
+                    }
+                }, 250);
+            }
+        });
+    });
 }
 
 /* ==========================================================================

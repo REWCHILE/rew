@@ -3478,6 +3478,496 @@ body {
   border-left: 4px solid #10b981;
 }
 
+/* --------------------------------------------------------------------------
+   Live Race Arena (Dual-Track for Mobile & Desktop)
+   -------------------------------------------------------------------------- */
+.speed-race-arena {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  padding: 1.15rem 1.4rem;
+  max-width: 900px;
+  margin: 0 auto 2.25rem auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.arena-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.arena-header-title {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #64748b;
+}
+
+.arena-header-sub {
+  font-size: 0.74rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.arena-track-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.arena-track-row:last-child {
+  margin-bottom: 0;
+}
+
+.arena-runner-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 145px;
+  flex-shrink: 0;
+}
+
+.arena-runner-badge {
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.arena-runner-badge.badge-fast {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.arena-runner-badge.badge-slow {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.arena-runner-timer {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.88rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.arena-lane-wrapper {
+  flex: 1;
+  height: 18px;
+  background: #f1f5f9;
+  border-radius: 9999px;
+  position: relative;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  padding: 0 3px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.arena-lane-progress {
+  height: 12px;
+  border-radius: 9999px;
+  position: relative;
+  transition: none;
+  min-width: 12px;
+}
+
+.arena-runner-avatar {
+  position: absolute;
+  right: -9px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+  pointer-events: none;
+  user-select: none;
+}
+
+.arena-finish-flag {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.95rem;
+  line-height: 1;
+  opacity: 0.7;
+  z-index: 1;
+}
+
+.arena-load-percent {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  font-weight: 800;
+  width: 42px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Segmented Tabs (<= 768px)
+   -------------------------------------------------------------------------- */
+.mobile-benchmark-tabs {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-benchmark-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 0 auto 1.5rem auto;
+    max-width: 480px;
+    background: #f1f5f9;
+    padding: 4px;
+    border-radius: 9999px;
+  }
+
+  .benchmark-tab-btn {
+    border: none;
+    background: transparent;
+    padding: 9px 12px;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .benchmark-tab-btn.active {
+    background: #ffffff;
+    color: var(--text-dark);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    font-weight: 800;
+  }
+
+  .benchmark-tab-btn[data-tab="fast"].active {
+    color: #059669;
+  }
+
+  .benchmark-tab-btn[data-tab="slow"].active {
+    color: #dc2626;
+  }
+
+  .benchmark-grid[data-active="fast"] #benchmarkCardSlow {
+    display: none !important;
+  }
+
+  .benchmark-grid[data-active="fast"] #benchmarkCardFast {
+    display: block !important;
+  }
+
+  .benchmark-grid[data-active="slow"] #benchmarkCardFast {
+    display: none !important;
+  }
+
+  .benchmark-grid[data-active="slow"] #benchmarkCardSlow {
+    display: block !important;
+  }
+
+  .benchmark-grid[data-active="both"] #benchmarkCardFast,
+  .benchmark-grid[data-active="both"] #benchmarkCardSlow {
+    display: block !important;
+  }
+
+  .speed-race-arena {
+    padding: 1rem 0.9rem;
+  }
+
+  .arena-runner-info {
+    width: 115px;
+  }
+
+  .arena-runner-badge {
+    font-size: 0.72rem;
+    padding: 2px 5px;
+  }
+
+  .arena-runner-timer {
+    font-size: 0.8rem;
+    padding: 1px 4px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Google Search Console Style URL Audit Pills
+   -------------------------------------------------------------------------- */
+.benchmark-search-wrap {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed var(--border-light);
+}
+
+.benchmark-search-label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 0.65rem;
+}
+
+.google-audit-search-box {
+  position: relative;
+  width: 100%;
+}
+
+.google-search-pill {
+  display: flex;
+  align-items: center;
+  background: #202124;
+  border: 1px solid #3c4043;
+  border-radius: 9999px;
+  padding: 4px 6px 4px 14px;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.google-search-pill:hover {
+  background: #282a2d;
+  border-color: #5f6368;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.google-search-pill:focus-within {
+  background: #202124;
+  border-color: #8ab4f8;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(138, 180, 248, 0.35);
+}
+
+.google-search-icon {
+  color: #9aa0a6;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.google-search-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e8eaed;
+  font-size: 0.92rem;
+  font-family: inherit;
+  padding: 8px 0;
+  font-weight: 500;
+}
+
+.google-search-input::placeholder {
+  color: #9aa0a6;
+  opacity: 1;
+}
+
+.google-search-clear-btn {
+  background: transparent;
+  border: none;
+  color: #9aa0a6;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 0.85rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.google-search-clear-btn:hover {
+  color: #e8eaed;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.google-search-divider {
+  width: 1px;
+  height: 22px;
+  background: #3c4043;
+  margin: 0 8px;
+  flex-shrink: 0;
+}
+
+.google-search-submit-btn {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  padding: 7px 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.google-search-submit-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 3px 12px rgba(99, 102, 241, 0.45);
+}
+
+.google-enter-hint {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.google-search-subtext {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.google-g-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  background: #ffffff;
+  color: #4285f4;
+  font-weight: 900;
+  font-size: 0.65rem;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* --------------------------------------------------------------------------
+   Full-Width Bottom Google PageSpeed Audit Banner
+   -------------------------------------------------------------------------- */
+.benchmark-bottom-audit-banner {
+  margin-top: 3rem;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  border-radius: 20px;
+  padding: 2.25rem 2.5rem;
+  color: #ffffff;
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.bottom-banner-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2.5rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.bottom-banner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #cbd5e1;
+  margin-bottom: 0.85rem;
+}
+
+.google-dot-group {
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.g-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.g-blue { background: #4285f4; }
+.g-red { background: #ea4335; }
+.g-yellow { background: #fbbc05; }
+.g-green { background: #34a853; }
+
+.bottom-banner-title {
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 0.65rem;
+  line-height: 1.25;
+}
+
+.bottom-banner-desc {
+  font-size: 0.92rem;
+  color: #94a3b8;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.google-audit-search-lg .google-search-pill {
+  padding: 6px 8px 6px 16px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+}
+
+.google-audit-search-lg .google-search-input {
+  font-size: 1rem;
+  padding: 10px 0;
+}
+
+.google-audit-search-lg .google-search-submit-btn {
+  padding: 10px 18px;
+  font-size: 0.9rem;
+}
+
+.bottom-banner-features {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .bottom-banner-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .benchmark-bottom-audit-banner {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .bottom-banner-title {
+    font-size: 1.3rem;
+  }
+
+  .google-search-btn-label {
+    display: none;
+  }
+}
+
 /* ==========================================================================
    Home & Global Scroll Reveal Micro-Animations
    ========================================================================== */

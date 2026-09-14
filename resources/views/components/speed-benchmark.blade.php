@@ -15,7 +15,7 @@
         </div>
 
         <!-- Race Control Bar -->
-        <div class="speed-race-control-bar" style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 2.5rem; flex-wrap: wrap;">
+        <div class="speed-race-control-bar" style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 1.75rem; flex-wrap: wrap;">
             <div class="race-status-pill" id="speedRaceStatusPill">
                 <span class="pulse-dot"></span>
                 <span id="speedRaceStatusText">🏁 Preparando carrera de carga en vivo...</span>
@@ -25,8 +25,59 @@
             </button>
         </div>
 
+        <!-- Live Race Track Arena (Dual-Track visible on Mobile & Desktop simultaneously) -->
+        <div class="speed-race-arena" id="speedRaceArena" aria-label="Carrera en tiempo real">
+            <div class="arena-header">
+                <span class="arena-header-title">⚡ PISTA DE VELOCIDAD EN VIVO</span>
+                <span class="arena-header-sub">Simulación sincrónica a 100 Mbps</span>
+            </div>
+
+            <!-- Fast Runner Track: REW -->
+            <div class="arena-track-row arena-row-fast">
+                <div class="arena-runner-info">
+                    <span class="arena-runner-badge badge-fast">🚀 REW</span>
+                    <span class="arena-runner-timer timer-fast" id="arenaTimerFast">0.00s</span>
+                </div>
+                <div class="arena-lane-wrapper">
+                    <div class="arena-lane-progress fill-success" id="arenaBarFast" style="width: 0%;">
+                        <span class="arena-runner-avatar" title="Arquitectura REW">🚀</span>
+                    </div>
+                    <div class="arena-finish-flag" title="Meta (100%)">🏁</div>
+                </div>
+                <span class="arena-load-percent" id="arenaPercentFast" style="color: #059669;">0%</span>
+            </div>
+
+            <!-- Slow Runner Track: Standard Site -->
+            <div class="arena-track-row arena-row-slow">
+                <div class="arena-runner-info">
+                    <span class="arena-runner-badge badge-slow">🐌 Estándar</span>
+                    <span class="arena-runner-timer timer-slow" id="arenaTimerSlow">0.00s</span>
+                </div>
+                <div class="arena-lane-wrapper">
+                    <div class="arena-lane-progress fill-danger" id="arenaBarSlow" style="width: 0%;">
+                        <span class="arena-runner-avatar" title="Sitio Estándar">🐌</span>
+                    </div>
+                    <div class="arena-finish-flag" title="Meta (100%)">🏁</div>
+                </div>
+                <span class="arena-load-percent" id="arenaPercentSlow" style="color: #dc2626;">0%</span>
+            </div>
+        </div>
+
+        <!-- Mobile Segmented Tabs (Visible on mobile <= 768px to switch between cards) -->
+        <div class="mobile-benchmark-tabs" id="mobileBenchmarkTabs" role="tablist">
+            <button type="button" class="benchmark-tab-btn active" data-tab="fast" role="tab" aria-selected="true">
+                <span>🚀 REW (0.38s) 🏆</span>
+            </button>
+            <button type="button" class="benchmark-tab-btn" data-tab="slow" role="tab" aria-selected="false">
+                <span>🐌 Estándar (4.35s)</span>
+            </button>
+            <button type="button" class="benchmark-tab-btn" data-tab="both" role="tab" aria-selected="false">
+                <span>📊 Comparar Ambas</span>
+            </button>
+        </div>
+
         <!-- Benchmark Dual Grid -->
-        <div class="benchmark-grid">
+        <div class="benchmark-grid" id="benchmarkGrid" data-active="fast">
             <!-- Card 1: Traditional Slow Website (Snail) -->
             <div class="benchmark-card benchmark-slow spotlight-card" id="benchmarkCardSlow">
                 <div class="benchmark-card-top-status">
@@ -74,6 +125,39 @@
 
                 <div class="benchmark-result-box slow-box" id="slowResultBox">
                     <strong>📉 Consecuencia Comercial:</strong> El 65% de los visitantes abandona antes de ver tu producto o cotizar. Pérdida masiva de inversión publicitaria.
+                </div>
+
+                <!-- Google Search Console Style Audit Search Bar (Card 1) -->
+                <div class="benchmark-search-wrap">
+                    <div class="benchmark-search-label">
+                        <span>⚠️ ¿Tu sitio web carga lento? Compruébalo:</span>
+                    </div>
+                    <form class="google-audit-search-box" autocomplete="off">
+                        <div class="google-search-pill">
+                            <span class="google-search-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                            </span>
+                            <input type="text" class="google-search-input" name="target_url" placeholder="Ingresa tu web para conocer la velocidad..." aria-label="Ingresa tu web para conocer la velocidad" spellcheck="false" autocomplete="url" required>
+                            <button type="button" class="google-search-clear-btn" title="Borrar" aria-label="Borrar texto" style="display: none;">
+                                ✕
+                            </button>
+                            <div class="google-search-divider" aria-hidden="true"></div>
+                            <button type="submit" class="google-search-submit-btn" title="Auditar velocidad con Google PageSpeed">
+                                <span class="google-search-btn-label">Auditar</span>
+                                <svg class="google-lens-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                    <circle cx="12" cy="13" r="4"></circle>
+                                </svg>
+                                <span class="google-enter-hint">↵ Enter</span>
+                            </button>
+                        </div>
+                        <div class="google-search-subtext">
+                            <span class="google-g-badge">G</span> Auditoría en vivo con motor Google PageSpeed
+                        </div>
+                    </form>
                 </div>
             </div>
 
@@ -128,10 +212,90 @@
                     <strong>📈 Victoria Comercial:</strong> +300% en tasa de conversión, máximo puntaje en Google SEO y clientes que compran de inmediato.
                 </div>
 
-                <div style="margin-top: 1.5rem; text-align: center;">
-                    <button type="button" class="btn btn-primary open-audit-modal-btn" style="width: 100%; justify-content: center; font-weight: 800;">
-                        <span>🔍 Auditar la Velocidad de Mi Sitio Web →</span>
-                    </button>
+                <!-- Google Search Console Style Audit Search Bar (Card 2) -->
+                <div class="benchmark-search-wrap">
+                    <div class="benchmark-search-label">
+                        <span>⚡ ¿Quieres que tu web vuele a 100/100? Audita tu velocidad:</span>
+                    </div>
+                    <form class="google-audit-search-box" autocomplete="off">
+                        <div class="google-search-pill">
+                            <span class="google-search-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                            </span>
+                            <input type="text" class="google-search-input" name="target_url" placeholder="Ingresa tu web para conocer la velocidad..." aria-label="Ingresa tu web para conocer la velocidad" spellcheck="false" autocomplete="url" required>
+                            <button type="button" class="google-search-clear-btn" title="Borrar" aria-label="Borrar texto" style="display: none;">
+                                ✕
+                            </button>
+                            <div class="google-search-divider" aria-hidden="true"></div>
+                            <button type="submit" class="google-search-submit-btn" title="Auditar velocidad con Google PageSpeed">
+                                <span class="google-search-btn-label">Auditar</span>
+                                <svg class="google-lens-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                    <circle cx="12" cy="13" r="4"></circle>
+                                </svg>
+                                <span class="google-enter-hint">↵ Enter</span>
+                            </button>
+                        </div>
+                        <div class="google-search-subtext">
+                            <span class="google-g-badge">G</span> Diagnóstico gratuito con Google PageSpeed & Core Web Vitals
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full-Width Bottom Google PageSpeed Audit Banner -->
+        <div class="benchmark-bottom-audit-banner">
+            <div class="bottom-banner-grid">
+                <div class="bottom-banner-info">
+                    <div class="bottom-banner-badge">
+                        <span class="google-dot-group">
+                            <span class="g-dot g-blue"></span>
+                            <span class="g-dot g-red"></span>
+                            <span class="g-dot g-yellow"></span>
+                            <span class="g-dot g-green"></span>
+                        </span>
+                        <span>Motor Oficial Google PageSpeed Insights</span>
+                    </div>
+                    <h3 class="bottom-banner-title">
+                        ¿Tu sitio web pierde clientes por velocidad lenta?
+                    </h3>
+                    <p class="bottom-banner-desc">
+                        Ingresa el dominio de tu negocio y obtén un diagnóstico técnico instantáneo: LCP, TTFB, optimización para móviles y oportunidades directas para multiplicar tus ventas.
+                    </p>
+                </div>
+                <div class="bottom-banner-action">
+                    <form class="google-audit-search-box google-audit-search-lg" autocomplete="off">
+                        <div class="google-search-pill">
+                            <span class="google-search-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                            </span>
+                            <input type="text" class="google-search-input" name="target_url" placeholder="Ingresa tu web para conocer la velocidad..." aria-label="Ingresa tu web para conocer la velocidad" spellcheck="false" autocomplete="url" required>
+                            <button type="button" class="google-search-clear-btn" title="Borrar" aria-label="Borrar texto" style="display: none;">
+                                ✕
+                            </button>
+                            <div class="google-search-divider" aria-hidden="true"></div>
+                            <button type="submit" class="google-search-submit-btn" title="Auditar velocidad con Google PageSpeed">
+                                <span class="google-search-btn-label">Auditar Gratis</span>
+                                <svg class="google-lens-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                    <circle cx="12" cy="13" r="4"></circle>
+                                </svg>
+                                <span class="google-enter-hint">↵ Enter</span>
+                            </button>
+                        </div>
+                        <div class="bottom-banner-features">
+                            <span>✓ Sin tarjeta de crédito</span>
+                            <span>✓ Análisis móvil y escritorio</span>
+                            <span>✓ Reporte en tiempo real</span>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

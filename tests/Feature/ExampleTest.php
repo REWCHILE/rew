@@ -18,6 +18,9 @@ class ExampleTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
+        $response->assertSee('speedRaceArena');
+        $response->assertSee('mobileBenchmarkTabs');
+        $response->assertSee('google-audit-search-box');
     }
 
     public function test_desarrollo_web_service_page_returns_successful_response(): void
