@@ -943,6 +943,30 @@
     </div>
 </section>
 
+<!-- 10.5 Sección: Guía Técnica y Artículo Pilar en el Blog -->
+<section class="section" style="background: var(--bg-alt); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); padding: 4rem 0;">
+    <div class="container">
+        <div style="background: linear-gradient(135deg, #090d16 0%, #0f172a 50%, #1e1b4b 100%); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-xl); padding: 2.5rem 2.25rem; color: #ffffff; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; box-shadow: var(--shadow-xl);">
+            <div style="flex: 1; min-width: 280px;">
+                <span class="badge" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid #10b981; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; margin-bottom: 0.85rem; display: inline-block;">
+                    📚 Guía Técnica en Nuestro Blog
+                </span>
+                <h3 style="font-size: clamp(1.35rem, 2.5vw, 1.8rem); color: #ffffff; margin-bottom: 0.85rem; font-weight: 900; line-height: 1.3;">
+                    Cómo Integrar Bsale con WooCommerce en Chile: Stock, Precios y Boletas SII
+                </h3>
+                <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.65; margin: 0; max-width: 750px;">
+                    ¿Quieres profundizar en los aspectos de ingeniería? Lee nuestra guía paso a paso sobre cómo estructurar la Fuente Única de Verdad (Single Source of Truth), evitar condiciones de carrera en inventario y configurar la facturación electrónica DTE.
+                </p>
+            </div>
+            <div>
+                <a href="{{ route('blog.show', 'como-integrar-bsale-con-woocommerce') }}" class="btn btn-gold btn-lg" style="font-weight: 800; font-size: 0.98rem; white-space: nowrap;">
+                    <span>Leer Artículo Completo en el Blog →</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- 11. CTA Final de Contacto -->
 <section class="section" style="background: #ffffff; padding-top: 5rem; padding-bottom: 5.5rem;">
     <div class="container">

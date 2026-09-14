@@ -1,13 +1,23 @@
 @props(['post'])
 
 @php
-    $isMarketing = in_array($post->category, ['Marketing & Redes Sociales', 'Marketing Digital', 'Publicidad']);
-    $bannerImage = $isMarketing 
-        ? asset('images/services/ads_hero.webp') 
-        : asset('images/services/software_fabrica.webp');
-    $bannerAlt = $isMarketing 
-        ? 'Agencia de Marketing Digital y Publicidad en Chile - REW' 
-        : 'Software Factory y Desarrollo Web en Chile - REW';
+    $categoryLower = mb_strtolower($post->category ?? '');
+    $slugLower = mb_strtolower($post->slug ?? '');
+    $titleLower = mb_strtolower($post->title ?? '');
+
+    $isBsale = str_contains($slugLower, 'bsale') || str_contains($titleLower, 'bsale') || str_contains($categoryLower, 'integraci');
+    $isMarketing = !$isBsale && in_array($post->category, ['Marketing & Redes Sociales', 'Marketing Digital', 'Publicidad']);
+
+    if ($isBsale) {
+        $bannerImage = asset('images/products/plugin_bsale_woocommerce.webp');
+        $bannerAlt = 'Plugin Integración Bsale WooCommerce en Chile - REW';
+    } elseif ($isMarketing) {
+        $bannerImage = asset('images/services/ads_hero.webp');
+        $bannerAlt = 'Agencia de Marketing Digital y Publicidad en Chile - REW';
+    } else {
+        $bannerImage = asset('images/services/software_fabrica.webp');
+        $bannerAlt = 'Software Factory y Desarrollo Web en Chile - REW';
+    }
 @endphp
 
 <!-- High-Converting Commercial Banner Box -->
@@ -26,7 +36,12 @@
     <!-- Banner Content & Action Box -->
     <div style="padding: 2.5rem 2.25rem; color: #ffffff;">
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap;">
-            @if($isMarketing)
+            @if($isBsale)
+                <span class="badge" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid #10b981; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase;">
+                    🛒 Integración Bsale + WooCommerce
+                </span>
+                <span style="font-size: 0.82rem; color: #94a3b8;">• Stock en Tiempo Real & Boletas SII</span>
+            @elseif($isMarketing)
                 <span class="badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid #f59e0b; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase;">
                     🚀 Escala tus Ventas en Chile
                 </span>
@@ -39,7 +54,47 @@
             @endif
         </div>
 
-        @if($isMarketing)
+        @if($isBsale)
+            <h3 style="color: #ffffff; font-size: clamp(1.4rem, 2.5vw, 1.85rem); font-weight: 900; line-height: 1.25; margin-bottom: 1rem; letter-spacing: -0.01em;">
+                ¿Quieres sincronizar Bsale con WooCommerce sin pagar mensualidades a intermediarios?
+            </h3>
+            <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.75rem; max-width: 820px;">
+                En <strong>REW</strong> desarrollamos el conector oficial de <strong>pago único ($350.000 CLP / Lifetime)</strong>. Sincroniza inventario multibodega en tiempo real, actualiza listas de precios y emite boletas o facturas DTE ante el SII de forma 100% automática.
+            </p>
+
+            <!-- Value Checkpoints -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem; margin-bottom: 2rem;">
+                <div style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.92rem; color: #e2e8f0;">
+                    <span style="color: #10b981; font-size: 1.1rem; line-height: 1;">✓</span>
+                    <span><strong>Cero Mensualidades:</strong> Licencia vitalicia de un solo pago, sin cobros por documento emitido.</span>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.92rem; color: #e2e8f0;">
+                    <span style="color: #10b981; font-size: 1.1rem; line-height: 1;">✓</span>
+                    <span><strong>Stock Multibodega Real:</strong> Sincronización instantánea entre sucursales físicas y tu tienda online.</span>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.92rem; color: #e2e8f0;">
+                    <span style="color: #10b981; font-size: 1.1rem; line-height: 1;">✓</span>
+                    <span><strong>Instalación por Ingenieros:</strong> Setup técnico y puesta en marcha guiada por Álvaro Valenzuela.</span>
+                </div>
+            </div>
+
+            <!-- Call to Actions -->
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                <a href="{{ route('servicios.bsale-woocommerce') }}" class="btn btn-primary btn-lg" style="font-weight: 800; font-size: 0.98rem; padding: 0.85rem 1.6rem;">
+                    <span>🛒 Ver Integración Bsale ($350.000 CLP)</span>
+                </a>
+                <a href="{{ route('tienda.show', 'plugin-integracion-bsale-woocommerce') }}" class="btn btn-outline" style="border-color: rgba(255,255,255,0.4); color: #ffffff; font-weight: 700; font-size: 0.98rem; padding: 0.85rem 1.6rem;">
+                    <span>⚡ Ficha Técnica del Plugin</span>
+                </a>
+                <a href="https://api.whatsapp.com/send?phone=56987261127&text={{ rawurlencode('Hola Álvaro, leí tu artículo en el blog sobre integración Bsale WooCommerce y quiero coordinar la instalación.') }}" 
+                   target="_blank" 
+                   rel="noopener" 
+                   class="btn btn-whatsapp" 
+                   style="font-weight: 800; font-size: 0.98rem; padding: 0.85rem 1.4rem;">
+                    <span>💬 WhatsApp Directo</span>
+                </a>
+            </div>
+        @elseif($isMarketing)
             <h3 style="color: #ffffff; font-size: clamp(1.4rem, 2.5vw, 1.85rem); font-weight: 900; line-height: 1.25; margin-bottom: 1rem; letter-spacing: -0.01em;">
                 ¿Quieres convertir el alcance de tus redes sociales en clientes reales para tu negocio?
             </h3>

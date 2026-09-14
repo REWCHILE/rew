@@ -88,5 +88,7 @@ class BlogFeatureTest extends TestCase
         $response->assertSee('/servicios/integracion-bsale-woocommerce');
         $response->assertSee('Single Source of Truth');
         $response->assertSee('Álvaro Valenzuela Valdés');
+        $response->assertSee('Ver Integración Bsale ($350.000 CLP)');
+        $response->assertSee('Stock Multibodega Real');
     }
 }
